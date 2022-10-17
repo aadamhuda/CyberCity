@@ -100,6 +100,7 @@
 -define:ENABLE_TERRAIN
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
+-define:ENABLE_INPUT_SYSTEM
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:CONDITIONAL_IGNORE_SUPPORTED
 -define:TEST_FRAMEWORK_1_1_18_OR_NEWER
@@ -320,8 +321,8 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2022.1.20f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Transactions.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.1.20f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.1.20f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Linq.dll"
--r:"C:/Users/ahuda/gameDev/gameDev-GroupH/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
--r:"C:/Users/ahuda/gameDev/gameDev-GroupH/Library/PackageCache/com.unity.testtools.codecoverage@1.1.1/lib/ReportGenerator/ReportGeneratorMerged.dll"
+-r:"C:/Users/G/Desktop/gameDev/gameDev-GroupH/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
+-r:"C:/Users/G/Desktop/gameDev/gameDev-GroupH/Library/PackageCache/com.unity.testtools.codecoverage@1.1.1/lib/ReportGenerator/ReportGeneratorMerged.dll"
 -r:"Library/Bee/artifacts/2000b0aE.dag/Unity.Settings.Editor.ref.dll"
 -r:"Library/Bee/artifacts/2000b0aE.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.ref.dll"
 -r:"Library/Bee/artifacts/2000b0aE.dag/Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.ref.dll"
