@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986c8844de34b8646882a16532980a4f, type: 3}
   m_Name: SceneSave
   m_EditorClassIdentifier: 
-  isNextScene: 0
-  x: 0.0000013108365
-  y: 0.9999733
-  z: 0.51016223
+  isNextScene: 1
+  x: 0.0000012491364
+  y: 0.99997497
+  z: 0.87956405

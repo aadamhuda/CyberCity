@@ -15,6 +15,13 @@ public class SaveData : ScriptableObject
         y = Ny;
         z = Nz;
     }
+
+    public void Default()
+    {
+        x = 0;
+        y = 0;
+        z = 0;
+    }
     
     public void SwitchBool()
     {

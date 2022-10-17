@@ -7,14 +7,17 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float turnSpeed;
+    [SerializeField]
     public SaveData savedata;
 
     void Start()
     {
-    /*    if (savedata == false)
+        Debug.Log(savedata.isNextScene);
+        if (savedata.isNextScene == true)
         {
             transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
-        } */
+            savedata.SwitchBool();
+        }
     }
 
     // Moving player position with translation and roation
