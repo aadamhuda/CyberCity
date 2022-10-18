@@ -11,10 +11,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-    /*    if (savedata == false)
+        if (savedata.isNextScene == true)
         {
             transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
-        } */
+            savedata.SwitchBool();
+        }
     }
 
     // Moving player position with translation and roation
