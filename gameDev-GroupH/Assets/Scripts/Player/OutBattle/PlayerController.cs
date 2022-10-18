@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed;
 
     // For quaternion 
-    // public float maxAngleChange;
+    public float maxAngleChange;
 
     public SaveData savedata;
 
@@ -33,15 +33,16 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    // Moving player position with translation and rotation based on input 
+    
     void Update()
     {
-        float forwardMovement = moveValue.y * speed * Time.deltaTime;
-        float turnMovement = moveValue.x * turnSpeed * Time.deltaTime;
+        // Moving player position with translation and rotation based on input (old)
+        //float forwardMovement = moveValue.y * speed * Time.deltaTime;
+        //float turnMovement = moveValue.x * turnSpeed * Time.deltaTime;
 
-        transform.Translate(Vector3.forward * forwardMovement);
-        transform.Rotate(Vector3.up * turnMovement);
-        
+        //transform.Translate(Vector3.forward * forwardMovement);
+        //transform.Rotate(Vector3.up * turnMovement);
+
 
         if (Input.GetKeyDown(KeyCode.G) ) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
@@ -50,18 +51,19 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /* Rigidbody movement of player and rotation, using quaternion
-        Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
+       
+       Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
 
-        if (movement == Vector3.zero)
-        {
+       if (movement == Vector3.zero)
+       {
             return;
-        }
-        Quaternion targetRotation = Quaternion.LookRotation(movement);
-        targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxAngleChange * Time.fixedDeltaTime);
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
-        rb.MoveRotation(targetRotation);
-        */
+       }
+
+       //Rigidbody movement of player, and rotation, using quaternion
+       Quaternion targetRotation = Quaternion.LookRotation(movement);
+       targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxAngleChange * Time.fixedDeltaTime);
+       rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+       rb.MoveRotation(targetRotation);
     }
 
 }
