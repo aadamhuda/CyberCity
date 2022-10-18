@@ -438,7 +438,7 @@ MonoBehaviour:
   moveValue: {x: 0, y: 0}
   speed: 10
   turnSpeed: 250
-  maxAngleChange: 3600
+  maxAngleChange: 360
   savedata: {fileID: 0}
 --- !u!114 &878118229
 MonoBehaviour:
