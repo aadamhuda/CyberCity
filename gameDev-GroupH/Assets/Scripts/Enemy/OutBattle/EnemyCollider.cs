@@ -22,7 +22,8 @@ public class EnemyCollider : MonoBehaviour
    }
 
     private void OnTriggerExit(Collider Other) {
-        Debug.Log("Bitch pls");
+        Debug.Log("a");
+
         inRange = false;
         canvas.showCanvas(inRange);
     }

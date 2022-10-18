@@ -16,11 +16,10 @@ public class CameraController : MonoBehaviour
     }
 
     // Late update updates after all Update() methods
-    // Modify position of camera based on player position and offset
+    // Modify position of camera based on players rigidbody position and offset
     // After player has moved, camera follows
     void LateUpdate()
     {
-        transform.position = player.transform.position + offset;
-
+        transform.position = player.GetComponent<Rigidbody>().position + offset;
     }
 }
