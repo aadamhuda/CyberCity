@@ -8,18 +8,23 @@ public class EnemyCollider : MonoBehaviour
     bool inRange = false;
     public PlayerController player;
     public SaveData PosSave;
+    public active canvas;
 
-   private void OnTriggerEnter(Collider Other) {
-    Debug.Log("You have entered.");
+    public bool getInRange()
+    {
+        return inRange;
+    }
 
-    inRange = true;
-
+    private void OnTriggerEnter(Collider Other) {
+        Debug.Log("You have entered.");
+        inRange = true;
+        canvas.showCanvas(inRange);
    }
 
     private void OnTriggerExit(Collider Other) {
         Debug.Log("Bitch pls");
-
         inRange = false;
+        canvas.showCanvas(inRange);
     }
 
     private void BattleScene() {

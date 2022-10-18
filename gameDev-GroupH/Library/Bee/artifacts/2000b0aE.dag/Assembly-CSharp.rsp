@@ -344,6 +344,7 @@
 "Assets/Scripts/ChangeTargetButton.cs"
 "Assets/Scripts/Enemy/InBattle/EnemyAttack.cs"
 "Assets/Scripts/Enemy/InBattle/TurnController.cs"
+"Assets/Scripts/Enemy/OutBattle/active.cs"
 "Assets/Scripts/Enemy/OutBattle/EnemyCollider.cs"
 "Assets/Scripts/GuardButton.cs"
 "Assets/Scripts/Player/CameraController.cs"

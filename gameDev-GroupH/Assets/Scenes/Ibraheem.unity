@@ -600,6 +600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1132222333}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
+  canvas: {fileID: 1362545036}
 --- !u!65 &659616802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -982,6 +983,7 @@ GameObject:
   - component: {fileID: 1362545034}
   - component: {fileID: 1362545033}
   - component: {fileID: 1362545032}
+  - component: {fileID: 1362545036}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1072,6 +1074,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1362545036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362545031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978ad29d9cfa32541b526ccb1dfc5b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1599884335
 GameObject:
   m_ObjectHideFlags: 0
