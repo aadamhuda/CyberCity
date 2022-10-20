@@ -13,8 +13,8 @@ public class CameraController : MonoBehaviour
     // Initialize offset to initial position of camera
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Adjust freelook based on mouse position (X, Y) and rotation with eulerAngles

@@ -82,7 +82,26 @@ public class PlayerAttack : MonoBehaviour
 
 	public void damage(float damageAmount)
 	{
-		hp -= damageAmount * resist;
+		//prevents negative hp, checks if it is less than 0
+		if(hp - (damageAmount * resist) < 0)
+        {
+			hp = 0;
+			death(hp);
+        }
+        else
+        {
+			hp -= damageAmount * resist;
+		}
+		
 	}
 
+
+	public void death(float hp)
+    {
+		if (hp == 0)
+        {
+			Debug.Log("you have died");
+			isAlive = false;
+		}
+    }
 }
