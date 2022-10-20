@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -98,7 +100,7 @@ public class PlayerAttack : MonoBehaviour
 
 	public void death(float hp)
     {
-		if (hp == 0)
+		if (hp == 0 & isAlive)
         {
 			Debug.Log("you have died");
 			isAlive = false;
