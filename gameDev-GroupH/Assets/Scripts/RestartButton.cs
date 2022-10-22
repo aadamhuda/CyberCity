@@ -12,6 +12,7 @@ public class RestartButton : MonoBehaviour
     void Start()
     {
         restartButton = GameObject.FindGameObjectWithTag("Restart");
+        disableButton(restartButton);
     }
 
     // Update is called once per frame

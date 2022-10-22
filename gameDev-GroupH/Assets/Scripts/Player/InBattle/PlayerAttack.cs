@@ -17,9 +17,12 @@ public class PlayerAttack : MonoBehaviour
 	private float maxHP = 100;
 	private float resist;
 
+	private GameObject player;
+
 
 	void Start()
 	{
+		player = GameObject.FindGameObjectWithTag("Player");
 		canAttack = true;
 		isAlive = true;
 		resist = 1;
@@ -104,6 +107,24 @@ public class PlayerAttack : MonoBehaviour
         {
 			Debug.Log("you have died");
 			isAlive = false;
+			disablePlayer(player);
+
+			RestartButton button = GameObject.FindWithTag("Restart").GetComponent<RestartButton>();
+			button.enableButton(button.restartButton);
+
+
 		}
     }
+
+	// function to enable
+	public void enablePlayer(GameObject player)
+	{
+		player.SetActive(true);
+	}
+
+	// function to disable
+	public void disablePlayer(GameObject player)
+	{
+		player.SetActive(false);
+	}
 }
