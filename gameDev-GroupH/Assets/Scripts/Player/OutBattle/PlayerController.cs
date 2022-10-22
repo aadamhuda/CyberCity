@@ -21,11 +21,11 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
 
-        //if (savedata.isNextScene == true)
-        //{
-        //    transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
-        //    savedata.SwitchBool();
-        //}
+        if (savedata.isNextScene == true)
+        {
+            transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
+            savedata.SwitchBool();
+        }
 
     }
 
