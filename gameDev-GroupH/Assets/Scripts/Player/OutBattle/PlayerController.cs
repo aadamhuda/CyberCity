@@ -8,25 +8,27 @@ public class PlayerController : MonoBehaviour
 {
     // Movement
     private Rigidbody rb;
-    public Vector2 moveValue;
+    private  Vector2 moveValue;
     public float speed;
     public float turnSpeed;
 
     // For quaternion 
-    public float maxAngleChange;
+    //public float maxAngleChange;
 
     public SaveData savedata;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
 
+
         if (savedata.isNextScene == true)
         {
             transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
             savedata.SwitchBool();
         }
+
     }
-    
+
     // Input action
     // Can move with multiple control schemes, e.g. keyboard, controller etc
     void OnMove(InputValue value)
@@ -35,7 +37,15 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    
+    void OnTriggerEnter(Collider other)
+    {
+        // Clue object dissappears when picked up
+        if(other.gameObject.tag == "Clue")
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
     void Update()
     {
         // Moving player position with translation and rotation based on input (old)
