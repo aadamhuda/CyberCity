@@ -18,11 +18,13 @@ public class PlayerAttack : MonoBehaviour
 	private float resist;
 
 	private GameObject player;
+	private GameObject restartButton;
 
 
 	void Start()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
+		restartButton = GameObject.FindGameObjectWithTag("Restart");
 		canAttack = true;
 		isAlive = true;
 		resist = 1;
@@ -109,9 +111,7 @@ public class PlayerAttack : MonoBehaviour
 			isAlive = false;
 			disablePlayer(player);
 
-			RestartButton button = GameObject.FindWithTag("Restart").GetComponent<RestartButton>();
-			button.enableButton(button.restartButton);
-
+			restartButton.GetComponent<RestartButton>().enableButton(restartButton);
 
 		}
     }

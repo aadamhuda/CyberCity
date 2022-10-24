@@ -6,6 +6,7 @@ public class RestartButton : MonoBehaviour
 {
 
     public GameObject restartButton;
+    public PlayerAttack player;
 
     
     // Start is called before the first frame update
@@ -13,17 +14,19 @@ public class RestartButton : MonoBehaviour
     {
         restartButton = GameObject.FindGameObjectWithTag("Restart");
         disableButton(restartButton);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+   
     }
 
     // function to enable 
     public void enableButton(GameObject button)
     {
+        Debug.Log("enabling");
         button.SetActive(true);
     }
 
