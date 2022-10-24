@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SceneSave
   m_EditorClassIdentifier: 
   isNextScene: 0
-  x: 0.0000013108365
-  y: 0.9999733
-  z: 0.51016223
+  x: 0.0000005966285
+  y: 0.99999976
+  z: -0.05487658
