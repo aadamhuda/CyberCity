@@ -8,6 +8,8 @@ public class TurnController : MonoBehaviour
 	private GameObject[] enemies; // Array of player and enemies turns
 	private GameObject current;
 	private int turnID;
+	[SerializeField]
+	private SaveData data;
 	private GameObject player;
 
 	// Start is called before the first frame update
@@ -78,6 +80,7 @@ public class TurnController : MonoBehaviour
 
 		if(enemies.Length == 0)
         {
+			data.ConfirmDeath();
 			endBattle();
         }
 	}

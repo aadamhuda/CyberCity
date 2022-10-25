@@ -14,9 +14,10 @@ public class EnemyCollider : MonoBehaviour
     public void Start()
     {
         dead = PosSave.EnemyDeath;
-        if (dead == false)
+        if (dead == true)
         {
             gameObject.SetActive(false);
+            PosSave.ConfirmDeath();
         }
     }
 

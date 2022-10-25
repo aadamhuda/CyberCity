@@ -23,7 +23,7 @@ public class EnemyAttack : MonoBehaviour
 	public void damage(float damageAmount)
 	{
 		//prevents negative hp, checks if it is less than 0
-		if (hp - damageAmount < 0)
+		if (hp - damageAmount < 1)
 		{
 			hp = 0;
 			death(hp);
