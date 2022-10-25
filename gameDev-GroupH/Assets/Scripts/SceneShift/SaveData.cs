@@ -5,9 +5,10 @@ using UnityEngine;
 public class SaveData : ScriptableObject
 {
     [SerializeField]
-    public bool isNextScene = false;
+    public bool isNextScene, EnemyDeath = false;
     [SerializeField]
     public float x, y, z = 0;
+
 
     public void SaveLocation(float Nx, float Ny, float Nz)
     {
@@ -15,7 +16,12 @@ public class SaveData : ScriptableObject
         y = Ny;
         z = Nz;
     }
-    
+
+    public void ConfirmDeath()
+    {
+        EnemyDeath = !EnemyDeath;
+    }
+
     public void SwitchBool()
     {
         isNextScene = !isNextScene;

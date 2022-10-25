@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +12,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private  Vector2 moveValue;
     public float maxAngleChange;
+    public float speed;
+    public float turnSpeed;
+    public TextMeshProUGUI winText;
+
+    // For quaternion 
+    //public float maxAngleChange;
+
     public SaveData savedata;
     public float speed;
 
@@ -18,13 +27,14 @@ public class PlayerController : MonoBehaviour
 
     void Start() {
         rb = GetComponent<Rigidbody>();
+        winText.text = "";
 
 
-        //if (savedata.isNextScene == true)
-        //{
-        //    transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
-        //    savedata.SwitchBool();
-        //}
+        if (savedata.isNextScene == true)
+        {
+            transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
+            savedata.SwitchBool();
+        }
 
     }
 
@@ -42,6 +52,7 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "Clue")
         {
             other.gameObject.SetActive(false);
+            winText.text = "You Win!";
         }
     }
 
@@ -54,10 +65,6 @@ public class PlayerController : MonoBehaviour
         //transform.Translate(Vector3.forward * forwardMovement);
         //transform.Rotate(Vector3.up * turnMovement);
 
-
-        if (Input.GetKeyDown(KeyCode.G) ) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
     }
 
     //Rigidbody movement of player, and rotation, using quaternion
@@ -76,5 +83,4 @@ public class PlayerController : MonoBehaviour
         rb.MoveRotation(targetRotation);
 
     }
-
 }

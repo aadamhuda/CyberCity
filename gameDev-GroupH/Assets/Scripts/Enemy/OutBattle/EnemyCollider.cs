@@ -9,6 +9,17 @@ public class EnemyCollider : MonoBehaviour
     public PlayerController player;
     public SaveData PosSave;
     public active canvas;
+    public bool dead;
+
+    public void Start()
+    {
+        dead = PosSave.EnemyDeath;
+        if (dead == true)
+        {
+            gameObject.SetActive(false);
+            PosSave.ConfirmDeath();
+        }
+    }
 
     public bool getInRange()
     {
