@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private  Vector2 moveValue;
     public float speed;
     public float turnSpeed;
+    public TextMeshProUGUI winText;
 
     // For quaternion 
     //public float maxAngleChange;
@@ -19,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     void Start() {
         rb = GetComponent<Rigidbody>();
+        winText.text = "";
 
 
         if (savedata.isNextScene == true)
@@ -43,6 +47,7 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "Clue")
         {
             other.gameObject.SetActive(false);
+            winText.text = "You Win!";
         }
     }
 
@@ -77,5 +82,4 @@ public class PlayerController : MonoBehaviour
         //rb.MoveRotation(targetRotation);
 
     }
-
 }
