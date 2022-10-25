@@ -13,16 +13,12 @@ public class PlayerController : MonoBehaviour
     private  Vector2 moveValue;
     public float maxAngleChange;
     public float speed;
-    public float turnSpeed;
     public TextMeshProUGUI winText;
 
-    // For quaternion 
-    //public float maxAngleChange;
 
     public SaveData savedata;
-    public float speed;
 
-    //public float turnSpeed;
+
 
 
     void Start() {
