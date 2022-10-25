@@ -60,10 +60,6 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.forward * forwardMovement);
         transform.Rotate(Vector3.up * turnMovement);
 
-
-        if (Input.GetKeyDown(KeyCode.G) ) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        }
     }
 
     //Rigidbody movement of player, and rotation, using quaternion
