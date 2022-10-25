@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -15,9 +17,14 @@ public class PlayerAttack : MonoBehaviour
 	private float maxHP = 100;
 	private float resist;
 
+	private GameObject player;
+	private GameObject restartButton;
+
 
 	void Start()
 	{
+		player = GameObject.FindGameObjectWithTag("Player");
+		restartButton = GameObject.FindGameObjectWithTag("Restart");
 		canAttack = true;
 		isAlive = true;
 		resist = 1;
@@ -82,7 +89,42 @@ public class PlayerAttack : MonoBehaviour
 
 	public void damage(float damageAmount)
 	{
-		hp -= damageAmount * resist;
+		//prevents negative hp, checks if it is less than 0
+		if(hp - (damageAmount * resist) < 0)
+        {
+			hp = 0;
+			death(hp);
+        }
+        else
+        {
+			hp -= damageAmount * resist;
+		}
+		
 	}
 
+
+	public void death(float hp)
+    {
+		if (hp == 0 & isAlive)
+        {
+			Debug.Log("you have died");
+			isAlive = false;
+			disablePlayer(player);
+
+			restartButton.GetComponent<RestartButton>().enableButton(restartButton);
+
+		}
+    }
+
+	// function to enable
+	public void enablePlayer(GameObject player)
+	{
+		player.SetActive(true);
+	}
+
+	// function to disable
+	public void disablePlayer(GameObject player)
+	{
+		player.SetActive(false);
+	}
 }
