@@ -7,7 +7,10 @@ public class SaveData : ScriptableObject
     [SerializeField]
     public bool isNextScene = false;
     [SerializeField]
+    public bool EnemyDeath = true;
+    [SerializeField]
     public float x, y, z = 0;
+
 
     public void SaveLocation(float Nx, float Ny, float Nz)
     {
