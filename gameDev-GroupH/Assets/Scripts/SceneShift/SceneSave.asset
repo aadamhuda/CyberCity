@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SceneSave
   m_EditorClassIdentifier: 
   isNextScene: 0
-  x: 0.0000005966285
+  EnemyDeath: 0
+  x: 0.0000005889451
   y: 0.99999976
-  z: -0.05487658
+  z: 0.95774287

@@ -9,7 +9,7 @@ public class EnemyAttack : MonoBehaviour
 	private float maxHP = 100;
 	public bool isAlive;
 	private GameObject player;
-	private float enemyDamage = 1;
+	private float enemyDamage = 15;
 
 
 	// Start is called before the first frame update
@@ -23,7 +23,7 @@ public class EnemyAttack : MonoBehaviour
 	public void damage(float damageAmount)
 	{
 		//prevents negative hp, checks if it is less than 0
-		if (hp - damageAmount < 0)
+		if (hp - damageAmount < 1)
 		{
 			hp = 0;
 			death(hp);
