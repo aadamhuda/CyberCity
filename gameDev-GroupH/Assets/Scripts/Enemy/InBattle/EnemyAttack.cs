@@ -9,7 +9,7 @@ public class EnemyAttack : MonoBehaviour
 	private float maxHP = 100;
 	public bool isAlive;
 	private GameObject player;
-	private float enemyDamage = 1;
+	private float enemyDamage = 15;
 
 
 	// Start is called before the first frame update
