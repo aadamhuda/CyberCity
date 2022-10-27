@@ -14,12 +14,9 @@ public class PlayerController : MonoBehaviour
     public float maxAngleChange;
     public float speed;
     public TextMeshProUGUI winText;
-
+    public bool won = false;
 
     public SaveData savedata;
-
-
-
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -44,11 +41,13 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Clue object dissappears when picked up
+        // Clue object dissappears when picked up and player wins 
         if(other.gameObject.tag == "Clue")
         {
             other.gameObject.SetActive(false);
-            winText.text = "You Win!";
+            winText.text = "You Win! Press X to quit";
+            won = true;
+            Time.timeScale = 0;
         }
     }
 
@@ -60,6 +59,13 @@ public class PlayerController : MonoBehaviour
 
         //transform.Translate(Vector3.forward * forwardMovement);
         //transform.Rotate(Vector3.up * turnMovement);
+
+        //if user has won and they can press x to quit
+        if (Input.GetKey("x") && won)
+        {
+            Debug.Log("Quit");
+            Application.Quit();
+        }
 
     }
 
@@ -77,6 +83,5 @@ public class PlayerController : MonoBehaviour
         targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxAngleChange * Time.fixedDeltaTime);
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         rb.MoveRotation(targetRotation);
-
     }
 }
