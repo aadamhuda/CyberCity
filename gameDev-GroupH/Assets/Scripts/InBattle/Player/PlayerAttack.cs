@@ -1,28 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerAttack : MonoBehaviour
 {
 
-	public int playerDamage = 20; // Damage player deals to enemy
+	public int playerDamage = 50; // Damage player deals to enemy
 
 	private GameObject target;
 	private int targetID = 0;
 	public bool canAttack;
 	public bool isAlive;
 	public float hp;
-	private float maxHP = 100;
+	private float maxHP = 150;
 	private float resist;
+
+	private GameObject player;
+	private GameObject restartButton;
 
 
 	void Start()
 	{
+		player = GameObject.FindGameObjectWithTag("Player");
+		restartButton = GameObject.FindGameObjectWithTag("Restart");
 		canAttack = true;
 		isAlive = true;
 		resist = 1;
 		findTargets();
 		hp = maxHP;
+		enableObject(GameObject.Find("ExitButton"));
+		enableObject(GameObject.Find("AttackButton"));
+		enableObject(GameObject.Find("GuardButton"));
+		enableObject(GameObject.Find("ChangeTargetButton"));
 	}
 
 	void findTargets()
@@ -82,7 +93,47 @@ public class PlayerAttack : MonoBehaviour
 
 	public void damage(float damageAmount)
 	{
-		hp -= damageAmount * resist;
+		//prevents negative hp, checks if it is less than 0
+		if(hp - (damageAmount * resist) < 0)
+        {
+			hp = 0;
+			death(hp);
+        }
+        else
+        {
+			hp -= damageAmount * resist;
+		}
+		
 	}
 
+
+	public void death(float hp)
+    {
+		if (hp == 0 & isAlive)
+        {
+			Debug.Log("you have died");
+			isAlive = false;
+			canAttack = false;
+			disableObject(player);
+			disableObject(GameObject.Find("ExitButton"));
+			disableObject(GameObject.Find("AttackButton"));
+			disableObject(GameObject.Find("GuardButton"));
+			disableObject(GameObject.Find("ChangeTargetButton"));
+
+			restartButton.GetComponent<RestartButton>().enableButton(restartButton);
+
+		}
+    }
+
+	// function to enable
+	public void enableObject(GameObject obj)
+	{
+		obj.SetActive(true);
+	}
+
+	// function to disable
+	public void disableObject(GameObject obj)
+	{
+		obj.SetActive(false);
+	}
 }

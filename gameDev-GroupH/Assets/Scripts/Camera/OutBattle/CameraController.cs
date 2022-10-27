@@ -5,22 +5,29 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    public Transform freeLook;
-    public float rotationSpeed;
-    float mouseX, mouseY;
+    //public Transform freeLook;
+    //public float rotationSpeed;
+    //float mouseX, mouseY;
+    public GameObject player;
+    private Vector3 offset;
 
 
     // Initialize offset to initial position of camera
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        offset = transform.position;
+
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Adjust freelook based on mouse position (X, Y) and rotation with eulerAngles
-    // If right mouse is clicked, freelook
+
     void LateUpdate()
     {
+        // Update camera position based on player position + offset
+        transform.position = player.transform.position + offset;
+
+        /* Adjust freelook based on mouse position (X, Y) and rotation with eulerAngles, if right mouse is clicked, freelook
         // Getting the rotations
         float rotationX;
         float rotationY = freeLook.eulerAngles.y;
@@ -50,6 +57,7 @@ public class CameraController : MonoBehaviour
             }
                 freeLook.eulerAngles += new Vector3(-mouseY, mouseX, 0);
         }   
+        */
 
     }
 }
