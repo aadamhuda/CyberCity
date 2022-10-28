@@ -10,6 +10,7 @@ public class EnemyAttack : MonoBehaviour
 	public bool isAlive;
 	private GameObject player;
 	private float enemyDamage = 15;
+	public RectTransform healthBar;
 
 
 	// Start is called before the first frame update
@@ -32,6 +33,7 @@ public class EnemyAttack : MonoBehaviour
 		{
 			hp -= damageAmount;
 		}
+		healthBar.sizeDelta = new Vector2(hp, healthBar.sizeDelta.y);
 
 	}
 
@@ -43,6 +45,7 @@ public class EnemyAttack : MonoBehaviour
 			isAlive = false;
 
 			disableEnemy();
+			player.GetComponent<PlayerAttack>().changeTargetCheck(this.gameObject);
 		}
 	}
 
