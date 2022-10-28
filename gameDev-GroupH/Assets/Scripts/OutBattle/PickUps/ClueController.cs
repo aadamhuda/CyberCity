@@ -10,9 +10,6 @@ public class ClueController : MonoBehaviour
     public float floor;
     bool moveUp;
 
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
