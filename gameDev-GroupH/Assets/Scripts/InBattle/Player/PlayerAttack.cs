@@ -60,8 +60,12 @@ public class PlayerAttack : MonoBehaviour
 			targetID = 0;
 		}
 
-		target = targets[targetID];
-		target.GetComponent<Renderer>().material.color = Color.blue;
+		if (targets.Length > 0)
+        {
+			target = targets[targetID];
+			target.GetComponent<Renderer>().material.color = Color.blue;
+		}
+
 	}
 
 	public void changeTargetCheck(GameObject enemy)
