@@ -19,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
 
 	private GameObject player;
 	private GameObject restartButton;
+	public RectTransform healthBar;
 
 
 	void Start()
@@ -59,9 +60,21 @@ public class PlayerAttack : MonoBehaviour
 			targetID = 0;
 		}
 
-		target = targets[targetID];
-		target.GetComponent<Renderer>().material.color = Color.blue;
+		if (targets.Length > 0)
+        {
+			target = targets[targetID];
+			target.GetComponent<Renderer>().material.color = Color.blue;
+		}
+
 	}
+
+	public void changeTargetCheck(GameObject enemy)
+    {
+		if(target == enemy)
+        {
+			changeTarget();
+        }
+    }
 
 	public void doAttack()
 	{
@@ -103,7 +116,8 @@ public class PlayerAttack : MonoBehaviour
         {
 			hp -= damageAmount * resist;
 		}
-		
+		healthBar.sizeDelta = new Vector2(hp, healthBar.sizeDelta.y);
+
 	}
 
 
