@@ -8,18 +8,37 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    // Movement
-    private Rigidbody rb;
-    private  Vector2 moveValue;
-    public float maxAngleChange;
-    public float speed;
+    private CharacterController controller;
+    private Vector3 playerVelocity;
+    private bool groundedPlayer;
+
+    [SerializeField] 
+    private Transform mainCamera;
+
+    [SerializeField] 
+    private Vector2 moveValue;
+
+    [SerializeField] 
+    private float speed = 7f;
+
+    [SerializeField] 
+    private float rotationSpeed = 7f;
+
+    [SerializeField]
+    private float jumpHeight = 1f;
+
+    [SerializeField]
+    private float gravityValue = -15f;
+
     public TextMeshProUGUI winText;
     public bool won = false;
 
+
     public SaveData savedata;
 
-    void Start() {
-        rb = GetComponent<Rigidbody>();
+    void Start()
+    {
+        controller = GetComponent<CharacterController>();
         winText.text = "";
 
 
@@ -36,13 +55,13 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveValue = value.Get<Vector2>();
-        
+
     }
 
     void OnTriggerEnter(Collider other)
     {
         // Clue object dissappears when picked up and player wins 
-        if(other.gameObject.tag == "Clue")
+        if (other.gameObject.tag == "Clue")
         {
             other.gameObject.SetActive(false);
             winText.text = "You Win! Press X to quit";
@@ -51,14 +70,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Player movement
     void Update()
     {
-        //Moving player position with translation and rotation based on input(old)
-        //float forwardMovement = moveValue.y * speed * Time.deltaTime;
-        //float turnMovement = moveValue.x * turnSpeed * Time.deltaTime;
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
+        // Movement based on player input direction and camera direction 
+        Vector3 movement = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0) * new Vector3(moveValue.x, 0, moveValue.y).normalized;
+        controller.Move(movement * speed * Time.deltaTime);
 
-        //transform.Translate(Vector3.forward * forwardMovement);
-        //transform.Rotate(Vector3.up * turnMovement);
+        // Rotation
+        if (movement != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        // Changes the height position of the player..
+        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        {
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+        }
+
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
 
         //if user has won and they can press x to quit
         if (Input.GetKey("x") && won)
@@ -66,22 +105,5 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Quit");
             Application.Quit();
         }
-
-    }
-
-    //Rigidbody movement of player, and rotation, using quaternion
-    private void FixedUpdate()
-    {
-
-        Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
-
-        if (movement == Vector3.zero)
-        {
-            return;
-        }
-        Quaternion targetRotation = Quaternion.LookRotation(movement);
-        targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxAngleChange * Time.fixedDeltaTime);
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
-        rb.MoveRotation(targetRotation);
     }
 }
