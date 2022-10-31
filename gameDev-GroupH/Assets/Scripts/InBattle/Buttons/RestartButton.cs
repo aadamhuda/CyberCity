@@ -7,7 +7,7 @@ public class RestartButton : MonoBehaviour
 {
 
     public GameObject restartButton;
-    public PlayerAttack player;
+    public Player player;
 
     
     // Start is called before the first frame update
