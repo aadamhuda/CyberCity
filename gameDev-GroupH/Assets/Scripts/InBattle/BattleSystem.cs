@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 //NOTE: damage and healing must be balanced to provide a challenge while not making it too difficult
 
@@ -162,6 +163,7 @@ public class BattleSystem : MonoBehaviour
 		if (state == BattleState.WIN)
 		{
 			dialogue.text = "You WIN the battle!";
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		}
 		else if (state == BattleState.LOSE)
 		{
