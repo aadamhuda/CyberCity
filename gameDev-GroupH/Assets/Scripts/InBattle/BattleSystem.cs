@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
+//NOTE: damage and healing must be balanced to provide a challenge while not making it too difficult
 
+//enumerator to hold battle states
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE}
 
 public class BattleSystem : MonoBehaviour
@@ -13,20 +15,17 @@ public class BattleSystem : MonoBehaviour
     public GameObject enemyPrefab;
 
     public Transform[] enemyLocations;
-    public Transform playerLocation;
-
+    public Transform playerLocation; //to be changed to hold multiple players once party system is created
 
     public BattleState state;
 
-	public Text dialogue;
-
-
+	public TextMeshProUGUI dialogue;
 
 	public Enemy[] enemies;
     public Player players;
 
+	//holds position of currently selected enemy
 	public int target = 0;
-
 
     // Start is called before the first frame update
     void Start()
@@ -35,49 +34,45 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(initialiseBattle());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+	//initialises battle - spawns player and enemies, selects first target and then starts player turn
     IEnumerator initialiseBattle()
     {
         GameObject playerObj =  Instantiate(playerPrefab, playerLocation);
         players = playerObj.GetComponent<Player>();
-		enemies = new Enemy[3];
 
+		enemies = new Enemy[3];
+		
 		for (int i = 0; i < enemyLocations.Length; i++)
         {
-			Debug.Log(i);
-			Debug.Log(enemyLocations.Length);
-			Debug.Log(enemies.Length);
-
-
+			///Debug.Log(i);
+			///Debug.Log(enemyLocations.Length);
+			///Debug.Log(enemies.Length);
+			
 			GameObject enemyObj = Instantiate(enemyPrefab, enemyLocations[i]);
             enemies[i] = enemyObj.GetComponent<Enemy>();
         }
 
+		changeTarget();
+
         state = BattleState.PLAYERTURN;
-
         yield return new WaitForSeconds(2f);
-
         playerTurn();
     }
 
 	IEnumerator PlayerAttack()
-	{
-		bool enemiesDead = (enemies.Length == 0);
-		
+	{	
 		bool isDead = enemies[target].takeDamage(players.damage);
+
+		dialogue.text = players.unitName + " attacked " + enemies[target].unitName;
+
 		if (isDead)
         {
-			removeEnemies(target);
-			
+			enemies = removeEnemies(target);
+			changeTarget(); //automatically changes target on enemy death
         }
 
-		dialogue.text = players.name + " attacked " + enemies[target].name;
-
+		//checks if all enemies are dead - win condition
+		bool enemiesDead = (enemies.Length == 0);
 
 		if (enemiesDead)
 		{
@@ -99,13 +94,11 @@ public class BattleSystem : MonoBehaviour
 
 		for (int i = 0; i < enemies.Length; i++)
 		{
-			dialogue.text = enemies[i].name + " attacks!";
+			dialogue.text = enemies[i].unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
 
 			isDead = players.takeDamage(enemies[i].damage);
-
 		}
-
 
 		yield return new WaitForSeconds(1f);
 
@@ -136,20 +129,22 @@ public class BattleSystem : MonoBehaviour
 
 	void playerTurn()
 	{
-		dialogue.text = "Choose an action:";
+		dialogue.text = "Choose an action!";
 	}
 
+	//NOTE: requires balancing, healing = 100 for testing purposes
 	IEnumerator playerHeal()
 	{
-		players.heal(5);
+		players.heal(100);
 
-		dialogue.text = "You healed by 5 hp!";
+		dialogue.text = "You healed by 100 hp!";
 
 		state = BattleState.ENEMYTURN;
 		yield return new WaitForSeconds(2f);
 		StartCoroutine(EnemyTurn());
 	}
 
+	//removes enemy from array, disables gameObject and returns new array - to be used on enemy death
 	private Enemy[] removeEnemies(int removeAt)
 	{
 		Enemy[] newEnemies = new Enemy[enemies.Length - 1];
@@ -169,37 +164,38 @@ public class BattleSystem : MonoBehaviour
 
 			i++;
 		}
-
 		return newEnemies;
 	}
 
+	public void changeTarget()
+    {
+		for (int i = 0; i < enemies.Length; i++)
+		{
+			if (enemies.Length > 0)
+			{
+				if (i == target)
+				{
+					enemies[i].GetComponent<Renderer>().material.color = Color.blue;
+				}
+				else
+				{
+					enemies[i].GetComponent<Renderer>().material.color = Color.red;
+				}
+			}
+		}
+	}
 	public void onChangeTargetButton()
 	{
 		if (state != BattleState.PLAYERTURN)
 			return;
 
 		target = target + 1;
-
 		if (target > enemies.Length - 1)
 		{
 			target = 0;
 		}
 
-		for (int i = 0; i < enemies.Length; i++)
-		{
-			if (enemies.Length > 0)
-			{
-				if(i == target)
-                {
-					enemies[i].GetComponent<Renderer>().material.color = Color.blue;
-				}
-                else
-                {
-					enemies[i].GetComponent<Renderer>().material.color = Color.red;
-				}
-			}
-			
-		}
+		changeTarget();
 	}
 
 	public void onAttackButton()

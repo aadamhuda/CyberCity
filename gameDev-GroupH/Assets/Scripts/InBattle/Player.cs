@@ -4,15 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
+//inherits from parent class BattleUnit
 public class Player : BattleUnit
 {
-
-
-	void Start()
-	{
-		
-	}
-
 
 	public void heal(int amount)
 	{

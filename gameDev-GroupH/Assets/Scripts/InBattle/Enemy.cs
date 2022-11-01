@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//inherits from parent class BattleUnit
 public class Enemy : BattleUnit
 {
 
-	// Start is called before the first frame update
-	void Start()
-	{
-	}
 
-
-	// function to enable
+	// function to enable - used on death of enemy sprite
 	public void enableEnemy()
 	{
 		gameObject.SetActive(true);
