@@ -10,35 +10,71 @@ public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE}
 
 public class BattleSystem : MonoBehaviour
 {
+	public GameObject playerPrefab;
+	public GameObject enemyPrefab;
 
-    public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+	public Transform[] enemyLocations;
+	public Transform playerLocation; //to be changed to hold multiple players once party system is created
 
-    public Transform[] enemyLocations;
-    public Transform playerLocation; //to be changed to hold multiple players once party system is created
-
-    public BattleState state;
+	public BattleState state;
 
 	public TextMeshProUGUI dialogue;
 
 	public Enemy[] enemies;
-    public Player players;
+	public Player players;//this will change to an array once a party system is implemented
 
 	//holds position of currently selected enemy
 	public int target = 0;
 
-    // Start is called before the first frame update
-    void Start()
+
+	//HUD
+	public GameObject hudPrefab;
+
+	public UnitHUD playerHUD;
+	public UnitHUD[] enemiesHUD;
+
+	public RectTransform playerHudLocation;
+	public RectTransform[] enemyHudLocations;
+
+	// Start is called before the first frame update
+	void Start()
     {
         state = BattleState.START;
-        StartCoroutine(initialiseBattle());
+        StartCoroutine(InitialiseBattle());
     }
 
-	//initialises battle - spawns player and enemies, selects first target and then starts player turn
-    IEnumerator initialiseBattle()
+	void Update()
+	{
+		playerHUD.updateHUD(players);
+
+		for (int i = 0; i < enemiesHUD.Length; i++)
+		{
+			enemiesHUD[i].updateHUD(enemies[i]);
+		}
+	}
+
+
+	void initialiseHUD()
+    {
+		GameObject playerHudObj = Instantiate(hudPrefab, playerHudLocation);
+		playerHUD = playerHudObj.GetComponent<UnitHUD>();
+
+		enemiesHUD = new UnitHUD[3];
+
+		for (int i = 0; i < enemyHudLocations.Length; i++)
+		{ 
+			GameObject enemyHudObj = Instantiate(hudPrefab, enemyHudLocations[i]);
+			enemiesHUD[i] = enemyHudObj.GetComponent<UnitHUD>();
+		}
+	}
+
+    //initialises battle - spawns player and enemies, selects first target and then starts player turn
+    IEnumerator InitialiseBattle()
     {
         GameObject playerObj =  Instantiate(playerPrefab, playerLocation);
         players = playerObj.GetComponent<Player>();
+
+		players.unitName = "player";
 
 		enemies = new Enemy[3];
 		
@@ -50,10 +86,14 @@ public class BattleSystem : MonoBehaviour
 			
 			GameObject enemyObj = Instantiate(enemyPrefab, enemyLocations[i]);
             enemies[i] = enemyObj.GetComponent<Enemy>();
+			enemies[i].unitName = "enemy " + (i + 1);
         }
 
 		changeTarget();
 
+		initialiseHUD();
+		//playerHUD.updateHUD(players);
+		
         state = BattleState.PLAYERTURN;
         yield return new WaitForSeconds(2f);
         playerTurn();
@@ -68,6 +108,7 @@ public class BattleSystem : MonoBehaviour
 		if (isDead)
         {
 			enemies = removeEnemies(target);
+			enemiesHUD = removeHUDs(target);
 			changeTarget(); //automatically changes target on enemy death
         }
 
@@ -98,6 +139,7 @@ public class BattleSystem : MonoBehaviour
 			yield return new WaitForSeconds(1f);
 
 			isDead = players.takeDamage(enemies[i].damage);
+			//playerHUD.updateHUD(players);
 		}
 
 		yield return new WaitForSeconds(1f);
@@ -139,6 +181,8 @@ public class BattleSystem : MonoBehaviour
 
 		dialogue.text = "You healed by 100 hp!";
 
+		//playerHUD.updateHUD(players);
+
 		state = BattleState.ENEMYTURN;
 		yield return new WaitForSeconds(2f);
 		StartCoroutine(EnemyTurn());
@@ -166,6 +210,30 @@ public class BattleSystem : MonoBehaviour
 		}
 		return newEnemies;
 	}
+
+	private UnitHUD[] removeHUDs(int removeAt)
+	{
+		UnitHUD[] newEnemiesHUD = new UnitHUD[enemiesHUD.Length - 1];
+
+		//disables the enemy object that has died
+		enemiesHUD[removeAt].disableHUD();
+
+		int i = 0;
+		int j = 0;
+		while (i < enemiesHUD.Length)
+		{
+			if (i != removeAt)
+			{
+				newEnemiesHUD[j] = enemiesHUD[i];
+				j++;
+			}
+
+			i++;
+		}
+		return newEnemiesHUD;
+	}
+
+
 
 	public void changeTarget()
     {

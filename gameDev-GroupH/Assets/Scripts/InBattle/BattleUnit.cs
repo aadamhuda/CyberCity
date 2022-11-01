@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleUnit : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class BattleUnit : MonoBehaviour
     public float currentHP;
     public float maxHP;
     public float damage;
-    public string unitName;
+    public string unitName; 
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +26,13 @@ public class BattleUnit : MonoBehaviour
     public bool takeDamage(float dmg)
     {
 
-        Debug.Log("damage dealt");
         currentHP -= dmg;
 
         if (currentHP <= 0)
+        {
+            currentHP = 0;
             return true;
+        }
         else
             return false;
     }
