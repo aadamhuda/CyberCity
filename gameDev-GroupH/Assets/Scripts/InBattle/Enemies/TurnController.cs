@@ -80,7 +80,7 @@ public class TurnController : MonoBehaviour
 
 		if(enemies.Length == 0)
         {
-			data.ConfirmDeath();
+			data.killEnem(data.GetEnemy());
 			endBattle();
         }
 	}

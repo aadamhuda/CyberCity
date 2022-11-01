@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
 	public float hp;
 	private float maxHP = 150;
 	private float resist;
+	SaveData savedata;
 
 	private GameObject player;
 	private GameObject restartButton;
@@ -134,6 +135,7 @@ public class PlayerAttack : MonoBehaviour
 			disableObject(GameObject.Find("GuardButton"));
 			disableObject(GameObject.Find("ChangeTargetButton"));
 
+			savedata.SwitchBool();
 			restartButton.GetComponent<RestartButton>().enableButton(restartButton);
 
 		}
