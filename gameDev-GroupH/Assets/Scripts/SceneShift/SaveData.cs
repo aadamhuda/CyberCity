@@ -63,6 +63,11 @@ public class SaveData : ScriptableObject
     {
         isNextScene = !isNextScene;
     }
+
+    public void TruthBool()
+    {
+        isNextScene = true;
+    }
     public float getX()
     {
         return x;

@@ -30,7 +30,7 @@ public class EnemyCollider : MonoBehaviour
 
     protected void BattleScene() {
         PosSave.SaveLocation(player.transform.position.x, player.transform.position.y, player.transform.position.z);
-        PosSave.SwitchBool();
+        PosSave.TruthBool();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
