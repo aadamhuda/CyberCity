@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : EnemyCollider
+public class EnemyOutOfCombat : EnemyCollider
 {
+    [SerializeField]
     private bool dead = false;
     public NavMeshAgent agent;
 
     public Transform Player;
 
-    public LayerMask whatisGround, whatisPlayer;
+    public LayerMask whatisGround;
 
     public Vector3 walkPoint;
     public bool walkPointSet;
     public float walkpointRange;
 
-    public float attackRange, sightRange;
     public bool inSight, inAttack;
     protected void Start()
     {
@@ -28,7 +28,6 @@ public class Enemy : EnemyCollider
         if (dead == true)
         {
             gameObject.SetActive(false);
-            PosSave.ConfirmDeath();
         }
     }
 
@@ -42,10 +41,6 @@ public class Enemy : EnemyCollider
     protected override void Update()
     {
         base.Update();
-        //inSight = Physics.CheckSphere(transform.position, sightRange, whatisPlayer);
-       // inAttack = Physics.CheckSphere(transform.position, attackRange, whatisPlayer);
-
-        
 
         Patrol();
 
@@ -79,7 +74,6 @@ public class Enemy : EnemyCollider
 
         if (Physics.Raycast(walkPoint, -transform.up, 3f, whatisGround))
         {
-            Debug.Log("TRUE");
             walkPointSet = true;
         }
             

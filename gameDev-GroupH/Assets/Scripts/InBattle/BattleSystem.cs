@@ -11,6 +11,9 @@ public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE}
 
 public class BattleSystem : MonoBehaviour
 {
+	[SerializeField]
+	SaveData savedata;
+
 	public GameObject playerPrefab;
 	public GameObject enemyPrefab;
 
@@ -163,6 +166,7 @@ public class BattleSystem : MonoBehaviour
 		if (state == BattleState.WIN)
 		{
 			dialogue.text = "You WIN the battle!";
+			savedata.killEnem(savedata.GetEnemy());
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		}
 		else if (state == BattleState.LOSE)
