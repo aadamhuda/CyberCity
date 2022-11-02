@@ -1091,16 +1091,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 0
 =======
+=======
+>>>>>>> Stashed changes
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
   WallMask:
     serializedVersion: 2
     m_Bits: 64
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
@@ -1476,16 +1482,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 0
 =======
+=======
+>>>>>>> Stashed changes
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
   WallMask:
     serializedVersion: 2
     m_Bits: 64
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
@@ -2582,16 +2594,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 0
 =======
+=======
+>>>>>>> Stashed changes
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
   WallMask:
     serializedVersion: 2
     m_Bits: 64
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
@@ -5531,16 +5549,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 54
 =======
+=======
+>>>>>>> Stashed changes
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
   WallMask:
     serializedVersion: 2
     m_Bits: 64
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
@@ -5872,16 +5896,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 0
 =======
+=======
+>>>>>>> Stashed changes
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
   WallMask:
     serializedVersion: 2
     m_Bits: 64
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0

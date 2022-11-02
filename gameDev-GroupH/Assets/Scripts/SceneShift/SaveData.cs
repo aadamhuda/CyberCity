@@ -80,6 +80,9 @@ public class SaveData : ScriptableObject
     {
         EnemyDouble = false;
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     public float getX()
     {
