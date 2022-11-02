@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class EnemyCollider : MonoBehaviour
 {
     protected bool inRange = false;
-    public PlayerController player;
+    public GameObject player;
     public SaveData PosSave;
     public active canvas;
 

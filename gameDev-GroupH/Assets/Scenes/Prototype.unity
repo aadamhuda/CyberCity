@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 23978100}
   - component: {fileID: 23978106}
   - component: {fileID: 23978105}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 83426153}
   - component: {fileID: 83426152}
   - component: {fileID: 83426151}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: north wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffc11a2f20ccd04baadf81d2dca5c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 23978101}
+  player: {fileID: 0}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   canvas: {fileID: 1992065851}
 --- !u!4 &88389612
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 139334308}
   - component: {fileID: 139334307}
   - component: {fileID: 139334306}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1081,24 +1081,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311835efc3435dc40b3760c1e57b12bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 23978101}
+  player: {fileID: 23978098}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   canvas: {fileID: 1992065851}
+  radius: 0
+  angle: 0
   agent: {fileID: 322773438}
-  Player: {fileID: 23978099}
   whatisGround:
     serializedVersion: 2
     m_Bits: 1
+<<<<<<< Updated upstream
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 0
+=======
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  WallMask:
+    serializedVersion: 2
+    m_Bits: 64
+>>>>>>> Stashed changes
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkpointRange: 12
   attackRange: 4
   sightRange: 20
   inSight: 0
-  inAttack: 0
 --- !u!195 &322773438
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1457,24 +1466,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311835efc3435dc40b3760c1e57b12bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 23978101}
+  player: {fileID: 23978098}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   canvas: {fileID: 1992065851}
+  radius: 0
+  angle: 0
   agent: {fileID: 392703653}
-  Player: {fileID: 23978099}
   whatisGround:
     serializedVersion: 2
     m_Bits: 1
+<<<<<<< Updated upstream
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 0
+=======
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  WallMask:
+    serializedVersion: 2
+    m_Bits: 64
+>>>>>>> Stashed changes
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkpointRange: 12
   attackRange: 4
   sightRange: 21
   inSight: 0
-  inAttack: 0
 --- !u!195 &392703653
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1506,7 +1524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 420878886}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1544,7 +1562,7 @@ GameObject:
   - component: {fileID: 515319803}
   - component: {fileID: 515319802}
   - component: {fileID: 515319801}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: west wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1641,7 +1659,7 @@ GameObject:
   - component: {fileID: 519630121}
   - component: {fileID: 519630120}
   - component: {fileID: 519630119}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: vertical wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1835,7 +1853,7 @@ GameObject:
   - component: {fileID: 618153548}
   - component: {fileID: 618153547}
   - component: {fileID: 618153546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2358,7 +2376,7 @@ GameObject:
   - component: {fileID: 695973209}
   - component: {fileID: 695973208}
   - component: {fileID: 695973207}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: vertical wall (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2554,24 +2572,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311835efc3435dc40b3760c1e57b12bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 23978101}
+  player: {fileID: 23978098}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   canvas: {fileID: 1992065851}
+  radius: 0
+  angle: 0
   agent: {fileID: 696534095}
-  Player: {fileID: 23978099}
   whatisGround:
     serializedVersion: 2
     m_Bits: 1
+<<<<<<< Updated upstream
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 0
+=======
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  WallMask:
+    serializedVersion: 2
+    m_Bits: 64
+>>>>>>> Stashed changes
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkpointRange: 11
   attackRange: 4
   sightRange: 21
   inSight: 0
-  inAttack: 0
 --- !u!195 &696534095
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2830,7 +2857,7 @@ GameObject:
   - component: {fileID: 839531653}
   - component: {fileID: 839531652}
   - component: {fileID: 839531651}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3021,7 +3048,7 @@ GameObject:
   - component: {fileID: 892424884}
   - component: {fileID: 892424883}
   - component: {fileID: 892424882}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: vertical wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3118,7 +3145,7 @@ GameObject:
   - component: {fileID: 928629775}
   - component: {fileID: 928629774}
   - component: {fileID: 928629773}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: east wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3215,7 +3242,7 @@ GameObject:
   - component: {fileID: 936735292}
   - component: {fileID: 936735291}
   - component: {fileID: 936735290}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3312,7 +3339,7 @@ GameObject:
   - component: {fileID: 947958877}
   - component: {fileID: 947958876}
   - component: {fileID: 947958875}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3507,7 +3534,7 @@ GameObject:
   - component: {fileID: 1014005928}
   - component: {fileID: 1014005927}
   - component: {fileID: 1014005926}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3605,7 +3632,7 @@ GameObject:
   - component: {fileID: 1019763378}
   - component: {fileID: 1019763377}
   - component: {fileID: 1019763376}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3800,7 +3827,7 @@ GameObject:
   - component: {fileID: 1025918764}
   - component: {fileID: 1025918763}
   - component: {fileID: 1025918762}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3897,7 +3924,7 @@ GameObject:
   - component: {fileID: 1033515809}
   - component: {fileID: 1033515808}
   - component: {fileID: 1033515807}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3994,7 +4021,7 @@ GameObject:
   - component: {fileID: 1069730014}
   - component: {fileID: 1069730013}
   - component: {fileID: 1069730012}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: vertical wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4091,7 +4118,7 @@ GameObject:
   - component: {fileID: 1084455679}
   - component: {fileID: 1084455678}
   - component: {fileID: 1084455677}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4587,7 +4614,7 @@ GameObject:
   - component: {fileID: 1273433586}
   - component: {fileID: 1273433585}
   - component: {fileID: 1273433584}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: vertical wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4681,7 +4708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1368247962}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CameraLookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5118,7 +5145,7 @@ GameObject:
   - component: {fileID: 1529527494}
   - component: {fileID: 1529527493}
   - component: {fileID: 1529527492}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5215,7 +5242,7 @@ GameObject:
   - component: {fileID: 1677157311}
   - component: {fileID: 1677157310}
   - component: {fileID: 1677157309}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: vertical wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5312,7 +5339,7 @@ GameObject:
   - component: {fileID: 1714809222}
   - component: {fileID: 1714809221}
   - component: {fileID: 1714809220}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5494,24 +5521,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311835efc3435dc40b3760c1e57b12bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 23978101}
+  player: {fileID: 23978098}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   canvas: {fileID: 1992065851}
+  radius: 0
+  angle: 0
   agent: {fileID: 1742424773}
-  Player: {fileID: 23978099}
   whatisGround:
     serializedVersion: 2
     m_Bits: 1
+<<<<<<< Updated upstream
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 54
+=======
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  WallMask:
+    serializedVersion: 2
+    m_Bits: 64
+>>>>>>> Stashed changes
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkpointRange: 10
   attackRange: 4
   sightRange: 20
   inSight: 0
-  inAttack: 0
 --- !u!195 &1742424773
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5630,7 +5666,7 @@ GameObject:
   - component: {fileID: 1828918554}
   - component: {fileID: 1828918553}
   - component: {fileID: 1828918552}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: vertical wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5826,24 +5862,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311835efc3435dc40b3760c1e57b12bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 23978101}
+  player: {fileID: 23978098}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   canvas: {fileID: 1992065851}
+  radius: 0
+  angle: 0
   agent: {fileID: 1877595527}
-  Player: {fileID: 23978099}
   whatisGround:
     serializedVersion: 2
     m_Bits: 1
+<<<<<<< Updated upstream
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 0
+=======
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  WallMask:
+    serializedVersion: 2
+    m_Bits: 64
+>>>>>>> Stashed changes
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkpointRange: 11
   attackRange: 4
   sightRange: 21
   inSight: 0
-  inAttack: 0
 --- !u!195 &1877595527
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6004,7 +6049,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1990972018}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Maze Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6173,7 +6218,7 @@ GameObject:
   - component: {fileID: 2027832554}
   - component: {fileID: 2027832553}
   - component: {fileID: 2027832552}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: vertical wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6270,7 +6315,7 @@ GameObject:
   - component: {fileID: 2057032630}
   - component: {fileID: 2057032629}
   - component: {fileID: 2057032628}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: south wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6367,7 +6412,7 @@ GameObject:
   - component: {fileID: 2106592542}
   - component: {fileID: 2106592541}
   - component: {fileID: 2106592540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: horizontal wall (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
