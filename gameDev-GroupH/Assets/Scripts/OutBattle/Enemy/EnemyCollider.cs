@@ -5,21 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class EnemyCollider : MonoBehaviour
 {
-    bool inRange = false;
+    protected bool inRange = false;
     public PlayerController player;
     public SaveData PosSave;
     public active canvas;
-    public bool dead;
-
-    public void Start()
-    {
-        dead = PosSave.EnemyDeath;
-        if (dead == true)
-        {
-            gameObject.SetActive(false);
-            PosSave.ConfirmDeath();
-        }
-    }
 
     public bool getInRange()
     {
@@ -39,15 +28,19 @@ public class EnemyCollider : MonoBehaviour
         canvas.showCanvas(inRange);
     }
 
-    private void BattleScene() {
+    protected void BattleScene() {
         PosSave.SaveLocation(player.transform.position.x, player.transform.position.y, player.transform.position.z);
         PosSave.SwitchBool();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    void Update(){
-        if (inRange == true) {
-            if (Input.GetKeyDown(KeyCode.F)) {
+    protected virtual void Update()
+    {
+        if (inRange == true)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                PosSave.SaveEnem(gameObject.name);
                 BattleScene();
             }
         }

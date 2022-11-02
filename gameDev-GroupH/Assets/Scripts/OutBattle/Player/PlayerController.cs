@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveValue;
 
     [SerializeField] 
-    private float speed = 7f;
+    private float speed = 50f;
 
     [SerializeField] 
     private float rotationSpeed = 7f;
@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
         if (savedata.isNextScene == true)
         {
             transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
-            savedata.SwitchBool();
         }
 
     }
@@ -67,6 +66,7 @@ public class PlayerController : MonoBehaviour
             winText.text = "You Win! Press X to quit";
             won = true;
             Time.timeScale = 0;
+            savedata.SwitchBool();
         }
     }
 
