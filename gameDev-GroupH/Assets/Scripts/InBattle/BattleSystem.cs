@@ -123,7 +123,7 @@ public class BattleSystem : MonoBehaviour
 		{
 			state = BattleState.WIN;
 			yield return new WaitForSeconds(2f);
-			endBattle();
+			StartCoroutine(endBattle());
 		}
 		else
 		{
@@ -151,7 +151,7 @@ public class BattleSystem : MonoBehaviour
 		if (isDead)
 		{
 			state = BattleState.LOSE;
-			endBattle();
+			StartCoroutine(endBattle());
 		}
 		else
 		{
@@ -161,17 +161,19 @@ public class BattleSystem : MonoBehaviour
 
 	}
 
-	void endBattle()
+	IEnumerator endBattle()
 	{
 		if (state == BattleState.WIN)
 		{
 			dialogue.text = "You WIN the battle!";
 			savedata.killEnem(savedata.GetEnemy());
+			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		}
 		else if (state == BattleState.LOSE)
 		{
 			dialogue.text = "You were defeated.";
+			yield return new WaitForSeconds(3f);
 		}
 	}
 
