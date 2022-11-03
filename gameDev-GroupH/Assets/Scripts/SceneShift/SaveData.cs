@@ -63,8 +63,6 @@ public class SaveData : ScriptableObject
     {
         isNextScene = !isNextScene;
     }
-<<<<<<< Updated upstream
-=======
 
     public void TruthBool()
     {
@@ -80,22 +78,7 @@ public class SaveData : ScriptableObject
     {
         EnemyDouble = false;
     }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     public float getX()
     {
         return x;
