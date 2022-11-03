@@ -5,19 +5,20 @@ using UnityEngine.AI;
 
 public class EnemyOutOfCombat : EnemyCollider
 {
-    [SerializeField]
     private bool dead = false;
+    public float radius;
+    [Range(0, 360)]
+    public float angle;
     public NavMeshAgent agent;
 
-    public Transform Player;
-
-    public LayerMask whatisGround;
+    public LayerMask whatisGround, PlayerMask, WallMask;
 
     public Vector3 walkPoint;
     public bool walkPointSet;
     public float walkpointRange;
 
-    public bool inSight, inAttack;
+    [SerializeField]
+    public bool inSight;
     protected void Start()
     {
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
@@ -29,18 +30,58 @@ public class EnemyOutOfCombat : EnemyCollider
         {
             gameObject.SetActive(false);
         }
+        else
+            StartCoroutine(FOVRoutine());
+    }
+
+    private IEnumerator FOVRoutine()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.5f);
+
+        while (true)
+        {
+            yield return wait;
+            FieldOfViewCheck();
+        }
+    }
+
+    private void FieldOfViewCheck()
+    {
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, PlayerMask);
+
+        if (rangeChecks.Length != 0)
+        {
+            Transform target = rangeChecks[0].transform;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
+
+            if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, WallMask))
+                    inSight = true;
+                else
+                    inSight = false;
+            }
+            else
+                inSight = false;
+        }
+        else if (inSight)
+            inSight = false;
+    }
+
+    void ChasePlayer()
+    {
+        Debug.Log("Chasing");
+        agent.SetDestination(player.transform.position);
     }
 
     private void Awake()
     {
-        Player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-<<<<<<< Updated upstream
-=======
         radius = 15;
         angle = 50;
         walkpointRange = 10f;
->>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -48,10 +89,27 @@ public class EnemyOutOfCombat : EnemyCollider
     {
         base.Update();
 
-        Patrol();
+        if (inSight)
+        {
+            ChasePlayer();
+            if (inSight & inRange)
+            {
+                PosSave.OnEnemyDouble();
+                base.BattleScene();
+            } 
+        }
+        else
+            Patrol();
+
+        
+
 
         Debug.DrawRay(transform.position, -transform.up*10, Color.green);
-        Debug.DrawRay(walkPoint, -transform.up * 3, Color.red);
+        if (Physics.Raycast(walkPoint, -transform.up, 3f, whatisGround))
+        {
+            Debug.DrawRay(walkPoint, -transform.up * 3, Color.red);
+        }
+        
     }
 
     void Patrol()
