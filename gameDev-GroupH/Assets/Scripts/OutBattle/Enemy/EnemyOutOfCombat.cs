@@ -35,6 +35,12 @@ public class EnemyOutOfCombat : EnemyCollider
     {
         Player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+<<<<<<< Updated upstream
+=======
+        radius = 15;
+        angle = 50;
+        walkpointRange = 10f;
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame

@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         winText.text = "";
 
-
         if (savedata.isNextScene == true)
         {
             transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
