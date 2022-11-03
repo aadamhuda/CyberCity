@@ -6,7 +6,7 @@ using UnityEngine;
 public class SaveData : ScriptableObject
 {
     [SerializeField]
-    public bool isNextScene, EnemyDeath = false;
+    public bool isNextScene, EnemyDeath, EnemyDouble = false;
     [SerializeField]
     public float x, y, z = 0;
     [SerializeField]
@@ -68,6 +68,17 @@ public class SaveData : ScriptableObject
     {
         isNextScene = true;
     }
+
+    public void OnEnemyDouble()
+    {
+        EnemyDouble = true;
+    }
+
+    public void OffEnemyDouble()
+    {
+        EnemyDouble = false;
+    }
+
     public float getX()
     {
         return x;
