@@ -12,16 +12,19 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
 
-    [SerializeField] 
+    [SerializeField]
     private Transform mainCamera;
 
-    [SerializeField] 
+    [SerializeField]
     private Vector2 moveValue;
 
-    [SerializeField] 
-    private float speed = 50f;
+    [SerializeField]
+    private float walkSpeed = 7f;
 
-    [SerializeField] 
+    [SerializeField]
+    private float runSpeed = 15f;
+
+    [SerializeField]
     private float rotationSpeed = 7f;
 
     [SerializeField]
@@ -30,14 +33,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float gravityValue = -15f;
 
+    private float speed;
+
     public TextMeshProUGUI winText;
     public bool won = false;
-
 
     public SaveData savedata;
 
     void Start()
     {
+        speed = walkSpeed;
+
         controller = GetComponent<CharacterController>();
         winText.text = "";
 
@@ -73,13 +79,54 @@ public class PlayerController : MonoBehaviour
     // Player movement
     void Update()
     {
+        checkGrounded();
+        Move();
+        Jump();
+
+        //if user has won and they can press x to quit
+        if (Input.GetKey("x") && won)
+        {
+            Debug.Log("Quit");
+            Application.Quit();
+        }
+    }
+    void checkGrounded()
+    {
+        //check if player is grounded
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
         }
+    }
+
+    void Move()
+    {
         // Movement based on player input direction and camera direction 
         Vector3 movement = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0) * new Vector3(moveValue.x, 0, moveValue.y).normalized;
+
+        // If you are on the ground and not holding shift, walk
+        if (groundedPlayer && !Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = walkSpeed;
+        }
+        // If you are holding shift and you are on the ground, run
+        if (Input.GetKey(KeyCode.LeftShift) && groundedPlayer)
+        {
+            speed = runSpeed;
+        }
+        // If you are not running anymore, walk if you are on the ground otherwise if you are mid air, continue running
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            if (groundedPlayer)
+            {
+                speed = walkSpeed;
+            }
+            else
+            {
+                speed = runSpeed;
+            }
+        }
         controller.Move(movement * speed * Time.deltaTime);
 
         // Rotation
@@ -89,21 +136,17 @@ public class PlayerController : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
-
+    }
+    void Jump()
+    {
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        if (Input.GetAxisRaw("Jump") == 1 && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }
 
+        // Jump movement
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-
-        //if user has won and they can press x to quit
-        if (Input.GetKey("x") && won)
-        {
-            Debug.Log("Quit");
-            Application.Quit();
-        }
     }
 }
