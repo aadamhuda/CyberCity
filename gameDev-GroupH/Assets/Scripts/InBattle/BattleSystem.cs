@@ -143,6 +143,8 @@ public class BattleSystem : MonoBehaviour
 			yield return new WaitForSeconds(1f);
 
 			isDead = players.takeDamage(enemies[i].damage);
+			if (savedata.EnemyDouble == true)
+				isDead = players.takeDamage(enemies[i].damage/enemies.Length);
 			//playerHUD.updateHUD(players);
 		}
 
@@ -167,6 +169,7 @@ public class BattleSystem : MonoBehaviour
 		{
 			dialogue.text = "You WIN the battle!";
 			savedata.killEnem(savedata.GetEnemy());
+			savedata.OffEnemyDouble();
 			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		}
