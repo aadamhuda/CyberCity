@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     public TextMeshProUGUI winText;
     public bool won = false;
+    public int numClues = 3;
+    public int clueCount;
 
 
     public SaveData savedata;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         winText.text = "";
+        clueCount = 0;
 
         if (savedata.isNextScene == true)
         {
@@ -62,6 +65,15 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Clue")
         {
             other.gameObject.SetActive(false);
+            clueCount++;
+            checkPlayerWin();
+        }
+    }
+
+    void checkPlayerWin()
+    {
+        if (clueCount >= numClues)
+        {
             winText.text = "You Win! Press X to quit";
             won = true;
             Time.timeScale = 0;
