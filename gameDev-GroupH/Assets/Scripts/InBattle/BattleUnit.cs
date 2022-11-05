@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+
 
 public class BattleUnit : MonoBehaviour
 {
@@ -26,7 +28,7 @@ public class BattleUnit : MonoBehaviour
     public bool takeDamage(float dmg)
     {
 
-        currentHP -= dmg;
+        currentHP -=  (float)Math.Round(dmg);
 
         if (currentHP <= 0)
         {
