@@ -188,9 +188,11 @@ public class BattleSystem : MonoBehaviour
 	//NOTE: requires balancing, healing = 100 for testing purposes
 	IEnumerator playerHeal()
 	{
-		players.heal(100);
 
-		dialogue.text = "You healed by 100 hp!";
+		int amount = Random.Range(60, 100);
+		players.heal(amount);
+
+		dialogue.text = "You healed by " +amount+ " hp!";
 
 		//playerHUD.updateHUD(players);
 
