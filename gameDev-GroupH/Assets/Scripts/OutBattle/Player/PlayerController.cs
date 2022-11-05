@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
     {
         if (clueCount >= numClues)
         {
-            winText.text = "You Win! Press X to quit";
+            winText.text = "You Win! Press X to go to the main menu";
             won = true;
             Time.timeScale = 0;
             savedata.SwitchBool();
@@ -100,8 +100,7 @@ public class PlayerController : MonoBehaviour
         //if user has won and they can press x to quit
         if (Input.GetKey("x") && won)
         {
-            Debug.Log("Quit");
-            Application.Quit();
+            SceneManager.LoadScene("Main Menu");
         }
     }
     void checkGrounded()

@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Battle.unity
     guid: 8c971a942d538854684995271a2090f0
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 130b62f0360ab495b817b2bf743e946d
+  - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/Sarah.unity
+    guid: f006d957dabb9d24398f0e4d1b61baa6
   m_configObjects: {}
