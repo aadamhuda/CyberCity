@@ -64,9 +64,12 @@ public class PlayerController : MonoBehaviour
         // Clue object dissappears when picked up and player wins 
         if (other.gameObject.tag == "Clue")
         {
-            other.gameObject.SetActive(false);
-            clueCount++;
-            checkPlayerWin();
+            if (Input.GetKey("k"))
+            {
+                other.gameObject.SetActive(false);
+                clueCount++;
+                checkPlayerWin();
+            }
         }
     }
 
