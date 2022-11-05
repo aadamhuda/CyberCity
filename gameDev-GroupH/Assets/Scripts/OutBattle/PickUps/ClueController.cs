@@ -19,6 +19,7 @@ public class ClueController : MonoBehaviour
 
     }
 
+
     // Clue rotation
     void Rotate()
     {

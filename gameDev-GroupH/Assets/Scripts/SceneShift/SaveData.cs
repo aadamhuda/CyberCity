@@ -14,6 +14,10 @@ public class SaveData : ScriptableObject
     [SerializeField]
     public string enem;
 
+    [SerializeField]
+    public Dictionary<string, bool> CluesCollected = new Dictionary<string, bool>();
+
+
 
     public void SaveLocation(float Nx, float Ny, float Nz)
     {

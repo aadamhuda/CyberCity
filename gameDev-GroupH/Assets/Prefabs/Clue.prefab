@@ -133,7 +133,7 @@ Transform:
   - {fileID: 1262876428995655737}
   - {fileID: 5844043903692963990}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2847341319710194647
 MeshFilter:
@@ -196,7 +196,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 3, y: 1, z: 75}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-9002245490305071754
 MonoBehaviour:
@@ -210,6 +210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e236aa54ebb5164b99456da1e78e9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 0
+  bobSpeed: 0
+  ceiling: 0
+  floor: 0
 --- !u!1 &7903020233424672373
 GameObject:
   m_ObjectHideFlags: 0

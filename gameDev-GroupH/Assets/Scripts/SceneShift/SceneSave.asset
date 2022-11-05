@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986c8844de34b8646882a16532980a4f, type: 3}
   m_Name: SceneSave
   m_EditorClassIdentifier: 
-  isNextScene: 1
+  isNextScene: 0
   EnemyDeath: 1
-  EnemyDouble: 1
-  x: -75.80624
+  EnemyDouble: 0
+  x: -67.43464
   y: 1.0799999
-  z: -64.55512
-  enem: Cylinder (1)
+  z: -63.409492
+  enem: Cylinder

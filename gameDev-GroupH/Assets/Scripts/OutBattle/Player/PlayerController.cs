@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private float speed;
 
     public TextMeshProUGUI winText;
+    public TextMeshProUGUI interaction;
     public bool won = false;
     public int numClues = 3;
     public int clueCount;
@@ -48,12 +49,13 @@ public class PlayerController : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         winText.text = "";
+        interaction.text = "";
         clueCount = 0;
 
-        if (savedata.isNextScene == true)
-        {
-            transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
-        }
+        //if (savedata.isNextScene == true)
+        //{
+        transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
+        //}
 
     }
 
@@ -65,18 +67,35 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void collectClue(Collider other)
+    {
+        other.gameObject.SetActive(false);
+        interaction.text = "";
+        clueCount++;
+        checkPlayerWin();
+    }
+
     void OnTriggerEnter(Collider other)
     {
+        
+
         // Clue object dissappears when picked up and player wins 
         if (other.gameObject.tag == "Clue")
         {
+
+            interaction.text = "Press k to interact";
+
             if (Input.GetKey("k"))
             {
-                other.gameObject.SetActive(false);
-                clueCount++;
-                checkPlayerWin();
+                collectClue(other);
             }
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        interaction.text = "";
+
     }
 
     void checkPlayerWin()
