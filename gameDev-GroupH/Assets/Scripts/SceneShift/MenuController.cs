@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     public SaveData saveState;
+
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
+
+    //clears all saved data variables
     public void initialiseGame()
     {
         saveState.Clue.Clear();
@@ -16,7 +23,7 @@ public class MenuController : MonoBehaviour
     public void PlayGame()
     {
         initialiseGame();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame()

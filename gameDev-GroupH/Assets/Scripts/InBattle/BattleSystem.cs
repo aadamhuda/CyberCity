@@ -35,9 +35,6 @@ public class BattleSystem : MonoBehaviour
 	public Transform rbLocation;
 
 	public Button escapeButton;
-	public Button attackButton;
-	public Button changeTargetButton;
-	public Button healButton;
 
 	//HUD
 	public GameObject hudPrefab;
@@ -51,19 +48,24 @@ public class BattleSystem : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		//shows cursor so buttons can be selected
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+
 		state = BattleState.START;
         StartCoroutine(InitialiseBattle());
     }
 
 	void Update()
 	{
+		//refreshes HUDs every frame
 		playerHUD.updateHUD(players);
 
 		for (int i = 0; i < enemiesHUD.Length; i++)
 		{
 			enemiesHUD[i].updateHUD(enemies[i]);
 		}
-
+		//allows escape button to only be interacted with in player turn
 		if (state != BattleState.PLAYERTURN)
         {
 			escapeButton.interactable = false;
@@ -76,7 +78,7 @@ public class BattleSystem : MonoBehaviour
 
 	}
 
-
+	//spawns hud in placeholder regions
 	void InitialiseHUD()
     {
 		GameObject playerHudObj = Instantiate(hudPrefab, playerHudLocation);
@@ -115,13 +117,13 @@ public class BattleSystem : MonoBehaviour
 		ChangeTarget();
 
 		InitialiseHUD();
-		//playerHUD.updateHUD(players);
 		
         state = BattleState.PLAYERTURN;
         yield return new WaitForSeconds(2f);
         PlayerTurn();
     }
 
+	//applies damage to enemies and checks if they have won
 	IEnumerator PlayerAttack()
 	{	
 		bool isDead = enemies[target].takeDamage(players.damage);
@@ -161,12 +163,15 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = enemies[i].unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
 
+			//adds 15% damage if enemy hits player first
 			if (savedata.EnemyDouble == true)
 				isDead = players.takeDamage((float)(enemies[i].damage*1.15));
-            else
+            else //regular damage
             {
 				isDead = players.takeDamage(enemies[i].damage);
 			}
+
+			//stops enemy attacking if player is already dead
 
 			if (isDead)
 				break;
@@ -188,6 +193,7 @@ public class BattleSystem : MonoBehaviour
 
 	}
 
+	//initialises restart button - ran after state = LOSE
 	public void createRestartButton()
     {
 		GameObject rb = Instantiate(restartButtonPrefab, rbLocation);
@@ -282,7 +288,7 @@ public class BattleSystem : MonoBehaviour
 	}
 
 
-
+	//allows player to change targeted enemy
 	public void ChangeTarget()
     {
 		for (int i = 0; i < enemies.Length; i++)
@@ -301,6 +307,7 @@ public class BattleSystem : MonoBehaviour
 		}
 	}
 
+	//reloads scene on restart
 	IEnumerator Restart()
     {
 		dialogue.text = "Restarting Battle...";
@@ -310,6 +317,7 @@ public class BattleSystem : MonoBehaviour
 
 	}
 
+	//sets save data to spawn coordinates to allow player to escape to spawn
 	IEnumerator EscapeToSpawn()
 	{
 		dialogue.text = "Escaping Battle...";

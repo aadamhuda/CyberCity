@@ -14,10 +14,6 @@ public class SaveData : ScriptableObject
     public Dictionary<string, bool> Clue = new Dictionary<string, bool>();
     [SerializeField]
     public string enem;
-
-    [SerializeField]
-    public Dictionary<string, bool> CluesCollected = new Dictionary<string, bool>();
-
     [SerializeField]
     public int ClueCount;
 
