@@ -8,8 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Main menu scene made ~ [@sarahbrah7](https://github.com/sarahbrah7)
-      - With a play game button which goes to the game scene (not battle scene)
-      - With an exit game button which exits the game
+  - With a play game button which goes to the game scene (not battle scene)
+  - With an exit game button which exits the game
 - Added message when near clue, "press k to interact" ~ [@aadamhuda](https://github.com/aadamhuda)
 ### Changed
 - Player presses 'x' and now goes to main menu instead of quitting ~ [@sarahbrah7](https://github.com/sarahbrah7)
@@ -36,12 +36,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Created a win and start room ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - When a clue is picked the game freezes and the user is prompted to quit ~ [@sarahbrah7](https://github.com/sarahbrah7)
-      - The game quits if user presses 'x'
+  - The game quits if user presses 'x'
 - Made health bars over the player and enemies ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
 - Added free look camera using Cinemachine ~ [@gv301](https://github.com/gv301)
 - Added prototype Scene - the main scene for main environment in prototype ~ [@aadamhuda](https://github.com/aadamhuda)
 - Added Enumerator BattleStates which now control game flow using the following states ~ [@aadamhuda](https://github.com/aadamhuda)
-      - START, PLAYERTURN, ENEMYTURN, WIN, LOSE
+  - START, PLAYERTURN, ENEMYTURN, WIN, LOSE
 - Added heal functionality - allows player to heal by a certain amount of heal in battle ~ [@aadamhuda](https://github.com/aadamhuda)
 - Added specific spawn points for player and enemy sprites ~ [@aadamhuda](https://github.com/aadamhuda)
 - Added player and enemy prefabs ~ [@aadamhuda](https://github.com/aadamhuda)
@@ -76,7 +76,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Removed Change Target script ~ [@aadamhuda](https://github.com/aadamhuda)
 ### Fixed
 - Using Unity's built in CharacterController instead of Rigidbody (no physics necessary) Made player movement smoother. also takes into account camera direction ~ [@gv301](https://github.com/gv301)
-      - Player can now jump
+  - Player can now jump
 - Player only resets position when they win ~ [@Ibraheem717](https://github.com/Ibraheem717)
 
 ## [0.0.0](https://github.com/aadamhuda/gameDev/tree/f5995418d057d2d20d219b8d4cce686b3b783b9d) - 2022-10-25
