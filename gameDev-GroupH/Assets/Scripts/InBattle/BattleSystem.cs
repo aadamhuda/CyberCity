@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -30,6 +31,13 @@ public class BattleSystem : MonoBehaviour
 	//holds position of currently selected enemy
 	public int target = 0;
 
+	public GameObject restartButtonPrefab;
+	public Transform rbLocation;
+
+	public Button escapeButton;
+	public Button attackButton;
+	public Button changeTargetButton;
+	public Button healButton;
 
 	//HUD
 	public GameObject hudPrefab;
@@ -43,7 +51,7 @@ public class BattleSystem : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        state = BattleState.START;
+		state = BattleState.START;
         StartCoroutine(InitialiseBattle());
     }
 
@@ -56,14 +64,20 @@ public class BattleSystem : MonoBehaviour
 			enemiesHUD[i].updateHUD(enemies[i]);
 		}
 
-		if (Input.GetKeyUp(KeyCode.Escape)) {
-			savedata.SaveLocation((float)-115.4, 1, (float)-65.9);
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+		if (state != BattleState.PLAYERTURN)
+        {
+			escapeButton.interactable = false;
 		}
+
+        else
+        {
+			escapeButton.interactable = true;
+		}
+
 	}
 
 
-	void initialiseHUD()
+	void InitialiseHUD()
     {
 		GameObject playerHudObj = Instantiate(hudPrefab, playerHudLocation);
 		playerHUD = playerHudObj.GetComponent<UnitHUD>();
@@ -98,14 +112,14 @@ public class BattleSystem : MonoBehaviour
 			enemies[i].unitName = "enemy " + (i + 1);
         }
 
-		changeTarget();
+		ChangeTarget();
 
-		initialiseHUD();
+		InitialiseHUD();
 		//playerHUD.updateHUD(players);
 		
         state = BattleState.PLAYERTURN;
         yield return new WaitForSeconds(2f);
-        playerTurn();
+        PlayerTurn();
     }
 
 	IEnumerator PlayerAttack()
@@ -116,9 +130,9 @@ public class BattleSystem : MonoBehaviour
 
 		if (isDead)
         {
-			enemies = removeEnemies(target);
-			enemiesHUD = removeHUDs(target);
-			changeTarget(); //automatically changes target on enemy death
+			enemies = RemoveEnemies(target);
+			enemiesHUD = RemoveHUDs(target);
+			ChangeTarget(); //automatically changes target on enemy death
         }
 
 		//checks if all enemies are dead - win condition
@@ -128,7 +142,7 @@ public class BattleSystem : MonoBehaviour
 		{
 			state = BattleState.WIN;
 			yield return new WaitForSeconds(2f);
-			StartCoroutine(endBattle());
+			StartCoroutine(EndBattle());
 		}
 		else
 		{
@@ -147,9 +161,15 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = enemies[i].unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
 
-			isDead = players.takeDamage(enemies[i].damage);
 			if (savedata.EnemyDouble == true)
-				isDead = players.takeDamage(enemies[i].damage/enemies.Length);
+				isDead = players.takeDamage((float)(enemies[i].damage*1.15));
+            else
+            {
+				isDead = players.takeDamage(enemies[i].damage);
+			}
+
+			if (isDead)
+				break;
 			//playerHUD.updateHUD(players);
 		}
 
@@ -158,22 +178,30 @@ public class BattleSystem : MonoBehaviour
 		if (isDead)
 		{
 			state = BattleState.LOSE;
-			StartCoroutine(endBattle());
+			StartCoroutine(EndBattle());
 		}
 		else
 		{
 			state = BattleState.PLAYERTURN;
-			playerTurn();
+			PlayerTurn();
 		}
 
 	}
 
-	IEnumerator endBattle()
+	public void createRestartButton()
+    {
+		GameObject rb = Instantiate(restartButtonPrefab, rbLocation);
+		Button restartButton = rb.GetComponent<Button>();
+		restartButton.onClick.AddListener(OnRestartButton);
+
+	}
+
+	IEnumerator EndBattle()
 	{
 		if (state == BattleState.WIN)
 		{
 			dialogue.text = "You WIN the battle!";
-			savedata.killEnem(savedata.Death, savedata.GetEnemy());
+			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
 			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
@@ -181,17 +209,19 @@ public class BattleSystem : MonoBehaviour
 		else if (state == BattleState.LOSE)
 		{
 			dialogue.text = "You were defeated.";
-			yield return new WaitForSeconds(3f);
+			yield return new WaitForSeconds(2f);
+
+			createRestartButton();
 		}
 	}
 
-	void playerTurn()
+	void PlayerTurn()
 	{
 		dialogue.text = "Choose an action!";
 	}
 
-	//NOTE: requires balancing, healing = 100 for testing purposes
-	IEnumerator playerHeal()
+	
+	IEnumerator PlayerHeal()
 	{
 
 		int amount = Random.Range(60, 100);
@@ -207,7 +237,7 @@ public class BattleSystem : MonoBehaviour
 	}
 
 	//removes enemy from array, disables gameObject and returns new array - to be used on enemy death
-	private Enemy[] removeEnemies(int removeAt)
+	private Enemy[] RemoveEnemies(int removeAt)
 	{
 		Enemy[] newEnemies = new Enemy[enemies.Length - 1];
 
@@ -229,7 +259,7 @@ public class BattleSystem : MonoBehaviour
 		return newEnemies;
 	}
 
-	private UnitHUD[] removeHUDs(int removeAt)
+	private UnitHUD[] RemoveHUDs(int removeAt)
 	{
 		UnitHUD[] newEnemiesHUD = new UnitHUD[enemiesHUD.Length - 1];
 
@@ -253,7 +283,7 @@ public class BattleSystem : MonoBehaviour
 
 
 
-	public void changeTarget()
+	public void ChangeTarget()
     {
 		for (int i = 0; i < enemies.Length; i++)
 		{
@@ -270,7 +300,27 @@ public class BattleSystem : MonoBehaviour
 			}
 		}
 	}
-	public void onChangeTargetButton()
+
+	IEnumerator Restart()
+    {
+		dialogue.text = "Restarting Battle...";
+		yield return new WaitForSeconds(2f);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+
+	}
+
+	IEnumerator EscapeToSpawn()
+	{
+		dialogue.text = "Escaping Battle...";
+		yield return new WaitForSeconds(2f);
+
+		savedata.SaveLocation((float)-115.4, 1, (float)-65.9);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+	}
+
+	
+	public void OnChangeTargetButton()
 	{
 		if (state != BattleState.PLAYERTURN)
 			return;
@@ -281,10 +331,10 @@ public class BattleSystem : MonoBehaviour
 			target = 0;
 		}
 
-		changeTarget();
+		ChangeTarget();
 	}
 
-	public void onAttackButton()
+	public void OnAttackButton()
 	{
 		if (state != BattleState.PLAYERTURN)
 			return;
@@ -292,11 +342,27 @@ public class BattleSystem : MonoBehaviour
 		StartCoroutine(PlayerAttack());
 	}
 
-	public void onHealButton()
+	public void OnHealButton()
 	{
 		if (state != BattleState.PLAYERTURN)
 			return;
 
-		StartCoroutine(playerHeal());
+		StartCoroutine(PlayerHeal());
+	}
+
+	public void OnRestartButton()
+	{
+		if (state != BattleState.LOSE)
+			return;
+
+		StartCoroutine(Restart());
+	}
+
+    public void OnEscapeButton()
+    {
+		if (state != BattleState.PLAYERTURN)
+			return;
+
+		StartCoroutine(EscapeToSpawn());
 	}
 }

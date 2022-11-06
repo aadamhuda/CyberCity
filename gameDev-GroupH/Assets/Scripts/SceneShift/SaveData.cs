@@ -18,6 +18,11 @@ public class SaveData : ScriptableObject
     [SerializeField]
     public Dictionary<string, bool> CluesCollected = new Dictionary<string, bool>();
 
+    [SerializeField]
+    public int ClueCount;
+
+
+
 
 
     public void SaveLocation(float Nx, float Ny, float Nz)
@@ -38,7 +43,7 @@ public class SaveData : ScriptableObject
         return enem;
     }
 
-    public void killEnem(Dictionary<string, bool> dict, string obj)
+    public void DictBoolSwitch(Dictionary<string, bool> dict, string obj)
     {
         dict[obj] = true;
     }

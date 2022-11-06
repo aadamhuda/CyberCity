@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         winText.text = "";
         interaction.text = "";
-        clueCount = 0;
+        clueCount = savedata.ClueCount;
 
         //if (savedata.isNextScene == true)
         //{
@@ -78,10 +78,11 @@ public class PlayerController : MonoBehaviour
         other.gameObject.SetActive(false);
         interaction.text = "";
         clueCount++;
+        savedata.ClueCount = clueCount;
         checkPlayerWin();
         collecterBool = false;
         collecter = null;
-        savedata.killEnem(savedata.Clue, other.name);
+        savedata.DictBoolSwitch(savedata.Clue, other.name);
     }
 
     void OnTriggerEnter(Collider other)
