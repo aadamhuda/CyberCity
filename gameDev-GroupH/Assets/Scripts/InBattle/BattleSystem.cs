@@ -55,6 +55,11 @@ public class BattleSystem : MonoBehaviour
 		{
 			enemiesHUD[i].updateHUD(enemies[i]);
 		}
+
+		if (Input.GetKeyUp(KeyCode.Escape)) {
+			savedata.SaveLocation((float)-115.4, 1, (float)-65.9);
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+		}
 	}
 
 
@@ -168,7 +173,7 @@ public class BattleSystem : MonoBehaviour
 		if (state == BattleState.WIN)
 		{
 			dialogue.text = "You WIN the battle!";
-			savedata.killEnem(savedata.GetEnemy());
+			savedata.killEnem(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
 			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);

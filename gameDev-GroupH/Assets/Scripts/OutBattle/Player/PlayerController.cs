@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     private float speed;
 
+    public GameObject [] Clues = new GameObject[3];
+
     public TextMeshProUGUI winText;
     public TextMeshProUGUI interaction;
     public bool won = false;
@@ -42,6 +45,9 @@ public class PlayerController : MonoBehaviour
     public int clueCount;
 
     public SaveData savedata;
+
+    bool collecterBool = false;
+    Collider collecter;
 
     void Start()
     {
@@ -73,23 +79,25 @@ public class PlayerController : MonoBehaviour
         interaction.text = "";
         clueCount++;
         checkPlayerWin();
+        collecterBool = false;
+        collecter = null;
+        savedata.killEnem(savedata.Clue, other.name);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        
-
+        Debug.Log("wedferterertyrth");
         // Clue object dissappears when picked up and player wins 
-        if (other.gameObject.tag == "Clue")
+        foreach (GameObject obj in Clues)
         {
-
-            interaction.text = "Press k to interact";
-
-            if (Input.GetKey("k"))
+            if (obj.name == other.name)
             {
-                collectClue(other);
+                interaction.text = "Press k to interact";
+                collecter = other;
+                collecterBool = true;
             }
         }
+
     }
 
     void OnTriggerExit(Collider other)
@@ -120,6 +128,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("x") && won)
         {
             SceneManager.LoadScene("Main Menu");
+        }
+
+        if (collecterBool == true)
+        {
+            if (Input.GetKey(KeyCode.K))
+            {
+                Debug.Log(23423423);
+                collectClue(collecter);
+            }
         }
     }
     void checkGrounded()

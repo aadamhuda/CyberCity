@@ -11,6 +11,7 @@ public class SaveData : ScriptableObject
     public float x, y, z = 0;
     [SerializeField]
     public Dictionary<string, bool> Death = new Dictionary<string, bool>();
+    public Dictionary<string, bool> Clue = new Dictionary<string, bool>();
     [SerializeField]
     public string enem;
 
@@ -37,30 +38,26 @@ public class SaveData : ScriptableObject
         return enem;
     }
 
-    public void killEnem(string obj)
+    public void killEnem(Dictionary<string, bool> dict, string obj)
     {
-        Death[obj] = true;
+        dict[obj] = true;
     }
 
-    public void AddToDict(string obj)
+    public void AddToDict(Dictionary<string, bool> dict, string obj)
     {
-        if (!(Death.ContainsKey(obj)))
+        if (!(dict.ContainsKey(obj)))
         {
-            Debug.Log("Success");
-            Death.Add(obj, false);
+            Debug.Log("It's True");
+            dict.Add(obj, false);
         }
+            
         else
             Debug.Log("Fail");
     }
 
-    public bool getDeath(string obj)
+    public bool getDict(Dictionary<string, bool> dict, string obj)
     {
-        return (Death[obj]);
-    }
-
-    public void ConfirmDeath()
-    {
-        EnemyDeath = !EnemyDeath;
+        return (dict[obj]);
     }
 
     public void SwitchBool()

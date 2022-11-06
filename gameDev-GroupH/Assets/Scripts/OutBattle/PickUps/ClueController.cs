@@ -8,7 +8,18 @@ public class ClueController : MonoBehaviour
     public float bobSpeed;
     public float ceiling;
     public float floor;
+    public SaveData savedata;
+    bool collected;
     bool moveUp;
+
+    private void Start()
+    {
+        savedata.AddToDict(savedata.Clue, gameObject.name);
+        collected = savedata.getDict(savedata.Clue, gameObject.name);
+        if (collected == true)
+            gameObject.SetActive(false);
+
+    }
 
 
     // Update is called once per frame
@@ -48,4 +59,6 @@ public class ClueController : MonoBehaviour
             }
         }
     }
+
+
 }

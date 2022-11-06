@@ -8,6 +8,7 @@ public class MenuController : MonoBehaviour
     public SaveData saveState;
     public void initialiseGame()
     {
+        saveState.Clue.Clear();
         saveState.Death.Clear();
         saveState.SaveLocation((float)-115.4, 1, (float)-65.9);
     }

@@ -17,19 +17,16 @@ public class EnemyOutOfCombat : EnemyCollider
     public bool walkPointSet;
     public float walkpointRange;
 
-    [SerializeField]
     public bool inSight;
     protected void Start()
     {
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
         sc.radius = 5;
         sc.isTrigger = true;
-        PosSave.AddToDict(gameObject.name);
-        dead = PosSave.getDeath(gameObject.name);
+        PosSave.AddToDict(PosSave.Death, gameObject.name);
+        dead = PosSave.getDict(PosSave.Death, gameObject.name);
         if (dead == true)
-        {
             gameObject.SetActive(false);
-        }
         else
             StartCoroutine(FOVRoutine());
     }
