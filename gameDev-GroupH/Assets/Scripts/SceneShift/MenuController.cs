@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
     private void Start()
     {
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     //clears all saved data variables
