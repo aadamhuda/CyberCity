@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-
+- Added confined cursor lock state ~ [@aadamhuda](https://github.com/aadamhuda)
 ### Changed
 
 ### Deprecated

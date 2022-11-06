@@ -3,18 +3,26 @@ CyberCity is a turn based game set in a cyberpunk setting. You progress through 
 Collect three clues and you win!
 
 ## How To Play
-You can access the game on your browser via this [link](https://aadamhuda.github.io/gameDevBuilds/v1.0/index.html).
+You can access the game on your browser via this [link](https://aadamhuda.github.io/gameDevBuilds/v1.2/index.html).
 
 To play:
 - Use the WASD to move around the environment and your mouse to rotate
-- If you approach the enemy you are thrown into a battle sequence with enemies where you alternate between them and try to fight them all, but we weary of your own health as they attack back!
+- When approaching the enemy, press the 'F' key to engage when in attacking radius
+- Enemies can also  ambush you, where in battle they will deal 15% more damage, so try to get them before they get you.
   - To attack press the red button which says "ATTACK"
   - To defend an attack press the "HEAL" button
   - Once an enemy is defeated you switch to the next enemy
   - Alternatively, you can press the "CHANGE TARGET" button to switch between the enemies
+  - Also you can press the 'ESC' key to escape and leave the battle, and respawn in the spawn room
 - If you pick up a clue it dissapears to show you picked it up
+  - Press the 'k' key to pick it up
   - If you pick up three you win!
+
+## Assets
+[Cinemachine](https://unity.com/unity/features/editor/art-and-design/cinemachine)
+  - Used for the camera
 
 
 ### Previous releases:
+- [Version 1.0](https://aadamhuda.github.io/gameDevBuilds/v1.0/index.html)
 - [Version 0.0](https://aadamhuda.github.io/gameDevBuilds/v0.0/index.html)
