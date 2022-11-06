@@ -7,19 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Main menu scene made ~ [@sarahbrah7](https://github.com/sarahbrah7)
-  - With a play game button which goes to the game scene (not battle scene)
-  - With an exit game button which exits the game
-- Added message when near clue, "press k to interact" ~ [@aadamhuda](https://github.com/aadamhuda)
+
 ### Changed
-- Player presses 'x' and now goes to main menu instead of quitting ~ [@sarahbrah7](https://github.com/sarahbrah7)
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
-- When accessing game from main menu, variables are all initialised to default/spawn values ~ [@aadamhuda](https://github.com/aadamhuda)
+
 ### Security
+
+## [1.2.0](https://github.com/aadamhuda/gameDev/commit/124b1789e10248e3d021cc1a096feb6cdf6366bc) - 2022-11-06
+### Added
+- Main menu scene made ~ [@sarahbrah7](https://github.com/sarahbrah7)
+  - With a play game button which goes to the game scene (not battle scene)
+  - With an exit game button which exits the game
+- Added message when near clue, "press k to interact" ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added escape to battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Player can escape battle but will start at the beginning
+- Added wait times for escape ~ [@aadamhuda](https://github.com/aadamhuda)
+- Created restart button ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Restart button instantiates a prefab on player death only, to allow player to restart the battle ~ [@aadamhuda](https://github.com/aadamhuda)
+### Changed
+- Player presses 'x' and now goes to main menu instead of quitting ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Changed escape key to escape button ~ [@aadamhuda](https://github.com/aadamhuda)
+- Reordered the buttons in order of use ~ [@aadamhuda](https://github.com/aadamhuda)
+- Reduced the multiplier when enemy attacks you out of battle to 15% extra rather than 33% ~ [@aadamhuda](https://github.com/aadamhuda)
+### Fixed
+- When accessing game from main menu, variables are all initialised to default/spawn values ~ [@aadamhuda](https://github.com/aadamhuda)
+- Clues no longer respawn after battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Fixed bug where players could escape after losing battle ~ [@aadamhuda](https://github.com/aadamhuda)
+- Fixed clue counter issue, where clue counter would reset after every battle, stopping player from winning ~ [@aadamhuda](https://github.com/aadamhuda)
+- Fixed bug where enemy will still attack if player has died ~ [@aadamhuda](https://github.com/aadamhuda)
 
 ## [1.1.0](https://github.com/aadamhuda/gameDev/commit/9eeebcaaf2631df35f68091041883f32df00925e) - 2022-11-05
 ### Added
