@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
     {
         saveState.Clue.Clear();
         saveState.Death.Clear();
+        saveState.ClueCount = 0;
         saveState.SaveLocation((float)-115.4, 1, (float)-65.9);
     }
     public void PlayGame()
