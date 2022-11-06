@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   savedata: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
-  playerPrefab: {fileID: 1831683073983338518, guid: c77e2be5e133e3843b05acf426611b1f, type: 3}
+  playerPrefab: {fileID: 1841968219785206952, guid: 0503fb523482f0a44b6c86e5be51ff52, type: 3}
   enemyPrefab: {fileID: 5161531880740627115, guid: 2cb0b73e71927a042b0745da97c16854, type: 3}
   enemyLocations:
   - {fileID: 820936743}
@@ -1018,9 +1018,6 @@ MonoBehaviour:
   restartButtonPrefab: {fileID: 2262427696614915144, guid: 39920573d16b5ad44ab1b5231a867f69, type: 3}
   rbLocation: {fileID: 1039327091}
   escapeButton: {fileID: 372540893}
-  attackButton: {fileID: 1949204185}
-  changeTargetButton: {fileID: 1644175679}
-  healButton: {fileID: 1839982638}
   hudPrefab: {fileID: 7677056974057124145, guid: f90f2ae8186c8ee44882307a0cc0ada2, type: 3}
   playerHUD: {fileID: 0}
   enemiesHUD: []
@@ -2648,7 +2645,6 @@ GameObject:
   - component: {fileID: 2120378204}
   - component: {fileID: 2120378203}
   - component: {fileID: 2120378202}
-  - component: {fileID: 2120378205}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2722,15 +2718,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 22.295, y: -28.662, z: -1.039}
---- !u!114 &2120378205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120378200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d24316d650d6a134c9b7881db967b055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
