@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Added confined cursor lock state ~ [@aadamhuda](https://github.com/aadamhuda)
+
 ### Changed
 
 ### Deprecated
@@ -17,6 +17,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 ### Security
+
+## [1.2.1](https://github.com/aadamhuda/gameDev/commit/26d03ab771461bc81f7bfedc06f65c44d92a5dc2) - 2022-11-06
+### Added
+- Added confined cursor lock state ~ [@aadamhuda](https://github.com/aadamhuda)
+### Changed
+- Changle clue colour to yellow ~ [@aadamhuda](https://github.com/aadamhuda)
+- Change in battle player model to match out of battle player model ~ [@aadamhuda](https://github.com/aadamhuda)
+### Fixed
+- Camera fixed, no longer goes through walls ~ [@gv301](https://github.com/gv301)
+- Fixed restart after completing the game ~ [@gv301](https://github.com/gv301)
 
 ## [1.2.0](https://github.com/aadamhuda/gameDev/commit/124b1789e10248e3d021cc1a096feb6cdf6366bc) - 2022-11-06
 ### Added
