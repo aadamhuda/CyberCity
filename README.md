@@ -21,8 +21,9 @@ To play:
 ## Assets
 [Cinemachine](https://unity.com/unity/features/editor/art-and-design/cinemachine)
   - Used for the camera
-
+[Nav Mesh Components](https://github.com/Unity-Technologies/NavMeshComponents)
+  - Defines where the enemies can or can't go
 
 ### Previous releases:
-- [Version 1.0](https://aadamhuda.github.io/gameDevBuilds/v1.0/index.html)
-- [Version 0.0](https://aadamhuda.github.io/gameDevBuilds/v0.0/index.html)
+- [Version 1.0](https://aadamhuda.github.io/gameDevBuilds/v1.0.0/index.html)
+- [Version 0.0](https://aadamhuda.github.io/gameDevBuilds/v0.0.0/index.html)
