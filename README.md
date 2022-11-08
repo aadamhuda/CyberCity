@@ -1,4 +1,4 @@
-# CyberCity
+# CyberCity (v1.2.1)
 CyberCity is a turn based game set in a cyberpunk setting. You progress through a maze, defeating enemies and picking up clues on your way.
 Collect three clues and you win!
 
@@ -26,7 +26,6 @@ To play:
   - Defines where the enemies can or can't go
 
 ### Previous releases:
-- [Version 1.2.1](https://aadamhuda.github.io/gameDevBuilds/v1.2.1/index.html)
 - [Version 1.2.0](https://aadamhuda.github.io/gameDevBuilds/v1.2.0/index.html)
 - [Version 1.1.1](https://aadamhuda.github.io/gameDevBuilds/v1.1.1/index.html)
 - [Version 1.1.0](https://aadamhuda.github.io/gameDevBuilds/v1.1.0/index.html)
