@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 ### Changed
-- Changed cursor lock mode to locked from confined ~ [@aadamhuda](https://github.com/aadamhuda)
+
 ### Deprecated
 
 ### Removed
@@ -18,7 +18,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
-## [1.2.1](https://github.com/aadamhuda/gameDev/commit/26d03ab771461bc81f7bfedc06f65c44d92a5dc2) - 2022-11-06
+## [1.2.2](https://github.com/aadamhuda/CyberCity/commit/b13895ee07957ebf073990e310515d487f648bb6) - 2022-11-08
+### Changed
+- Changed cursor lock mode to locked from confined ~ [@aadamhuda](https://github.com/aadamhuda) & [@gv301](https://github.com/gv301)
+- 
+## [1.2.1](https://github.com/aadamhuda/CyberCity/commit/26d03ab771461bc81f7bfedc06f65c44d92a5dc2) - 2022-11-06
 ### Added
 - Added confined cursor lock state ~ [@aadamhuda](https://github.com/aadamhuda)
 ### Changed
@@ -28,7 +32,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Camera fixed, no longer goes through walls ~ [@gv301](https://github.com/gv301)
 - Fixed restart after completing the game ~ [@gv301](https://github.com/gv301)
 
-## [1.2.0](https://github.com/aadamhuda/gameDev/commit/124b1789e10248e3d021cc1a096feb6cdf6366bc) - 2022-11-06
+## [1.2.0](https://github.com/aadamhuda/CyberCity/commit/124b1789e10248e3d021cc1a096feb6cdf6366bc) - 2022-11-06
 ### Added
 - Main menu scene made ~ [@sarahbrah7](https://github.com/sarahbrah7)
   - With a play game button which goes to the game scene (not battle scene)
@@ -51,7 +55,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed clue counter issue, where clue counter would reset after every battle, stopping player from winning ~ [@aadamhuda](https://github.com/aadamhuda)
 - Fixed bug where enemy will still attack if player has died ~ [@aadamhuda](https://github.com/aadamhuda)
 
-## [1.1.0](https://github.com/aadamhuda/gameDev/commit/9eeebcaaf2631df35f68091041883f32df00925e) - 2022-11-05
+## [1.1.0](https://github.com/aadamhuda/CyberCity/commit/9eeebcaaf2631df35f68091041883f32df00925e) - 2022-11-05
 ### Added
 - Press 'k' alongside going to the clue to pick it up ~ [@sarahbrah7](https://github.com/sarahbrah7)
 ### Changed
@@ -62,7 +66,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Fixed health subtracting float values when enemy attacks you out of battle ~ [@aadamhuda](https://github.com/aadamhuda)
 
-## [1.0.0](https://github.com/aadamhuda/gameDev/commit/0430efa53e206c1d156a4e18d0ac4544077c4967) - 2022-11-03
+## [1.0.0](https://github.com/aadamhuda/CyberCity/commit/0430efa53e206c1d156a4e18d0ac4544077c4967) - 2022-11-03
 ### Added
 - Created a win and start room ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - When a clue is picked the game freezes and the user is prompted to quit ~ [@sarahbrah7](https://github.com/sarahbrah7)
@@ -109,7 +113,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - Player can now jump
 - Player only resets position when they win ~ [@Ibraheem717](https://github.com/Ibraheem717)
 
-## [0.0.0](https://github.com/aadamhuda/gameDev/tree/f5995418d057d2d20d219b8d4cce686b3b783b9d) - 2022-10-25
+## [0.0.0](https://github.com/aadamhuda/CyberCity/tree/f5995418d057d2d20d219b8d4cce686b3b783b9d) - 2022-10-25
 ### Added
 - README file added to the repository
 - CHANGELOG file added to the repository and records all updates to the game
