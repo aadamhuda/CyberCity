@@ -17,6 +17,11 @@ To play:
 - If you pick up a clue it dissapears to show you picked it up
   - Press the 'k' key to pick it up
   - If you pick up three you win!
+  
+### Known Issues:
+The player may respawn at spawn sometimes after battle [Issue #105](https://github.com/aadamhuda/CyberCity/issues/105)
+  - A bug has been found where when the player object exits the battle after a win, the player sometimes does not spawn back in the location it engaged the enemy, but rather spawns at the spawn point.
+  - The trigger is currently unknown and needs to be investigated into.
 
 ## Assets
 [Cinemachine](https://unity.com/unity/features/editor/art-and-design/cinemachine)
