@@ -1,4 +1,4 @@
-# CyberCity (v1.2.1)
+# CyberCity (v1.2.2)
 CyberCity is a turn based game set in a cyberpunk setting. You progress through a maze, defeating enemies and picking up clues on your way.
 Collect three clues and you win!
 
