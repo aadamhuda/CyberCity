@@ -28,5 +28,7 @@ To play:
 ### Previous releases:
 - [Version 1.2.1](https://aadamhuda.github.io/gameDevBuilds/v1.2.1/index.html)
 - [Version 1.2.0](https://aadamhuda.github.io/gameDevBuilds/v1.2.0/index.html)
+- [Version 1.1.1](https://aadamhuda.github.io/gameDevBuilds/v1.1.1/index.html)
+- [Version 1.1.0](https://aadamhuda.github.io/gameDevBuilds/v1.1.0/index.html)
 - [Version 1.0.0](https://aadamhuda.github.io/gameDevBuilds/v1.0.0/index.html)
 - [Version 0.0.0](https://aadamhuda.github.io/gameDevBuilds/v0.0.0/index.html)
