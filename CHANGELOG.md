@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 ### Changed
-
+- Changed cursor lock mode to locked from confined ~ [@aadamhuda](https://github.com/aadamhuda)
 ### Deprecated
 
 ### Removed
