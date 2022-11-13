@@ -163,14 +163,39 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = enemies[i].unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
 
-			//adds 15% damage if enemy hits player first
-			if (savedata.EnemyDouble == true)
-				isDead = players.takeDamage((float)(enemies[i].damage*1.15));
-            else //regular damage
+			if (!enemies[i].frozen)
             {
-				isDead = players.takeDamage(enemies[i].damage);
+				// skip turn
+				int number = UnityEngine.Random.Range(0, 100);
+				// 34% chance to unfreeze 
+				if (number > 66)
+				{
+					enemies[i].frozen = false;
+				}
+			}
+            else
+            {
+				//adds 15% damage if enemy hits player first
+				if (savedata.EnemyDouble == true)
+					isDead = players.takeDamage((float)(enemies[i].damage * 1.15));
+				else //regular damage
+				{
+					isDead = players.takeDamage(enemies[i].damage);
+				}
 			}
 
+			//deal burn damage
+			if (enemies[i].burned)
+            {
+				float damage = enemies[i].maxHP * enemies[i].burnDamage * enemies[i].burnMultiplier;
+				enemies[i].takeDamage(damage);
+				int number = UnityEngine.Random.Range(0, 100);
+				// 20% chance to stop burning 
+				if (number > 80)
+				{
+					enemies[i].burned = false;
+				}
+			}
 			//stops enemy attacking if player is already dead
 
 			if (isDead)
