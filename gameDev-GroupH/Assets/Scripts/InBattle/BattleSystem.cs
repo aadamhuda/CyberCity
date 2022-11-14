@@ -26,6 +26,8 @@ public class BattleSystem : MonoBehaviour
 	public TextMeshProUGUI dialogue;
 
 	public Enemy[] enemies;
+	public Player[] playerers;
+	private int tracker = 0;
 	public Player players;//this will change to an array once a party system is implemented
 
 	//holds position of currently selected enemy
@@ -96,12 +98,25 @@ public class BattleSystem : MonoBehaviour
     //initialises battle - spawns player and enemies, selects first target and then starts player turn
     IEnumerator InitialiseBattle()
     {
-        GameObject playerObj =  Instantiate(playerPrefab, playerLocation);
+/*        GameObject playerObj =  Instantiate(playerPrefab, playerLocation);
         players = playerObj.GetComponent<Player>();
 
-		players.unitName = "player";
+		players.unitName = "player";*/
 
-		enemies = new Enemy[3];
+
+		playerers = new Player[4];
+
+        for (int i = 0; i < playerers.Length; i++)
+        {
+            GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y+1, playerLocation.position.z), playerLocation.rotation);
+            playerObj.transform.localScale = new Vector3(1, 1, 1);
+            playerers[i] = playerObj.GetComponent<Player>();
+            playerers[i].unitName = "player" + (i + 1);
+        }
+
+		players = playerers[tracker];
+
+        enemies = new Enemy[3];
 		
 		for (int i = 0; i < enemyLocations.Length; i++)
         {
@@ -148,15 +163,28 @@ public class BattleSystem : MonoBehaviour
 		}
 		else
 		{
-			state = BattleState.ENEMYTURN;
-			yield return new WaitForSeconds(2f);
-			StartCoroutine(EnemyTurn());
+			Debug.Log("I was Here");
+			
+			yield return new WaitForSeconds(0.5f);
+			tracker++;
+			Debug.Log(tracker);
+			players = playerers[tracker % 4];
+			if (tracker % 4 == 0)
+			{
+				state = BattleState.ENEMYTURN;
+				StartCoroutine(EnemyTurn());
+			}
+			else
+				PlayerTurn();
+				
 		}
 	}
 
 	IEnumerator EnemyTurn()
 	{
 		bool isDead = false;
+
+		Debug.Log(128937218973);
 
 		for (int i = 0; i < enemies.Length; i++)
 		{
@@ -264,7 +292,10 @@ public class BattleSystem : MonoBehaviour
 
 		state = BattleState.ENEMYTURN;
 		yield return new WaitForSeconds(2f);
-		StartCoroutine(EnemyTurn());
+		tracker++;
+		players = playerers[tracker % 4];
+		if (tracker % 4 == 0)
+			StartCoroutine(EnemyTurn());
 	}
 
 	//removes enemy from array, disables gameObject and returns new array - to be used on enemy death
