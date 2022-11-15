@@ -155,23 +155,37 @@ public class BattleSystem : MonoBehaviour
 	//applies damage to enemies and checks if they have won
 	IEnumerator PlayerAttack()
 	{
-		Player playerScript = players.GetComponent<Player>();
+		Player playerScript = playerers[tracker].GetComponent<Player>();
 		string currentAttack = playerScript.selectedMove;
 		bool isDead = false;
 		Debug.Log(currentAttack);
 		if (currentAttack == "normal")
-        {
+		{
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["normal"])[0]));
-		}else if (currentAttack == "burn"){
+		}
+		else if (currentAttack == "burn")
+		{
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["burn"])[0]));
 			enemies[target].burned = true;
 			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[1] / 100);
 			Debug.Log(enemies[target].burnDamage);
 		}
 		else if (currentAttack == "freeze")
-        {
+		{
 			enemies[target].frozen = true;
 		}
+		else if (currentAttack == "shoot")
+        {
+			for (int i = 0; i<enemies.Length; i++)
+            {
+				isDead = enemies[i].takeDamage(playerScript.playerAttacks["shoot"][0]);
+				if (isDead && enemies[i] != enemies[target])
+                {
+					enemies = RemoveEnemies(i);
+					enemiesHUD = RemoveHUDs(i, enemiesHUD);
+				}
+            }
+        }
 
 		dialogue.text = players.unitName + " attacked " + enemies[target].unitName;
 
@@ -226,10 +240,10 @@ public class BattleSystem : MonoBehaviour
             {
 				//adds 15% damage if enemy hits player first
 				if (savedata.EnemyDouble == true)
-					isDead = players.takeDamage((float)(enemies[i].damage * 1.15));
+					isDead = playerers[player_target].takeDamage((float)(enemies[i].damage * 1.15));
 				else //regular damage
 				{
-					isDead = players.takeDamage(enemies[i].damage);
+					isDead = playerers[player_target].takeDamage(enemies[i].damage);
 				}
 			}
 
@@ -239,7 +253,7 @@ public class BattleSystem : MonoBehaviour
 				float damage = (float)enemies[i].maxHP * enemies[i].burnDamage * enemies[i].burnMultiplier;
 				Debug.Log(damage);
 				Debug.Log("damage");
-				enemies[i].takeDamage(damage);
+				isDead = enemies[i].takeDamage(damage);
 				int number = UnityEngine.Random.Range(0, 100);
 				// 20% chance to stop burning 
 				if (number > 80)
@@ -413,8 +427,6 @@ public class BattleSystem : MonoBehaviour
 
 	private void Increment(int incre)
     {
-		Debug.Log("Santa Claus is gay!!");
-
 		// Iterates to next player switching turns when all of players have had a turn
 
 		Debug.Log(tracker + " : " +  incre + " : " + playerers.Length + " : " + (tracker % playerers.Length));
