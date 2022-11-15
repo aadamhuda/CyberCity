@@ -20,6 +20,7 @@ public class BattleUnit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        burnMultiplier = 1; // change to weakness
         currentHP = maxHP;
     }
 

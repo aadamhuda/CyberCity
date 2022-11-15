@@ -140,8 +140,24 @@ public class BattleSystem : MonoBehaviour
 
 	//applies damage to enemies and checks if they have won
 	IEnumerator PlayerAttack()
-	{	
-		bool isDead = enemies[target].takeDamage(players.damage);
+	{
+		Player playerScript = players.GetComponent<Player>();
+		string currentAttack = playerScript.selectedMove;
+		bool isDead = false;
+		Debug.Log(currentAttack);
+		if (currentAttack == "normal")
+        {
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["normal"])[0]));
+		}else if (currentAttack == "burn"){
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["burn"])[0]));
+			enemies[target].burned = true;
+			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[1] / 100);
+			Debug.Log(enemies[target].burnDamage);
+		}
+		else if (currentAttack == "freeze")
+        {
+			enemies[target].frozen = true;
+		}
 
 		dialogue.text = players.unitName + " attacked " + enemies[target].unitName;
 
@@ -215,7 +231,9 @@ public class BattleSystem : MonoBehaviour
 			//deal burn damage
 			if (enemies[i].burned)
             {
-				float damage = enemies[i].maxHP * enemies[i].burnDamage * enemies[i].burnMultiplier;
+				float damage = (float)enemies[i].maxHP * enemies[i].burnDamage * enemies[i].burnMultiplier;
+				Debug.Log(damage);
+				Debug.Log("damage");
 				enemies[i].takeDamage(damage);
 				int number = UnityEngine.Random.Range(0, 100);
 				// 20% chance to stop burning 
@@ -397,6 +415,13 @@ public class BattleSystem : MonoBehaviour
 
 		ChangeTarget();
 	}
+
+	public void OnChangeAttackButton()
+    {
+		if (state != BattleState.PLAYERTURN)
+			return;
+		players.GetComponent<Player>().changeAttack();
+    }
 
 	public void OnAttackButton()
 	{

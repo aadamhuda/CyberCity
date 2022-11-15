@@ -7,8 +7,54 @@ using UnityEngine.SceneManagement;
 //inherits from parent class BattleUnit
 public class Player : BattleUnit
 {
+	// Player attacks
+    public Dictionary<string, int[]> playerAttacks = new Dictionary<string, int[]>();
+    public string selectedMove = "burn";
 
-	public void heal(int amount)
+    // Set initial player attacks
+    void Start()
+    {
+        playerAttacks.Add("normal", new int[] { 20, 0 }); // Damage, 0
+        playerAttacks.Add("burn", new int[] { 12, 5 }); // Damage, % per turn
+        playerAttacks.Add("freeze", new int[] { 0, 0 }); // 0,0
+        playerAttacks.Add("shoot", new int[] { 20, 15 }); // Main target damage, side damage (enemies next to target)
+        selectedMove = "burn";
+    }
+
+
+    // Get All Attacks
+    string[] allAttacks()
+    {
+        return (new List<string>(playerAttacks.Keys).ToArray());
+    }
+
+    // Change attack
+    public void changeAttack()
+    {
+        string[] attacks = allAttacks();
+        int attacksNum = attacks.Length;
+
+
+        for (int i = 0; i < attacksNum; i++)
+        {
+            if (attacks[i] == selectedMove)
+            {
+                Debug.Log(attacks[i]);
+                if (i + 1 < attacksNum)
+                {
+                    selectedMove = attacks[i + 1];
+                }
+                else
+                {
+                    selectedMove = attacks[0];
+                }
+                break;
+            }
+        }
+        Debug.Log(selectedMove);
+    }
+
+    public void heal(int amount)
 	{
 		currentHP += amount;
 		if (currentHP > maxHP)
