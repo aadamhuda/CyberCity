@@ -39,4 +39,9 @@ public class BattleUnit : MonoBehaviour
             return false;
     }
 
+    public void disableEnemy()
+    {
+        gameObject.SetActive(false);
+    }
+
 }

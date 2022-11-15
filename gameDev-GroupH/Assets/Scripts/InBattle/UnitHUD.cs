@@ -9,17 +9,6 @@ public class UnitHUD : MonoBehaviour
     public TextMeshProUGUI unitDisplayName;
     public TextMeshProUGUI unitHP;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void updateHUD(BattleUnit unit)
     {

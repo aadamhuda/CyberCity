@@ -113,5 +113,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 0
   maxHP: 100
-  damage: 20
+  damage: 150
   unitName: 
