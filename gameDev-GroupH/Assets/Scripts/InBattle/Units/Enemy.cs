@@ -14,8 +14,5 @@ public class Enemy : BattleUnit
 	}
 
 	// function to disable
-	public void disableEnemy()
-	{
-		gameObject.SetActive(false);
-	}
+
 }

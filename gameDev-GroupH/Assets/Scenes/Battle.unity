@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1021,7 +1021,7 @@ MonoBehaviour:
   rbLocation: {fileID: 1039327091}
   escapeButton: {fileID: 372540893}
   hudPrefab: {fileID: 7677056974057124145, guid: f90f2ae8186c8ee44882307a0cc0ada2, type: 3}
-  playerHUD: {fileID: 0}
+  playerHUD: []
   enemiesHUD: []
   playerHudLocation: {fileID: 1173543089}
   enemyHudLocations:
@@ -1762,7 +1762,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -341, y: -214}
+  m_AnchoredPosition: {x: -417, y: 86}
   m_SizeDelta: {x: 185.93542, y: 66.79932}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1173543090
@@ -1907,7 +1907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366420787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.1, z: 0.010000001}
   m_ConstrainProportionsScale: 0
   m_Children: []

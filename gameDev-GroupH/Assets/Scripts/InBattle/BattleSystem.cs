@@ -41,7 +41,7 @@ public class BattleSystem : MonoBehaviour
 	//HUD
 	public GameObject hudPrefab;
 
-	public UnitHUD playerHUD;
+	public UnitHUD[] playerHUD;
 	public UnitHUD[] enemiesHUD;
 
 	public RectTransform playerHudLocation;
@@ -61,7 +61,8 @@ public class BattleSystem : MonoBehaviour
 	void Update()
 	{
 		//refreshes HUDs every frame
-		playerHUD.updateHUD(players);
+		for (int i = 0; i < playerHUD.Length; i++)
+			playerHUD[i].updateHUD(playerers[i]);
 
 		for (int i = 0; i < enemiesHUD.Length; i++)
 		{
@@ -83,8 +84,21 @@ public class BattleSystem : MonoBehaviour
 	//spawns hud in placeholder regions
 	void InitialiseHUD()
     {
-		GameObject playerHudObj = Instantiate(hudPrefab, playerHudLocation);
-		playerHUD = playerHudObj.GetComponent<UnitHUD>();
+		
+        /*GameObject playerHudObj = Instantiate(hudPrefab, playerHudLocation);
+        playerHUD = playerHudObj.GetComponent<UnitHUD>();*/
+
+		//Multiple HUDS for each player
+
+        playerHUD = new UnitHUD[4];
+
+		for (int i = 0; i < playerers.Length; i++)
+        {
+			GameObject playerHudObj = Instantiate(hudPrefab, new Vector3(playerHudLocation.transform.position.x, playerHudLocation.transform.position.y - (i * 80f), playerHudLocation.transform.position.z), playerHudLocation.rotation, playerHudLocation);
+			playerHUD[i] = playerHudObj.GetComponent<UnitHUD>();
+		}
+
+		playerHUD[tracker].GetComponent<Image>().color = Color.green; ;
 
 		enemiesHUD = new UnitHUD[3];
 
@@ -103,13 +117,13 @@ public class BattleSystem : MonoBehaviour
 
 		players.unitName = "player";*/
 
+		// Multiple Players
 
 		playerers = new Player[4];
 
         for (int i = 0; i < playerers.Length; i++)
         {
-            GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y+1, playerLocation.position.z), playerLocation.rotation);
-            playerObj.transform.localScale = new Vector3(1, 1, 1);
+            GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y+1, playerLocation.position.z), playerLocation.rotation, playerLocation);
             playerers[i] = playerObj.GetComponent<Player>();
             playerers[i].unitName = "player" + (i + 1);
         }
@@ -164,7 +178,7 @@ public class BattleSystem : MonoBehaviour
 		if (isDead)
         {
 			enemies = RemoveEnemies(target);
-			enemiesHUD = RemoveHUDs(target);
+			enemiesHUD = RemoveHUDs(target, enemiesHUD);
 			ChangeTarget(); //automatically changes target on enemy death
         }
 
@@ -179,19 +193,8 @@ public class BattleSystem : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("I was Here");
-			
 			yield return new WaitForSeconds(0.5f);
-			tracker++;
-			Debug.Log(tracker);
-			players = playerers[tracker % 4];
-			if (tracker % 4 == 0)
-			{
-				state = BattleState.ENEMYTURN;
-				StartCoroutine(EnemyTurn());
-			}
-			else
-				PlayerTurn();
+			Increment(1);
 				
 		}
 	}
@@ -204,6 +207,8 @@ public class BattleSystem : MonoBehaviour
 
 		for (int i = 0; i < enemies.Length; i++)
 		{
+			int player_target = Random.Range(0, playerers.Length);
+
 			dialogue.text = enemies[i].unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
 
@@ -245,13 +250,19 @@ public class BattleSystem : MonoBehaviour
 			//stops enemy attacking if player is already dead
 
 			if (isDead)
-				break;
+            {
+				playerers = RemovePlayer(player_target);
+				playerHUD = RemoveHUDs(player_target, playerHUD);
+
+            }
 			//playerHUD.updateHUD(players);
 		}
 
+		bool playerersDeath = (playerers.Length == 0);
+
 		yield return new WaitForSeconds(1f);
 
-		if (isDead)
+		if (playerersDeath)
 		{
 			state = BattleState.LOSE;
 			StartCoroutine(EndBattle());
@@ -259,6 +270,7 @@ public class BattleSystem : MonoBehaviour
 		else
 		{
 			state = BattleState.PLAYERTURN;
+			Increment(0);
 			PlayerTurn();
 		}
 
@@ -308,18 +320,36 @@ public class BattleSystem : MonoBehaviour
 
 		//playerHUD.updateHUD(players);
 
-		state = BattleState.ENEMYTURN;
 		yield return new WaitForSeconds(2f);
-		tracker++;
-		players = playerers[tracker % 4];
-		if (tracker % 4 == 0)
-			StartCoroutine(EnemyTurn());
+		Increment(1);
 	}
+
+	private Player [] RemovePlayer(int removeAt)
+    {
+		Player[] new_playerers = new Player[playerers.Length - 1];
+
+		//disables the enemy object that has died
+		playerers[removeAt].disableEnemy();
+
+		int i = 0;
+		int j = 0;
+		while (i < playerers.Length)
+		{
+			if (i != removeAt)
+			{
+				new_playerers[j] = playerers[i];
+				j++;
+			}
+
+			i++;
+		}
+		return new_playerers;
+	} 
 
 	//removes enemy from array, disables gameObject and returns new array - to be used on enemy death
 	private Enemy[] RemoveEnemies(int removeAt)
 	{
-		Enemy[] newEnemies = new Enemy[enemies.Length - 1];
+		Enemy[] new_enemies = new Enemy[enemies.Length - 1];
 
 		//disables the enemy object that has died
 		enemies[removeAt].disableEnemy();
@@ -330,35 +360,35 @@ public class BattleSystem : MonoBehaviour
 		{
 			if (i != removeAt)
 			{
-				newEnemies[j] = enemies[i];
+				new_enemies[j] = enemies[i];
 				j++;
 			}
 
 			i++;
 		}
-		return newEnemies;
+		return new_enemies;
 	}
 
-	private UnitHUD[] RemoveHUDs(int removeAt)
+	private UnitHUD[] RemoveHUDs(int removeAt, UnitHUD [] arr)
 	{
-		UnitHUD[] newEnemiesHUD = new UnitHUD[enemiesHUD.Length - 1];
+		UnitHUD[] newHUD = new UnitHUD[arr.Length - 1];
 
-		//disables the enemy object that has died
-		enemiesHUD[removeAt].disableHUD();
+		//disables the Objects object that has died
+		arr[removeAt].disableHUD();
 
 		int i = 0;
 		int j = 0;
-		while (i < enemiesHUD.Length)
+		while (i < arr.Length)
 		{
 			if (i != removeAt)
 			{
-				newEnemiesHUD[j] = enemiesHUD[i];
+				newHUD[j] = arr[i];
 				j++;
 			}
 
 			i++;
 		}
-		return newEnemiesHUD;
+		return newHUD;
 	}
 
 
@@ -379,6 +409,33 @@ public class BattleSystem : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	private void Increment(int incre)
+    {
+		Debug.Log("Santa Claus is gay!!");
+
+		// Iterates to next player switching turns when all of players have had a turn
+
+		Debug.Log(tracker + " : " +  incre + " : " + playerers.Length + " : " + (tracker % playerers.Length));
+		playerHUD[tracker].GetComponent<Image>().color = Color.white;
+		tracker += incre;
+		Debug.Log(tracker + " : " + incre + " : " + playerers.Length + " : " + (tracker % playerers.Length));
+		if (tracker == playerers.Length)
+		{
+			tracker = 0;
+			state = BattleState.ENEMYTURN;
+			StartCoroutine(EnemyTurn());
+		}
+		else
+        {
+			playerHUD[tracker].GetComponent<Image>().color = Color.green;
+
+			players = playerers[tracker];
+
+			PlayerTurn();
+		}
+
 	}
 
 	//reloads scene on restart
