@@ -26,9 +26,9 @@ public class BattleSystem : MonoBehaviour
 	public TextMeshProUGUI dialogue;
 
 	public Enemy[] enemies;
-	public Player[] playerers;
+	public Player[] players;
 	private int tracker = 0;
-	public Player players;//this will change to an array once a party system is implemented
+	public Player currPlayer;//this will change to an array once a party system is implemented
 
 	//holds position of currently selected enemy
 	public int target = 0;
@@ -62,7 +62,7 @@ public class BattleSystem : MonoBehaviour
 	{
 		//refreshes HUDs every frame
 		for (int i = 0; i < playerHUD.Length; i++)
-			playerHUD[i].updateHUD(playerers[i]);
+			playerHUD[i].updateHUD(players[i]);
 
 		for (int i = 0; i < enemiesHUD.Length; i++)
 		{
@@ -92,7 +92,7 @@ public class BattleSystem : MonoBehaviour
 
         playerHUD = new UnitHUD[4];
 
-		for (int i = 0; i < playerers.Length; i++)
+		for (int i = 0; i < players.Length; i++)
         {
 			GameObject playerHudObj = Instantiate(hudPrefab, new Vector3(playerHudLocation.transform.position.x, playerHudLocation.transform.position.y - (i * 80f), playerHudLocation.transform.position.z), playerHudLocation.rotation, playerHudLocation);
 			playerHUD[i] = playerHudObj.GetComponent<UnitHUD>();
@@ -113,22 +113,22 @@ public class BattleSystem : MonoBehaviour
     IEnumerator InitialiseBattle()
     {
 /*        GameObject playerObj =  Instantiate(playerPrefab, playerLocation);
-        players = playerObj.GetComponent<Player>();
+        currPlayer = playerObj.GetComponent<Player>();
 
-		players.unitName = "player";*/
+		currPlayer.unitName = "player";*/
 
 		// Multiple Players
 
-		playerers = new Player[4];
+		players = new Player[4];
 
-        for (int i = 0; i < playerers.Length; i++)
+        for (int i = 0; i < players.Length; i++)
         {
             GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y+1, playerLocation.position.z), playerLocation.rotation, playerLocation);
-            playerers[i] = playerObj.GetComponent<Player>();
-            playerers[i].unitName = "player" + (i + 1);
+            players[i] = playerObj.GetComponent<Player>();
+            players[i].unitName = "player" + (i + 1);
         }
 
-		players = playerers[tracker];
+		currPlayer = players[tracker];
 
         enemies = new Enemy[3];
 		
@@ -155,7 +155,7 @@ public class BattleSystem : MonoBehaviour
 	//applies damage to enemies and checks if they have won
 	IEnumerator PlayerAttack()
 	{
-		Player playerScript = playerers[tracker].GetComponent<Player>();
+		Player playerScript = players[tracker].GetComponent<Player>();
 		string currentAttack = playerScript.selectedMove;
 		bool isDead = false;
 		Debug.Log(currentAttack);
@@ -187,7 +187,7 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
-		dialogue.text = players.unitName + " attacked " + enemies[target].unitName;
+		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 
 		if (isDead)
         {
@@ -221,7 +221,7 @@ public class BattleSystem : MonoBehaviour
 
 		for (int i = 0; i < enemies.Length; i++)
 		{
-			int player_target = Random.Range(0, playerers.Length);
+			int player_target = Random.Range(0, players.Length);
 
 			dialogue.text = enemies[i].unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
@@ -240,10 +240,10 @@ public class BattleSystem : MonoBehaviour
             {
 				//adds 15% damage if enemy hits player first
 				if (savedata.EnemyDouble == true)
-					isDead = playerers[player_target].takeDamage((float)(enemies[i].damage * 1.15));
+					isDead = players[player_target].takeDamage((float)(enemies[i].damage * 1.15));
 				else //regular damage
 				{
-					isDead = playerers[player_target].takeDamage(enemies[i].damage);
+					isDead = players[player_target].takeDamage(enemies[i].damage);
 				}
 			}
 
@@ -265,18 +265,18 @@ public class BattleSystem : MonoBehaviour
 
 			if (isDead)
             {
-				playerers = RemovePlayer(player_target);
+				players = RemovePlayer(player_target);
 				playerHUD = RemoveHUDs(player_target, playerHUD);
 
             }
-			//playerHUD.updateHUD(players);
+			//playerHUD.updateHUD(currPlayer);
 		}
 
-		bool playerersDeath = (playerers.Length == 0);
+		bool playersDeath = (players.Length == 0);
 
 		yield return new WaitForSeconds(1f);
 
-		if (playerersDeath)
+		if (playersDeath)
 		{
 			state = BattleState.LOSE;
 			StartCoroutine(EndBattle());
@@ -328,11 +328,11 @@ public class BattleSystem : MonoBehaviour
 	{
 
 		int amount = Random.Range(60, 100);
-		players.heal(amount);
+		currPlayer.heal(amount);
 
 		dialogue.text = "You healed by " +amount+ " hp!";
 
-		//playerHUD.updateHUD(players);
+		//playerHUD.updateHUD(currPlayer);
 
 		yield return new WaitForSeconds(2f);
 		Increment(1);
@@ -340,24 +340,24 @@ public class BattleSystem : MonoBehaviour
 
 	private Player [] RemovePlayer(int removeAt)
     {
-		Player[] new_playerers = new Player[playerers.Length - 1];
+		Player[] new_players = new Player[players.Length - 1];
 
 		//disables the enemy object that has died
-		playerers[removeAt].disableEnemy();
+		players[removeAt].disableEnemy();
 
 		int i = 0;
 		int j = 0;
-		while (i < playerers.Length)
+		while (i < players.Length)
 		{
 			if (i != removeAt)
 			{
-				new_playerers[j] = playerers[i];
+				new_players[j] = players[i];
 				j++;
 			}
 
 			i++;
 		}
-		return new_playerers;
+		return new_players;
 	} 
 
 	//removes enemy from array, disables gameObject and returns new array - to be used on enemy death
@@ -427,13 +427,13 @@ public class BattleSystem : MonoBehaviour
 
 	private void Increment(int incre)
     {
-		// Iterates to next player switching turns when all of players have had a turn
+		// Iterates to next player switching turns when all of currPlayer have had a turn
 
-		Debug.Log(tracker + " : " +  incre + " : " + playerers.Length + " : " + (tracker % playerers.Length));
+		Debug.Log(tracker + " : " +  incre + " : " + players.Length + " : " + (tracker % players.Length));
 		playerHUD[tracker].GetComponent<Image>().color = Color.white;
 		tracker += incre;
-		Debug.Log(tracker + " : " + incre + " : " + playerers.Length + " : " + (tracker % playerers.Length));
-		if (tracker == playerers.Length)
+		Debug.Log(tracker + " : " + incre + " : " + players.Length + " : " + (tracker % players.Length));
+		if (tracker == players.Length)
 		{
 			tracker = 0;
 			state = BattleState.ENEMYTURN;
@@ -443,7 +443,7 @@ public class BattleSystem : MonoBehaviour
         {
 			playerHUD[tracker].GetComponent<Image>().color = Color.green;
 
-			players = playerers[tracker];
+			currPlayer = players[tracker];
 
 			PlayerTurn();
 		}
@@ -470,7 +470,7 @@ public class BattleSystem : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 	}
 
-	
+	//button methods
 	public void OnChangeTargetButton()
 	{
 		if (state != BattleState.PLAYERTURN)
@@ -489,7 +489,7 @@ public class BattleSystem : MonoBehaviour
     {
 		if (state != BattleState.PLAYERTURN)
 			return;
-		players.GetComponent<Player>().changeAttack();
+		currPlayer.GetComponent<Player>().changeAttack();
     }
 
 	public void OnAttackButton()

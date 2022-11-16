@@ -14,6 +14,7 @@ public class Player : BattleUnit
     // Set initial player attacks
     void Start()
     {
+        currentHP = maxHP;
         playerAttacks.Add("normal", new int[] { 20, 0 }); // Damage, 0
         playerAttacks.Add("burn", new int[] { 12, 5 }); // Damage, % per turn
         playerAttacks.Add("freeze", new int[] { 0, 0 }); // 0,0
