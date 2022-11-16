@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     private float speed;
 
+    private Animator animator;
+
     public GameObject [] Clues = new GameObject[3];
 
     public TextMeshProUGUI winText;
@@ -59,6 +61,7 @@ public class PlayerController : MonoBehaviour
         speed = walkSpeed;
 
         controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
         winText.text = "";
         interaction.text = "";
         clueCount = savedata.ClueCount;
@@ -160,6 +163,8 @@ public class PlayerController : MonoBehaviour
         // Movement based on player input direction and camera direction 
         Vector3 movement = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0) * new Vector3(moveValue.x, 0, moveValue.y).normalized;
 
+        float currentSpeed = Mathf.Clamp01(Mathf.Abs(moveValue.x) + Mathf.Abs(moveValue.y));
+
         // If you are on the ground and not holding shift, walk
         if (groundedPlayer && !Input.GetKey(KeyCode.LeftShift))
         {
@@ -190,6 +195,26 @@ public class PlayerController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(movement);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
+        // Set animation based on current speed
+        // Idle
+        if (currentSpeed == 0)
+        {
+            animator.SetFloat("speed", 0, 0.2f, Time.deltaTime);
+        }
+        else
+        {
+            // Jog
+            if (speed == walkSpeed)
+            {
+                animator.SetFloat("speed", 0.5f, 0.2f, Time.deltaTime);
+            }
+            // Sprint
+            else
+            {
+                animator.SetFloat("speed", 1, 0.2f, Time.deltaTime);
+            }
         }
     }
     void Jump()
