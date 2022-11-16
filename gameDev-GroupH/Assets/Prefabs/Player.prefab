@@ -167,6 +167,11 @@ MonoBehaviour:
   maxHP: 150
   damage: 35
   unitName: 
+  burned: 0
+  burnDamage: 0
+  burnMultiplier: 0
+  frozen: 0
+  selectedMove: burn
 --- !u!1 &4092744823576880374
 GameObject:
   m_ObjectHideFlags: 0
