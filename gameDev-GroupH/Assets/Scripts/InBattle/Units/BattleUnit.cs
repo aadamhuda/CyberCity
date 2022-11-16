@@ -11,11 +11,16 @@ public class BattleUnit : MonoBehaviour
     public float currentHP;
     public float maxHP;
     public float damage;
-    public string unitName; 
+    public string unitName;
+    public Boolean burned;
+    public float burnDamage;
+    public float burnMultiplier; //percentage multiplier
+    public Boolean frozen;
 
     // Start is called before the first frame update
     void Start()
     {
+        burnMultiplier = 1; // change to weakness
         currentHP = maxHP;
     }
 
@@ -37,6 +42,11 @@ public class BattleUnit : MonoBehaviour
         }
         else
             return false;
+    }
+
+    public void disableEnemy()
+    {
+        gameObject.SetActive(false);
     }
 
 }
