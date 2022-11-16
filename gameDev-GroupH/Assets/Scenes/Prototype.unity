@@ -199,7 +199,7 @@ MonoBehaviour:
   walkSpeed: 10
   runSpeed: 15
   rotationSpeed: 7
-  jumpHeight: 1
+  jumpHeight: 0.5
   gravityValue: -15
   Clues:
   - {fileID: 998941876}
@@ -1218,7 +1218,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299866618}
-  m_LocalRotation: {x: 0.0140224695, y: -5.3764654e-10, z: 7.539872e-12, w: 0.9999017}
+  m_LocalRotation: {x: 0.0140224695, y: 4.240729e-10, z: -5.9471347e-12, w: 0.9999017}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4514,7 +4514,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085963074}
-  m_LocalRotation: {x: -0.004119512, y: -0.000000017281682, z: -7.11927e-11, w: 0.99999154}
+  m_LocalRotation: {x: -0.0041195117, y: -0.000000017284776, z: -7.1205444e-11, w: 0.99999154}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5116,7 +5116,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424095125}
-  m_LocalRotation: {x: 0.03220786, y: 0.000000017177154, z: -5.535265e-10, w: 0.9994812}
+  m_LocalRotation: {x: 0.032207828, y: -3.7937615e-15, z: -3.1837113e-17, w: 0.9994812}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5392,7 +5392,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525408405}
-  m_LocalRotation: {x: 0.014022469, y: -0.0000000010752932, z: 1.5079746e-11, w: 0.9999017}
+  m_LocalRotation: {x: 0.014022469, y: 0.0000000010232445, z: -1.4349824e-11, w: 0.9999017}
   m_LocalPosition: {x: -115.4, y: 3, z: -73.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
