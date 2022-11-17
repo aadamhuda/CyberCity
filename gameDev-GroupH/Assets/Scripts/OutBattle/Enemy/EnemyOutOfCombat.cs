@@ -18,6 +18,8 @@ public class EnemyOutOfCombat : EnemyCollider
     public float walkpointRange;
 
     public bool inSight;
+
+    private Animator anim;
     protected void Start()
     {
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
@@ -25,6 +27,12 @@ public class EnemyOutOfCombat : EnemyCollider
         sc.isTrigger = true;
         PosSave.AddToDict(PosSave.Death, gameObject.name);
         dead = PosSave.getDict(PosSave.Death, gameObject.name);
+
+        anim = GetComponent<Animator>();
+        anim.SetBool("isAttacking", false);
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isRunning", false);
+
         if (dead == true)
             gameObject.SetActive(false);
         else
@@ -70,9 +78,17 @@ public class EnemyOutOfCombat : EnemyCollider
     void ChasePlayer()
     {
         Debug.Log("Chasing");
+        anim.SetBool("isRunning", true);
         agent.SetDestination(player.transform.position);
     }
 
+    private IEnumerator AmbushPlayer()
+    {
+        anim.SetBool("isAttacking", true);
+        yield return new WaitForSeconds(2f);
+        PosSave.OnEnemyDouble();
+        base.BattleScene();
+    }
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -91,8 +107,7 @@ public class EnemyOutOfCombat : EnemyCollider
             ChasePlayer();
             if (inSight & inRange)
             {
-                PosSave.OnEnemyDouble();
-                base.BattleScene();
+                StartCoroutine(AmbushPlayer());
             } 
         }
         else
@@ -111,6 +126,7 @@ public class EnemyOutOfCombat : EnemyCollider
 
     void Patrol()
     {
+        anim.SetBool("isWalking", true);
         if (!walkPointSet) 
             FindWalkRange();
 
