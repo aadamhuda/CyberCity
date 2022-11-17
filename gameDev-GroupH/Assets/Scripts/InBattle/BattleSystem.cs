@@ -47,6 +47,9 @@ public class BattleSystem : MonoBehaviour
 	public RectTransform playerHudLocation;
 	public RectTransform[] enemyHudLocations;
 
+	private bool playerAttacking;
+	private bool enemyAttacking;
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -55,6 +58,8 @@ public class BattleSystem : MonoBehaviour
 		Cursor.lockState = CursorLockMode.None;
 
 		state = BattleState.START;
+		playerAttacking = false;
+		enemyAttacking = false;
         StartCoroutine(InitialiseBattle());
     }
 
@@ -146,9 +151,9 @@ public class BattleSystem : MonoBehaviour
 		ChangeTarget();
 
 		InitialiseHUD();
-		
-        state = BattleState.PLAYERTURN;
-        yield return new WaitForSeconds(2f);
+
+		yield return new WaitForSeconds(1f);
+		state = BattleState.PLAYERTURN;
         PlayerTurn();
     }
 
@@ -159,9 +164,32 @@ public class BattleSystem : MonoBehaviour
 		string currentAttack = playerScript.selectedMove;
 		bool isDead = false;
 		Debug.Log(currentAttack);
+
+	
+		// Coords of player start and enemy start positions
+		Vector3 playerPos = currPlayer.transform.position;
+		Vector3 enemyPos = enemies[target].transform.position;
+
+		// Animator for player
+		var animator = currPlayer.GetComponent<Animator>();
+
+		// Player is attacking
+		playerAttacking = true;
+
+		// Rotating player until facing enemy
+		yield return StartCoroutine(RotatePlayer(0.2f, enemyPos));
+		yield return new WaitForSeconds(0.2f);
+
+		// Moving player until next to enemy
+		yield return StartCoroutine(MovePlayer(0.5f, 2f, enemyPos));
+
+		// Attack here
+		yield return new WaitForSeconds(0.5f);
+
 		if (currentAttack == "normal")
 		{
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["normal"])[0]));
+
 		}
 		else if (currentAttack == "burn")
 		{
@@ -189,6 +217,9 @@ public class BattleSystem : MonoBehaviour
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 
+		// Moving player back to original position
+		yield return StartCoroutine(MovePlayer(0.5f, 0.1f, playerPos));
+
 		if (isDead)
         {
 			enemies = RemoveEnemies(target);
@@ -211,9 +242,12 @@ public class BattleSystem : MonoBehaviour
 			Increment(1);
 				
 		}
+
+		// Player attack is finished
+		playerAttacking = false;
 	}
 
-	IEnumerator EnemyTurn()
+    IEnumerator EnemyTurn()
 	{
 		bool isDead = false;
 
@@ -450,6 +484,41 @@ public class BattleSystem : MonoBehaviour
 
 	}
 
+	// Turn player to a position
+	IEnumerator RotatePlayer(float speed, Vector3 targetPos)
+	{
+		var transform = currPlayer.transform;
+		var startRotation = transform.rotation;
+		var direction = targetPos - transform.position;
+		var targetRotation = Quaternion.LookRotation(direction);
+		targetRotation.x = 0;
+		var t = 0f;
+		while (t <= 1f)
+		{
+			t += Time.deltaTime / speed;
+			transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+			yield return null;
+		}
+		transform.rotation = targetRotation;
+	}
+
+	// Move player to a position
+	IEnumerator MovePlayer(float speed, float distance, Vector3 targetPos)
+	{
+		var transform = currPlayer.transform;
+		var cc = currPlayer.GetComponent<CharacterController>();
+		var offset = targetPos - transform.position;
+
+
+
+		while (Vector3.Distance(transform.position, targetPos) > distance)
+		{
+			cc.Move(offset * speed * Time.deltaTime);
+			yield return null;
+		}
+
+	}
+
 	//reloads scene on restart
 	IEnumerator Restart()
     {
@@ -470,6 +539,7 @@ public class BattleSystem : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 	}
 
+
 	//button methods
 	public void OnChangeTargetButton()
 	{
@@ -481,7 +551,7 @@ public class BattleSystem : MonoBehaviour
 		{
 			target = 0;
 		}
-
+		StartCoroutine(RotatePlayer(0.2f, enemies[target].transform.position));
 		ChangeTarget();
 	}
 
@@ -494,7 +564,7 @@ public class BattleSystem : MonoBehaviour
 
 	public void OnAttackButton()
 	{
-		if (state != BattleState.PLAYERTURN)
+		if (state != BattleState.PLAYERTURN || playerAttacking)
 			return;
 
 		StartCoroutine(PlayerAttack());
