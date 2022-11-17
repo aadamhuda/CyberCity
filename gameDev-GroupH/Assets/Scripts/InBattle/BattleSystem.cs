@@ -49,6 +49,8 @@ public class BattleSystem : MonoBehaviour
 
 	private bool playerAttacking;
 	private bool enemyAttacking;
+	private float playerMinSpeed = 0.1f;
+	private float playerMaxSpeed = 0.5f;
 
 	// Start is called before the first frame update
 	void Start()
@@ -181,7 +183,7 @@ public class BattleSystem : MonoBehaviour
 		yield return new WaitForSeconds(0.2f);
 
 		// Moving player until next to enemy
-		yield return StartCoroutine(MovePlayer(0.5f, 2f, enemyPos));
+		yield return StartCoroutine(MovePlayer(playerMinSpeed, 2f, enemyPos));
 
 		// Attack here
 		yield return new WaitForSeconds(0.5f);
@@ -218,7 +220,7 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 
 		// Moving player back to original position
-		yield return StartCoroutine(MovePlayer(0.5f, 0.1f, playerPos));
+		yield return StartCoroutine(MovePlayer(playerMinSpeed, 0.1f, playerPos));
 
 		if (isDead)
         {
@@ -508,14 +510,37 @@ public class BattleSystem : MonoBehaviour
 		var transform = currPlayer.transform;
 		var cc = currPlayer.GetComponent<CharacterController>();
 		var offset = targetPos - transform.position;
+		var animator = currPlayer.GetComponent<Animator>();
 
-
-
-		while (Vector3.Distance(transform.position, targetPos) > distance)
+		// Gradually speed up until threshold distance reached
+		while (Vector3.Distance(transform.position, targetPos) > distance*1.5)
 		{
+			if (speed > playerMaxSpeed)
+            {
+				speed = playerMaxSpeed;
+            }
+			animator.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
 			cc.Move(offset * speed * Time.deltaTime);
+			speed += 0.01f;
 			yield return null;
 		}
+
+		// Gradually slow down until final distance reached
+		while (Vector3.Distance(transform.position, targetPos) > distance)
+		{
+
+			if (speed < playerMinSpeed)
+			{
+				speed = playerMinSpeed;
+			}
+			animator.SetFloat("Speed", speed);
+			cc.Move(offset * speed * Time.deltaTime);
+			speed -= 0.01f;
+			yield return null;
+		}
+		// Reached specified distance from target, stop moving
+		animator.SetFloat("Speed", 0f, 0f, Time.deltaTime);
+		playerMinSpeed = 0.1f;
 
 	}
 
