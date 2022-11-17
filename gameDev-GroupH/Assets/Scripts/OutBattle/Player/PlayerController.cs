@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private float speed;
 
     private Animator animator;
+    private int jumpHash;
 
     public GameObject [] Clues = new GameObject[3];
 
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        jumpHash = Animator.StringToHash("Jump");
         winText.text = "";
         interaction.text = "";
         clueCount = savedata.ClueCount;
@@ -201,19 +203,19 @@ public class PlayerController : MonoBehaviour
         // Idle
         if (currentSpeed == 0)
         {
-            animator.SetFloat("speed", 0, 0.2f, Time.deltaTime);
+            animator.SetFloat("Speed", 0, 0.2f, Time.deltaTime);
         }
         else
         {
             // Jog
             if (speed == walkSpeed)
             {
-                animator.SetFloat("speed", 0.5f, 0.2f, Time.deltaTime);
+                animator.SetFloat("Speed", 0.5f, 0.2f, Time.deltaTime);
             }
             // Sprint
             else
             {
-                animator.SetFloat("speed", 1, 0.2f, Time.deltaTime);
+                animator.SetFloat("Speed", 1, 0.2f, Time.deltaTime);
             }
         }
     }
@@ -223,6 +225,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxisRaw("Jump") == 1 && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+
+            // Jump animation
+            animator.Play(jumpHash);
         }
 
         // Jump movement
