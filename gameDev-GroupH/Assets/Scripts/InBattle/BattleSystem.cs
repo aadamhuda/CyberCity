@@ -182,16 +182,20 @@ public class BattleSystem : MonoBehaviour
 		yield return StartCoroutine(RotatePlayer(0.2f, enemyPos));
 		yield return new WaitForSeconds(0.2f);
 
-		// Moving player until next to enemy
-		yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 2f, enemyPos));
-
-		// Attack here
-		yield return new WaitForSeconds(0.5f);
 
 		if (currentAttack == "normal")
 		{
+			// Moving player until next to enemy
+			yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 2f, enemyPos));
+
+			// Attack animation
+			animator.CrossFade("Melee360High", 0.1f);
+			yield return new WaitForSeconds(2.3f);
+
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["normal"])[0]));
 
+			// Moving player back to original position
+			yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.1f, playerPos));
 		}
 		else if (currentAttack == "burn")
 		{
@@ -219,8 +223,7 @@ public class BattleSystem : MonoBehaviour
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 
-		// Moving player back to original position
-		yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.1f, playerPos));
+
 
 		if (isDead)
         {
@@ -359,7 +362,6 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = "Choose an action!";
 	}
 
-	
 	IEnumerator PlayerHeal()
 	{
 
@@ -570,7 +572,7 @@ public class BattleSystem : MonoBehaviour
 	//button methods
 	public void OnChangeTargetButton()
 	{
-		if (state != BattleState.PLAYERTURN)
+		if (state != BattleState.PLAYERTURN || playerAttacking)
 			return;
 
 		target = target + 1;
@@ -599,7 +601,7 @@ public class BattleSystem : MonoBehaviour
 
 	public void OnHealButton()
 	{
-		if (state != BattleState.PLAYERTURN)
+		if (state != BattleState.PLAYERTURN || playerAttacking)
 			return;
 
 		StartCoroutine(PlayerHeal());
