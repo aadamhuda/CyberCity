@@ -133,7 +133,28 @@ public class BattleSystem : MonoBehaviour
             GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y+1, playerLocation.position.z), playerLocation.rotation, playerLocation);
             players[i] = playerObj.GetComponent<Player>();
             players[i].unitName = "player" + (i + 1);
-        }
+			// player moves
+		}
+
+		players[0].playerAttacks.Add("normal", new int[] { 0, 20 }); // type, damage
+		players[0].playerAttacks.Add("curse", new int[] { -1 }); // no type
+		players[0].playerAttacks.Add("shoot", new int[] { 0, 6, 15 }); // type, damage, side damage
+		players[0].selectedMove = "normal";
+
+		players[1].playerAttacks.Add("normal", new int[] { 0, 20 }); 
+		players[1].playerAttacks.Add("burn", new int[] { 1, 12, 5 }); 
+		players[1].playerAttacks.Add("fire", new int[] { 1, 15, 0 }); 
+		players[1].selectedMove = "normal";
+
+		players[2].playerAttacks.Add("normal", new int[] { 0, 20 }); 
+		players[2].playerAttacks.Add("grass", new int[] { 2, 15, 0 }); 
+		players[2].playerAttacks.Add("poison", new int[] { -1, 10 }); 
+		players[2].selectedMove = "normal";
+
+		players[3].playerAttacks.Add("normal", new int[] { 0, 20 }); 
+		players[3].playerAttacks.Add("water", new int[] { 3, 15, 0 }); 
+		players[3].playerAttacks.Add("freeze", new int[] { -1 }); 
+		players[3].selectedMove = "normal";
 
 		currPlayer = players[tracker];
 
@@ -188,16 +209,12 @@ public class BattleSystem : MonoBehaviour
 		// Attack here
 		yield return new WaitForSeconds(0.5f);
 
-		if (currentAttack == "normal")
+		
+		if (currentAttack == "burn")
 		{
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["normal"])[0]));
-
-		}
-		else if (currentAttack == "burn")
-		{
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["burn"])[0]));
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
 			enemies[target].burned = true;
-			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[1] / 100);
+			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
 			Debug.Log(enemies[target].burnDamage);
 		}
 		else if (currentAttack == "freeze")
@@ -208,14 +225,18 @@ public class BattleSystem : MonoBehaviour
         {
 			for (int i = 0; i<enemies.Length; i++)
             {
-				isDead = enemies[i].takeDamage(playerScript.playerAttacks["shoot"][0]);
-				if (isDead && enemies[i] != enemies[target])
+				var isThisDead = enemies[i].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+				if (isThisDead)
                 {
 					enemies = RemoveEnemies(i);
 					enemiesHUD = RemoveHUDs(i, enemiesHUD);
 				}
             }
         }
+        else 
+        {
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+		}
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 
@@ -276,10 +297,10 @@ public class BattleSystem : MonoBehaviour
             {
 				//adds 15% damage if enemy hits player first
 				if (savedata.EnemyDouble == true)
-					isDead = players[player_target].takeDamage((float)(enemies[i].damage * 1.15));
+					isDead = players[player_target].takeDamage((float)(enemies[i].damage * 1.15), 1); // change 1 to enemy's move type
 				else //regular damage
 				{
-					isDead = players[player_target].takeDamage(enemies[i].damage);
+					isDead = players[player_target].takeDamage(enemies[i].damage, 1);
 				}
 			}
 
@@ -289,7 +310,7 @@ public class BattleSystem : MonoBehaviour
 				float damage = (float)enemies[i].maxHP * enemies[i].burnDamage * enemies[i].burnMultiplier;
 				Debug.Log(damage);
 				Debug.Log("damage");
-				isDead = enemies[i].takeDamage(damage);
+				isDead = enemies[i].takeDamage(damage, 1);
 				int number = UnityEngine.Random.Range(0, 100);
 				// 20% chance to stop burning 
 				if (number > 80)

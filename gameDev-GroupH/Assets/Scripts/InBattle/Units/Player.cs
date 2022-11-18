@@ -15,11 +15,7 @@ public class Player : BattleUnit
     void Start()
     {
         currentHP = maxHP;
-        playerAttacks.Add("normal", new int[] { 20, 0 }); // Damage, 0
-        playerAttacks.Add("burn", new int[] { 12, 5 }); // Damage, % per turn
-        playerAttacks.Add("freeze", new int[] { 0, 0 }); // 0,0
-        playerAttacks.Add("shoot", new int[] { 6, 15 }); // Main target damage, side damage (enemies next to target)
-        selectedMove = "burn";
+        
     }
 
 
