@@ -262,7 +262,7 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = enemies[i].unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
 
-			if (!enemies[i].frozen)
+			if (enemies[i].frozen)
             {
 				// skip turn
 				int number = UnityEngine.Random.Range(0, 100);
