@@ -183,7 +183,7 @@ public class BattleSystem : MonoBehaviour
 		yield return new WaitForSeconds(0.2f);
 
 		// Moving player until next to enemy
-		yield return StartCoroutine(MovePlayer(playerMinSpeed, 2f, enemyPos));
+		yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 2f, enemyPos));
 
 		// Attack here
 		yield return new WaitForSeconds(0.5f);
@@ -220,7 +220,7 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 
 		// Moving player back to original position
-		yield return StartCoroutine(MovePlayer(playerMinSpeed, 0.1f, playerPos));
+		yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.1f, playerPos));
 
 		if (isDead)
         {
@@ -505,13 +505,13 @@ public class BattleSystem : MonoBehaviour
 	}
 
 	// Move player to a position
-	IEnumerator MovePlayer(float speed, float distance, Vector3 targetPos)
+	IEnumerator MovePlayer(bool forward, float speed, float distance, Vector3 targetPos)
 	{
 		var transform = currPlayer.transform;
 		var cc = currPlayer.GetComponent<CharacterController>();
 		var offset = targetPos - transform.position;
 		var animator = currPlayer.GetComponent<Animator>();
-
+		animator.SetBool("moveBackwards", !forward);
 		// Gradually speed up until threshold distance reached
 		while (Vector3.Distance(transform.position, targetPos) > distance*1.5)
 		{
@@ -542,6 +542,8 @@ public class BattleSystem : MonoBehaviour
 		animator.SetFloat("Speed", 0f, 0f, Time.deltaTime);
 		playerMinSpeed = 0.1f;
 
+		// Moving forwards by default
+		animator.SetBool("moveBackwards", true);
 	}
 
 	//reloads scene on restart
