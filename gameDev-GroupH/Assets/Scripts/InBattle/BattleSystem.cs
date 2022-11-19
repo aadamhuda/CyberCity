@@ -203,14 +203,22 @@ public class BattleSystem : MonoBehaviour
 		yield return StartCoroutine(RotatePlayer(0.2f, enemyPos));
 		yield return new WaitForSeconds(0.2f);
 
-		// Moving player until next to enemy
-		yield return StartCoroutine(MovePlayer(playerMinSpeed, 2f, enemyPos));
 
-		// Attack here
-		yield return new WaitForSeconds(0.5f);
+		if (currentAttack == "normal")
+		{
+			// Moving player until next to enemy
+			yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 2f, enemyPos));
 
-		
-		if (currentAttack == "burn")
+			// Attack animation
+			animator.CrossFade("Melee360High", 0.1f);
+			yield return new WaitForSeconds(2.3f);
+
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["normal"])[0]));
+
+			// Moving player back to original position
+			yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.1f, playerPos));
+		}
+		else if (currentAttack == "burn")
 		{
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
 			enemies[target].burned = true;
@@ -240,8 +248,7 @@ public class BattleSystem : MonoBehaviour
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 
-		// Moving player back to original position
-		yield return StartCoroutine(MovePlayer(playerMinSpeed, 0.1f, playerPos));
+
 
 		if (isDead)
         {
@@ -283,7 +290,7 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = enemies[i].unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
 
-			if (!enemies[i].frozen)
+			if (enemies[i].frozen)
             {
 				// skip turn
 				int number = UnityEngine.Random.Range(0, 100);
@@ -380,7 +387,6 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = "Choose an action!";
 	}
 
-	
 	IEnumerator PlayerHeal()
 	{
 
@@ -526,13 +532,13 @@ public class BattleSystem : MonoBehaviour
 	}
 
 	// Move player to a position
-	IEnumerator MovePlayer(float speed, float distance, Vector3 targetPos)
+	IEnumerator MovePlayer(bool forward, float speed, float distance, Vector3 targetPos)
 	{
 		var transform = currPlayer.transform;
 		var cc = currPlayer.GetComponent<CharacterController>();
 		var offset = targetPos - transform.position;
 		var animator = currPlayer.GetComponent<Animator>();
-
+		animator.SetBool("moveBackwards", !forward);
 		// Gradually speed up until threshold distance reached
 		while (Vector3.Distance(transform.position, targetPos) > distance*1.5)
 		{
@@ -563,6 +569,8 @@ public class BattleSystem : MonoBehaviour
 		animator.SetFloat("Speed", 0f, 0f, Time.deltaTime);
 		playerMinSpeed = 0.1f;
 
+		// Moving forwards by default
+		animator.SetBool("moveBackwards", true);
 	}
 
 	//reloads scene on restart
@@ -589,7 +597,7 @@ public class BattleSystem : MonoBehaviour
 	//button methods
 	public void OnChangeTargetButton()
 	{
-		if (state != BattleState.PLAYERTURN)
+		if (state != BattleState.PLAYERTURN || playerAttacking)
 			return;
 
 		target = target + 1;
@@ -618,7 +626,7 @@ public class BattleSystem : MonoBehaviour
 
 	public void OnHealButton()
 	{
-		if (state != BattleState.PLAYERTURN)
+		if (state != BattleState.PLAYERTURN || playerAttacking)
 			return;
 
 		StartCoroutine(PlayerHeal());
