@@ -12,7 +12,7 @@ public class Player : BattleUnit
     public string selectedMove = "burn";
 
     // Set initial player attacks
-    void Start()
+    void start()
     {
         currentHP = maxHP;
         

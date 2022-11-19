@@ -202,29 +202,22 @@ public class BattleSystem : MonoBehaviour
 		// Rotating player until facing enemy
 		yield return StartCoroutine(RotatePlayer(0.2f, enemyPos));
 		yield return new WaitForSeconds(0.2f);
-
-
-		if (currentAttack == "normal")
-		{
-			// Moving player until next to enemy
-			yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 2f, enemyPos));
-
-			// Attack animation
-			animator.CrossFade("Melee360High", 0.1f);
-			yield return new WaitForSeconds(2.3f);
-
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["normal"])[0]));
-
-			// Moving player back to original position
-			yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.1f, playerPos));
-		}
-		else if (currentAttack == "burn")
+	
+		if (currentAttack == "burn")
 		{
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
 			enemies[target].burned = true;
 			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
-			Debug.Log(enemies[target].burnDamage);
 		}
+		else if (currentAttack == "poison")
+		{
+			enemies[target].poisoned = true;
+			enemies[target].poisonDamage = ((float)(playerScript.playerAttacks["poison"])[1] / 100);
+		}
+		else if (currentAttack == "curse")
+        {
+			enemies[target].cursed = true;
+        }
 		else if (currentAttack == "freeze")
 		{
 			enemies[target].frozen = true;
@@ -243,7 +236,17 @@ public class BattleSystem : MonoBehaviour
         }
         else 
         {
+			// Moving player until next to enemy
+			yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 2f, enemyPos));
+
+			// Attack animation
+			animator.CrossFade("Melee360High", 0.1f);
+			yield return new WaitForSeconds(2.3f);
+
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+
+			// Moving player back to original position
+			yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.1f, playerPos));
 		}
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
@@ -281,8 +284,6 @@ public class BattleSystem : MonoBehaviour
 	{
 		bool isDead = false;
 
-		Debug.Log(128937218973);
-
 		for (int i = 0; i < enemies.Length; i++)
 		{
 			int player_target = Random.Range(0, players.Length);
@@ -315,8 +316,6 @@ public class BattleSystem : MonoBehaviour
 			if (enemies[i].burned)
             {
 				float damage = (float)enemies[i].maxHP * enemies[i].burnDamage * enemies[i].burnMultiplier;
-				Debug.Log(damage);
-				Debug.Log("damage");
 				isDead = enemies[i].takeDamage(damage, 1);
 				int number = UnityEngine.Random.Range(0, 100);
 				// 20% chance to stop burning 
@@ -325,6 +324,19 @@ public class BattleSystem : MonoBehaviour
 					enemies[i].burned = false;
 				}
 			}
+
+			//deal poison damage
+			if (enemies[i].poisoned)
+			{
+				isDead = enemies[i].takeDamage(enemies[i].poisonDamage, -1);
+				int number = UnityEngine.Random.Range(0, 100);
+				// 20% chance to stop poisoned
+				if (number > 80)
+				{
+					enemies[i].poisoned = false;
+				}
+			}
+
 			//stops enemy attacking if player is already dead
 
 			if (isDead)
