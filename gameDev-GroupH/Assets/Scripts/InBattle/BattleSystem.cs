@@ -133,7 +133,28 @@ public class BattleSystem : MonoBehaviour
             GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y+1, playerLocation.position.z), playerLocation.rotation, playerLocation);
             players[i] = playerObj.GetComponent<Player>();
             players[i].unitName = "player" + (i + 1);
-        }
+			// player moves
+		}
+
+		players[0].playerAttacks.Add("normal", new int[] { 0, 20 }); // type, damage
+		players[0].playerAttacks.Add("curse", new int[] { -1 }); // no type
+		players[0].playerAttacks.Add("shoot", new int[] { 0, 6, 15 }); // type, damage, side damage
+		players[0].selectedMove = "normal";
+
+		players[1].playerAttacks.Add("normal", new int[] { 0, 20 }); 
+		players[1].playerAttacks.Add("burn", new int[] { 1, 12, 5 }); 
+		players[1].playerAttacks.Add("fire", new int[] { 1, 15, 0 }); 
+		players[1].selectedMove = "normal";
+
+		players[2].playerAttacks.Add("normal", new int[] { 0, 20 }); 
+		players[2].playerAttacks.Add("grass", new int[] { 2, 15, 0 }); 
+		players[2].playerAttacks.Add("poison", new int[] { -1, 10 }); 
+		players[2].selectedMove = "normal";
+
+		players[3].playerAttacks.Add("normal", new int[] { 0, 20 }); 
+		players[3].playerAttacks.Add("water", new int[] { 3, 15, 0 }); 
+		players[3].playerAttacks.Add("freeze", new int[] { -1 }); 
+		players[3].selectedMove = "normal";
 
 		currPlayer = players[tracker];
 
@@ -181,9 +202,8 @@ public class BattleSystem : MonoBehaviour
 		// Rotating player until facing enemy
 		yield return StartCoroutine(RotatePlayer(0.2f, enemyPos));
 		yield return new WaitForSeconds(0.2f);
-
-
-		if (currentAttack == "normal")
+	
+		if (currentAttack == "burn")
 		{
 			// Moving player until next to enemy
 			yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 1.8f, enemyPos));
@@ -193,18 +213,22 @@ public class BattleSystem : MonoBehaviour
 			animator.CrossFade("Melee360High", 0.1f);
 			yield return new WaitForSeconds(2.5f);
 
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["normal"])[0]));
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+			enemies[target].burned = true;
+			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
 
 			// Moving player back to original position
 			yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.02f, playerPos));
 		}
-		else if (currentAttack == "burn")
+		else if (currentAttack == "poison")
 		{
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["burn"])[0]));
-			enemies[target].burned = true;
-			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[1] / 100);
-			Debug.Log(enemies[target].burnDamage);
+			enemies[target].poisoned = true;
+			enemies[target].poisonDamage = ((float)(playerScript.playerAttacks["poison"])[1] / 100);
 		}
+		else if (currentAttack == "curse")
+        {
+			enemies[target].cursed = true;
+        }
 		else if (currentAttack == "freeze")
 		{
 			enemies[target].frozen = true;
@@ -213,14 +237,28 @@ public class BattleSystem : MonoBehaviour
         {
 			for (int i = 0; i<enemies.Length; i++)
             {
-				isDead = enemies[i].takeDamage(playerScript.playerAttacks["shoot"][0]);
-				if (isDead && enemies[i] != enemies[target])
+				var isThisDead = enemies[i].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+				if (isThisDead)
                 {
 					enemies = RemoveEnemies(i);
 					enemiesHUD = RemoveHUDs(i, enemiesHUD);
 				}
             }
         }
+        else 
+        {
+			// Moving player until next to enemy
+			yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 2f, enemyPos));
+
+			// Attack animation
+			animator.CrossFade("Melee360High", 0.1f);
+			yield return new WaitForSeconds(2.3f);
+
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+
+			// Moving player back to original position
+			yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.1f, playerPos));
+		}
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 
@@ -257,8 +295,6 @@ public class BattleSystem : MonoBehaviour
 	{
 		bool isDead = false;
 
-		Debug.Log(128937218973);
-
 		for (int i = 0; i < enemies.Length; i++)
 		{
 			int player_target = Random.Range(0, players.Length);
@@ -280,10 +316,10 @@ public class BattleSystem : MonoBehaviour
             {
 				//adds 15% damage if enemy hits player first
 				if (savedata.EnemyDouble == true)
-					isDead = players[player_target].takeDamage((float)(enemies[i].damage * 1.15));
+					isDead = players[player_target].takeDamage((float)(enemies[i].damage * 1.15), 1); // change 1 to enemy's move type
 				else //regular damage
 				{
-					isDead = players[player_target].takeDamage(enemies[i].damage);
+					isDead = players[player_target].takeDamage(enemies[i].damage, 1);
 				}
 			}
 
@@ -291,9 +327,7 @@ public class BattleSystem : MonoBehaviour
 			if (enemies[i].burned)
             {
 				float damage = (float)enemies[i].maxHP * enemies[i].burnDamage * enemies[i].burnMultiplier;
-				Debug.Log(damage);
-				Debug.Log("damage");
-				isDead = enemies[i].takeDamage(damage);
+				isDead = enemies[i].takeDamage(damage, 1);
 				int number = UnityEngine.Random.Range(0, 100);
 				// 20% chance to stop burning 
 				if (number > 80)
@@ -301,6 +335,19 @@ public class BattleSystem : MonoBehaviour
 					enemies[i].burned = false;
 				}
 			}
+
+			//deal poison damage
+			if (enemies[i].poisoned)
+			{
+				isDead = enemies[i].takeDamage(enemies[i].poisonDamage, -1);
+				int number = UnityEngine.Random.Range(0, 100);
+				// 20% chance to stop poisoned
+				if (number > 80)
+				{
+					enemies[i].poisoned = false;
+				}
+			}
+
 			//stops enemy attacking if player is already dead
 
 			if (isDead)
@@ -361,6 +408,8 @@ public class BattleSystem : MonoBehaviour
 	void PlayerTurn()
 	{
 		dialogue.text = "Choose an action!";
+		TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
+		indicator.text = players[tracker].selectedMove;
 	}
 
 	IEnumerator PlayerHeal()

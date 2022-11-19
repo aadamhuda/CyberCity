@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 //inherits from parent class BattleUnit
@@ -12,14 +13,10 @@ public class Player : BattleUnit
     public string selectedMove = "burn";
 
     // Set initial player attacks
-    void Start()
+    void start()
     {
         currentHP = maxHP;
-        playerAttacks.Add("normal", new int[] { 20, 0 }); // Damage, 0
-        playerAttacks.Add("burn", new int[] { 12, 5 }); // Damage, % per turn
-        playerAttacks.Add("freeze", new int[] { 0, 0 }); // 0,0
-        playerAttacks.Add("shoot", new int[] { 6, 15 }); // Main target damage, side damage (enemies next to target)
-        selectedMove = "burn";
+        
     }
 
 
@@ -52,6 +49,8 @@ public class Player : BattleUnit
                 break;
             }
         }
+        TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
+        indicator.text = selectedMove;
         Debug.Log(selectedMove);
     }
 
