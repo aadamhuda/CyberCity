@@ -186,16 +186,17 @@ public class BattleSystem : MonoBehaviour
 		if (currentAttack == "normal")
 		{
 			// Moving player until next to enemy
-			yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 2f, enemyPos));
+			yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 1.8f, enemyPos));
+			yield return new WaitForSeconds(0.5f);
 
 			// Attack animation
 			animator.CrossFade("Melee360High", 0.1f);
-			yield return new WaitForSeconds(2.3f);
+			yield return new WaitForSeconds(2.5f);
 
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks["normal"])[0]));
 
 			// Moving player back to original position
-			yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.1f, playerPos));
+			yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.02f, playerPos));
 		}
 		else if (currentAttack == "burn")
 		{
@@ -507,45 +508,53 @@ public class BattleSystem : MonoBehaviour
 	}
 
 	// Move player to a position
-	IEnumerator MovePlayer(bool forward, float speed, float distance, Vector3 targetPos)
+	IEnumerator MovePlayer(bool forward, float speed, float distOffsetToTarget, Vector3 targetPos)
 	{
 		var transform = currPlayer.transform;
 		var cc = currPlayer.GetComponent<CharacterController>();
 		var offset = targetPos - transform.position;
 		var animator = currPlayer.GetComponent<Animator>();
+		var slowDown = 0.6f;
+		if(!forward)
+        {
+			slowDown = 0.3f;
+        }
+		// Movement
 		animator.SetBool("moveBackwards", !forward);
-		// Gradually speed up until threshold distance reached
-		while (Vector3.Distance(transform.position, targetPos) > distance*1.5)
+		animator.SetBool("isMoving", true);
+
+		// Gradually speed up until close to target
+		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget + slowDown)
 		{
 			if (speed > playerMaxSpeed)
-            {
+			{
 				speed = playerMaxSpeed;
-            }
-			animator.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
+			}
+
+			animator.SetFloat("Speed", speed, 0f, Time.deltaTime);;
 			cc.Move(offset * speed * Time.deltaTime);
 			speed += 0.01f;
 			yield return null;
 		}
 
-		// Gradually slow down until final distance reached
-		while (Vector3.Distance(transform.position, targetPos) > distance)
-		{
+			animator.SetBool("isMoving", false);
 
+		// Slow down until next to target
+		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget)
+		{
 			if (speed < playerMinSpeed)
 			{
 				speed = playerMinSpeed;
 			}
-			animator.SetFloat("Speed", speed);
+
+			animator.SetFloat("Speed", speed, 0.2f, Time.deltaTime);
 			cc.Move(offset * speed * Time.deltaTime);
 			speed -= 0.01f;
+
 			yield return null;
 		}
-		// Reached specified distance from target, stop moving
-		animator.SetFloat("Speed", 0f, 0f, Time.deltaTime);
-		playerMinSpeed = 0.1f;
 
-		// Moving forwards by default
-		animator.SetBool("moveBackwards", true);
+		animator.SetBool("isMoving", false);
 	}
 
 	//reloads scene on restart
