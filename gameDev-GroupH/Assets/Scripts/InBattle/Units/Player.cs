@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 //inherits from parent class BattleUnit
@@ -48,6 +49,8 @@ public class Player : BattleUnit
                 break;
             }
         }
+        TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
+        indicator.text = selectedMove;
         Debug.Log(selectedMove);
     }
 

@@ -397,6 +397,8 @@ public class BattleSystem : MonoBehaviour
 	void PlayerTurn()
 	{
 		dialogue.text = "Choose an action!";
+		TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
+		indicator.text = players[tracker].selectedMove;
 	}
 
 	IEnumerator PlayerHeal()
