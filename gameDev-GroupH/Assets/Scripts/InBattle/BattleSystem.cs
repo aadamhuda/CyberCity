@@ -277,6 +277,7 @@ public class BattleSystem : MonoBehaviour
 		}
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
+		yield return new WaitForSeconds(2f);
 
 
 
