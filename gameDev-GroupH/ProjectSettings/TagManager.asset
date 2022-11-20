@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Clue
+  - Restart
   layers:
   - Default
   - TransparentFX
@@ -13,10 +14,10 @@ TagManager:
   - Water
   - UI
   - MazeWall
-  - 
-  - 
-  - 
-  - 
+  - area_one
+  - area_two
+  - area_three
+  - area_four
   - 
   - 
   - 
