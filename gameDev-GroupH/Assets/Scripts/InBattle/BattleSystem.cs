@@ -130,17 +130,17 @@ public class BattleSystem : MonoBehaviour
 		allPlayers[0].unitName = "Main Character";
 
 		//Companion 1
-		playerObj = Instantiate(companion1Prefab, new Vector3(playerLocation.position.x + (1 * 2.5f), playerLocation.position.y, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		playerObj = Instantiate(companion1Prefab, new Vector3(playerLocation.position.x + (1 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
 		allPlayers[1] = playerObj.GetComponent<Player>();
 		allPlayers[1].unitName = "Companion 1 ";
 
 		//Companion 2
-		playerObj = Instantiate(companion2Prefab, new Vector3(playerLocation.position.x + (2 * 2.5f), playerLocation.position.y, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		playerObj = Instantiate(companion2Prefab, new Vector3(playerLocation.position.x + (2 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
 		allPlayers[2] = playerObj.GetComponent<Player>();
 		allPlayers[2].unitName = "Companion 2";
 
 		//Companion 3
-		playerObj = Instantiate(companion3Prefab, new Vector3(playerLocation.position.x + (3 * 2.5f), playerLocation.position.y, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		playerObj = Instantiate(companion3Prefab, new Vector3(playerLocation.position.x + (3 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
 		allPlayers[3] = playerObj.GetComponent<Player>();
 		allPlayers[3].unitName = "Companion 3";
 
