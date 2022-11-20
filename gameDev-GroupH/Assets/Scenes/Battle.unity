@@ -1006,6 +1006,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savedata: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   playerPrefab: {fileID: 1841968219785206952, guid: 0503fb523482f0a44b6c86e5be51ff52, type: 3}
+  companion1Prefab: {fileID: 8057081367841023534, guid: 3e8c3e6554d849347a7b7f5a89397443, type: 3}
+  companion2Prefab: {fileID: 8057081367841023534, guid: 3e8c3e6554d849347a7b7f5a89397443, type: 3}
+  companion3Prefab: {fileID: 229632808414957104, guid: c13f5d0b82dd99c459229d93bf52579f, type: 3}
   enemyPrefab: {fileID: 5161531880740627115, guid: 2cb0b73e71927a042b0745da97c16854, type: 3}
   enemyLocations:
   - {fileID: 820936743}

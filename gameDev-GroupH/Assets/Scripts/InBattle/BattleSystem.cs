@@ -16,6 +16,10 @@ public class BattleSystem : MonoBehaviour
 	SaveData savedata;
 
 	public GameObject playerPrefab;
+	public GameObject companion1Prefab;
+	public GameObject companion2Prefab;
+	public GameObject companion3Prefab;
+
 	public GameObject enemyPrefab;
 
 	public Transform[] enemyLocations;
@@ -116,26 +120,38 @@ public class BattleSystem : MonoBehaviour
 		}
 	}
 
+	public Player[] InstantiatePlayers()
+    {
+		Player[] allPlayers = new Player[4];
+
+		//main player
+		GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (0 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		allPlayers[0] = playerObj.GetComponent<Player>();
+		allPlayers[0].unitName = "Main Character";
+
+		//Companion 1
+		playerObj = Instantiate(companion1Prefab, new Vector3(playerLocation.position.x + (1 * 2.5f), playerLocation.position.y, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		allPlayers[1] = playerObj.GetComponent<Player>();
+		allPlayers[1].unitName = "Companion 1 ";
+
+		//Companion 2
+		playerObj = Instantiate(companion2Prefab, new Vector3(playerLocation.position.x + (2 * 2.5f), playerLocation.position.y, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		allPlayers[2] = playerObj.GetComponent<Player>();
+		allPlayers[2].unitName = "Companion 2";
+
+		//Companion 3
+		playerObj = Instantiate(companion3Prefab, new Vector3(playerLocation.position.x + (3 * 2.5f), playerLocation.position.y, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		allPlayers[3] = playerObj.GetComponent<Player>();
+		allPlayers[3].unitName = "Companion 3";
+
+		return allPlayers;
+	}
+
     //initialises battle - spawns player and enemies, selects first target and then starts player turn
     IEnumerator InitialiseBattle()
     {
-/*        GameObject playerObj =  Instantiate(playerPrefab, playerLocation);
-        currPlayer = playerObj.GetComponent<Player>();
-
-		currPlayer.unitName = "player";*/
-
-		// Multiple Players
-
-		players = new Player[4];
-
-        for (int i = 0; i < players.Length; i++)
-        {
-            GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y+1, playerLocation.position.z), playerLocation.rotation, playerLocation);
-            players[i] = playerObj.GetComponent<Player>();
-            players[i].unitName = "player" + (i + 1);
-			// player moves
-		}
-
+		players = InstantiatePlayers();
+		// player moves
 		players[0].playerAttacks.Add("normal", new int[] { 0, 20 }); // type, damage
 		players[0].playerAttacks.Add("curse", new int[] { -1 }); // no type
 		players[0].playerAttacks.Add("shoot", new int[] { 0, 6, 15 }); // type, damage, side damage
