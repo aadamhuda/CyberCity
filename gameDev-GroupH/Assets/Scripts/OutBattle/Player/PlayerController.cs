@@ -149,6 +149,13 @@ public class PlayerController : MonoBehaviour
                 collectClue(collecter);
             }
         }
+
+        //if user wants to pause the game
+        //they can press p to pause
+        if (Input.GetKey("p"))
+        {
+
+        }
     }
     void checkGrounded()
     {
