@@ -34,7 +34,7 @@ Transform:
   - {fileID: 4833270000167316940}
   - {fileID: 5181532711255985846}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6726405957112919128
 Animator:
@@ -2422,7 +2422,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3040559415829058645, guid: d465ee429bb72b14ea81ee5d0a321e39, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: d465ee429bb72b14ea81ee5d0a321e39, type: 3}
 --- !u!4 &3313299075652322420 stripped
