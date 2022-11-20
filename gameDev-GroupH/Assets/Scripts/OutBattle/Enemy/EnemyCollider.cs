@@ -25,9 +25,6 @@ public class EnemyCollider : MonoBehaviour
         //Debug.Log("You have entered.");
         inRange = true;
         engage.text = "Press F to engage";
-
-        
-
     }
 
     private void OnTriggerExit(Collider Other) {
