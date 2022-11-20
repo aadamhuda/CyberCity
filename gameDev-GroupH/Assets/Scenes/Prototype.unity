@@ -201,7 +201,7 @@ MonoBehaviour:
   rotationSpeed: 7
   jumpHeight: 0.5
   gravityValue: -15
-  _pauseMenu: {fileID: 0}
+  _pauseMenu: {fileID: 2100934389}
   Clues:
   - {fileID: 998941876}
   - {fileID: 1039659276}
@@ -1357,7 +1357,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299866618}
-  m_LocalRotation: {x: 0.01402247, y: 0.0000000010752931, z: -1.5079746e-11, w: 0.9999017}
+  m_LocalRotation: {x: 0.01402247, y: -0.0000000010752931, z: 1.5079746e-11, w: 0.9999017}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6268,7 +6268,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525408405}
-  m_LocalRotation: {x: 0.014022469, y: 0.0000000021505864, z: -3.0159493e-11, w: 0.9999017}
+  m_LocalRotation: {x: 0.014022469, y: -0.0000000021505864, z: 3.0159493e-11, w: 0.9999017}
   m_LocalPosition: {x: -115.4, y: 3, z: -73.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

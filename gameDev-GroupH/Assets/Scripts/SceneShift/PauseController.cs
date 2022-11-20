@@ -5,45 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _pauseMenu;
+
     public SaveData saveState;
 
-    private void Start()
+    private void Update()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
+        //when p is pressed game is paused and the pause menu is loaded
+        if (Input.GetKey("p"))
+        {
+            Time.timeScale = 0;
+            _pauseMenu.SetActive(true); //pause menu appears
 
-    ////clears all saved data variables
-    //public void initialiseGame()
-    //{
-    //    Time.timeScale = 1.0f;
-    //    saveState.Clue.Clear();
-    //    saveState.Death.Clear();
-    //    saveState.ClueCount = 0;
-    //    saveState.SaveLocation((float)-115.4, 1, (float)-65.9);
-    //}
-
-    //loads gameplay from battle
-    public void intialiseBattle()
-    {
-        Time.timeScale = 1.0f;
-
+            //cursor is now visible 
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     public void LoadGame()
     {
-        if (saveState.inBattle == true)
-        {
-            intialiseBattle();
-            SceneManager.LoadScene("Battle");
-        } else {
-            SceneManager.LoadScene("Prototype");
-        }
+        Time.timeScale = 0.1f;
+        _pauseMenu.SetActive(false);
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quit");
-        Application.Quit();
+        SceneManager.LoadScene("Main Menu");
     }
 }

@@ -88,8 +88,7 @@ public class BattleSystem : MonoBehaviour
         {
 			escapeButton.interactable = true;
 		}
-
-	}
+    }
 
 	//spawns hud in placeholder regions
 	void InitialiseHUD()
