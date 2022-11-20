@@ -8,7 +8,16 @@ public class PauseController : MonoBehaviour
     [SerializeField]
     private GameObject _pauseMenu;
 
+    //public Scene currentScene = SceneManager.GetActiveScene();
+    //private string sceneName;
     public SaveData saveState;
+
+    private void Start()
+    {
+        //cursor is now visible 
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 
     private void Update()
     {
