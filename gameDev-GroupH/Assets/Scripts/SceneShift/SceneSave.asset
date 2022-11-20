@@ -15,8 +15,8 @@ MonoBehaviour:
   isNextScene: 1
   EnemyDeath: 1
   EnemyDouble: 1
-  x: -115.4
-  y: 1
-  z: -65.9
+  x: -103.31
+  y: 1.0099999
+  z: -65
   enem: Cylinder
   ClueCount: 0

@@ -15,9 +15,21 @@ public class EnemyOutOfCombat : EnemyCollider
 
     public Vector3 walkPoint;
     public bool walkPointSet;
-    public float walkpointRange;
+    public Vector3[] PatrolPoints;
+    private int PatrolPointsCounter = 0;
+    private bool PatrolPointsFoward_Backwards = false;
+
+    //public Vector3[] Limit = new Vector3[2];
+    [SerializeField]
+    private bool WithInArea = false;
 
     public bool inSight;
+<<<<<<< Updated upstream
+=======
+
+    [SerializeField]
+    private Animator anim;
+>>>>>>> Stashed changes
     protected void Start()
     {
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
@@ -73,12 +85,37 @@ public class EnemyOutOfCombat : EnemyCollider
         agent.SetDestination(player.transform.position);
     }
 
+<<<<<<< Updated upstream
+=======
+    private void ChaseInArea ()
+    {
+            
+        if (!Physics.Raycast(player.transform.position, -transform.up, 3f, whatisGround))
+        {
+            WithInArea = false;
+            anim.SetBool("isRunning", false);
+            Debug.Log("Santa Claus ate my primos");
+        }
+        else
+            WithInArea = true;
+            
+        Debug.Log("Felix is : " + WithInArea);
+    }
+
+    private IEnumerator AmbushPlayer()
+    {
+        
+        anim.SetBool("isAttacking", true);
+        yield return new WaitForSeconds(2f);
+        PosSave.OnEnemyDouble();
+        base.BattleScene();
+    }
+>>>>>>> Stashed changes
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        radius = 15;
-        angle = 50;
-        walkpointRange = 10f;
+        radius = 100;
+        angle = 360;
     }
 
     // Update is called once per frame
@@ -86,31 +123,50 @@ public class EnemyOutOfCombat : EnemyCollider
     {
         base.Update();
 
-        if (inSight)
+        ChaseInArea();
+        if (inSight & WithInArea)
         {
+<<<<<<< Updated upstream
             ChasePlayer();
             if (inSight & inRange)
             {
                 PosSave.OnEnemyDouble();
                 base.BattleScene();
             } 
+=======
+                ChasePlayer();
+                if (inSight & inRange)
+                    StartCoroutine(AmbushPlayer());
+>>>>>>> Stashed changes
         }
+
         else
             Patrol();
 
         
 
 
-        Debug.DrawRay(transform.position, -transform.up*10, Color.green);
+/*        Debug.DrawRay(walkPoint, transform.up*20, Color.green);
         if (Physics.Raycast(walkPoint, -transform.up, 3f, whatisGround))
         {
             Debug.DrawRay(walkPoint, -transform.up * 3, Color.red);
-        }
+        }*/
         
     }
 
     void Patrol()
     {
+<<<<<<< Updated upstream
+=======
+        anim.SetBool("isWalking", true);
+
+        Debug.Log("HEy he erbtoertoerhtouirhtoierhoth");
+
+/*        Debug.Log("WalkingPointSet: " + walkPointSet);
+        Debug.Log("GoosePoint: " + walkPoint);
+        Debug.Log("THICK SAUCE: " + gameObject.transform.position);*/
+
+>>>>>>> Stashed changes
         if (!walkPointSet) 
             FindWalkRange();
 
@@ -118,25 +174,29 @@ public class EnemyOutOfCombat : EnemyCollider
             walkPointSet = agent.SetDestination(walkPoint);
 
         Vector3 distanceCovered = transform.position - walkPoint;
+
+       // Debug.Log("Men In Yellow: " + distanceCovered.magnitude);
         
 
-        if (distanceCovered.magnitude < 3f)
+        if (distanceCovered.magnitude < 1f)
             walkPointSet = false;
     }
 
     void FindWalkRange()
     {
-        float rZ = Random.Range(-walkpointRange, walkpointRange);
-        float rX = Random.Range(-walkpointRange, walkpointRange);
-
-        walkPoint = new Vector3(transform.position.x + rX, transform.position.y, transform.position.z + rZ);
-
-
-
-        if (Physics.Raycast(walkPoint, -transform.up, 3f, whatisGround))
-        {
-            walkPointSet = true;
-        }
+        if (PatrolPointsFoward_Backwards == false)
+            PatrolNumber(1, PatrolPoints.Length-1);
+        else
+            PatrolNumber(-1, 0);
             
+    }
+
+    private void PatrolNumber(int increment, int size)
+    {
+        walkPoint = PatrolPoints[PatrolPointsCounter];
+        PatrolPointsCounter += increment;
+        walkPointSet = true;
+        if (PatrolPointsCounter == size)
+            PatrolPointsFoward_Backwards = !PatrolPointsFoward_Backwards;
     }
 }
