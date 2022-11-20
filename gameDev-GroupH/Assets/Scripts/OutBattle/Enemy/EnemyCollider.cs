@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EnemyCollider : MonoBehaviour
 {
     protected bool inRange = false;
     public GameObject player;
     public SaveData PosSave;
-    public active canvas;
+    public TextMeshProUGUI engage;
+
+    public void Start()
+    {
+        engage.text = "";
+    }
 
     public bool getInRange()
     {
@@ -16,16 +22,18 @@ public class EnemyCollider : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider Other) {
-        Debug.Log("You have entered.");
+        //Debug.Log("You have entered.");
         inRange = true;
-        canvas.showCanvas(inRange);
-   }
+        engage.text = "Press F to engage";
+
+        
+
+    }
 
     private void OnTriggerExit(Collider Other) {
-        Debug.Log("a");
-
+        //Debug.Log("a");
         inRange = false;
-        canvas.showCanvas(inRange);
+        engage.text = "";
     }
 
     protected void BattleScene() {
@@ -38,12 +46,15 @@ public class EnemyCollider : MonoBehaviour
     {
         if (inRange == true)
         {
+            
             if (Input.GetKeyDown(KeyCode.F))
             {
                 PosSave.SaveEnem(gameObject.name);
                 BattleScene();
             }
         }
+
+        
     }
 
 }
