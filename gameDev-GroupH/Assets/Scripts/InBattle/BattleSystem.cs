@@ -55,6 +55,9 @@ public class BattleSystem : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		//saves that the player is in battle
+		savedata.inBattle = true;
+
 		//shows cursor so buttons can be selected
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;

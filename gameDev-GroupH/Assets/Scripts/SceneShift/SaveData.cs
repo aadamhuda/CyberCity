@@ -16,8 +16,8 @@ public class SaveData : ScriptableObject
     public string enem;
     [SerializeField]
     public int ClueCount;
-
-
+    [SerializeField]
+    public bool inBattle;
 
 
 

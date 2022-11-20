@@ -34,6 +34,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float gravityValue = -15f;
 
+    //objects of the pause menu
+    [SerializeField]
+    private GameObject _pauseMenu;
+
     private float speed;
 
     private Animator animator;
@@ -57,7 +61,6 @@ public class PlayerController : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
 
         speed = walkSpeed;
 
@@ -150,11 +153,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //if user wants to pause the game
-        //they can press p to pause
+        //when p is pressed game is paused and the pause menu is loaded
         if (Input.GetKey("p"))
         {
-
+            Time.timeScale = 0;
+            _pauseMenu.SetActive(true); //pause menu appears
         }
     }
     void checkGrounded()
