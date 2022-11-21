@@ -16,6 +16,10 @@ public class BattleSystem : MonoBehaviour
 	SaveData savedata;
 
 	public GameObject playerPrefab;
+	public GameObject companion1Prefab;
+	public GameObject companion2Prefab;
+	public GameObject companion3Prefab;
+
 	public GameObject enemyPrefab;
 
 	public Transform[] enemyLocations;
@@ -116,27 +120,43 @@ public class BattleSystem : MonoBehaviour
 		}
 	}
 
+	public Player[] InstantiatePlayers()
+    {
+		Player[] allPlayers = new Player[4];
+
+		//main player
+
+		GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (0 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		allPlayers[0] = playerObj.GetComponent<Player>();
+		allPlayers[0].unitName = "Main Character";
+		allPlayers[0].setHealth(savedata.team_health[0]);
+
+		//Companion 1
+		playerObj = Instantiate(companion1Prefab, new Vector3(playerLocation.position.x + (1 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		allPlayers[1] = playerObj.GetComponent<Player>();
+		allPlayers[1].unitName = "Companion_1 ";
+		allPlayers[1].setHealth(savedata.team_health[1]);
+
+		//Companion 2
+		playerObj = Instantiate(companion2Prefab, new Vector3(playerLocation.position.x + (2 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		allPlayers[2] = playerObj.GetComponent<Player>();
+		allPlayers[2].unitName = "Companion_2";
+		allPlayers[2].setHealth(savedata.team_health[2]);
+
+		//Companion 3
+		playerObj = Instantiate(companion3Prefab, new Vector3(playerLocation.position.x + (3 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
+		allPlayers[3] = playerObj.GetComponent<Player>();
+		allPlayers[3].unitName = "Companion_3";
+		allPlayers[3].setHealth(savedata.team_health[3]);
+
+		return allPlayers;
+	}
+
     //initialises battle - spawns player and enemies, selects first target and then starts player turn
     IEnumerator InitialiseBattle()
     {
-/*        GameObject playerObj =  Instantiate(playerPrefab, playerLocation);
-        currPlayer = playerObj.GetComponent<Player>();
-
-		currPlayer.unitName = "player";*/
-
-		// Multiple Players
-
-		players = new Player[4];
-
-        for (int i = 0; i < players.Length; i++)
-        {
-            GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y+1, playerLocation.position.z), playerLocation.rotation, playerLocation);
-            players[i] = playerObj.GetComponent<Player>();
-            players[i].unitName = "player" + (i + 1);
-			players[i].takeDamage(savedata.team_health[i], 0);
-			// player moves
-		}
-
+		players = InstantiatePlayers();
+		// player moves
 		players[0].playerAttacks.Add("normal", new int[] { 0, 20 }); // type, damage
 		players[0].playerAttacks.Add("curse", new int[] { -1 }); // no type
 		players[0].playerAttacks.Add("shoot", new int[] { 0, 6, 15 }); // type, damage, side damage
@@ -262,6 +282,7 @@ public class BattleSystem : MonoBehaviour
 		}
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
+		yield return new WaitForSeconds(2f);
 
 
 
@@ -322,6 +343,7 @@ public class BattleSystem : MonoBehaviour
 				{
 					isDead = players[player_target].takeDamage(enemies[i].damage, 1);
 				}
+				
 			}
 
 			//deal burn damage
@@ -358,6 +380,9 @@ public class BattleSystem : MonoBehaviour
 
             }
 			//playerHUD.updateHUD(currPlayer);
+
+			if (players.Length == 0)
+				break;
 		}
 
 		bool playersDeath = (players.Length == 0);
@@ -394,7 +419,7 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = "You WIN the battle!";
 			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
-			savedata.LoadPlayerHealth(new float[] { players[0].maxHP - players[0].currentHP, players[1].maxHP - players[1].currentHP, players[2].maxHP - players[2].currentHP, players[3].maxHP - players[3].currentHP });
+			savedata.SavePlayerHealth(new float[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
 			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		}
@@ -519,10 +544,8 @@ public class BattleSystem : MonoBehaviour
     {
 		// Iterates to next player switching turns when all of currPlayer have had a turn
 
-		Debug.Log(tracker + " : " +  incre + " : " + players.Length + " : " + (tracker % players.Length));
 		playerHUD[tracker].GetComponent<Image>().color = Color.white;
 		tracker += incre;
-		Debug.Log(tracker + " : " + incre + " : " + players.Length + " : " + (tracker % players.Length));
 		if (tracker == players.Length)
 		{
 			tracker = 0;

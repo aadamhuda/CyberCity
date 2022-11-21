@@ -6,6 +6,12 @@ using UnityEngine;
 public class Enemy : BattleUnit
 {
     // function to enable - used on death of enemy sprite
+
+    private void Start()
+    {
+        base.Start();
+        currentHP = maxHP;
+    }
     public void enableEnemy()
 	{
 		gameObject.SetActive(true);

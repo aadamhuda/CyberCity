@@ -8,16 +8,24 @@ using TMPro;
 //inherits from parent class BattleUnit
 public class Player : BattleUnit
 {
+    [SerializeField]
+    private int ID;
 	// Player attacks
     public Dictionary<string, int[]> playerAttacks = new Dictionary<string, int[]>();
     public string selectedMove = "burn";
 
     // Set initial player attacks
-    private void Start()
+
+
+    public int getID()
     {
-        
+        return ID;
     }
 
+    public void setHealth(float fml)
+    {
+        currentHP = fml;
+    }
 
     // Get All Attacks
     string[] allAttacks()
@@ -59,4 +67,9 @@ public class Player : BattleUnit
 		if (currentHP > maxHP)
 			currentHP = maxHP;
 	}
+
+    public float getTotalMaxHP()
+    {
+        return maxHP;
+    }
 }

@@ -24,10 +24,9 @@ public class BattleUnit : MonoBehaviour
     public Dictionary<int, int[]> weaknesses = new Dictionary<int, int[]>();
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         burnMultiplier = 1; // change to weakness
-        currentHP = maxHP;
         strengths.Add(0, new int[] { -1 }); // list that it is strong against, list that it is weak against
         strengths.Add(1, new int[] { 2 }); // fire
         strengths.Add(2, new int[] { 3 }); // grass

@@ -11,9 +11,7 @@ public class SaveData : ScriptableObject
     public Dictionary<string, bool> Clue = new Dictionary<string, bool>();
     public string enem;
     public int ClueCount;
-    public float[] team_health = new float[4] { 150, 150, 150, 150};
-
-
+    public float[] team_health = new float[4];
 
 
 
@@ -52,7 +50,7 @@ public class SaveData : ScriptableObject
             Debug.Log("Fail");
     }
 
-    public void LoadPlayerHealth(float [] arr)
+    public void SavePlayerHealth(float [] arr)
     {
         for (int i = 0; i < arr.Length; i++)
             team_health[i] = arr[i];

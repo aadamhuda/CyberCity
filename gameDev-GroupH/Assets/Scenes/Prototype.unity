@@ -6835,7 +6835,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.49, y: 90, z: 0}
 --- !u!114 &1525408407
 MonoBehaviour:
   m_ObjectHideFlags: 0
