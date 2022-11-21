@@ -125,24 +125,29 @@ public class BattleSystem : MonoBehaviour
 		Player[] allPlayers = new Player[4];
 
 		//main player
+
 		GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (0 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
 		allPlayers[0] = playerObj.GetComponent<Player>();
 		allPlayers[0].unitName = "Main Character";
+		allPlayers[0].setHealth(savedata.team_health[0]);
 
 		//Companion 1
 		playerObj = Instantiate(companion1Prefab, new Vector3(playerLocation.position.x + (1 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
 		allPlayers[1] = playerObj.GetComponent<Player>();
-		allPlayers[1].unitName = "Companion 1 ";
+		allPlayers[1].unitName = "Companion_1 ";
+		allPlayers[1].setHealth(savedata.team_health[1]);
 
 		//Companion 2
 		playerObj = Instantiate(companion2Prefab, new Vector3(playerLocation.position.x + (2 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
 		allPlayers[2] = playerObj.GetComponent<Player>();
-		allPlayers[2].unitName = "Companion 2";
+		allPlayers[2].unitName = "Companion_2";
+		allPlayers[2].setHealth(savedata.team_health[2]);
 
 		//Companion 3
 		playerObj = Instantiate(companion3Prefab, new Vector3(playerLocation.position.x + (3 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
 		allPlayers[3] = playerObj.GetComponent<Player>();
-		allPlayers[3].unitName = "Companion 3";
+		allPlayers[3].unitName = "Companion_3";
+		allPlayers[3].setHealth(savedata.team_health[3]);
 
 		return allPlayers;
 	}
@@ -338,6 +343,7 @@ public class BattleSystem : MonoBehaviour
 				{
 					isDead = players[player_target].takeDamage(enemies[i].damage, 1);
 				}
+				
 			}
 
 			//deal burn damage
@@ -374,6 +380,9 @@ public class BattleSystem : MonoBehaviour
 
             }
 			//playerHUD.updateHUD(currPlayer);
+
+			if (players.Length == 0)
+				break;
 		}
 
 		bool playersDeath = (players.Length == 0);
@@ -410,6 +419,7 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = "You WIN the battle!";
 			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
+			savedata.SavePlayerHealth(new float[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
 			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		}
@@ -448,7 +458,7 @@ public class BattleSystem : MonoBehaviour
 		Player[] new_players = new Player[players.Length - 1];
 
 		//disables the enemy object that has died
-		players[removeAt].disableEnemy();
+		players[removeAt].disableUnit();
 
 		int i = 0;
 		int j = 0;
@@ -471,7 +481,7 @@ public class BattleSystem : MonoBehaviour
 		Enemy[] new_enemies = new Enemy[enemies.Length - 1];
 
 		//disables the enemy object that has died
-		enemies[removeAt].disableEnemy();
+		enemies[removeAt].disableUnit();
 
 		int i = 0;
 		int j = 0;
@@ -534,10 +544,8 @@ public class BattleSystem : MonoBehaviour
     {
 		// Iterates to next player switching turns when all of currPlayer have had a turn
 
-		Debug.Log(tracker + " : " +  incre + " : " + players.Length + " : " + (tracker % players.Length));
 		playerHUD[tracker].GetComponent<Image>().color = Color.white;
 		tracker += incre;
-		Debug.Log(tracker + " : " + incre + " : " + players.Length + " : " + (tracker % players.Length));
 		if (tracker == players.Length)
 		{
 			tracker = 0;

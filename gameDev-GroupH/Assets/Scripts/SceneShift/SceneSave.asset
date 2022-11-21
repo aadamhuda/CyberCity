@@ -18,5 +18,10 @@ MonoBehaviour:
   x: -115.4
   y: 1
   z: -65.9
-  enem: Cylinder
+  enem: CyberDroids_2
   ClueCount: 0
+  team_health:
+  - 1
+  - 2
+  - 4
+  - 7

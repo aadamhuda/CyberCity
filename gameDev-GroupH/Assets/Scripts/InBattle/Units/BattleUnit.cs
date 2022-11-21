@@ -24,11 +24,9 @@ public class BattleUnit : MonoBehaviour
     public Dictionary<int, int[]> weaknesses = new Dictionary<int, int[]>();
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        start();
         burnMultiplier = 1; // change to weakness
-        currentHP = maxHP;
         strengths.Add(0, new int[] { -1 }); // list that it is strong against, list that it is weak against
         strengths.Add(1, new int[] { 2 }); // fire
         strengths.Add(2, new int[] { 3 }); // grass
@@ -40,16 +38,7 @@ public class BattleUnit : MonoBehaviour
     }
 
     // override
-    public void start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public bool takeDamage(float dmg, int damageType)
     {
@@ -75,7 +64,7 @@ public class BattleUnit : MonoBehaviour
             return false;
     }
 
-    public void disableEnemy()
+    public void disableUnit()
     {
         gameObject.SetActive(false);
     }
