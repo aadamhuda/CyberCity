@@ -133,6 +133,7 @@ public class BattleSystem : MonoBehaviour
             GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y+1, playerLocation.position.z), playerLocation.rotation, playerLocation);
             players[i] = playerObj.GetComponent<Player>();
             players[i].unitName = "player" + (i + 1);
+			players[i].takeDamage(savedata.team_health[i], 0);
 			// player moves
 		}
 
@@ -393,6 +394,7 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = "You WIN the battle!";
 			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
+			savedata.LoadPlayerHealth(new float[] { players[0].maxHP - players[0].currentHP, players[1].maxHP - players[1].currentHP, players[2].maxHP - players[2].currentHP, players[3].maxHP - players[3].currentHP });
 			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		}
@@ -431,7 +433,7 @@ public class BattleSystem : MonoBehaviour
 		Player[] new_players = new Player[players.Length - 1];
 
 		//disables the enemy object that has died
-		players[removeAt].disableEnemy();
+		players[removeAt].disableUnit();
 
 		int i = 0;
 		int j = 0;
@@ -454,7 +456,7 @@ public class BattleSystem : MonoBehaviour
 		Enemy[] new_enemies = new Enemy[enemies.Length - 1];
 
 		//disables the enemy object that has died
-		enemies[removeAt].disableEnemy();
+		enemies[removeAt].disableUnit();
 
 		int i = 0;
 		int j = 0;

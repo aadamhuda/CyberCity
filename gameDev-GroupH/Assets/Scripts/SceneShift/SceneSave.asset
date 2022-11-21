@@ -15,8 +15,13 @@ MonoBehaviour:
   isNextScene: 1
   EnemyDeath: 1
   EnemyDouble: 1
-  x: -115.4
-  y: 1
-  z: -65.9
-  enem: Cylinder
+  x: 35.632076
+  y: 1.0083067
+  z: -54.478104
+  enem: CyberDroids_2
   ClueCount: 0
+  team_health:
+  - 145
+  - 120
+  - 75
+  - 60

@@ -5,17 +5,13 @@ using UnityEngine;
 
 public class SaveData : ScriptableObject
 {
-    [SerializeField]
     public bool isNextScene, EnemyDeath, EnemyDouble = false;
-    [SerializeField]
     public float x, y, z = 0;
-    [SerializeField]
     public Dictionary<string, bool> Death = new Dictionary<string, bool>();
     public Dictionary<string, bool> Clue = new Dictionary<string, bool>();
-    [SerializeField]
     public string enem;
-    [SerializeField]
     public int ClueCount;
+    public float[] team_health = new float[4] { 150, 150, 150, 150};
 
 
 
@@ -54,6 +50,12 @@ public class SaveData : ScriptableObject
             
         else
             Debug.Log("Fail");
+    }
+
+    public void LoadPlayerHealth(float [] arr)
+    {
+        for (int i = 0; i < arr.Length; i++)
+            team_health[i] = arr[i];
     }
 
     public bool getDict(Dictionary<string, bool> dict, string obj)

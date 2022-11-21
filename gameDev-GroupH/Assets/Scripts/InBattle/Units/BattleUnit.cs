@@ -26,7 +26,6 @@ public class BattleUnit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        start();
         burnMultiplier = 1; // change to weakness
         currentHP = maxHP;
         strengths.Add(0, new int[] { -1 }); // list that it is strong against, list that it is weak against
@@ -40,16 +39,7 @@ public class BattleUnit : MonoBehaviour
     }
 
     // override
-    public void start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public bool takeDamage(float dmg, int damageType)
     {
@@ -75,7 +65,7 @@ public class BattleUnit : MonoBehaviour
             return false;
     }
 
-    public void disableEnemy()
+    public void disableUnit()
     {
         gameObject.SetActive(false);
     }

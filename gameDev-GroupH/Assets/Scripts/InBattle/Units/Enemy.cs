@@ -11,11 +11,6 @@ public class Enemy : BattleUnit
 		gameObject.SetActive(true);
 	}
 
-    // extra start
-    public void start()
-    {
-        
-    }
 
 
 }
