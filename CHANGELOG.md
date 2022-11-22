@@ -26,10 +26,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - Companion 1, 2, 3
 - Added attack type label ~ [@aadamhuda](https://github.com/aadamhuda)
 - Player engages battle with health they ended with in last battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Exit button in pause screen redirects user to main menu ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Resume button added ~ [@sarahbrah7](https://github.com/sarahbrah7)
 ### Changed
 - Enemies now have set paths ~ [@Ibraheem717](https://github.com/Ibraheem717)
 - Pause screen no longer a scene but now a gameobject within the protoype and battle scenes ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Cleaned up HUD elements ~ [@aadamhuda](https://github.com/aadamhuda)
+- Resume button now resumes the game instead of load button resuming the game ~ [@sarahbrah7](https://github.com/sarahbrah7)
 ### Removed
 - Removed camera in enemy weapon model ~ [@aadamhuda](https://github.com/aadamhuda)
 ### Fixed
