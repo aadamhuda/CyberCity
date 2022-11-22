@@ -32,19 +32,11 @@ The player may respawn at spawn sometimes after battle [Issue #105](https://gith
 [Mixamo](hhttps://www.mixamo.com/)
   Used for character models
   - Player
-  - Out of battle enemy
-  - In Battle enemy
-  - Companion 1
-  - Companion 2
-  - Companion 3
   Used for character animations
   - Idle
   - Walk
   - Slow run
   - Fast run
-  - Sword hit
-  - Walk backwards
-  - Run backwards
 
 ### Previous releases:
 - [Version 1.2.2](https://aadamhuda.github.io/CyberCityBuilds/v1.2.2/index.html)
