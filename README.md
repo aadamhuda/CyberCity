@@ -29,14 +29,15 @@ The player may respawn at spawn sometimes after battle [Issue #105](https://gith
  
 [Nav Mesh Components](https://github.com/Unity-Technologies/NavMeshComponents)
   - Defines where the enemies can or can't go
+
 [Mixamo](hhttps://www.mixamo.com/)
   Used for character models
-  - Player
+    - Player
   Used for character animations
-  - Idle
-  - Walk
-  - Slow run
-  - Fast run
+    - Idle
+    - Walk
+    - Slow run
+    - Fast run
 
 ### Previous releases:
 - [Version 1.2.2](https://aadamhuda.github.io/CyberCityBuilds/v1.2.2/index.html)
