@@ -36,7 +36,7 @@ public class PauseController : MonoBehaviour
     //resumes game when resume button is pressed
     public void ResumeGame()
     {
-        Time.timeScale = 0.1f; //unfreezes the game
+        Time.timeScale = 1f; //unfreezes the game
         _pauseMenu.SetActive(false); //pause menu disappears
     }
 
