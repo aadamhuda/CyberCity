@@ -7,16 +7,79 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-
+- Made a pause screen scene with buttons (save, load, settings, exit) ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Player presses p in prototype and battle scenes and now access pause menu gameobject ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Exit button in pause screen redirects user to main menu ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Resume button added ~ [@sarahbrah7](https://github.com/sarahbrah7)
 ### Changed
-
+- Pause screen no longer a scene but now a gameobject within the protoype and battle scenes ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Resume button now resumes the game instead of load button resuming the game ~ [@sarahbrah7](https://github.com/sarahbrah7)
 ### Deprecated
 
 ### Removed
 
 ### Fixed
-
+- Camera faces player direction ~ [@gv301](https://github.com/gv301)
 ### Security
+
+## [1.5.0](https://github.com/aadamhuda/CyberCity/commit/44b9deb4ec70b1c9ac7a4d4f0a93caca750441c4) - 2022-11-21
+### Added
+- Added companion models with animations using player animation controller ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Companion 1, 2, 3
+- Added attack type label ~ [@aadamhuda](https://github.com/aadamhuda)
+- Player engages battle with health they ended with in last battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Changed
+- Enemies now have set paths ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Cleaned up HUD elements ~ [@aadamhuda](https://github.com/aadamhuda)
+### Removed
+- Removed camera in enemy weapon model ~ [@aadamhuda](https://github.com/aadamhuda)
+### Fixed
+- PlayersHealth saves after each battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Fixed restart battle (Game would crash as enemies targeted non-existing player) ~ [@Ibraheem717](https://github.com/Ibraheem717)
+
+## [1.4.0](https://github.com/aadamhuda/CyberCity/commit/c0561ea44561819e207c32c4305ff312e985dc1e) - 2022-11-16
+### Added
+- Added jump animation ~ [@gv301](https://github.com/gv301)
+- Player faces currently targeted enemy ~ [@gv301](https://github.com/gv301)
+- Player moves towards enemy when attacking ~ [@gv301](https://github.com/gv301)
+- Added out of battle enemy model ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added animations for enemy model ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Hit, walk, run
+- Added in battle enemy models, no animations ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+- Player runs backwards towards original position after attacking ~ [@gv301](https://github.com/gv301)
+- Player now performs a melee attack animation for a normal attack ~ [@gv301](https://github.com/gv301)
+- Added all types of attacks ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+  - Player1: normal, shoot, curse (if cursed, do less damage)
+  - Player2: normal, fire, burn
+  - Player3: normal, grass, poison
+  - Player4: normal, water, freeze
+- added an attack indicator which shows the current attack type selected on screen ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+### Changed
+- Reworked battle animation controller and improved animation smoothness ~ [@gv301](https://github.com/gv301)
+### Fixed
+- Fixed frozen checks, enemy now applies damage to player when not frozen ~ [@aadamhuda](https://github.com/aadamhuda)
+
+## [1.3.0](https://github.com/aadamhuda/CyberCity/commit/ced73e9c4bd1afc8010ad22e7da76c51dcb8cf20) - 2022-11-16
+### Added
+- Added multiple players in battle scene ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Player turn now rotates between each player
+  - Before switching to enemies, where they will have all their turns
+- Added three types of attacks ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+  - Normal: the one we had in prototype
+  - Burn
+  - Freeze
+- Added changeAttackButton: change attack type ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+- Added new player model with animations for player movement ~ [@gv301](https://github.com/gv301)
+### Changed
+- Enemy now attack random player ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Each player has a HUD, highlighted when using them ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Player model changed ~ [@gv301](https://github.com/gv301)
+- Player movements are now animated with idle, walking, and running animations ~ [@gv301](https://github.com/gv301)
+- Added one more type of attack called shoot (multi-attack): smaller damage than other attacks, but all the enemies get damaged ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+### Deprecated
+- Enemy now attack random player ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Fixed
+- Fixed issue with players having 0 health on battle start ~ [@aadamhuda](https://github.com/aadamhuda)
 
 ## [1.2.2](https://github.com/aadamhuda/CyberCity/commit/b13895ee07957ebf073990e310515d487f648bb6) - 2022-11-08
 ### Changed
