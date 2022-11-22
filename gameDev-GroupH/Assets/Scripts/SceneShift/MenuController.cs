@@ -23,15 +23,18 @@ public class MenuController : MonoBehaviour
         saveState.SaveLocation((float)-115.4, 1, (float)-65.9);
         saveState.SavePlayerHealth(new float [] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
     }
+
+    //starts the game when play button is pressed
     public void PlayGame()
     {
-        initialiseGame();
+        initialiseGame(); //clears saved data variables
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    //quits the game when the quit button is pressed
     public void QuitGame()
     {
         Debug.Log("Quit");
-        Application.Quit();
+        Application.Quit(); //application quits
     }
 }

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Clue
+  - attackIndicator
   - Restart
   layers:
   - Default
