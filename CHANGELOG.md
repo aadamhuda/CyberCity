@@ -7,32 +7,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-
+- Made a pause screen scene with buttons (save, load, settings, exit) ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Player presses p in prototype and battle scenes and now access pause menu gameobject ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Exit button in pause screen redirects user to main menu ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Resume button added ~ [@sarahbrah7](https://github.com/sarahbrah7)
 ### Changed
-
+- Pause screen no longer a scene but now a gameobject within the protoype and battle scenes ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Resume button now resumes the game instead of load button resuming the game ~ [@sarahbrah7](https://github.com/sarahbrah7)
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+- Camera faces player direction ~ [@gv301](https://github.com/gv301)
 
-### Security
-
-## [1.5.0](https://github.com/aadamhuda/CyberCity/commit/a4dc0149e005a62920db4adb20cbfda5bee6c044) - 2022-11-21
+## [1.5.0](https://github.com/aadamhuda/CyberCity/commit/44b9deb4ec70b1c9ac7a4d4f0a93caca750441c4) - 2022-11-21
 ### Added
-- Made a pause screen scene with buttons (save, load, settings, exit) ~ [@sarahbrah7](https://github.com/sarahbrah7)
-- Player presses p in prototype and battle scenes and now access pause menu gameobject ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Added companion models with animations using player animation controller ~ [@aadamhuda](https://github.com/aadamhuda)
   - Companion 1, 2, 3
 - Added attack type label ~ [@aadamhuda](https://github.com/aadamhuda)
 - Player engages battle with health they ended with in last battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
-- Exit button in pause screen redirects user to main menu ~ [@sarahbrah7](https://github.com/sarahbrah7)
-- Resume button added ~ [@sarahbrah7](https://github.com/sarahbrah7)
 ### Changed
 - Enemies now have set paths ~ [@Ibraheem717](https://github.com/Ibraheem717)
-- Pause screen no longer a scene but now a gameobject within the protoype and battle scenes ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Cleaned up HUD elements ~ [@aadamhuda](https://github.com/aadamhuda)
-- Resume button now resumes the game instead of load button resuming the game ~ [@sarahbrah7](https://github.com/sarahbrah7)
 ### Removed
 - Removed camera in enemy weapon model ~ [@aadamhuda](https://github.com/aadamhuda)
 ### Fixed
