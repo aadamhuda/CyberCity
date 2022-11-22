@@ -11,7 +11,10 @@ public class SaveData : ScriptableObject
     public Dictionary<string, bool> Clue = new Dictionary<string, bool>();
     public string enem;
     public int ClueCount;
+    [SerializeField]
+    public bool inBattle;
     public float[] team_health = new float[4];
+
 
 
 

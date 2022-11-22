@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-
         speed = walkSpeed;
 
         controller = GetComponent<CharacterController>();
@@ -117,6 +116,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //checks if the player has collected all the clues
     void checkPlayerWin()
     {
         if (clueCount >= numClues)
