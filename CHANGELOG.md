@@ -18,7 +18,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
-## [1.3.0](https://github.com/aadamhuda/CyberCity/commit/ced73e9c4bd1afc8010ad22e7da76c51dcb8cf20) 2022-11-16
+## [1.4.0](https://github.com/aadamhuda/CyberCity/commit/c0561ea44561819e207c32c4305ff312e985dc1e) - 2022-11-16
+### Added
+- Added jump animation ~ [@gv301](https://github.com/gv301)
+- Player faces currently targeted enemy ~ [@gv301](https://github.com/gv301)
+- Player moves towards enemy when attacking ~ [@gv301](https://github.com/gv301)
+- added out of battle enemy model ~ [@aadamhuda](https://github.com/aadamhuda)
+- added animations for enemy model ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Hit, walk, run
+- Added in battle enemy models, no animations ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+- Player runs backwards towards original position after attacking ~ [@gv301](https://github.com/gv301)
+- Player now performs a melee attack animation for a normal attack ~ [@gv301](https://github.com/gv301)
+- Added all types of attacks ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+  - Player1: normal, shoot, curse (if cursed, do less damage)
+  - Player2: normal, fire, burn
+  - Player3: normal, grass, poison
+  - Player4: normal, water, freeze
+- added an attack indicator which shows the current attack type selected on screen ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+### Changed
+- Reworked battle animation controller and improved animation smoothness ~ [@gv301](https://github.com/gv301)
+### Fixed
+- Fixed frozen checks, enemy now applies damage to player when not frozen ~ [@aadamhuda](https://github.com/aadamhuda)
+
+## [1.3.0](https://github.com/aadamhuda/CyberCity/commit/ced73e9c4bd1afc8010ad22e7da76c51dcb8cf20) - 2022-11-16
 ### Added
 - Added multiple players in battle scene ~ [@Ibraheem717](https://github.com/Ibraheem717)
   - Player turn now rotates between each player
@@ -35,6 +57,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Player model changed ~ [@gv301](https://github.com/gv301)
 - Player movements are now animated with idle, walking, and running animations ~ [@gv301](https://github.com/gv301)
 - Added one more type of attack called shoot (multi-attack): smaller damage than other attacks, but all the enemies get damaged ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+### Deprecated
+- Enemy now attack random player ~ [@Ibraheem717](https://github.com/Ibraheem717)
 ### Fixed
 - Fixed issue with players having 0 health on battle start ~ [@aadamhuda](https://github.com/aadamhuda)
 
