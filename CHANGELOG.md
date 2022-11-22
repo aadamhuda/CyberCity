@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
-## [1.3.0](https://github.com/aadamhuda/CyberCity/commit/ced73e9c4bd1afc8010ad22e7da76c51dcb8cf20)
+## [1.3.0](https://github.com/aadamhuda/CyberCity/commit/ced73e9c4bd1afc8010ad22e7da76c51dcb8cf20) 2022-11-16
 ### Added
 - Added multiple players in battle scene ~ [@Ibraheem717](https://github.com/Ibraheem717)
   - Player turn now rotates between each player
@@ -35,6 +35,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Player model changed ~ [@gv301](https://github.com/gv301)
 - Player movements are now animated with idle, walking, and running animations ~ [@gv301](https://github.com/gv301)
 - Added one more type of attack called shoot (multi-attack): smaller damage than other attacks, but all the enemies get damaged ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+### Fixed
+- Fixed issue with players having 0 health on battle start ~ [@aadamhuda](https://github.com/aadamhuda)
 
 ## [1.2.2](https://github.com/aadamhuda/CyberCity/commit/b13895ee07957ebf073990e310515d487f648bb6) - 2022-11-08
 ### Changed
