@@ -24,7 +24,7 @@ public class PauseController : MonoBehaviour
         //when p is pressed game is paused and the pause menu is loaded
         if (Input.GetKey("p"))
         {
-            Time.timeScale = 0;
+            Time.timeScale = 0; //freezes the game
             _pauseMenu.SetActive(true); //pause menu appears
 
             //cursor is now visible 
@@ -33,12 +33,14 @@ public class PauseController : MonoBehaviour
         }
     }
 
-    public void LoadGame()
+    //resumes game when resume button is pressed
+    public void ResumeGame()
     {
-        Time.timeScale = 0.1f;
-        _pauseMenu.SetActive(false);
+        Time.timeScale = 0.1f; //unfreezes the game
+        _pauseMenu.SetActive(false); //pause menu disappears
     }
 
+    //quits to the main menu when the quit button is pressed
     public void QuitGame()
     {
         SceneManager.LoadScene("Main Menu");

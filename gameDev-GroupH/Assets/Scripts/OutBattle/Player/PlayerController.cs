@@ -116,6 +116,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //checks if the player has collected all the clues
     void checkPlayerWin()
     {
         if (clueCount >= numClues)
