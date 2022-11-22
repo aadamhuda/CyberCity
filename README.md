@@ -30,10 +30,10 @@ The player may respawn at spawn sometimes after battle [Issue #105](https://gith
 [Nav Mesh Components](https://github.com/Unity-Technologies/NavMeshComponents)
   - Defines where the enemies can or can't go
 
-[Mixamo](hhttps://www.mixamo.com/)
-  Used for character models
+[Mixamo](https://www.mixamo.com/)
+  - Used for character models
     - Player
-  Used for character animations
+  - Used for character animations
     - Idle
     - Walk
     - Slow run
