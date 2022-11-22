@@ -18,13 +18,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [1.5.0](https://github.com/aadamhuda/CyberCity/commit/a4dc0149e005a62920db4adb20cbfda5bee6c044) - 2022-11-21
+### Added
+- Made a pause screen scene with buttons (save, load, settings, exit) ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Player presses p in prototype and battle scenes and now access pause menu gameobject ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added companion models with animations using player animation controller ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Companion 1, 2, 3
+- Added attack type label ~ [@aadamhuda](https://github.com/aadamhuda)
+- Player engages battle with health they ended with in last battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Changed
+- Enemies now have set paths ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Pause screen no longer a scene but now a gameobject within the protoype and battle scenes ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Cleaned up HUD elements ~ [@aadamhuda](https://github.com/aadamhuda)
+### Removed
+- Removed camera in enemy weapon model ~ [@aadamhuda](https://github.com/aadamhuda)
+### Fixed
+- PlayersHealth saves after each battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Fixed restart battle (Game would crash as enemies targeted non-existing player) ~ [@Ibraheem717](https://github.com/Ibraheem717)
+
 ## [1.4.0](https://github.com/aadamhuda/CyberCity/commit/c0561ea44561819e207c32c4305ff312e985dc1e) - 2022-11-16
 ### Added
 - Added jump animation ~ [@gv301](https://github.com/gv301)
 - Player faces currently targeted enemy ~ [@gv301](https://github.com/gv301)
 - Player moves towards enemy when attacking ~ [@gv301](https://github.com/gv301)
-- added out of battle enemy model ~ [@aadamhuda](https://github.com/aadamhuda)
-- added animations for enemy model ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added out of battle enemy model ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added animations for enemy model ~ [@aadamhuda](https://github.com/aadamhuda)
   - Hit, walk, run
 - Added in battle enemy models, no animations ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
 - Player runs backwards towards original position after attacking ~ [@gv301](https://github.com/gv301)
