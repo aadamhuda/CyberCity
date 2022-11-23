@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 //NOTE: damage and healing must be balanced to provide a challenge while not making it too difficult
 
 //enumerator to hold battle states
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE}
+public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE, PLAYERWAIT}
 
 public class BattleSystem : MonoBehaviour
 {
@@ -97,12 +97,6 @@ public class BattleSystem : MonoBehaviour
 	//spawns hud in placeholder regions
 	void InitialiseHUD()
     {
-		
-        /*GameObject playerHudObj = Instantiate(hudPrefab, playerHudLocation);
-        playerHUD = playerHudObj.GetComponent<UnitHUD>();*/
-
-		//Multiple HUDS for each player
-
         playerHUD = new UnitHUD[4];
 
 		for (int i = 0; i < players.Length; i++)
@@ -220,6 +214,7 @@ public class BattleSystem : MonoBehaviour
 		var animator = currPlayer.GetComponent<Animator>();
 
 		// Player is attacking
+		state = BattleState.PLAYERWAIT;
 		playerAttacking = true;
 
 		// Rotating player until facing enemy
@@ -301,10 +296,31 @@ public class BattleSystem : MonoBehaviour
 		}
 
 		// Player attack is finished
+		state = BattleState.PLAYERTURN;
 		playerAttacking = false;
 	}
+	void PlayerTurn()
+	{
+		dialogue.text = "Choose an action!";
+		TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
+		indicator.text = players[tracker].selectedMove;
+	}
 
-    IEnumerator EnemyTurn()
+	IEnumerator PlayerHeal()
+	{
+
+		int amount = Random.Range(60, 100);
+		currPlayer.heal(amount);
+
+		dialogue.text = "You healed by " + amount + " hp!";
+
+		//playerHUD.updateHUD(currPlayer);
+		state = BattleState.PLAYERWAIT;
+		yield return new WaitForSeconds(2f);
+		Increment(1);
+	}
+//-------------------------------------------ENEMY-------------------------------------------------------
+	IEnumerator EnemyTurn()
 	{
 		bool isDead = false;
 
@@ -414,15 +430,29 @@ public class BattleSystem : MonoBehaviour
 			Increment(0);
 			PlayerTurn();
 		}
-
 	}
 
-	//initialises restart button - ran after state = LOSE
-	public void createRestartButton()
-    {
-		GameObject rb = Instantiate(restartButtonPrefab, rbLocation);
-		Button restartButton = rb.GetComponent<Button>();
-		restartButton.onClick.AddListener(OnRestartButton);
+	//-------------------------------------------BATTLE LOOP-------------------------------------------------------
+	private void Increment(int incre)
+	{
+		// Iterates to next player switching turns when all of currPlayer have had a turn
+
+		playerHUD[tracker].GetComponent<Image>().color = Color.white;
+		tracker += incre;
+		if (tracker == players.Length)
+		{
+			tracker = 0;
+			state = BattleState.ENEMYTURN;
+			StartCoroutine(EnemyTurn());
+		}
+		else
+		{
+			playerHUD[tracker].GetComponent<Image>().color = Color.green;
+
+			currPlayer = players[tracker];
+			state = BattleState.PLAYERTURN;
+			PlayerTurn();
+		}
 
 	}
 
@@ -446,27 +476,9 @@ public class BattleSystem : MonoBehaviour
 		}
 	}
 
-	void PlayerTurn()
-	{
-		dialogue.text = "Choose an action!";
-		TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
-		indicator.text = players[tracker].selectedMove;
-	}
+//-------------------------------------------ARRAY FUNCTIONS-------------------------------------------------------
 
-	IEnumerator PlayerHeal()
-	{
-
-		int amount = Random.Range(60, 100);
-		currPlayer.heal(amount);
-
-		dialogue.text = "You healed by " +amount+ " hp!";
-
-		//playerHUD.updateHUD(currPlayer);
-
-		yield return new WaitForSeconds(2f);
-		Increment(1);
-	}
-
+	//note - will need changing for revives - players must not be deactivated but rather have a downed state
 	private Player [] RemovePlayer(int removeAt)
     {
 		Player[] new_players = new Player[players.Length - 1];
@@ -554,28 +566,9 @@ public class BattleSystem : MonoBehaviour
 		}
 	}
 
-	private void Increment(int incre)
-    {
-		// Iterates to next player switching turns when all of currPlayer have had a turn
 
-		playerHUD[tracker].GetComponent<Image>().color = Color.white;
-		tracker += incre;
-		if (tracker == players.Length)
-		{
-			tracker = 0;
-			state = BattleState.ENEMYTURN;
-			StartCoroutine(EnemyTurn());
-		}
-		else
-        {
-			playerHUD[tracker].GetComponent<Image>().color = Color.green;
 
-			currPlayer = players[tracker];
-
-			PlayerTurn();
-		}
-
-	}
+//-------------------------------------------ANIMATIONS/MOVEMENT-------------------------------------------------------
 
 	// Turn player to a position
 	IEnumerator RotatePlayer(Player p,  float speed, Vector3 targetPos)
@@ -713,6 +706,17 @@ public class BattleSystem : MonoBehaviour
 		animator.SetBool("isMoving", false);
 	}
 
+//-------------------------------------------BUTTONS-------------------------------------------------------
+
+	//initialises restart button - ran after state = LOSE
+	public void createRestartButton()
+	{
+		GameObject rb = Instantiate(restartButtonPrefab, rbLocation);
+		Button restartButton = rb.GetComponent<Button>();
+		restartButton.onClick.AddListener(OnRestartButton);
+
+	}
+
 	//reloads scene on restart
 	IEnumerator Restart()
     {
@@ -737,7 +741,7 @@ public class BattleSystem : MonoBehaviour
 	//button methods
 	public void OnChangeTargetButton()
 	{
-		if (state != BattleState.PLAYERTURN || playerAttacking)
+		if (state != BattleState.PLAYERTURN)
 			return;
 
 		target = target + 1;
@@ -758,7 +762,7 @@ public class BattleSystem : MonoBehaviour
 
 	public void OnAttackButton()
 	{
-		if (state != BattleState.PLAYERTURN || playerAttacking)
+		if (state != BattleState.PLAYERTURN)
 			return;
 
 		StartCoroutine(PlayerAttack());
@@ -766,7 +770,7 @@ public class BattleSystem : MonoBehaviour
 
 	public void OnHealButton()
 	{
-		if (state != BattleState.PLAYERTURN || playerAttacking)
+		if (state != BattleState.PLAYERTURN)
 			return;
 
 		StartCoroutine(PlayerHeal());
