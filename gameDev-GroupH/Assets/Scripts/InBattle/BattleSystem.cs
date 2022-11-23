@@ -74,6 +74,9 @@ public class BattleSystem : MonoBehaviour
 
 	void Update()
 	{
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+
 		//refreshes HUDs every frame
 		for (int i = 0; i < playerHUD.Length; i++)
 			playerHUD[i].updateHUD(players[i]);

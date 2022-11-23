@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("wedferterertyrth");
         // Clue object dissappears when picked up and player wins 
         foreach (GameObject obj in Clues)
         {

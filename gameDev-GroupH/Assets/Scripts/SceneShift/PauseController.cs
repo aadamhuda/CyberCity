@@ -14,9 +14,7 @@ public class PauseController : MonoBehaviour
 
     private void Start()
     {
-        //cursor is now visible 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+
     }
 
     private void Update()
@@ -38,6 +36,9 @@ public class PauseController : MonoBehaviour
     {
         Time.timeScale = 1f; //unfreezes the game
         _pauseMenu.SetActive(false); //pause menu disappears
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     //quits to the main menu when the quit button is pressed
