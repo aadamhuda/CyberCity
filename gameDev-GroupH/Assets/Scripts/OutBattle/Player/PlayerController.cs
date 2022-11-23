@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private int jumpHash;
 
+    public bool canMove = true;
+
     public GameObject [] Clues = new GameObject[3];
 
     public TextMeshProUGUI winText;
@@ -54,7 +56,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
+        canMove = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -66,12 +69,6 @@ public class PlayerController : MonoBehaviour
         winText.text = "";
         interaction.text = "";
         clueCount = savedata.ClueCount;
-
-        //if (savedata.isNextScene == true)
-        //{
-        transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
-        //}
-
     }
 
     // Input action
@@ -132,8 +129,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         checkGrounded();
-        Move();
-        Jump();
+        if (canMove)
+        {
+            Move();
+            Jump();
+        }
+        else
+        {
+            controller.Move(new Vector3(0f,0f,0f));
+            animator.SetFloat("Speed", 0, 0.2f, Time.deltaTime);
+        }
+
 
         //if user has won and they can press x to quit
         if (Input.GetKey("x") && won)
@@ -145,7 +151,6 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.K))
             {
-                Debug.Log(23423423);
                 collectClue(collecter);
             }
         }
@@ -159,6 +164,8 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
     }
+
+
 
     void Move()
     {

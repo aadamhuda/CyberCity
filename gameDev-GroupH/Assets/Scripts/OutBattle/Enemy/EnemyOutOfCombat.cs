@@ -19,6 +19,7 @@ public class EnemyOutOfCombat : EnemyCollider
     private int PatrolPointsCounter = 0;
     private bool PatrolPointsFoward_Backwards = false;
 
+
     //public Vector3[] Limit = new Vector3[2];
     [SerializeField]
     private bool WithInArea = false;
@@ -110,6 +111,7 @@ public class EnemyOutOfCombat : EnemyCollider
 
         anim.SetBool("isAttacking", true);
         walkPointSet = agent.SetDestination(gameObject.transform.position);
+        player.GetComponent<PlayerController>().canMove = false;
         yield return new WaitForSeconds(2f);
         PosSave.OnEnemyDouble();
         base.BattleScene();
