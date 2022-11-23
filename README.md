@@ -11,7 +11,7 @@ To play:
 - Enemies can also  ambush you, where in battle they will deal 15% more damage, so try to get them before they get you.
   - To attack press the red button which says "ATTACK"
   - To change attack type, press the button which says "CHANGE ATTACK"
-  - To heak press the "HEAL" button
+  - To heal press the "HEAL" button
   - Once an enemy is defeated you switch to the next enemy
   - Alternatively, you can press the "CHANGE TARGET" button to switch between the enemies
   - Also you can press the 'ESC' key to escape and leave the battle, and respawn in the spawn room
