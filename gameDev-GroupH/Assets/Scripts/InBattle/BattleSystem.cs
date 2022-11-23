@@ -48,7 +48,7 @@ public class BattleSystem : MonoBehaviour
 	public UnitHUD[] playerHUD;
 	public UnitHUD[] enemiesHUD;
 
-	public RectTransform playerHudLocation;
+	public RectTransform[] playerHudLocations;
 	public RectTransform[] enemyHudLocations;
 
 	private bool playerAttacking;
@@ -104,7 +104,7 @@ public class BattleSystem : MonoBehaviour
 
 		for (int i = 0; i < players.Length; i++)
         {
-			GameObject playerHudObj = Instantiate(hudPrefab, new Vector3(playerHudLocation.transform.position.x, playerHudLocation.transform.position.y - (i * 80f), playerHudLocation.transform.position.z), playerHudLocation.rotation, playerHudLocation);
+			GameObject playerHudObj = Instantiate(hudPrefab, playerHudLocations[i]);
 			playerHUD[i] = playerHudObj.GetComponent<UnitHUD>();
 		}
 
