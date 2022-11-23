@@ -1,9 +1,9 @@
-# CyberCity (v1.6.0)
+# CyberCity (v1.6.1)
 CyberCity is a turn based strategy game set in a cyberpunk setting. You progress through a maze, defeating enemies and picking up clues on your way.
 Collect three clues and you win!
 
 ## How To Play
-You can access the game on your browser via this [link](https://aadamhuda.github.io/CyberCityBuilds/v1.6.0/index.html).
+You can access the game on your browser via this [link](https://aadamhuda.github.io/CyberCityBuilds/v1.6.1/index.html).
 
 To play:
 - Use the WASD to move around the environment and your mouse to rotate
@@ -51,6 +51,7 @@ The player may respawn at spawn sometimes after battle [Issue #105](https://gith
 [Out of Battle Enemy Weapon](https://sketchfab.com/3d-models/laser-sword-aka-cyber-katana-20-ea010b5ad8d34fce93b5ca4575635e1c)
 
 ### Previous releases:
+- [Version 1.5.0](https://aadamhuda.github.io/CyberCityBuilds/v1.6.0/index.html)
 - [Version 1.5.0](https://aadamhuda.github.io/CyberCityBuilds/v1.5.0/index.html)
 - [Version 1.4.0](https://aadamhuda.github.io/CyberCityBuilds/v1.4.0/index.html)
 - [Version 1.3.0](https://aadamhuda.github.io/CyberCityBuilds/v1.3.0/index.html)
