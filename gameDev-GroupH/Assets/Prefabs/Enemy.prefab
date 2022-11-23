@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5161531880740627112}
   - component: {fileID: 5161531880740627118}
   - component: {fileID: 8882498544411603985}
+  - component: {fileID: -1524450876617822710}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -104,8 +105,12 @@ MonoBehaviour:
   unitName: 
   burned: 0
   burnDamage: 0
+  poisoned: 0
+  poisonDamage: 0
+  cursed: 0
   burnMultiplier: 0
   frozen: 0
+  type: 0
 --- !u!143 &8882498544411603985
 CharacterController:
   m_ObjectHideFlags: 0
@@ -124,6 +129,26 @@ CharacterController:
   m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &-1524450876617822710
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161531880740627115}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d8c4967fec519cd4699294926c53bb9f, type: 3}
+  m_Controller: {fileID: 9100000, guid: 9f472787343b79a4a928fcc89ebf7c8c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7615680923671608592
 PrefabInstance:
   m_ObjectHideFlags: 0
