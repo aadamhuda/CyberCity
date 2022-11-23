@@ -11,10 +11,6 @@ public class EnemyCollider : MonoBehaviour
     public SaveData PosSave;
     public TextMeshProUGUI engage;
 
-    public void Start()
-    {
-        engage.text = "";
-    }
 
     public bool getInRange()
     {

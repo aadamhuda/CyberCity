@@ -30,6 +30,7 @@ public class EnemyOutOfCombat : EnemyCollider
     private Animator anim;
     protected void Start()
     {
+        engage.text = "";
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
         sc.radius = 5;
         sc.isTrigger = true;
