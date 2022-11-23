@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Resume button now resumes the game instead of load button resuming the game ~ [@sarahbrah7](https://github.com/sarahbrah7)
 ### Fixed
 - Camera faces player direction ~ [@gv301](https://github.com/gv301)
+- changed resume timescale from 0.1f to 1f (causing slowness on resume) ~ [@aadamhuda](https://github.com/aadamhuda)
 
 ## [1.5.0](https://github.com/aadamhuda/CyberCity/commit/44b9deb4ec70b1c9ac7a4d4f0a93caca750441c4) - 2022-11-21
 ### Added
