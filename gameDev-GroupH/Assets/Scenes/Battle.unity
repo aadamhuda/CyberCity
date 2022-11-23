@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18035254, g: 0.22578925, b: 0.30702662, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1009,7 +1009,7 @@ MonoBehaviour:
   companion1Prefab: {fileID: 1841968219785206952, guid: c74a214d57d7e444fbf16911444b0d4b, type: 3}
   companion2Prefab: {fileID: 1841968219785206952, guid: 46b46595ff7e79c4cbde028b8b20134f, type: 3}
   companion3Prefab: {fileID: 1841968219785206952, guid: 1b975a9c260d64749af3fe51bc637eba, type: 3}
-  enemyPrefab: {fileID: 5161531880740627115, guid: 2cb0b73e71927a042b0745da97c16854, type: 3}
+  enemyPrefab: {fileID: 1841968219785206952, guid: 5509905d27665f94483899e6c708ad7e, type: 3}
   enemyLocations:
   - {fileID: 820936743}
   - {fileID: 1949151267}
@@ -1999,8 +1999,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseMenu: {fileID: 1860811135}
-  currentScene:
-    m_Handle: 0
   saveState: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
 --- !u!1 &1383402505
 GameObject:
