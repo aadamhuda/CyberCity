@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [1.6.0](https://github.com/aadamhuda/CyberCity/commit/a4dc0149e005a62920db4adb20cbfda5bee6c044) - 2022-11-20
+### Added
 - Made a pause screen scene with buttons (save, load, settings, exit) ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Player presses p in prototype and battle scenes and now access pause menu gameobject ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Exit button in pause screen redirects user to main menu ~ [@sarahbrah7](https://github.com/sarahbrah7)
@@ -14,13 +27,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Pause screen no longer a scene but now a gameobject within the protoype and battle scenes ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Resume button now resumes the game instead of load button resuming the game ~ [@sarahbrah7](https://github.com/sarahbrah7)
-### Deprecated
-
-### Removed
-
 ### Fixed
 - Camera faces player direction ~ [@gv301](https://github.com/gv301)
-### Security
 
 ## [1.5.0](https://github.com/aadamhuda/CyberCity/commit/44b9deb4ec70b1c9ac7a4d4f0a93caca750441c4) - 2022-11-21
 ### Added
