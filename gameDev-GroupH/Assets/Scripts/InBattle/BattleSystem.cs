@@ -223,25 +223,14 @@ public class BattleSystem : MonoBehaviour
 		playerAttacking = true;
 
 		// Rotating player until facing enemy
-		yield return StartCoroutine(RotatePlayer(0.2f, enemyPos));
+		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
 		yield return new WaitForSeconds(0.2f);
 	
 		if (currentAttack == "burn")
 		{
-			// Moving player until next to enemy
-			yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 1.8f, enemyPos));
-			yield return new WaitForSeconds(0.5f);
-
-			// Attack animation
-			animator.CrossFade("Melee360High", 0.1f);
-			yield return new WaitForSeconds(2.5f);
-
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
 			enemies[target].burned = true;
 			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
-
-			// Moving player back to original position
-			yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.02f, playerPos));
 		}
 		else if (currentAttack == "poison")
 		{
@@ -271,7 +260,7 @@ public class BattleSystem : MonoBehaviour
         else 
         {
 			// Moving player until next to enemy
-			yield return StartCoroutine(MovePlayer(true, playerMinSpeed, 2f, enemyPos));
+			yield return StartCoroutine(MovePlayer(currPlayer, true, playerMinSpeed, 2f, enemyPos));
 
 			// Attack animation
 			animator.CrossFade("Melee360High", 0.1f);
@@ -280,7 +269,7 @@ public class BattleSystem : MonoBehaviour
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
 
 			// Moving player back to original position
-			yield return StartCoroutine(MovePlayer(false, playerMinSpeed, 0.1f, playerPos));
+			yield return StartCoroutine(MovePlayer(currPlayer, false, playerMinSpeed, 0.1f, playerPos));
 		}
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
@@ -321,10 +310,25 @@ public class BattleSystem : MonoBehaviour
 
 		for (int i = 0; i < enemies.Length; i++)
 		{
+
 			int player_target = Random.Range(0, players.Length);
+
+			// Current enemy
+			Enemy currEnemy = enemies[i];
+
+			// Coords of player start and enemy start positions
+			Vector3 playerPos = players[player_target].transform.position;
+			Vector3 enemyPos = currEnemy.transform.position;
+
+			// Animator for current enemy
+			var animator = currEnemy.GetComponent<Animator>();
 
 			dialogue.text = enemies[i].unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
+
+			// Rotating enemy until facing player
+			yield return StartCoroutine(RotateEnemy(currEnemy, 0.2f, playerPos));
+			yield return new WaitForSeconds(0.2f);
 
 			if (enemies[i].frozen)
             {
@@ -338,6 +342,13 @@ public class BattleSystem : MonoBehaviour
 			}
             else
             {
+				// Moving enemy until next to player
+				yield return StartCoroutine(MoveEnemy(currEnemy, true, playerMinSpeed, 2f, playerPos));
+
+				// Attack animation
+				animator.CrossFade("Melee360High", 0.1f);
+				yield return new WaitForSeconds(2.3f);
+
 				//adds 15% damage if enemy hits player first
 				if (savedata.EnemyDouble == true)
 					isDead = players[player_target].takeDamage((float)(enemies[i].damage * 1.15), 1); // change 1 to enemy's move type
@@ -345,7 +356,8 @@ public class BattleSystem : MonoBehaviour
 				{
 					isDead = players[player_target].takeDamage(enemies[i].damage, 1);
 				}
-				
+				// Moving enemy back to original position
+				yield return StartCoroutine(MoveEnemy(currEnemy, false, playerMinSpeed, 0.1f, enemyPos));
 			}
 
 			//deal burn damage
@@ -566,9 +578,27 @@ public class BattleSystem : MonoBehaviour
 	}
 
 	// Turn player to a position
-	IEnumerator RotatePlayer(float speed, Vector3 targetPos)
+	IEnumerator RotatePlayer(Player p,  float speed, Vector3 targetPos)
 	{
-		var transform = currPlayer.transform;
+		var transform = p.transform;
+		var startRotation = transform.rotation;
+		var direction = targetPos - transform.position;
+		var targetRotation = Quaternion.LookRotation(direction);
+		targetRotation.x = 0;
+		var t = 0f;
+		while (t <= 1f)
+		{
+			t += Time.deltaTime / speed;
+			transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+			yield return null;
+		}
+		transform.rotation = targetRotation;
+	}
+
+	// Turn enemy to a position
+	IEnumerator RotateEnemy(Enemy e, float speed, Vector3 targetPos)
+	{
+		var transform = e.transform;
 		var startRotation = transform.rotation;
 		var direction = targetPos - transform.position;
 		var targetRotation = Quaternion.LookRotation(direction);
@@ -584,12 +614,12 @@ public class BattleSystem : MonoBehaviour
 	}
 
 	// Move player to a position
-	IEnumerator MovePlayer(bool forward, float speed, float distOffsetToTarget, Vector3 targetPos)
+	IEnumerator MovePlayer(Player p, bool forward, float speed, float distOffsetToTarget, Vector3 targetPos)
 	{
-		var transform = currPlayer.transform;
-		var cc = currPlayer.GetComponent<CharacterController>();
+		var transform = p.transform;
+		var cc = p.GetComponent<CharacterController>();
 		var offset = targetPos - transform.position;
-		var animator = currPlayer.GetComponent<Animator>();
+		var animator = p.GetComponent<Animator>();
 		var slowDown = 0.6f;
 		if(!forward)
         {
@@ -614,6 +644,56 @@ public class BattleSystem : MonoBehaviour
 		}
 
 			animator.SetBool("isMoving", false);
+
+		// Slow down until next to target
+		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget)
+		{
+			if (speed < playerMinSpeed)
+			{
+				speed = playerMinSpeed;
+			}
+
+			animator.SetFloat("Speed", speed, 0.2f, Time.deltaTime);
+			cc.Move(offset * speed * Time.deltaTime);
+			speed -= 0.01f;
+
+			yield return null;
+		}
+
+		animator.SetBool("isMoving", false);
+	}
+
+	// Move enemy to a position
+	IEnumerator MoveEnemy(Enemy e, bool forward, float speed, float distOffsetToTarget, Vector3 targetPos)
+	{
+		var transform = e.transform;
+		var cc = e.GetComponent<CharacterController>();
+		var offset = targetPos - transform.position;
+		var animator = e.GetComponent<Animator>();
+		var slowDown = 0.6f;
+		if (!forward)
+		{
+			slowDown = 0.3f;
+		}
+		// Movement
+		animator.SetBool("moveBackwards", !forward);
+		animator.SetBool("isMoving", true);
+
+		// Gradually speed up until close to target
+		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget + slowDown)
+		{
+			if (speed > playerMaxSpeed)
+			{
+				speed = playerMaxSpeed;
+			}
+
+			animator.SetFloat("Speed", speed, 0f, Time.deltaTime); ;
+			cc.Move(offset * speed * Time.deltaTime);
+			speed += 0.01f;
+			yield return null;
+		}
+
+		animator.SetBool("isMoving", false);
 
 		// Slow down until next to target
 		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget)
@@ -665,7 +745,7 @@ public class BattleSystem : MonoBehaviour
 		{
 			target = 0;
 		}
-		StartCoroutine(RotatePlayer(0.2f, enemies[target].transform.position));
+		StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[target].transform.position));
 		ChangeTarget();
 	}
 
