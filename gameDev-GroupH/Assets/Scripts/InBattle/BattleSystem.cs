@@ -204,10 +204,15 @@ public class BattleSystem : MonoBehaviour
 	//applies damage to enemies and checks if they have won
 	IEnumerator PlayerAttack()
 	{
+        if (players[tracker].downed)
+        {
+			ChangePartyTurn(1);
+        }
+
 		Player playerScript = players[tracker].GetComponent<Player>();
 		string currentAttack = playerScript.selectedMove;
 		bool isDead = false;
-		Debug.Log(currentAttack);
+		//Debug.Log(currentAttack);
 
 	
 		// Coords of player start and enemy start positions
@@ -294,13 +299,11 @@ public class BattleSystem : MonoBehaviour
 		}
 		else
 		{
-			yield return new WaitForSeconds(0.5f);
 			ChangePartyTurn(1);
 				
 		}
 
 		// Player attack is finished
-		state = BattleState.PLAYERTURN;
 		playerAttacking = false;
 	}
 	void PlayerTurn()
@@ -332,6 +335,12 @@ public class BattleSystem : MonoBehaviour
 		{
 
 			int player_target = Random.Range(0, players.Length);
+
+			while (players[player_target].downed)
+            {
+				player_target = Random.Range(0, players.Length);
+			}
+			
 
 			// Current enemy
 			Enemy currEnemy = enemies[i];
