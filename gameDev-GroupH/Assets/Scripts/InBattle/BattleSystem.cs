@@ -15,12 +15,9 @@ public class BattleSystem : MonoBehaviour
 	[SerializeField]
 	SaveData savedata;
 
-	public GameObject playerPrefab;
-	public GameObject companion1Prefab;
-	public GameObject companion2Prefab;
-	public GameObject companion3Prefab;
-
+	public GameObject[] playerPrefabs;
 	public GameObject enemyPrefab;
+	public string[] playerNames = new string[] {"Main Character", "Companion 1", "Companion 2", "Companion 3" };
 
 	public Transform[] enemyLocations;
 	public Transform playerLocation; //to be changed to hold multiple players once party system is created
@@ -51,14 +48,24 @@ public class BattleSystem : MonoBehaviour
 	public RectTransform[] playerHudLocations;
 	public RectTransform[] enemyHudLocations;
 
+	//Animations
 	private bool playerAttacking;
 	private bool enemyAttacking;
 	private float playerMinSpeed = 0.1f;
 	private float playerMaxSpeed = 0.5f;
 
+	//Cameras
+	[SerializeField]
+	private Camera[] battleCameras;
+	[SerializeField]
+	private Camera mainCamera;
+
 	// Start is called before the first frame update
 	void Start()
     {
+		DisableAllPlayerCameras(battleCameras.Length);
+		EnableCamera(mainCamera);
+
 		//saves that the player is in battle
 		savedata.inBattle = true;
 
@@ -66,6 +73,7 @@ public class BattleSystem : MonoBehaviour
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
 
+		//starts battle
 		state = BattleState.START;
 		playerAttacking = false;
 		enemyAttacking = false;
@@ -90,12 +98,17 @@ public class BattleSystem : MonoBehaviour
         {
 			escapeButton.interactable = false;
 		}
-
         else
         {
 			escapeButton.interactable = true;
 		}
-    }
+
+		/*if (state != BattleState.PLAYERTURN || state != BattleState.PLAYERWAIT)
+		{
+			DisableAllPlayerCameras();
+			EnableCamera(mainCamera);
+		}*/
+	}
 
 	//spawns hud in placeholder regions
 	void InitialiseHUD()
@@ -123,31 +136,13 @@ public class BattleSystem : MonoBehaviour
     {
 		Player[] allPlayers = new Player[4];
 
-		//main player
-
-		GameObject playerObj = Instantiate(playerPrefab, new Vector3(playerLocation.position.x + (0 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
-		allPlayers[0] = playerObj.GetComponent<Player>();
-		allPlayers[0].unitName = "Main Character";
-		allPlayers[0].setHealth(savedata.team_health[0]);
-
-		//Companion 1
-		playerObj = Instantiate(companion1Prefab, new Vector3(playerLocation.position.x + (1 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
-		allPlayers[1] = playerObj.GetComponent<Player>();
-		allPlayers[1].unitName = "Companion_1 ";
-		allPlayers[1].setHealth(savedata.team_health[1]);
-
-		//Companion 2
-		playerObj = Instantiate(companion2Prefab, new Vector3(playerLocation.position.x + (2 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
-		allPlayers[2] = playerObj.GetComponent<Player>();
-		allPlayers[2].unitName = "Companion_2";
-		allPlayers[2].setHealth(savedata.team_health[2]);
-
-		//Companion 3
-		playerObj = Instantiate(companion3Prefab, new Vector3(playerLocation.position.x + (3 * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
-		allPlayers[3] = playerObj.GetComponent<Player>();
-		allPlayers[3].unitName = "Companion_3";
-		allPlayers[3].setHealth(savedata.team_health[3]);
-
+		for (int i = 0; i < playerPrefabs.Length; i++)
+		{
+			GameObject playerObj = Instantiate(playerPrefabs[i], new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
+			allPlayers[i] = playerObj.GetComponent<Player>();
+			allPlayers[i].unitName = playerNames[i];
+			allPlayers[i].setHealth(savedata.team_health[i]);
+		}
 		return allPlayers;
 	}
 
@@ -182,10 +177,6 @@ public class BattleSystem : MonoBehaviour
 		
 		for (int i = 0; i < enemyLocations.Length; i++)
         {
-			///Debug.Log(i);
-			///Debug.Log(enemyLocations.Length);
-			///Debug.Log(enemies.Length);
-			
 			GameObject enemyObj = Instantiate(enemyPrefab, enemyLocations[i]);
             enemies[i] = enemyObj.GetComponent<Enemy>();
 			enemies[i].unitName = "enemy " + (i + 1);
@@ -197,6 +188,8 @@ public class BattleSystem : MonoBehaviour
 
 		yield return new WaitForSeconds(1f);
 		state = BattleState.PLAYERTURN;
+		EnableCamera(battleCameras[0]);
+		DisableCamera(mainCamera);
         PlayerTurn();
     }
 
@@ -446,12 +439,15 @@ public class BattleSystem : MonoBehaviour
 		{
 			tracker = 0;
 			state = BattleState.ENEMYTURN;
+			EnableCamera(mainCamera);
+			DisableAllPlayerCameras(battleCameras.Length);
 			StartCoroutine(EnemyTurn());
 		}
 		else
 		{
 			playerHUD[tracker].GetComponent<Image>().color = Color.green;
-
+			EnableCamera(battleCameras[tracker]);
+			DisableAllPlayerCameras(tracker);
 			currPlayer = players[tracker];
 			state = BattleState.PLAYERTURN;
 			PlayerTurn();
@@ -709,7 +705,28 @@ public class BattleSystem : MonoBehaviour
 		animator.SetBool("isMoving", false);
 	}
 
-//-------------------------------------------BUTTONS-------------------------------------------------------
+	//-------------------------------------------CAMERAS-------------------------------------------------------
+	private void DisableAllPlayerCameras(int dontRemove)
+    {
+		//pass 'dontRemove' as battleCameras.length if removing all
+
+		for (int i = 0; i < battleCameras.Length; i++)
+        {   if (i != dontRemove)
+            {
+				battleCameras[i].enabled = false;
+			}
+			
+        }
+	}
+	private void DisableCamera(Camera cam)
+	{
+		cam.enabled = false;
+	}
+	private void EnableCamera(Camera cam)
+	{
+		cam.enabled = true;
+	}
+	//-------------------------------------------BUTTONS-------------------------------------------------------
 
 	//initialises restart button - ran after state = LOSE
 	public void createRestartButton()
