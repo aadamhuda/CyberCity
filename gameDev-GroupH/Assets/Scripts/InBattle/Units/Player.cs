@@ -13,6 +13,7 @@ public class Player : BattleUnit
 	// Player attacks
     public Dictionary<string, int[]> playerAttacks = new Dictionary<string, int[]>();
     public string selectedMove = "burn";
+    public bool downed;
 
     // Set initial player attacks
 
