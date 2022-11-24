@@ -142,6 +142,14 @@ public class BattleSystem : MonoBehaviour
 			allPlayers[i] = playerObj.GetComponent<Player>();
 			allPlayers[i].unitName = playerNames[i];
 			allPlayers[i].setHealth(savedata.team_health[i]);
+			if (allPlayers[i].currentHP == 0)
+            {
+				allPlayers[i].downed = true;
+			}
+            else
+            {
+				allPlayers[i].downed = false;
+			}
 		}
 		return allPlayers;
 	}
@@ -196,10 +204,15 @@ public class BattleSystem : MonoBehaviour
 	//applies damage to enemies and checks if they have won
 	IEnumerator PlayerAttack()
 	{
+        if (players[tracker].downed)
+        {
+			ChangePartyTurn(1);
+        }
+
 		Player playerScript = players[tracker].GetComponent<Player>();
 		string currentAttack = playerScript.selectedMove;
 		bool isDead = false;
-		Debug.Log(currentAttack);
+		//Debug.Log(currentAttack);
 
 	
 		// Coords of player start and enemy start positions
@@ -286,13 +299,11 @@ public class BattleSystem : MonoBehaviour
 		}
 		else
 		{
-			yield return new WaitForSeconds(0.5f);
-			Increment(1);
+			ChangePartyTurn(1);
 				
 		}
 
 		// Player attack is finished
-		state = BattleState.PLAYERTURN;
 		playerAttacking = false;
 	}
 	void PlayerTurn()
@@ -313,7 +324,7 @@ public class BattleSystem : MonoBehaviour
 		//playerHUD.updateHUD(currPlayer);
 		state = BattleState.PLAYERWAIT;
 		yield return new WaitForSeconds(2f);
-		Increment(1);
+		ChangePartyTurn(1);
 	}
 //-------------------------------------------ENEMY-------------------------------------------------------
 	IEnumerator EnemyTurn()
@@ -324,6 +335,12 @@ public class BattleSystem : MonoBehaviour
 		{
 
 			int player_target = Random.Range(0, players.Length);
+
+			while (players[player_target].downed)
+            {
+				player_target = Random.Range(0, players.Length);
+			}
+			
 
 			// Current enemy
 			Enemy currEnemy = enemies[i];
@@ -401,17 +418,14 @@ public class BattleSystem : MonoBehaviour
 
 			if (isDead)
             {
-				players = RemovePlayer(player_target);
-				playerHUD = RemoveHUDs(player_target, playerHUD);
-
+				players[player_target].downed = true;
             }
-			//playerHUD.updateHUD(currPlayer);
 
-			if (players.Length == 0)
+			if (CheckAllDead())
 				break;
 		}
 
-		bool playersDeath = (players.Length == 0);
+		bool playersDeath = CheckAllDead();
 
 		yield return new WaitForSeconds(1f);
 
@@ -423,19 +437,33 @@ public class BattleSystem : MonoBehaviour
 		else
 		{
 			state = BattleState.PLAYERTURN;
-			Increment(0);
+			ChangePartyTurn(0);
 			PlayerTurn();
 		}
 	}
 
 	//-------------------------------------------BATTLE LOOP-------------------------------------------------------
-	private void Increment(int incre)
+	private bool CheckAllDead()
+    {
+		bool allDead = true;
+
+		for (int i = 0; i < players.Length; i++)
+		{
+			if (players[i].downed == false) 
+            {
+				allDead = false;
+            }
+		}
+		return allDead;
+	}
+	private void ChangePartyTurn(int incre)
 	{
 		// Iterates to next player switching turns when all of currPlayer have had a turn
 
 		playerHUD[tracker].GetComponent<Image>().color = Color.white;
 		tracker += incre;
-		if (tracker == players.Length)
+
+		if (tracker >= players.Length)
 		{
 			tracker = 0;
 			state = BattleState.ENEMYTURN;
@@ -443,16 +471,23 @@ public class BattleSystem : MonoBehaviour
 			DisableAllPlayerCameras(battleCameras.Length);
 			StartCoroutine(EnemyTurn());
 		}
+
 		else
 		{
-			playerHUD[tracker].GetComponent<Image>().color = Color.green;
-			EnableCamera(battleCameras[tracker]);
-			DisableAllPlayerCameras(tracker);
-			currPlayer = players[tracker];
-			state = BattleState.PLAYERTURN;
-			PlayerTurn();
+			if (players[tracker].downed == false)
+			{
+				playerHUD[tracker].GetComponent<Image>().color = Color.green;
+				EnableCamera(battleCameras[tracker]);
+				DisableAllPlayerCameras(tracker);
+				currPlayer = players[tracker];
+				state = BattleState.PLAYERTURN;
+				PlayerTurn();
+			}
+			else
+			{
+				ChangePartyTurn(1);
+			}
 		}
-
 	}
 
 	IEnumerator EndBattle()
@@ -476,29 +511,6 @@ public class BattleSystem : MonoBehaviour
 	}
 
 //-------------------------------------------ARRAY FUNCTIONS-------------------------------------------------------
-
-	//note - will need changing for revives - players must not be deactivated but rather have a downed state
-	private Player [] RemovePlayer(int removeAt)
-    {
-		Player[] new_players = new Player[players.Length - 1];
-
-		//disables the enemy object that has died
-		players[removeAt].disableUnit();
-
-		int i = 0;
-		int j = 0;
-		while (i < players.Length)
-		{
-			if (i != removeAt)
-			{
-				new_players[j] = players[i];
-				j++;
-			}
-
-			i++;
-		}
-		return new_players;
-	} 
 
 	//removes enemy from array, disables gameObject and returns new array - to be used on enemy death
 	private Enemy[] RemoveEnemies(int removeAt)
