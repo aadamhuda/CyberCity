@@ -14,6 +14,7 @@ public class SaveData : ScriptableObject
     [SerializeField]
     public bool inBattle;
     public float[] team_health = new float[4];
+    private int difficulty = 2;
 
 
 
@@ -34,6 +35,11 @@ public class SaveData : ScriptableObject
     public string GetEnemy()
     {
         return enem;
+    }
+
+    public int GetDifficulty ()
+    {
+        return difficulty;
     }
 
     public void DictBoolSwitch(Dictionary<string, bool> dict, string obj)
