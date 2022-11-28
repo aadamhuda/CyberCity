@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 
 //inherits from parent class BattleUnit
@@ -60,6 +61,12 @@ public class Player : BattleUnit
         TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
         indicator.text = selectedMove;
         Debug.Log(selectedMove);
+    }
+
+    public void revive(float percentage) // can heal 50 or 100 percent for max revive
+    {
+        this.downed = false;
+        this.usePotion((int)Math.Round((float)this.maxHP * percentage));
     }
 
     public void heal(int amount)
