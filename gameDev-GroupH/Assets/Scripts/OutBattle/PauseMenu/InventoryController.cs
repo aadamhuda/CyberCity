@@ -7,6 +7,7 @@ public class InventoryController : MonoBehaviour
 {
     //generate a list of items
     private List<PlayerItem> itemInventory;
+    public int amountItems = 8;
 
     [SerializeField]
     private GameObject buttonTemplate;
@@ -20,18 +21,42 @@ public class InventoryController : MonoBehaviour
     {
         itemInventory = new List<PlayerItem>();
 
-        //creates 8 items in the list of items in the inventory
-        for(int i = 1; i<8; i++)
+        //generates a random icon to the button
+        for (int i = 1; i < amountItems; i++)
         {
             PlayerItem newItem = new PlayerItem();
-            newItem.IconSprite = iconSprites[Random.Range(0, iconSprites.Length)];
+            newItem.iconSprite = iconSprites[Random.Range(0, iconSprites.Length)];
 
             itemInventory.Add(newItem);
         }
+
+        GenerateInventory();
+    }
+
+    //generates the buttons in the inventory
+    void GenerateInventory()
+    {
+        if(itemInventory.Count < amountItems)
+        {
+            gridGroup.constraintCount = itemInventory.Count;
+        } else
+        {
+            gridGroup.constraintCount = amountItems - 1;
+        }
+
+        foreach(PlayerItem newPlayerItem in itemInventory)
+        {
+            GameObject newItemButton = Instantiate(buttonTemplate) as GameObject;
+            newItemButton.SetActive(true);
+
+            newItemButton.GetComponent<InventoryButton>().SetIcon(newPlayerItem.iconSprite);
+            newItemButton.transform.SetParent(buttonTemplate.transform.parent, false);
+        }
+
     }
 
     public class PlayerItem
     {
-        public Sprite IconSprite;
+        public Sprite iconSprite;
     }
 }
