@@ -73,9 +73,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: CyberwayRiders-lg97d SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -1380955194
   material: {fileID: -3550828819898138213}
-  materialHashCode: 0
+  materialHashCode: -276122074
   m_Version: 1.1.0
   m_SourceFontFileGUID: f8db7b59d12b6a544bba309d41753351
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: f8db7b59d12b6a544bba309d41753351, type: 3}
