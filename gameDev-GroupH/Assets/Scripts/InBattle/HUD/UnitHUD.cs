@@ -12,8 +12,8 @@ public class UnitHUD : MonoBehaviour
 
     public void updateHUD(BattleUnit unit)
     {
-        unitDisplayName.text = unit.unitName;
-        unitHP.text = unit.currentHP + "/" + unit.maxHP;
+        //unitDisplayName.text = unit.unitName;
+        //unitHP.text = unit.currentHP + "/" + unit.maxHP;
     }
 
     public void enableHUD()

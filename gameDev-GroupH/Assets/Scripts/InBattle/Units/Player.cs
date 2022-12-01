@@ -30,13 +30,13 @@ public class Player : BattleUnit
     }
 
     // Get All Attacks
-    string[] allAttacks()
+    public string[] allAttacks()
     {
         return (new List<string>(playerAttacks.Keys).ToArray());
     }
 
     // Change attack
-    public void changeAttack()
+    public void changeAttack(string attackName)
     {
         string[] attacks = allAttacks();
         int attacksNum = attacks.Length;
@@ -44,7 +44,7 @@ public class Player : BattleUnit
 
         for (int i = 0; i < attacksNum; i++)
         {
-            if (attacks[i] == selectedMove)
+            if (attacks[i] == attackName)
             {
                 Debug.Log(attacks[i]);
                 if (i + 1 < attacksNum)
@@ -59,8 +59,8 @@ public class Player : BattleUnit
             }
         }
         TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
-        indicator.text = selectedMove;
-        Debug.Log(selectedMove);
+        indicator.text = attackName;
+        Debug.Log(attackName);
     }
 
     public void revive(float percentage) // can heal 50 or 100 percent for max revive

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 //NOTE: damage and healing must be balanced to provide a challenge while not making it too difficult
 
 //enumerator to hold battle states
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE, PLAYERWAIT}
+public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE, PLAYERWAIT, SELECTINGATTACK}
 
 public class BattleSystem : MonoBehaviour
 {
@@ -28,7 +28,7 @@ public class BattleSystem : MonoBehaviour
 
 	public Enemy[] enemies;
 	public Player[] players;
-	private int tracker = 0;
+	public int tracker = 0;
 	public Player currPlayer;//this will change to an array once a party system is implemented
 
 	//holds position of currently selected enemy
@@ -37,7 +37,7 @@ public class BattleSystem : MonoBehaviour
 	public GameObject restartButtonPrefab;
 	public Transform rbLocation;
 
-	public Button escapeButton;
+	public Button[] playerMoveButtons;
 
 	//HUD
 	public GameObject hudPrefab;
@@ -47,6 +47,8 @@ public class BattleSystem : MonoBehaviour
 
 	public RectTransform[] playerHudLocations;
 	public RectTransform[] enemyHudLocations;
+
+	public GameObject BattleHUD;
 
 	//Animations
 	private bool playerAttacking;
@@ -95,18 +97,19 @@ public class BattleSystem : MonoBehaviour
 		//allows escape button to only be interacted with in player turn
 		if (state != BattleState.PLAYERTURN)
         {
-			escapeButton.interactable = false;
+			for (int i = 0; i < playerMoveButtons.Length; i++)
+			{
+				playerMoveButtons[i].interactable = false;
+			}
 		}
         else
         {
-			escapeButton.interactable = true;
+			for (int i = 0; i < playerMoveButtons.Length; i++)
+			{
+				playerMoveButtons[i].interactable = true;
+			}
 		}
 
-		/*if (state != BattleState.PLAYERTURN || state != BattleState.PLAYERWAIT)
-		{
-			DisableAllPlayerCameras();
-			EnableCamera(mainCamera);
-		}*/
 	}
 
 	//spawns hud in placeholder regions
@@ -203,15 +206,16 @@ public class BattleSystem : MonoBehaviour
     }
 
 	//applies damage to enemies and checks if they have won
-	IEnumerator PlayerAttack()
+	IEnumerator PlayerAttack(string attackType)
 	{
         if (players[tracker].downed)
         {
 			ChangePartyTurn(1);
         }
 
+		DestroyAbilities();
+
 		Player playerScript = players[tracker].GetComponent<Player>();
-		string currentAttack = playerScript.selectedMove;
 		bool isDead = false;
 		//Debug.Log(currentAttack);
 
@@ -230,30 +234,30 @@ public class BattleSystem : MonoBehaviour
 		// Rotating player until facing enemy
 		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
 	
-		if (currentAttack == "burn")
+		if (attackType == "burn")
 		{
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 			enemies[target].burned = true;
 			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
 		}
-		else if (currentAttack == "poison")
+		else if (attackType == "poison")
 		{
 			enemies[target].poisoned = true;
 			enemies[target].poisonDamage = ((float)(playerScript.playerAttacks["poison"])[1] / 100);
 		}
-		else if (currentAttack == "curse")
+		else if (attackType == "curse")
         {
 			enemies[target].cursed = true;
         }
-		else if (currentAttack == "freeze")
+		else if (attackType == "freeze")
 		{
 			enemies[target].frozen = true;
 		}
-		else if (currentAttack == "shoot")
+		else if (attackType == "shoot")
         {
 			for (int i = 0; i<enemies.Length; i++)
             {
-				var isThisDead = enemies[i].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+				var isThisDead = enemies[i].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 				if (isThisDead)
                 {
 					enemies = RemoveEnemies(i);
@@ -270,7 +274,7 @@ public class BattleSystem : MonoBehaviour
 			animator.CrossFade("Melee360High", 0.1f);
 			yield return new WaitForSeconds(1.3f);
 
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 
 			// Moving player back to original position
 			yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
@@ -290,7 +294,7 @@ public class BattleSystem : MonoBehaviour
 
 		//checks if all enemies are dead - win condition
 		bool enemiesDead = (enemies.Length == 0);
-
+		
 		if (enemiesDead)
 		{
 			state = BattleState.WIN;
@@ -309,8 +313,6 @@ public class BattleSystem : MonoBehaviour
 	void PlayerTurn()
 	{
 		dialogue.text = "Choose an action!";
-		TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
-		indicator.text = players[tracker].selectedMove;
 	}
 
 	IEnumerator PlayerHeal()
@@ -321,7 +323,6 @@ public class BattleSystem : MonoBehaviour
 
 		dialogue.text = "You healed by " + amount + " hp!";
 
-		//playerHUD.updateHUD(currPlayer);
 		state = BattleState.PLAYERWAIT;
 		yield return new WaitForSeconds(2f);
 		ChangePartyTurn(1);
@@ -728,6 +729,25 @@ public class BattleSystem : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 	}
 
+	public void DisplayAbilities()
+    {
+		HUDController hudController = BattleHUD.GetComponent<HUDController>();
+		hudController.InitaliseMenu(players[tracker]);
+	}
+
+	public void DestroyAbilities()
+	{
+		HUDController hudController = BattleHUD.GetComponent<HUDController>();
+		hudController.DestroyMenu();
+	}
+
+	public void ExitAbilities()
+	{
+		DestroyAbilities();
+		state = BattleState.PLAYERTURN;
+	}
+	
+
 
 	//button methods
 	public void OnChangeTargetButton()
@@ -744,19 +764,13 @@ public class BattleSystem : MonoBehaviour
 		ChangeTarget();
 	}
 
-	public void OnChangeAttackButton()
-    {
-		if (state != BattleState.PLAYERTURN)
-			return;
-		currPlayer.GetComponent<Player>().changeAttack();
-    }
 
-	public void OnAttackButton()
+	public void OnAttackButton(string attackType)
 	{
-		if (state != BattleState.PLAYERTURN)
+		if (state != BattleState.SELECTINGATTACK)
 			return;
 
-		StartCoroutine(PlayerAttack());
+		StartCoroutine(PlayerAttack(attackType));
 	}
 
 	public void OnHealButton()
@@ -781,5 +795,35 @@ public class BattleSystem : MonoBehaviour
 			return;
 
 		StartCoroutine(EscapeToSpawn());
+	}
+
+	public void OnItemButton()
+	{
+		if (state != BattleState.LOSE)
+			return;
+
+	}
+	public void OnAbilityButton()
+	{
+		if (state != BattleState.PLAYERTURN)
+			return;
+
+		state = BattleState.SELECTINGATTACK;
+		DisplayAbilities();
+	}
+
+	public void OnExitAbilityButton()
+	{
+		if (state != BattleState.SELECTINGATTACK)
+			return;
+
+		ExitAbilities();
+	}
+
+	public void OnGuardButton()
+	{
+		if (state != BattleState.LOSE)
+			return;
+
 	}
 }
