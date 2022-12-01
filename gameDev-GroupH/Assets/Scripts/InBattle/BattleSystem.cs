@@ -157,6 +157,8 @@ public class BattleSystem : MonoBehaviour
     IEnumerator InitialiseBattle()
     {
 		players = InstantiatePlayers();
+		BattleInventory invMenu = GameObject.FindGameObjectsWithTag("InventoryButton")[0].GetComponent<BattleInventory>();
+		invMenu.Init(players, playerNames);
 		// player moves
 		players[0].playerAttacks.Add("normal", new int[] { 0, 20 }); // type, damage
 		players[0].playerAttacks.Add("curse", new int[] { -1 }); // no type
