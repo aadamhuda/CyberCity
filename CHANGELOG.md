@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
-## [1.7.0](https://github.com/aadamhuda/CyberCity/commit/76132d25a5f4c7dfeb1a5330558fb5ae3adcdd43)
+## [1.7.0](https://github.com/aadamhuda/CyberCity/commit/76132d25a5f4c7dfeb1a5330558fb5ae3adcdd43) - 2022-11-30
 ### Added
 - Added battle camera ~ [@aadamhuda](https://github.com/aadamhuda)
   - Camera will change to each players perspective on their turn
