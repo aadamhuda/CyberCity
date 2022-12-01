@@ -64,6 +64,16 @@ public class BattleUnit : MonoBehaviour
             return false;
     }
 
+    public void usePotion(int amnt)
+    {
+        currentHP += amnt;
+        if (currentHP > maxHP)
+        {
+            currentHP = maxHP;
+        }
+    }
+
+
     public void disableUnit()
     {
         gameObject.SetActive(false);

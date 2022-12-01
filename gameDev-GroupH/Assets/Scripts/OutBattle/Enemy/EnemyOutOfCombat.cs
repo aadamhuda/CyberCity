@@ -120,8 +120,8 @@ public class EnemyOutOfCombat : EnemyCollider
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        radius = 100;
-        angle = 360;
+        radius = 35;
+        angle = 120;
     }
 
     // Update is called once per frame
