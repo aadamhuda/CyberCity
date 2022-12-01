@@ -39,6 +39,7 @@ public class EnemyCollider : MonoBehaviour
 
                 EnemyPatrolInfo temp = plane[area].GetPatrols()[i];
                 GameObject enem = Instantiate(enemy_object, temp.GetFirst(), Quaternion.identity, gameObject.transform);
+                enem.name = area.ToString() + i.ToString();
                 var assigner = enem.GetComponent<EnemyOutOfCombat>();
                 assigner.player = player;
                 assigner.engage = engage;

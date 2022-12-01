@@ -11,12 +11,18 @@ public class SaveData : ScriptableObject
     public Dictionary<string, bool> Clue = new Dictionary<string, bool>();
     public string enem;
     public int ClueCount;
-    [SerializeField]
     public bool inBattle;
     public float[] team_health = new float[4];
     private int difficulty = 2;
 
+    [SerializeField]
+    private Vector3 respawn_location;
 
+    [SerializeField]
+    private bool respawn = true;
+
+    public int GetDifficulty()
+    { return difficulty; }
 
 
     public void SaveLocation(float Nx, float Ny, float Nz)
@@ -26,6 +32,11 @@ public class SaveData : ScriptableObject
         z = Nz;
     }
 
+    public void Set_respawn(Vector3 transform)
+    {
+        respawn_location = transform;
+    }
+
     public void SaveEnem(string obj)
     {
         Debug.Log(obj);
@@ -33,19 +44,12 @@ public class SaveData : ScriptableObject
     }
 
     public string GetEnemy()
-    {
-        return enem;
-    }
+    { return enem; }
 
-    public int GetDifficulty ()
-    {
-        return difficulty;
-    }
+
 
     public void DictBoolSwitch(Dictionary<string, bool> dict, string obj)
-    {
-        dict[obj] = true;
-    }
+    { dict[obj] = true; }
 
     public void AddToDict(Dictionary<string, bool> dict, string obj)
     {
@@ -66,40 +70,30 @@ public class SaveData : ScriptableObject
     }
 
     public bool getDict(Dictionary<string, bool> dict, string obj)
-    {
-        return (dict[obj]);
-    }
+    { return (dict[obj]); }
 
     public void SwitchBool()
-    {
-        isNextScene = !isNextScene;
-    }
+    { isNextScene = !isNextScene; }
 
     public void TruthBool()
-    {
-        isNextScene = true;
-    }
+    { isNextScene = true; }
 
     public void OnEnemyDouble()
-    {
-        EnemyDouble = true;
-    }
+    { EnemyDouble = true; }
 
     public void OffEnemyDouble()
-    {
-        EnemyDouble = false;
-    }
+    { EnemyDouble = false; }
 
     public float getX()
-    {
-        return x;
-    }
+    { return x; }
     public float getY()
-    {
-        return y;
-    }
+    { return y; }
     public float getZ()
-    {
-        return z;
-    }
+    { return z; }
+
+    public bool getRespawn() { return respawn;  }
+
+    public Vector3 GetLocation() { return respawn_location;  }
+
+    public void ChangeRespawn() { respawn = !respawn;  }
 }

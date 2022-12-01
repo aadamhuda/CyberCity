@@ -702,9 +702,8 @@ public class BattleSystem : MonoBehaviour
 	//initialises restart button - ran after state = LOSE
 	public void createRestartButton()
 	{
-		GameObject rb = Instantiate(restartButtonPrefab, rbLocation);
-		Button restartButton = rb.GetComponent<Button>();
-		restartButton.onClick.AddListener(OnRestartButton);
+		savedata.ChangeRespawn();
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
 	}
 
@@ -724,7 +723,7 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = "Escaping Battle...";
 		yield return new WaitForSeconds(2f);
 
-		savedata.SaveLocation((float)-115.4, 1, (float)-65.9);
+		savedata.ChangeRespawn();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 	}
 

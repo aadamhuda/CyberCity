@@ -86,7 +86,6 @@ public class EnemyOutOfCombat : EnemyCollider
 
     void ChasePlayer()
     {
-        Debug.Log("Chasing");
         anim.SetBool("isRunning", true);
         agent.speed = 10;
         agent.SetDestination(player.transform.position);
@@ -99,12 +98,10 @@ public class EnemyOutOfCombat : EnemyCollider
         {
             WithInArea = false;
             anim.SetBool("isRunning", false);
-            Debug.Log("Santa Claus ate my primos");
         }
         else
             WithInArea = true;
 
-        Debug.Log("Felix is : " + WithInArea);
     }
 
     private IEnumerator AmbushPlayer()
@@ -156,7 +153,6 @@ public class EnemyOutOfCombat : EnemyCollider
         anim.SetBool("isWalking", true);
         agent.speed = 4;
 
-        Debug.Log("HEy he erbtoertoerhtouirhtoierhoth");
 
         /*        Debug.Log("WalkingPointSet: " + walkPointSet);
                 Debug.Log("GoosePoint: " + walkPoint);
