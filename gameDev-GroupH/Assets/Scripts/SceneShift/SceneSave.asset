@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNextScene: 1
   EnemyDeath: 1
-  EnemyDouble: 1
-  x: -115.4
-  y: 1
-  z: -65.9
-  enem: CyberDroids_2
+  EnemyDouble: 0
+  x: -65.39178
+  y: 1.0099999
+  z: -42.722004
+  enem: 01
   ClueCount: 0
+  inBattle: 1
   team_health:
   - 1
   - 2
   - 4
   - 7
+  respawn_location: {x: 17.1985, y: 1.0099999, z: -97.64579}
+  respawn: 0

@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
 
     [SerializeField]
+    private LayerMask safe_area;
+
+    [SerializeField]
     private Transform mainCamera;
 
     [SerializeField]
@@ -56,7 +59,18 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        transform.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
+        var move = gameObject.GetComponent<Transform>();
+
+        if (savedata.getRespawn())
+        {
+            move.position = savedata.GetLocation();
+            savedata.ChangeRespawn();
+        }
+            
+        else
+            move.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
+
+
         canMove = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -151,6 +165,15 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.K))
             {
                 collectClue(collecter);
+            }
+        }
+
+        if (Physics.Raycast(gameObject.transform.position, -transform.up, 3f, safe_area))
+        {
+            if (Input.GetKey("m"))
+            {
+                Debug.Log("This WOMAN is spending 3k on a PC");
+                savedata.Set_respawn(gameObject.transform.position);
             }
         }
     }
