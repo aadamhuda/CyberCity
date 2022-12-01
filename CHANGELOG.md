@@ -18,6 +18,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [1.7.0](https://github.com/aadamhuda/CyberCity/commit/76132d25a5f4c7dfeb1a5330558fb5ae3adcdd43)
+### Added
+- Added battle camera ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Camera will change to each players perspective on their turn
+- Added downed state for player ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Players objects will not be removed in battle but rather theyll be put into a downed state, this prepares for the ability for players to be revived in battle using items
+- Added inventory menu with button items and scrollbar to pause menu prefab ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Inventory has fucntionality but sizing bug on the buttons ~ [@sarahbrah7](https://github.com/sarahbrah7)
+### Changed
+- Changed how enemies spawn ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - They now instantiate
+  - Depending on the difficulty
+### Removed
+- Removed functions to remove player from array - no longer needed, player now has 'downed variable' ~ [@aadamhuda](https://github.com/aadamhuda)
+### Fixed
+- Sizing bug fixed within inventory ~ [@sarahbrah7](https://github.com/sarahbrah7)
+
 ## [1.6.0](https://github.com/aadamhuda/CyberCity/commit/a4dc0149e005a62920db4adb20cbfda5bee6c044) - 2022-11-20
 ### Added
 - Made a pause screen scene with buttons (save, load, settings, exit) ~ [@sarahbrah7](https://github.com/sarahbrah7)
