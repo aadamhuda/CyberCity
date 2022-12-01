@@ -51,8 +51,7 @@ public class BattleSystem : MonoBehaviour
 	//Animations
 	private bool playerAttacking;
 	private bool enemyAttacking;
-	private float playerMinSpeed = 0.1f;
-	private float playerMaxSpeed = 0.5f;
+	private float speed = 1.5f;
 
 	//Cameras
 	[SerializeField]
@@ -158,6 +157,8 @@ public class BattleSystem : MonoBehaviour
     IEnumerator InitialiseBattle()
     {
 		players = InstantiatePlayers();
+		BattleInventory invMenu = GameObject.FindGameObjectsWithTag("InventoryButton")[0].GetComponent<BattleInventory>();
+		invMenu.Init(players, playerNames);
 		// player moves
 		players[0].playerAttacks.Add("normal", new int[] { 0, 20 }); // type, damage
 		players[0].playerAttacks.Add("curse", new int[] { -1 }); // no type
@@ -228,7 +229,6 @@ public class BattleSystem : MonoBehaviour
 
 		// Rotating player until facing enemy
 		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
-		yield return new WaitForSeconds(0.2f);
 	
 		if (currentAttack == "burn")
 		{
@@ -264,16 +264,16 @@ public class BattleSystem : MonoBehaviour
         else 
         {
 			// Moving player until next to enemy
-			yield return StartCoroutine(MovePlayer(currPlayer, true, playerMinSpeed, 2f, enemyPos));
+			yield return StartCoroutine(MovePlayer(currPlayer, true, 0, 2f, enemyPos));
 
 			// Attack animation
 			animator.CrossFade("Melee360High", 0.1f);
-			yield return new WaitForSeconds(2.3f);
+			yield return new WaitForSeconds(1.3f);
 
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
 
 			// Moving player back to original position
-			yield return StartCoroutine(MovePlayer(currPlayer, false, playerMinSpeed, 0.1f, playerPos));
+			yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
 		}
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
@@ -357,7 +357,6 @@ public class BattleSystem : MonoBehaviour
 
 			// Rotating enemy until facing player
 			yield return StartCoroutine(RotateEnemy(currEnemy, 0.2f, playerPos));
-			yield return new WaitForSeconds(0.2f);
 
 			if (enemies[i].frozen)
             {
@@ -372,11 +371,11 @@ public class BattleSystem : MonoBehaviour
             else
             {
 				// Moving enemy until next to player
-				yield return StartCoroutine(MoveEnemy(currEnemy, true, playerMinSpeed, 2f, playerPos));
+				yield return StartCoroutine(MoveEnemy(currEnemy, true, 0, 2f, playerPos));
 
 				// Attack animation
 				animator.CrossFade("Melee360High", 0.1f);
-				yield return new WaitForSeconds(2.3f);
+				yield return new WaitForSeconds(1.3f);
 
 				//adds 15% damage if enemy hits player first
 				if (savedata.EnemyDouble == true)
@@ -386,7 +385,7 @@ public class BattleSystem : MonoBehaviour
 					isDead = players[player_target].takeDamage(enemies[i].damage, 1);
 				}
 				// Moving enemy back to original position
-				yield return StartCoroutine(MoveEnemy(currEnemy, false, playerMinSpeed, 0.1f, enemyPos));
+				yield return StartCoroutine(MoveEnemy(currEnemy, false, 0, 0.1f, enemyPos));
 			}
 
 			//deal burn damage
@@ -624,46 +623,25 @@ public class BattleSystem : MonoBehaviour
 		var cc = p.GetComponent<CharacterController>();
 		var offset = targetPos - transform.position;
 		var animator = p.GetComponent<Animator>();
-		var slowDown = 0.6f;
-		if(!forward)
-        {
-			slowDown = 0.3f;
-        }
+
 		// Movement
 		animator.SetBool("moveBackwards", !forward);
 		animator.SetBool("isMoving", true);
 
 		// Gradually speed up until close to target
-		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget + slowDown)
+		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget)
 		{
-			if (speed > playerMaxSpeed)
+			if (speed > this.speed)
 			{
-				speed = playerMaxSpeed;
+				speed = this.speed;
 			}
 
 			animator.SetFloat("Speed", speed, 0f, Time.deltaTime);;
 			cc.Move(offset * speed * Time.deltaTime);
-			speed += 0.01f;
+			speed += 0.1f;
 			yield return null;
 		}
-
-			animator.SetBool("isMoving", false);
-
-		// Slow down until next to target
-		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget)
-		{
-			if (speed < playerMinSpeed)
-			{
-				speed = playerMinSpeed;
-			}
-
-			animator.SetFloat("Speed", speed, 0.2f, Time.deltaTime);
-			cc.Move(offset * speed * Time.deltaTime);
-			speed -= 0.01f;
-
-			yield return null;
-		}
-
+		// Stop moving when target reached
 		animator.SetBool("isMoving", false);
 	}
 
@@ -674,47 +652,28 @@ public class BattleSystem : MonoBehaviour
 		var cc = e.GetComponent<CharacterController>();
 		var offset = targetPos - transform.position;
 		var animator = e.GetComponent<Animator>();
-		var slowDown = 0.6f;
-		if (!forward)
-		{
-			slowDown = 0.3f;
-		}
+
 		// Movement
 		animator.SetBool("moveBackwards", !forward);
 		animator.SetBool("isMoving", true);
 
-		// Gradually speed up until close to target
-		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget + slowDown)
+		// Speed up until close to target
+		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget )
 		{
-			if (speed > playerMaxSpeed)
+			if (speed > this.speed)
 			{
-				speed = playerMaxSpeed;
+				speed = this.speed;
 			}
 
 			animator.SetFloat("Speed", speed, 0f, Time.deltaTime); ;
 			cc.Move(offset * speed * Time.deltaTime);
-			speed += 0.01f;
+			speed += 0.1f;
 			yield return null;
 		}
 
+		// Stop moving when target reached
 		animator.SetBool("isMoving", false);
 
-		// Slow down until next to target
-		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget)
-		{
-			if (speed < playerMinSpeed)
-			{
-				speed = playerMinSpeed;
-			}
-
-			animator.SetFloat("Speed", speed, 0.2f, Time.deltaTime);
-			cc.Move(offset * speed * Time.deltaTime);
-			speed -= 0.01f;
-
-			yield return null;
-		}
-
-		animator.SetBool("isMoving", false);
 	}
 
 	//-------------------------------------------CAMERAS-------------------------------------------------------
