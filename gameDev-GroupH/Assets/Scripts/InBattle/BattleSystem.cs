@@ -257,7 +257,7 @@ public class BattleSystem : MonoBehaviour
 			animator.CrossFade("Burn", 0.1f);
 			yield return new WaitForSeconds(1.3f);
 
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 			enemies[target].burned = true;
 			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
 		}
