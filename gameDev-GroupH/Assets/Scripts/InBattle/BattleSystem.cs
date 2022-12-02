@@ -48,11 +48,13 @@ public class BattleSystem : MonoBehaviour
 	public RectTransform[] playerHudLocations;
 	public RectTransform[] enemyHudLocations;
 
+
 	public GameObject BattleHUD;
 
 	//Animations
 	private bool playerAttacking;
 	private bool enemyAttacking;
+  
 	private float speed = 1.5f;
 
 	//Cameras
@@ -76,8 +78,6 @@ public class BattleSystem : MonoBehaviour
 
 		//starts battle
 		state = BattleState.START;
-		playerAttacking = false;
-		enemyAttacking = false;
         StartCoroutine(InitialiseBattle());
     }
 
@@ -246,14 +246,18 @@ public class BattleSystem : MonoBehaviour
 
 		// Player is attacking
 		state = BattleState.PLAYERWAIT;
-		playerAttacking = true;
 
 		// Rotating player until facing enemy
 		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
 	
 		if (attackType == "burn")
 		{
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
+
+			// Animation
+			animator.CrossFade("Burn", 0.1f);
+			yield return new WaitForSeconds(1.3f);
+
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
 			enemies[target].burned = true;
 			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
 		}
@@ -268,6 +272,10 @@ public class BattleSystem : MonoBehaviour
         }
 		else if (attackType == "freeze")
 		{
+			// Animation
+			animator.CrossFade("Freeze", 0.1f);
+			yield return new WaitForSeconds(1.3f);
+
 			enemies[target].frozen = true;
 		}
 		else if (attackType == "shoot")
@@ -288,7 +296,7 @@ public class BattleSystem : MonoBehaviour
 			yield return StartCoroutine(MovePlayer(currPlayer, true, 0, 2f, enemyPos));
 
 			// Attack animation
-			animator.CrossFade("Melee360High", 0.1f);
+			animator.CrossFade("Melee", 0.1f);
 			yield return new WaitForSeconds(1.3f);
 
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
@@ -322,8 +330,6 @@ public class BattleSystem : MonoBehaviour
 				
 		}
 
-		// Player attack is finished
-		playerAttacking = false;
 	}
 	void PlayerTurn()
 	{
@@ -390,8 +396,8 @@ public class BattleSystem : MonoBehaviour
 				// Moving enemy until next to player
 				yield return StartCoroutine(MoveEnemy(currEnemy, true, 0, 2f, playerPos));
 
-				// Attack animation
-				animator.CrossFade("Melee360High", 0.1f);
+				// Animation
+				animator.CrossFade("Melee", 0.1f);
 				yield return new WaitForSeconds(1.3f);
 
 				//adds 15% damage if enemy hits player first
@@ -661,7 +667,6 @@ public class BattleSystem : MonoBehaviour
 				speed = this.speed;
 			}
 
-			animator.SetFloat("Speed", speed, 0f, Time.deltaTime);;
 			cc.Move(offset * speed * Time.deltaTime);
 			speed += 0.1f;
 			yield return null;
@@ -690,7 +695,6 @@ public class BattleSystem : MonoBehaviour
 				speed = this.speed;
 			}
 
-			animator.SetFloat("Speed", speed, 0f, Time.deltaTime); ;
 			cc.Move(offset * speed * Time.deltaTime);
 			speed += 0.1f;
 			yield return null;
@@ -727,9 +731,8 @@ public class BattleSystem : MonoBehaviour
 	//initialises restart button - ran after state = LOSE
 	public void createRestartButton()
 	{
-		GameObject rb = Instantiate(restartButtonPrefab, rbLocation);
-		Button restartButton = rb.GetComponent<Button>();
-		restartButton.onClick.AddListener(OnRestartButton);
+		savedata.ChangeRespawn();
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
 	}
 
@@ -749,7 +752,7 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = "Escaping Battle...";
 		yield return new WaitForSeconds(2f);
 
-		savedata.SaveLocation((float)-115.4, 1, (float)-65.9);
+		savedata.ChangeRespawn();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 	}
 
