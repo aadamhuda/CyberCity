@@ -110,8 +110,25 @@ public class BattleSystem : MonoBehaviour
 			}
 		}
 
-	}
+		CheckTargetChange();
 
+	}
+	//-------------------------------------------UPDATE FUNCTIONS-------------------------------------------------------
+	void CheckTargetChange()
+	{
+		if (state == BattleState.PLAYERTURN)
+		{
+			if (Input.GetKeyDown("a"))
+			{
+				ChangeTarget(-1);
+			}
+			if (Input.GetKeyDown("d"))
+			{
+				ChangeTarget(1);
+			}
+		}
+	}
+	//-------------------------------------------INITIALISE BATTLE-------------------------------------------------------
 	//spawns hud in placeholder regions
 	void InitialiseHUD()
     {
@@ -194,7 +211,7 @@ public class BattleSystem : MonoBehaviour
 			enemies[i].unitName = "enemy " + (i + 1);
         }
 
-		ChangeTarget();
+		ChangeTarget(0);
 
 		InitialiseHUD();
 
@@ -283,13 +300,11 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 		yield return new WaitForSeconds(2f);
 
-
-
 		if (isDead)
         {
 			enemies = RemoveEnemies(target);
 			enemiesHUD = RemoveHUDs(target, enemiesHUD);
-			ChangeTarget(); //automatically changes target on enemy death
+			ChangeTarget(0); //automatically changes target on enemy death
         }
 
 		//checks if all enemies are dead - win condition
@@ -327,7 +342,8 @@ public class BattleSystem : MonoBehaviour
 		yield return new WaitForSeconds(2f);
 		ChangePartyTurn(1);
 	}
-//-------------------------------------------ENEMY-------------------------------------------------------
+
+	//-------------------------------------------ENEMY-------------------------------------------------------
 	IEnumerator EnemyTurn()
 	{
 		bool isDead = false;
@@ -557,24 +573,32 @@ public class BattleSystem : MonoBehaviour
 		return newHUD;
 	}
 
-
 	//allows player to change targeted enemy
-	public void ChangeTarget()
+	public void ChangeTarget(int x)
     {
-		for (int i = 0; i < enemies.Length; i++)
-		{
-			if (enemies.Length > 0)
+		if (enemies.Length == 0)
+			return;
+		if (x == 0)
+        {
+			target = 0;
+		}
+		else if (x > 0)
+        {
+			target = target + 1;
+			if (target > enemies.Length - 1)
 			{
-				if (i == target)
-				{
-					enemies[i].GetComponent<Renderer>().material.color = Color.blue;
-				}
-				else
-				{
-					enemies[i].GetComponent<Renderer>().material.color = Color.red;
-				}
+				target = 0;
 			}
 		}
+        else
+        {
+			target = target - 1;
+			if (target < 0)
+			{
+				target = enemies.Length - 1;
+			}
+		}
+		StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[target].transform.position));
 	}
 
 
@@ -750,20 +774,6 @@ public class BattleSystem : MonoBehaviour
 
 
 	//button methods
-	public void OnChangeTargetButton()
-	{
-		if (state != BattleState.PLAYERTURN)
-			return;
-
-		target = target + 1;
-		if (target > enemies.Length - 1)
-		{
-			target = 0;
-		}
-		StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[target].transform.position));
-		ChangeTarget();
-	}
-
 
 	public void OnAttackButton(string attackType)
 	{
