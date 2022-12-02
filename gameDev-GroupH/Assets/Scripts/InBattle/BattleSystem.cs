@@ -48,9 +48,7 @@ public class BattleSystem : MonoBehaviour
 	public RectTransform[] playerHudLocations;
 	public RectTransform[] enemyHudLocations;
 
-	//Animations
-	private bool playerAttacking;
-	private bool enemyAttacking;
+	// Movement speed
 	private float speed = 1.5f;
 
 	//Cameras
@@ -74,8 +72,6 @@ public class BattleSystem : MonoBehaviour
 
 		//starts battle
 		state = BattleState.START;
-		playerAttacking = false;
-		enemyAttacking = false;
         StartCoroutine(InitialiseBattle());
     }
 
@@ -225,13 +221,16 @@ public class BattleSystem : MonoBehaviour
 
 		// Player is attacking
 		state = BattleState.PLAYERWAIT;
-		playerAttacking = true;
 
 		// Rotating player until facing enemy
 		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
 	
 		if (currentAttack == "burn")
 		{
+			// Animation
+			animator.CrossFade("Burn", 0.1f);
+			yield return new WaitForSeconds(1.3f);
+
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
 			enemies[target].burned = true;
 			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
@@ -247,6 +246,10 @@ public class BattleSystem : MonoBehaviour
         }
 		else if (currentAttack == "freeze")
 		{
+			// Animation
+			animator.CrossFade("Freeze", 0.1f);
+			yield return new WaitForSeconds(1.3f);
+
 			enemies[target].frozen = true;
 		}
 		else if (currentAttack == "shoot")
@@ -267,7 +270,7 @@ public class BattleSystem : MonoBehaviour
 			yield return StartCoroutine(MovePlayer(currPlayer, true, 0, 2f, enemyPos));
 
 			// Attack animation
-			animator.CrossFade("Melee360High", 0.1f);
+			animator.CrossFade("Melee", 0.1f);
 			yield return new WaitForSeconds(1.3f);
 
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
@@ -303,8 +306,6 @@ public class BattleSystem : MonoBehaviour
 				
 		}
 
-		// Player attack is finished
-		playerAttacking = false;
 	}
 	void PlayerTurn()
 	{
@@ -373,8 +374,8 @@ public class BattleSystem : MonoBehaviour
 				// Moving enemy until next to player
 				yield return StartCoroutine(MoveEnemy(currEnemy, true, 0, 2f, playerPos));
 
-				// Attack animation
-				animator.CrossFade("Melee360High", 0.1f);
+				// Animation
+				animator.CrossFade("Melee", 0.1f);
 				yield return new WaitForSeconds(1.3f);
 
 				//adds 15% damage if enemy hits player first
@@ -636,7 +637,6 @@ public class BattleSystem : MonoBehaviour
 				speed = this.speed;
 			}
 
-			animator.SetFloat("Speed", speed, 0f, Time.deltaTime);;
 			cc.Move(offset * speed * Time.deltaTime);
 			speed += 0.1f;
 			yield return null;
@@ -665,7 +665,6 @@ public class BattleSystem : MonoBehaviour
 				speed = this.speed;
 			}
 
-			animator.SetFloat("Speed", speed, 0f, Time.deltaTime); ;
 			cc.Move(offset * speed * Time.deltaTime);
 			speed += 0.1f;
 			yield return null;
