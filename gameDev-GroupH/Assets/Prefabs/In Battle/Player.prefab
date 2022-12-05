@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5386070564629830177}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: PlayerIB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +144,9 @@ MonoBehaviour:
   burnMultiplier: 0
   frozen: 0
   type: 0
+  ID: 0
   selectedMove: burn
+  downed: 0
 --- !u!95 &5386070564629830177
 Animator:
   serializedVersion: 4

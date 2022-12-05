@@ -46,12 +46,12 @@ public class BattleUnit : MonoBehaviour
 
         if (cursed)
         {
-            currentHP -= (float)Math.Round(dmg) * typeMultiplier * 1.1f;
+            currentHP -= (int)((float)Math.Round(dmg) * typeMultiplier * 1.1f);
 
         }
         else
         {
-            currentHP -= (float)Math.Round(dmg) * typeMultiplier;
+            currentHP -= (int)((float)Math.Round(dmg) * typeMultiplier);
 
         }
 
