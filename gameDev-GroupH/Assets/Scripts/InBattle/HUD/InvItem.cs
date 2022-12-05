@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InvItem : MonoBehaviour
 {
-    public BattleInventory parent;
+    public InventoryMenu parent;
 	public Button thisButton;
 	public string itemName;
 

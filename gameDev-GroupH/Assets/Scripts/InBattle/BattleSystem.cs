@@ -47,7 +47,7 @@ public class BattleSystem : MonoBehaviour
 
 	public RectTransform[] enemyHudLocations;
 
-
+	public GameObject itemMenu;
 	public GameObject BattleHUD;
 
 	//Animations
@@ -170,8 +170,6 @@ public class BattleSystem : MonoBehaviour
     IEnumerator InitialiseBattle()
     {
 		players = InstantiatePlayers();
-		BattleInventory invMenu = GameObject.FindGameObjectsWithTag("InventoryButton")[0].GetComponent<BattleInventory>();
-		invMenu.Init(players, playerNames);
 		// player moves
 		players[0].playerAttacks.Add("normal", new int[] { 0, 35 }); // type, damage
 		players[0].playerAttacks.Add("curse", new int[] { -1 }); // no type
@@ -805,6 +803,9 @@ public class BattleSystem : MonoBehaviour
 	{
 		if (state != BattleState.PLAYERTURN)
 			return;
+
+		itemMenu.SetActive(true);
+		itemMenu.GetComponent<InventoryMenu>().LoadMenu(players, playerNames);
 
 	}
 	public void OnAbilityButton()
