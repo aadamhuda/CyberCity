@@ -8,8 +8,6 @@ public class HUDController : MonoBehaviour
     [SerializeField]
     private GameObject battleSystem;
 
-    private BattleState state;
-
     public GameObject abilitiesHUD;
     public GameObject abilityButtonPrefab;
 
@@ -18,11 +16,6 @@ public class HUDController : MonoBehaviour
     public GameObject cancelButton;
 
     private GameObject[] abilities;
-
-    private void Start()
-    {
-        state = battleSystem.GetComponent<BattleSystem>().state;
-    }
 
     public void InitaliseMenu(Player currPlayer)
     {

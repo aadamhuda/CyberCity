@@ -42,10 +42,9 @@ public class BattleSystem : MonoBehaviour
 	//HUD
 	public GameObject hudPrefab;
 
-	public UnitHUD[] playerHUD;
+	public PlayerHUDController[] playerHUD;
 	public UnitHUD[] enemiesHUD;
 
-	public RectTransform[] playerHudLocations;
 	public RectTransform[] enemyHudLocations;
 
 
@@ -88,7 +87,7 @@ public class BattleSystem : MonoBehaviour
 
 		//refreshes HUDs every frame
 		for (int i = 0; i < playerHUD.Length; i++)
-			playerHUD[i].updateHUD(players[i]);
+			playerHUD[i].SetHealth(players[i]);
 
 		for (int i = 0; i < enemiesHUD.Length; i++)
 		{
@@ -132,16 +131,6 @@ public class BattleSystem : MonoBehaviour
 	//spawns hud in placeholder regions
 	void InitialiseHUD()
     {
-        playerHUD = new UnitHUD[4];
-
-		for (int i = 0; i < players.Length; i++)
-        {
-			GameObject playerHudObj = Instantiate(hudPrefab, playerHudLocations[i]);
-			playerHUD[i] = playerHudObj.GetComponent<UnitHUD>();
-		}
-
-		playerHUD[tracker].GetComponent<Image>().color = Color.green; ;
-
 		enemiesHUD = new UnitHUD[3];
 
 		for (int i = 0; i < enemyHudLocations.Length; i++)
@@ -149,6 +138,10 @@ public class BattleSystem : MonoBehaviour
 			GameObject enemyHudObj = Instantiate(hudPrefab, enemyHudLocations[i]);
 			enemiesHUD[i] = enemyHudObj.GetComponent<UnitHUD>();
 		}
+
+		for (int i = 0; i < playerHUD.Length; i++)
+			playerHUD[i].InitialiseSlider(players[i]);
+
 	}
 
 	public Player[] InstantiatePlayers()
@@ -180,23 +173,23 @@ public class BattleSystem : MonoBehaviour
 		BattleInventory invMenu = GameObject.FindGameObjectsWithTag("InventoryButton")[0].GetComponent<BattleInventory>();
 		invMenu.Init(players, playerNames);
 		// player moves
-		players[0].playerAttacks.Add("normal", new int[] { 0, 20 }); // type, damage
+		players[0].playerAttacks.Add("normal", new int[] { 0, 35 }); // type, damage
 		players[0].playerAttacks.Add("curse", new int[] { -1 }); // no type
-		players[0].playerAttacks.Add("shoot", new int[] { 0, 6, 15 }); // type, damage, side damage
+		players[0].playerAttacks.Add("shoot", new int[] { 0, 25, 15 }); // type, damage, side damage
 		players[0].selectedMove = "normal";
 
-		players[1].playerAttacks.Add("normal", new int[] { 0, 20 }); 
+		players[1].playerAttacks.Add("normal", new int[] { 0, 35 }); 
 		players[1].playerAttacks.Add("burn", new int[] { 1, 12, 5 }); 
 		players[1].playerAttacks.Add("fire", new int[] { 1, 15, 0 }); 
 		players[1].selectedMove = "normal";
 
-		players[2].playerAttacks.Add("normal", new int[] { 0, 20 }); 
-		players[2].playerAttacks.Add("grass", new int[] { 2, 15, 0 }); 
-		players[2].playerAttacks.Add("poison", new int[] { -1, 10 }); 
+		players[2].playerAttacks.Add("normal", new int[] { 0, 35 }); 
+		players[2].playerAttacks.Add("grass", new int[] { 2, 30, 0 }); 
+		players[2].playerAttacks.Add("poison", new int[] { -1, 40 }); 
 		players[2].selectedMove = "normal";
 
-		players[3].playerAttacks.Add("normal", new int[] { 0, 20 }); 
-		players[3].playerAttacks.Add("water", new int[] { 3, 15, 0 }); 
+		players[3].playerAttacks.Add("normal", new int[] { 0, 35 }); 
+		players[3].playerAttacks.Add("water", new int[] { 3, 40, 0 }); 
 		players[3].playerAttacks.Add("freeze", new int[] { -1 }); 
 		players[3].selectedMove = "normal";
 
@@ -482,7 +475,6 @@ public class BattleSystem : MonoBehaviour
 	{
 		// Iterates to next player switching turns when all of currPlayer have had a turn
 
-		playerHUD[tracker].GetComponent<Image>().color = Color.white;
 		tracker += incre;
 
 		if (tracker >= players.Length)
@@ -498,7 +490,6 @@ public class BattleSystem : MonoBehaviour
 		{
 			if (players[tracker].downed == false)
 			{
-				playerHUD[tracker].GetComponent<Image>().color = Color.green;
 				EnableCamera(battleCameras[tracker]);
 				DisableAllPlayerCameras(tracker);
 				currPlayer = players[tracker];
@@ -812,7 +803,7 @@ public class BattleSystem : MonoBehaviour
 
 	public void OnItemButton()
 	{
-		if (state != BattleState.LOSE)
+		if (state != BattleState.PLAYERTURN)
 			return;
 
 	}
