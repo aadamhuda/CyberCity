@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: eabb84a70a3ce9040b03149c003af711
+guid: 0dbe160501fc0f94fb944eb88b2dd011
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Burn
+    second: Magic
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Burn
+      name: Magic
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 66
+      lastFrame: 69
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

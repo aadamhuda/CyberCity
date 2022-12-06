@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 72a50cc3a655198418d70e42a953e0cb
+guid: 2e04f62a08458294c8592ed29bb0de44
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Melee
+    second: Shoot
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -27,7 +27,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Melee
+      name: Shoot
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 43
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

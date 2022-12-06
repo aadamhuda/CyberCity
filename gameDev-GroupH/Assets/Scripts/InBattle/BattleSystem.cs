@@ -54,7 +54,7 @@ public class BattleSystem : MonoBehaviour
 	private bool playerAttacking;
 	private bool enemyAttacking;
   
-	private float speed = 1.5f;
+	private float speed = 1f;
 
 	//Cameras
 	[SerializeField]
@@ -245,10 +245,9 @@ public class BattleSystem : MonoBehaviour
 	
 		if (attackType == "burn")
 		{
-
 			// Animation
-			animator.CrossFade("Burn", 0.1f);
-			yield return new WaitForSeconds(1.3f);
+			animator.CrossFade("Magic", 0.1f);
+			yield return new WaitForSeconds(0.5f);
 
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 			enemies[target].burned = true;
@@ -256,25 +255,44 @@ public class BattleSystem : MonoBehaviour
 		}
 		else if (attackType == "poison")
 		{
+			animator.CrossFade("Magic", 0.1f);
+			yield return new WaitForSeconds(0.5f);
+
 			enemies[target].poisoned = true;
 			enemies[target].poisonDamage = ((float)(playerScript.playerAttacks["poison"])[1] / 100);
 		}
 		else if (attackType == "curse")
         {
+			animator.CrossFade("Magic", 0.1f);
+			yield return new WaitForSeconds(0.5f);
+
 			enemies[target].cursed = true;
         }
 		else if (attackType == "freeze")
 		{
-			// Animation
-			animator.CrossFade("Freeze", 0.1f);
-			yield return new WaitForSeconds(1.3f);
+			animator.CrossFade("Magic", 0.1f);
+			yield return new WaitForSeconds(0.5f);
 
 			enemies[target].frozen = true;
 		}
+		else if (attackType == "grass" || attackType == "water")
+		{
+			animator.CrossFade("Magic", 0.1f);
+			yield return new WaitForSeconds(0.5f);
+
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
+		}
 		else if (attackType == "shoot")
         {
+			animator.CrossFade("EquipBow", 0.1f);
+			yield return new WaitForSeconds(0.3f);
+
 			for (int i = 0; i<enemies.Length; i++)
             {
+				yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[i].transform.position));
+				animator.CrossFade("DrawArrow", 0.1f);
+				yield return new WaitForSeconds(0.5f);
+
 				var isThisDead = enemies[i].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 				if (isThisDead)
                 {
@@ -282,7 +300,9 @@ public class BattleSystem : MonoBehaviour
 					enemiesHUD = RemoveHUDs(i, enemiesHUD);
 				}
             }
-        }
+			animator.CrossFade("DisarmBow", 0.1f);
+
+		}
         else 
         {
 			// Moving player until next to enemy
@@ -290,7 +310,7 @@ public class BattleSystem : MonoBehaviour
 
 			// Attack animation
 			animator.CrossFade("Melee", 0.1f);
-			yield return new WaitForSeconds(1.3f);
+			yield return new WaitForSeconds(1f);
 
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 
@@ -391,7 +411,7 @@ public class BattleSystem : MonoBehaviour
 
 				// Animation
 				animator.CrossFade("Melee", 0.1f);
-				yield return new WaitForSeconds(1.3f);
+				yield return new WaitForSeconds(1f);
 
 				//adds 15% damage if enemy hits player first
 				if (savedata.EnemyDouble == true)
