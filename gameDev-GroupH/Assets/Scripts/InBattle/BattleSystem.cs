@@ -310,7 +310,7 @@ public class BattleSystem : MonoBehaviour
 
 			// Attack animation
 			animator.CrossFade("Melee", 0.1f);
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(0.9f);
 
 			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 
@@ -354,6 +354,8 @@ public class BattleSystem : MonoBehaviour
 
 		int amount = Random.Range(60, 100);
 		currPlayer.heal(amount);
+
+		currPlayer.GetComponent<Animator>().CrossFade("Heal", 0.1f);
 
 		dialogue.text = "You healed by " + amount + " hp!";
 
@@ -411,7 +413,7 @@ public class BattleSystem : MonoBehaviour
 
 				// Animation
 				animator.CrossFade("Melee", 0.1f);
-				yield return new WaitForSeconds(1f);
+				yield return new WaitForSeconds(0.9f);
 
 				//adds 15% damage if enemy hits player first
 				if (savedata.EnemyDouble == true)
