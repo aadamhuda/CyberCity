@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 //NOTE: damage and healing must be balanced to provide a challenge while not making it too difficult
 
 //enumerator to hold battle states
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE, PLAYERWAIT}
+public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE, PLAYERWAIT, SELECTINGATTACK}
 
 public class BattleSystem : MonoBehaviour
 {
@@ -28,7 +28,7 @@ public class BattleSystem : MonoBehaviour
 
 	public Enemy[] enemies;
 	public Player[] players;
-	private int tracker = 0;
+	public int tracker = 0;
 	public Player currPlayer;//this will change to an array once a party system is implemented
 
 	//holds position of currently selected enemy
@@ -37,20 +37,23 @@ public class BattleSystem : MonoBehaviour
 	public GameObject restartButtonPrefab;
 	public Transform rbLocation;
 
-	public Button escapeButton;
+	public Button[] playerMoveButtons;
 
 	//HUD
 	public GameObject hudPrefab;
 
-	public UnitHUD[] playerHUD;
+	public PlayerHUDController[] playerHUD;
 	public UnitHUD[] enemiesHUD;
 
-	public RectTransform[] playerHudLocations;
 	public RectTransform[] enemyHudLocations;
+
+
+	public GameObject BattleHUD;
 
 	//Animations
 	private bool playerAttacking;
 	private bool enemyAttacking;
+  
 	private float speed = 1.5f;
 
 	//Cameras
@@ -74,8 +77,6 @@ public class BattleSystem : MonoBehaviour
 
 		//starts battle
 		state = BattleState.START;
-		playerAttacking = false;
-		enemyAttacking = false;
         StartCoroutine(InitialiseBattle());
     }
 
@@ -86,7 +87,7 @@ public class BattleSystem : MonoBehaviour
 
 		//refreshes HUDs every frame
 		for (int i = 0; i < playerHUD.Length; i++)
-			playerHUD[i].updateHUD(players[i]);
+			playerHUD[i].SetHealth(players[i]);
 
 		for (int i = 0; i < enemiesHUD.Length; i++)
 		{
@@ -95,33 +96,41 @@ public class BattleSystem : MonoBehaviour
 		//allows escape button to only be interacted with in player turn
 		if (state != BattleState.PLAYERTURN)
         {
-			escapeButton.interactable = false;
+			for (int i = 0; i < playerMoveButtons.Length; i++)
+			{
+				playerMoveButtons[i].interactable = false;
+			}
 		}
         else
         {
-			escapeButton.interactable = true;
+			for (int i = 0; i < playerMoveButtons.Length; i++)
+			{
+				playerMoveButtons[i].interactable = true;
+			}
 		}
 
-		/*if (state != BattleState.PLAYERTURN || state != BattleState.PLAYERWAIT)
-		{
-			DisableAllPlayerCameras();
-			EnableCamera(mainCamera);
-		}*/
-	}
+		CheckTargetChange();
 
+	}
+	//-------------------------------------------UPDATE FUNCTIONS-------------------------------------------------------
+	void CheckTargetChange()
+	{
+		if (state == BattleState.PLAYERTURN)
+		{
+			if (Input.GetKeyDown("a"))
+			{
+				ChangeTarget(-1);
+			}
+			if (Input.GetKeyDown("d"))
+			{
+				ChangeTarget(1);
+			}
+		}
+	}
+	//-------------------------------------------INITIALISE BATTLE-------------------------------------------------------
 	//spawns hud in placeholder regions
 	void InitialiseHUD()
     {
-        playerHUD = new UnitHUD[4];
-
-		for (int i = 0; i < players.Length; i++)
-        {
-			GameObject playerHudObj = Instantiate(hudPrefab, playerHudLocations[i]);
-			playerHUD[i] = playerHudObj.GetComponent<UnitHUD>();
-		}
-
-		playerHUD[tracker].GetComponent<Image>().color = Color.green; ;
-
 		enemiesHUD = new UnitHUD[3];
 
 		for (int i = 0; i < enemyHudLocations.Length; i++)
@@ -129,6 +138,10 @@ public class BattleSystem : MonoBehaviour
 			GameObject enemyHudObj = Instantiate(hudPrefab, enemyHudLocations[i]);
 			enemiesHUD[i] = enemyHudObj.GetComponent<UnitHUD>();
 		}
+
+		for (int i = 0; i < playerHUD.Length; i++)
+			playerHUD[i].InitialiseSlider(players[i]);
+
 	}
 
 	public Player[] InstantiatePlayers()
@@ -160,23 +173,23 @@ public class BattleSystem : MonoBehaviour
 		BattleInventory invMenu = GameObject.FindGameObjectsWithTag("InventoryButton")[0].GetComponent<BattleInventory>();
 		invMenu.Init(players, playerNames);
 		// player moves
-		players[0].playerAttacks.Add("normal", new int[] { 0, 20 }); // type, damage
+		players[0].playerAttacks.Add("normal", new int[] { 0, 35 }); // type, damage
 		players[0].playerAttacks.Add("curse", new int[] { -1 }); // no type
-		players[0].playerAttacks.Add("shoot", new int[] { 0, 6, 15 }); // type, damage, side damage
+		players[0].playerAttacks.Add("shoot", new int[] { 0, 25, 15 }); // type, damage, side damage
 		players[0].selectedMove = "normal";
 
-		players[1].playerAttacks.Add("normal", new int[] { 0, 20 }); 
+		players[1].playerAttacks.Add("normal", new int[] { 0, 35 }); 
 		players[1].playerAttacks.Add("burn", new int[] { 1, 12, 5 }); 
 		players[1].playerAttacks.Add("fire", new int[] { 1, 15, 0 }); 
 		players[1].selectedMove = "normal";
 
-		players[2].playerAttacks.Add("normal", new int[] { 0, 20 }); 
-		players[2].playerAttacks.Add("grass", new int[] { 2, 15, 0 }); 
-		players[2].playerAttacks.Add("poison", new int[] { -1, 10 }); 
+		players[2].playerAttacks.Add("normal", new int[] { 0, 35 }); 
+		players[2].playerAttacks.Add("grass", new int[] { 2, 30, 0 }); 
+		players[2].playerAttacks.Add("poison", new int[] { -1, 40 }); 
 		players[2].selectedMove = "normal";
 
-		players[3].playerAttacks.Add("normal", new int[] { 0, 20 }); 
-		players[3].playerAttacks.Add("water", new int[] { 3, 15, 0 }); 
+		players[3].playerAttacks.Add("normal", new int[] { 0, 35 }); 
+		players[3].playerAttacks.Add("water", new int[] { 3, 40, 0 }); 
 		players[3].playerAttacks.Add("freeze", new int[] { -1 }); 
 		players[3].selectedMove = "normal";
 
@@ -191,7 +204,7 @@ public class BattleSystem : MonoBehaviour
 			enemies[i].unitName = "enemy " + (i + 1);
         }
 
-		ChangeTarget();
+		ChangeTarget(0);
 
 		InitialiseHUD();
 
@@ -203,15 +216,16 @@ public class BattleSystem : MonoBehaviour
     }
 
 	//applies damage to enemies and checks if they have won
-	IEnumerator PlayerAttack()
+	IEnumerator PlayerAttack(string attackType)
 	{
         if (players[tracker].downed)
         {
 			ChangePartyTurn(1);
         }
 
+		DestroyAbilities();
+
 		Player playerScript = players[tracker].GetComponent<Player>();
-		string currentAttack = playerScript.selectedMove;
 		bool isDead = false;
 		//Debug.Log(currentAttack);
 
@@ -225,35 +239,43 @@ public class BattleSystem : MonoBehaviour
 
 		// Player is attacking
 		state = BattleState.PLAYERWAIT;
-		playerAttacking = true;
 
 		// Rotating player until facing enemy
 		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
 	
-		if (currentAttack == "burn")
+		if (attackType == "burn")
 		{
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+
+			// Animation
+			animator.CrossFade("Burn", 0.1f);
+			yield return new WaitForSeconds(1.3f);
+
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 			enemies[target].burned = true;
 			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
 		}
-		else if (currentAttack == "poison")
+		else if (attackType == "poison")
 		{
 			enemies[target].poisoned = true;
 			enemies[target].poisonDamage = ((float)(playerScript.playerAttacks["poison"])[1] / 100);
 		}
-		else if (currentAttack == "curse")
+		else if (attackType == "curse")
         {
 			enemies[target].cursed = true;
         }
-		else if (currentAttack == "freeze")
+		else if (attackType == "freeze")
 		{
+			// Animation
+			animator.CrossFade("Freeze", 0.1f);
+			yield return new WaitForSeconds(1.3f);
+
 			enemies[target].frozen = true;
 		}
-		else if (currentAttack == "shoot")
+		else if (attackType == "shoot")
         {
 			for (int i = 0; i<enemies.Length; i++)
             {
-				var isThisDead = enemies[i].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+				var isThisDead = enemies[i].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 				if (isThisDead)
                 {
 					enemies = RemoveEnemies(i);
@@ -267,10 +289,10 @@ public class BattleSystem : MonoBehaviour
 			yield return StartCoroutine(MovePlayer(currPlayer, true, 0, 2f, enemyPos));
 
 			// Attack animation
-			animator.CrossFade("Melee360High", 0.1f);
+			animator.CrossFade("Melee", 0.1f);
 			yield return new WaitForSeconds(1.3f);
 
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[currentAttack])[1]), ((playerScript.playerAttacks[currentAttack])[0]));
+			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
 
 			// Moving player back to original position
 			yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
@@ -279,18 +301,16 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 		yield return new WaitForSeconds(2f);
 
-
-
 		if (isDead)
         {
 			enemies = RemoveEnemies(target);
 			enemiesHUD = RemoveHUDs(target, enemiesHUD);
-			ChangeTarget(); //automatically changes target on enemy death
+			ChangeTarget(0); //automatically changes target on enemy death
         }
 
 		//checks if all enemies are dead - win condition
 		bool enemiesDead = (enemies.Length == 0);
-
+		
 		if (enemiesDead)
 		{
 			state = BattleState.WIN;
@@ -303,14 +323,10 @@ public class BattleSystem : MonoBehaviour
 				
 		}
 
-		// Player attack is finished
-		playerAttacking = false;
 	}
 	void PlayerTurn()
 	{
 		dialogue.text = "Choose an action!";
-		TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
-		indicator.text = players[tracker].selectedMove;
 	}
 
 	IEnumerator PlayerHeal()
@@ -321,12 +337,12 @@ public class BattleSystem : MonoBehaviour
 
 		dialogue.text = "You healed by " + amount + " hp!";
 
-		//playerHUD.updateHUD(currPlayer);
 		state = BattleState.PLAYERWAIT;
 		yield return new WaitForSeconds(2f);
 		ChangePartyTurn(1);
 	}
-//-------------------------------------------ENEMY-------------------------------------------------------
+
+	//-------------------------------------------ENEMY-------------------------------------------------------
 	IEnumerator EnemyTurn()
 	{
 		bool isDead = false;
@@ -373,8 +389,8 @@ public class BattleSystem : MonoBehaviour
 				// Moving enemy until next to player
 				yield return StartCoroutine(MoveEnemy(currEnemy, true, 0, 2f, playerPos));
 
-				// Attack animation
-				animator.CrossFade("Melee360High", 0.1f);
+				// Animation
+				animator.CrossFade("Melee", 0.1f);
 				yield return new WaitForSeconds(1.3f);
 
 				//adds 15% damage if enemy hits player first
@@ -459,7 +475,6 @@ public class BattleSystem : MonoBehaviour
 	{
 		// Iterates to next player switching turns when all of currPlayer have had a turn
 
-		playerHUD[tracker].GetComponent<Image>().color = Color.white;
 		tracker += incre;
 
 		if (tracker >= players.Length)
@@ -475,7 +490,6 @@ public class BattleSystem : MonoBehaviour
 		{
 			if (players[tracker].downed == false)
 			{
-				playerHUD[tracker].GetComponent<Image>().color = Color.green;
 				EnableCamera(battleCameras[tracker]);
 				DisableAllPlayerCameras(tracker);
 				currPlayer = players[tracker];
@@ -556,24 +570,32 @@ public class BattleSystem : MonoBehaviour
 		return newHUD;
 	}
 
-
 	//allows player to change targeted enemy
-	public void ChangeTarget()
+	public void ChangeTarget(int x)
     {
-		for (int i = 0; i < enemies.Length; i++)
-		{
-			if (enemies.Length > 0)
+		if (enemies.Length == 0)
+			return;
+		if (x == 0)
+        {
+			target = 0;
+		}
+		else if (x > 0)
+        {
+			target = target + 1;
+			if (target > enemies.Length - 1)
 			{
-				if (i == target)
-				{
-					enemies[i].GetComponent<Renderer>().material.color = Color.blue;
-				}
-				else
-				{
-					enemies[i].GetComponent<Renderer>().material.color = Color.red;
-				}
+				target = 0;
 			}
 		}
+        else
+        {
+			target = target - 1;
+			if (target < 0)
+			{
+				target = enemies.Length - 1;
+			}
+		}
+		StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[target].transform.position));
 	}
 
 
@@ -636,7 +658,6 @@ public class BattleSystem : MonoBehaviour
 				speed = this.speed;
 			}
 
-			animator.SetFloat("Speed", speed, 0f, Time.deltaTime);;
 			cc.Move(offset * speed * Time.deltaTime);
 			speed += 0.1f;
 			yield return null;
@@ -665,7 +686,6 @@ public class BattleSystem : MonoBehaviour
 				speed = this.speed;
 			}
 
-			animator.SetFloat("Speed", speed, 0f, Time.deltaTime); ;
 			cc.Move(offset * speed * Time.deltaTime);
 			speed += 0.1f;
 			yield return null;
@@ -727,35 +747,34 @@ public class BattleSystem : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 	}
 
-
-	//button methods
-	public void OnChangeTargetButton()
-	{
-		if (state != BattleState.PLAYERTURN)
-			return;
-
-		target = target + 1;
-		if (target > enemies.Length - 1)
-		{
-			target = 0;
-		}
-		StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[target].transform.position));
-		ChangeTarget();
+	public void DisplayAbilities()
+    {
+		HUDController hudController = BattleHUD.GetComponent<HUDController>();
+		hudController.InitaliseMenu(players[tracker]);
 	}
 
-	public void OnChangeAttackButton()
-    {
-		if (state != BattleState.PLAYERTURN)
-			return;
-		currPlayer.GetComponent<Player>().changeAttack();
-    }
-
-	public void OnAttackButton()
+	public void DestroyAbilities()
 	{
-		if (state != BattleState.PLAYERTURN)
+		HUDController hudController = BattleHUD.GetComponent<HUDController>();
+		hudController.DestroyMenu();
+	}
+
+	public void ExitAbilities()
+	{
+		DestroyAbilities();
+		state = BattleState.PLAYERTURN;
+	}
+	
+
+
+	//button methods
+
+	public void OnAttackButton(string attackType)
+	{
+		if (state != BattleState.SELECTINGATTACK)
 			return;
 
-		StartCoroutine(PlayerAttack());
+		StartCoroutine(PlayerAttack(attackType));
 	}
 
 	public void OnHealButton()
@@ -780,5 +799,35 @@ public class BattleSystem : MonoBehaviour
 			return;
 
 		StartCoroutine(EscapeToSpawn());
+	}
+
+	public void OnItemButton()
+	{
+		if (state != BattleState.PLAYERTURN)
+			return;
+
+	}
+	public void OnAbilityButton()
+	{
+		if (state != BattleState.PLAYERTURN)
+			return;
+
+		state = BattleState.SELECTINGATTACK;
+		DisplayAbilities();
+	}
+
+	public void OnExitAbilityButton()
+	{
+		if (state != BattleState.SELECTINGATTACK)
+			return;
+
+		ExitAbilities();
+	}
+
+	public void OnGuardButton()
+	{
+		if (state != BattleState.LOSE)
+			return;
+
 	}
 }

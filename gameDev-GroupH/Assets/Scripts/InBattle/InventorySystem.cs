@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class inventorySystem : MonoBehaviour
+public class InventorySystem : MonoBehaviour
 {
     public Dictionary<string, int> inventory = new Dictionary<string, int>(); // Item, Quantity
     // NOTE: May change value to array of [category, value, quantity]
