@@ -226,71 +226,78 @@ public class BattleSystem : MonoBehaviour
 		DestroyAbilities();
 
 		Player playerScript = players[tracker].GetComponent<Player>();
-		bool isDead = false;
+		bool enemyIsDead = false;
 		//Debug.Log(currentAttack);
 
-	
+
+
+		// Current enemy target
+		Enemy enemyTarget = enemies[target];
+
 		// Coords of player start and enemy start positions
 		Vector3 playerPos = currPlayer.transform.position;
-		Vector3 enemyPos = enemies[target].transform.position;
+		Vector3 enemyPos = enemyTarget.transform.position;
 
-		// Animator for player
-		var animator = currPlayer.GetComponent<Animator>();
+		// Animator for player and enemy
+		var playerAnimator = currPlayer.GetComponent<Animator>();
+		var enemyAnimator = enemyTarget.GetComponent<Animator>();
 
 		// Player is attacking
 		state = BattleState.PLAYERWAIT;
 
 		// Rotating player until facing enemy
 		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
-	
+
 		if (attackType == "burn")
 		{
 			// Animation
-			animator.CrossFade("Magic", 0.1f);
-			yield return new WaitForSeconds(0.5f);
+			playerAnimator.CrossFade("Magic", 0.1f);
+			yield return new WaitForSeconds(0.8f);
 
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
-			enemies[target].burned = true;
-			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
+			enemyIsDead = enemyTarget.takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
+			if (enemyIsDead) { enemyAnimator.CrossFade("Death", 0.1f);}
+			enemyTarget.burned = true;
+			enemyTarget.burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
 		}
 		else if (attackType == "poison")
 		{
-			animator.CrossFade("Magic", 0.1f);
-			yield return new WaitForSeconds(0.5f);
+			playerAnimator.CrossFade("Magic", 0.1f);
+			yield return new WaitForSeconds(0.8f);
 
-			enemies[target].poisoned = true;
-			enemies[target].poisonDamage = ((float)(playerScript.playerAttacks["poison"])[1] / 100);
+			enemyTarget.poisoned = true;
+			enemyTarget.poisonDamage = ((float)(playerScript.playerAttacks["poison"])[1] / 100);
 		}
 		else if (attackType == "curse")
         {
-			animator.CrossFade("Magic", 0.1f);
-			yield return new WaitForSeconds(0.5f);
+			playerAnimator.CrossFade("Magic", 0.1f);
+			yield return new WaitForSeconds(0.8f);
 
-			enemies[target].cursed = true;
+			enemyTarget.cursed = true;
         }
 		else if (attackType == "freeze")
 		{
-			animator.CrossFade("Magic", 0.1f);
-			yield return new WaitForSeconds(0.5f);
+			playerAnimator.CrossFade("Magic", 0.1f);
+			yield return new WaitForSeconds(0.8f);
 
-			enemies[target].frozen = true;
+			enemyTarget.frozen = true;
 		}
-		else if (attackType == "grass" || attackType == "water")
+		else if (attackType == "grass" || attackType == "water" || attackType == "fire")
 		{
-			animator.CrossFade("Magic", 0.1f);
-			yield return new WaitForSeconds(0.5f);
+			playerAnimator.CrossFade("Magic", 0.1f);
+			yield return new WaitForSeconds(0.8f);
 
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
+			enemyIsDead = enemyTarget.takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
+			if (enemyIsDead) { enemyAnimator.CrossFade("Death", 0.1f); }
 		}
 		else if (attackType == "shoot")
         {
-			animator.CrossFade("EquipBow", 0.1f);
+			playerAnimator.CrossFade("EquipBow", 0.1f);
 			yield return new WaitForSeconds(0.3f);
 
 			for (int i = 0; i<enemies.Length; i++)
             {
 				yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[i].transform.position));
-				animator.CrossFade("DrawArrow", 0.1f);
+				playerAnimator.CrossFade("DrawArrow", 0.1f);
 				yield return new WaitForSeconds(0.5f);
 
 				var isThisDead = enemies[i].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
@@ -300,7 +307,7 @@ public class BattleSystem : MonoBehaviour
 					enemiesHUD = RemoveHUDs(i, enemiesHUD);
 				}
             }
-			animator.CrossFade("DisarmBow", 0.1f);
+			playerAnimator.CrossFade("DisarmBow", 0.3f);
 
 		}
         else 
@@ -309,19 +316,21 @@ public class BattleSystem : MonoBehaviour
 			yield return StartCoroutine(MovePlayer(currPlayer, true, 0, 2f, enemyPos));
 
 			// Attack animation
-			animator.CrossFade("Melee", 0.1f);
-			yield return new WaitForSeconds(0.9f);
+			playerAnimator.CrossFade("Melee", 0.1f);
+			yield return new WaitForSeconds(0.5f);
 
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
+			enemyIsDead = enemyTarget.takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
+			if (enemyIsDead) { enemyAnimator.CrossFade("Death", 0.1f); }
 
+			yield return new WaitForSeconds(0.4f);
 			// Moving player back to original position
 			yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
 		}
 
-		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
+		dialogue.text = currPlayer.unitName + " attacked " + enemyTarget.unitName;
 		yield return new WaitForSeconds(2f);
 
-		if (isDead)
+		if (enemyIsDead)
         {
 			enemies = RemoveEnemies(target);
 			enemiesHUD = RemoveHUDs(target, enemiesHUD);
@@ -367,10 +376,10 @@ public class BattleSystem : MonoBehaviour
 	//-------------------------------------------ENEMY-------------------------------------------------------
 	IEnumerator EnemyTurn()
 	{
-		bool isDead = false;
-
 		for (int i = 0; i < enemies.Length; i++)
 		{
+			bool playerIsDead = false;
+			bool enemyIsDead = false;
 
 			int player_target = Random.Range(0, players.Length);
 
@@ -380,30 +389,31 @@ public class BattleSystem : MonoBehaviour
 			}
 			
 
-			// Current enemy
+			// Current enemy and player target
 			Enemy currEnemy = enemies[i];
+			Player playerTarget = players[player_target];
 
 			// Coords of player start and enemy start positions
-			Vector3 playerPos = players[player_target].transform.position;
+			Vector3 playerPos = playerTarget.transform.position;
 			Vector3 enemyPos = currEnemy.transform.position;
 
-			// Animator for current enemy
-			var animator = currEnemy.GetComponent<Animator>();
-
-			dialogue.text = enemies[i].unitName + " attacks!";
+			// Animator for current enemy and player
+			var enemyAnimator = currEnemy.GetComponent<Animator>();
+			var playerAnimator = playerTarget.GetComponent<Animator>();
+			dialogue.text = currEnemy.unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
 
 			// Rotating enemy until facing player
 			yield return StartCoroutine(RotateEnemy(currEnemy, 0.2f, playerPos));
 
-			if (enemies[i].frozen)
+			if (currEnemy.frozen)
             {
 				// skip turn
 				int number = UnityEngine.Random.Range(0, 100);
 				// 34% chance to unfreeze 
 				if (number > 66)
 				{
-					enemies[i].frozen = false;
+					currEnemy.frozen = false;
 				}
 			}
             else
@@ -412,50 +422,54 @@ public class BattleSystem : MonoBehaviour
 				yield return StartCoroutine(MoveEnemy(currEnemy, true, 0, 2f, playerPos));
 
 				// Animation
-				animator.CrossFade("Melee", 0.1f);
-				yield return new WaitForSeconds(0.9f);
+				enemyAnimator.CrossFade("Melee", 0.1f);
+				yield return new WaitForSeconds(0.5f);
 
 				//adds 15% damage if enemy hits player first
 				if (savedata.EnemyDouble == true)
-					isDead = players[player_target].takeDamage((float)(enemies[i].damage * 1.15), 1); // change 1 to enemy's move type
+					playerIsDead = playerTarget.takeDamage((float)(currEnemy.damage * 1.15), 1); // change 1 to enemy's move type
 				else //regular damage
 				{
-					isDead = players[player_target].takeDamage(enemies[i].damage, 1);
+					playerIsDead = playerTarget.takeDamage(currEnemy.damage, 1);
 				}
+                if (playerIsDead) { playerAnimator.CrossFade("Kneel", 0.1f);}
+				yield return new WaitForSeconds(0.4f);
 				// Moving enemy back to original position
 				yield return StartCoroutine(MoveEnemy(currEnemy, false, 0, 0.1f, enemyPos));
 			}
 
 			//deal burn damage
-			if (enemies[i].burned)
+			if (currEnemy.burned)
             {
-				float damage = (float)enemies[i].maxHP * enemies[i].burnDamage * enemies[i].burnMultiplier;
-				isDead = enemies[i].takeDamage(damage, 1);
+				float damage = (float)currEnemy.maxHP * currEnemy.burnDamage * currEnemy.burnMultiplier;
+				enemyIsDead = currEnemy.takeDamage(damage, 1);
+				if (enemyIsDead) { enemyAnimator.CrossFade("Death", 0.1f);}
 				int number = UnityEngine.Random.Range(0, 100);
 				// 20% chance to stop burning 
 				if (number > 80)
 				{
-					enemies[i].burned = false;
+					currEnemy.burned = false;
 				}
 			}
 
 			//deal poison damage
-			if (enemies[i].poisoned)
+			if (currEnemy.poisoned)
 			{
-				isDead = enemies[i].takeDamage(enemies[i].poisonDamage, -1);
+				enemyIsDead = currEnemy.takeDamage(currEnemy.poisonDamage, -1);
+				if (enemyIsDead) { enemyAnimator.CrossFade("Death", 0.1f); }
 				int number = UnityEngine.Random.Range(0, 100);
 				// 20% chance to stop poisoned
 				if (number > 80)
 				{
-					enemies[i].poisoned = false;
+					currEnemy.poisoned = false;
 				}
 			}
 
 			//stops enemy attacking if player is already dead
 
-			if (isDead)
+			if (playerIsDead)
             {
-				players[player_target].downed = true;
+				playerTarget.downed = true;
             }
 
 			if (CheckAllDead())
