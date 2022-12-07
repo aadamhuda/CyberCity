@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 //NOTE: damage and healing must be balanced to provide a challenge while not making it too difficult
 
@@ -61,6 +62,10 @@ public class BattleSystem : MonoBehaviour
 	private Camera[] battleCameras;
 	[SerializeField]
 	private Camera mainCamera;
+	[SerializeField]
+	private Attack play_attack;
+	private Dictionary<string, Dictionary<string, string>> checklist = new Dictionary<string, Dictionary<string, string>>();
+
 
 	// Start is called before the first frame update
 	void Start()
@@ -155,13 +160,9 @@ public class BattleSystem : MonoBehaviour
 			allPlayers[i].unitName = playerNames[i];
 			allPlayers[i].setHealth(savedata.team_health[i]);
 			if (allPlayers[i].currentHP == 0)
-            {
 				allPlayers[i].downed = true;
-			}
-            else
-            {
+			else
 				allPlayers[i].downed = false;
-			}
 		}
 		return allPlayers;
 	}
@@ -169,29 +170,14 @@ public class BattleSystem : MonoBehaviour
     //initialises battle - spawns player and enemies, selects first target and then starts player turn
     IEnumerator InitialiseBattle()
     {
+		float norm = 1f;
+
+		string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
+
 		players = InstantiatePlayers();
 		BattleInventory invMenu = GameObject.FindGameObjectsWithTag("InventoryButton")[0].GetComponent<BattleInventory>();
 		invMenu.Init(players, playerNames);
 		// player moves
-		players[0].playerAttacks.Add("normal", new int[] { 0, 35 }); // type, damage
-		players[0].playerAttacks.Add("curse", new int[] { -1 }); // no type
-		players[0].playerAttacks.Add("shoot", new int[] { 0, 25, 15 }); // type, damage, side damage
-		players[0].selectedMove = "normal";
-
-		players[1].playerAttacks.Add("normal", new int[] { 0, 35 }); 
-		players[1].playerAttacks.Add("burn", new int[] { 1, 12, 5 }); 
-		players[1].playerAttacks.Add("fire", new int[] { 1, 15, 0 }); 
-		players[1].selectedMove = "normal";
-
-		players[2].playerAttacks.Add("normal", new int[] { 0, 35 }); 
-		players[2].playerAttacks.Add("grass", new int[] { 2, 30, 0 }); 
-		players[2].playerAttacks.Add("poison", new int[] { -1, 40 }); 
-		players[2].selectedMove = "normal";
-
-		players[3].playerAttacks.Add("normal", new int[] { 0, 35 }); 
-		players[3].playerAttacks.Add("water", new int[] { 3, 40, 0 }); 
-		players[3].playerAttacks.Add("freeze", new int[] { -1 }); 
-		players[3].selectedMove = "normal";
 
 		currPlayer = players[tracker];
 
@@ -202,7 +188,9 @@ public class BattleSystem : MonoBehaviour
 			GameObject enemyObj = Instantiate(enemyPrefab, enemyLocations[i]);
             enemies[i] = enemyObj.GetComponent<Enemy>();
 			enemies[i].unitName = "enemy " + (i + 1);
+			enemies[i].set_ID(i);
         }
+
 
 		ChangeTarget(0);
 
@@ -215,8 +203,75 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
-	//applies damage to enemies and checks if they have won
-	IEnumerator PlayerAttack(string attackType)
+	//------------------------------------------------------------------- Ibraheem Work --------------------------------------------
+
+/*	private IEnumerator unit_attack(BattleUnit attacker, BattleUnit defender, Animator anim, string attackType)
+	{
+		Vector3 attackerPos = attacker.transform.position;
+		Vector3 defenderPos = defender.transform.position;
+
+		// Animator for player
+
+		// Player is attacking
+
+
+		// Rotating player until facing enemy
+		yield return StartCoroutine(RotateUnit(attacker, 0.2f, defenderPos));
+
+
+
+		if (attackType == "fire")
+		{
+
+			// Animation
+			anim.CrossFade("Burn", 0.1f);
+			yield return new WaitForSeconds(1.3f);
+
+			defender.takeDamage(attacker.GetATK()[attackType], attackType);
+		}
+		else if (attackType == "poison")
+		{
+			defender.takeDamage(attacker.GetATK()[attackType], attackType);
+		}
+		else if (attackType == "curse")
+		{
+			defender.set_cursed();
+		}
+		else if (attackType == "ice")
+		{
+			// Animation
+			anim.CrossFade("Freeze", 0.1f);
+			yield return new WaitForSeconds(1.3f);
+
+			defender.frozen = true;
+		}
+		else if (attackType == "shoot")
+		{
+			for (int i = 0; i < enemies.Length; i++)
+			{
+				defender.takeDamage(attacker.GetATK()[attackType], attackType);
+			}
+		}
+		else
+		{
+			// Moving player until next to enemy
+			yield return StartCoroutine(MoveUnit(attacker, true, 0, 2f, defenderPos));
+
+			// Attack animation
+			anim.CrossFade("Melee", 0.1f);
+			yield return new WaitForSeconds(1.3f);
+
+			defender.takeDamage(attacker.GetATK()[attackType], attackType);
+
+			// Moving player back to original position
+			yield return StartCoroutine(MoveUnit(attacker, false, 0, 0.1f, attackerPos));
+		}*/
+
+
+
+
+		//-------------------------------------------Player Attack-------------------------------------------------------
+		IEnumerator PlayerAttack(string attackType)
 	{
         if (players[tracker].downed)
         {
@@ -226,10 +281,12 @@ public class BattleSystem : MonoBehaviour
 		DestroyAbilities();
 
 		Player playerScript = players[tracker].GetComponent<Player>();
-		bool isDead = false;
-		//Debug.Log(currentAttack);
+		bool isDead;
+		Debug.Log(attackType);
+		string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
 
-	
+
+
 		// Coords of player start and enemy start positions
 		Vector3 playerPos = currPlayer.transform.position;
 		Vector3 enemyPos = enemies[target].transform.position;
@@ -242,41 +299,56 @@ public class BattleSystem : MonoBehaviour
 
 		// Rotating player until facing enemy
 		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
-	
-		if (attackType == "burn")
+
+		players[tracker].RemoveAilments();
+
+		
+		if (players[target].get_frozen())
+        {
+			int number = UnityEngine.Random.Range(0, 100);
+			// 34% chance to unfreeze 
+			if (number > 66)
+				players[tracker].set_frozen();
+		}
+		if (attackType == "fire")
 		{
 
 			// Animation
 			animator.CrossFade("Burn", 0.1f);
 			yield return new WaitForSeconds(1.3f);
 
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
-			enemies[target].burned = true;
-			enemies[target].burnDamage = ((float)(playerScript.playerAttacks["burn"])[2] / 100);
+			enemies[target].takeDamage( players[tracker].GetATK()[attackType] , attackType );
+
+			int number = UnityEngine.Random.Range(0, 100);
+			if (number < 26)
+				enemies[target].set_burned();
 		}
 		else if (attackType == "poison")
 		{
-			enemies[target].poisoned = true;
-			enemies[target].poisonDamage = ((float)(playerScript.playerAttacks["poison"])[1] / 100);
+			enemies[target].takeDamage(players[tracker].GetATK()[attackType] , attackType);
+
+			int number = UnityEngine.Random.Range(0, 100);
+			if (number < 26)
+				enemies[target].set_poisoned();
 		}
 		else if (attackType == "curse")
         {
-			enemies[target].cursed = true;
+			enemies[target].set_cursed();
         }
-		else if (attackType == "freeze")
+		else if (attackType == "ice")
 		{
 			// Animation
 			animator.CrossFade("Freeze", 0.1f);
 			yield return new WaitForSeconds(1.3f);
 
-			enemies[target].frozen = true;
-		}
-		else if (attackType == "shoot")
+			enemies[target].set_frozen();
+        }
+        else if (attackType == "shoot")
         {
 			for (int i = 0; i<enemies.Length; i++)
             {
-				var isThisDead = enemies[i].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
-				if (isThisDead)
+				enemies[i].takeDamage(players[tracker].GetATK()[attackType], attackType);
+				if (enemies[i].CheckIfDead())
                 {
 					enemies = RemoveEnemies(i);
 					enemiesHUD = RemoveHUDs(i, enemiesHUD);
@@ -292,12 +364,13 @@ public class BattleSystem : MonoBehaviour
 			animator.CrossFade("Melee", 0.1f);
 			yield return new WaitForSeconds(1.3f);
 
-			isDead = enemies[target].takeDamage(((playerScript.playerAttacks[attackType])[1]), ((playerScript.playerAttacks[attackType])[0]));
+			enemies[target].takeDamage(players[tracker].GetATK()[attackType], attackType);
 
 			// Moving player back to original position
 			yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
 		}
 
+		isDead = enemies[target].CheckIfDead();
 		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
 		yield return new WaitForSeconds(2f);
 
@@ -345,12 +418,13 @@ public class BattleSystem : MonoBehaviour
 	//-------------------------------------------ENEMY-------------------------------------------------------
 	IEnumerator EnemyTurn()
 	{
-		bool isDead = false;
+		bool isDead;
 
 		for (int i = 0; i < enemies.Length; i++)
 		{
 
 			int player_target = Random.Range(0, players.Length);
+
 
 			while (players[player_target].downed)
             {
@@ -374,18 +448,29 @@ public class BattleSystem : MonoBehaviour
 			// Rotating enemy until facing player
 			yield return StartCoroutine(RotateEnemy(currEnemy, 0.2f, playerPos));
 
-			if (enemies[i].frozen)
+			if (enemies[i].get_frozen())
             {
 				// skip turn
 				int number = UnityEngine.Random.Range(0, 100);
 				// 34% chance to unfreeze 
 				if (number > 66)
-				{
-					enemies[i].frozen = false;
-				}
+					enemies[i].set_frozen();
 			}
             else
             {
+				var randomKey = enemies[i].GetATK().Keys.ElementAt((int)Random.Range(0, enemies[i].GetATK().Keys.Count - 1));
+
+
+				if (randomKey == "shoot")
+                {
+					for (int interate = 0; i < enemies.Length; i++)
+					{
+						players[interate].takeDamage(enemies[i].GetATK()[randomKey], randomKey);
+						if (players[interate].CheckIfDead())
+							players[i].downed = true;
+					}
+				}
+
 				// Moving enemy until next to player
 				yield return StartCoroutine(MoveEnemy(currEnemy, true, 0, 2f, playerPos));
 
@@ -395,17 +480,32 @@ public class BattleSystem : MonoBehaviour
 
 				//adds 15% damage if enemy hits player first
 				if (savedata.EnemyDouble == true)
-					isDead = players[player_target].takeDamage((float)(enemies[i].damage * 1.15), 1); // change 1 to enemy's move type
+					players[player_target].takeDamage( enemies[i].GetATK()[randomKey] * 1.15f, randomKey); // change 1 to enemy's move type
 				else //regular damage
-				{
-					isDead = players[player_target].takeDamage(enemies[i].damage, 1);
-				}
+					players[player_target].takeDamage(enemies[i].GetATK()[randomKey] , randomKey);
 				// Moving enemy back to original position
 				yield return StartCoroutine(MoveEnemy(currEnemy, false, 0, 0.1f, enemyPos));
+
+				if (randomKey == "curse")
+					players[player_target].set_cursed();
+				if (randomKey == "ice")
+					players[player_target].set_frozen();
+				if (randomKey == "fire")
+                {
+					int number = UnityEngine.Random.Range(0, 100);
+					if (number < 26)
+						players[player_target].set_burned();
+				}
+				if (randomKey == "grass")
+				{
+					int number = UnityEngine.Random.Range(0, 100);
+					if (number < 26)
+						players[player_target].set_poisoned();
+				}
 			}
 
 			//deal burn damage
-			if (enemies[i].burned)
+/*			if (enemies[i].burned)
             {
 				float damage = (float)enemies[i].maxHP * enemies[i].burnDamage * enemies[i].burnMultiplier;
 				isDead = enemies[i].takeDamage(damage, 1);
@@ -427,8 +527,10 @@ public class BattleSystem : MonoBehaviour
 				{
 					enemies[i].poisoned = false;
 				}
-			}
+			}*/
 
+
+			isDead = players[player_target].CheckIfDead();
 			//stops enemy attacking if player is already dead
 
 			if (isDead)
@@ -510,7 +612,7 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = "You WIN the battle!";
 			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
-			savedata.SavePlayerHealth(new float[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
+			savedata.SavePlayerHealth(new int[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
 			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 		}

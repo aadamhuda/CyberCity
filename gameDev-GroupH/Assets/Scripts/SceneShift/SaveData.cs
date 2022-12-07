@@ -12,7 +12,7 @@ public class SaveData : ScriptableObject
     public string enem;
     public int ClueCount;
     public bool inBattle;
-    public float[] team_health = new float[4];
+    public int[] team_health = new int[4];
     private int difficulty = 2;
 
     [SerializeField]
@@ -63,7 +63,7 @@ public class SaveData : ScriptableObject
             Debug.Log("Fail");
     }
 
-    public void SavePlayerHealth(float [] arr)
+    public void SavePlayerHealth(int [] arr)
     {
         for (int i = 0; i < arr.Length; i++)
             team_health[i] = arr[i];

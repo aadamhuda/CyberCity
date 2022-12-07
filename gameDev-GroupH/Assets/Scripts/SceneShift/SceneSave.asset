@@ -23,8 +23,8 @@ MonoBehaviour:
   inBattle: 1
   team_health:
   - 1
-  - 2
-  - 4
-  - 7
+  - 1
+  - 1
+  - 1
   respawn_location: {x: 17.1985, y: 1.0099999, z: -97.64579}
   respawn: 0

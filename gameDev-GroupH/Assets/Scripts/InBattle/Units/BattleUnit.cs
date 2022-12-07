@@ -8,60 +8,81 @@ using System;
 public class BattleUnit : MonoBehaviour
 {
 
-    public float currentHP;
-    public float maxHP;
-    public float damage;
+    public int currentHP;
+    public int maxHP;
+    [SerializeField]
+    private int damage;
     public string unitName;
     public Boolean burned;
-    public float burnDamage;
     public Boolean poisoned;
-    public float poisonDamage;
-    public Boolean cursed;
-    public float burnMultiplier; // percentage multiplier
-    public Boolean frozen;
+    [SerializeField]
+    private Boolean cursed;
+    private Boolean frozen;
     public int type = 0; // 0 is normal (default), 1 is fire, 2 is grass, 3 is water, -1 is no type
-    public Dictionary<int, int[]> strengths = new Dictionary<int, int[]>();
-    public Dictionary<int, int[]> weaknesses = new Dictionary<int, int[]>();
 
-    // Start is called before the first frame update
-    public void Start()
+
+    private string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
+    private Dictionary<string, float> unit_attributes = new Dictionary<string, float>();
+    private Dictionary<string, int> unit_attacks = new Dictionary<string, int>();
+
+    public Dictionary<string, float> GetATB () { return unit_attributes;  }
+
+    public Dictionary<string, int> GetATK () { return unit_attacks;  }
+
+    public string [] GetAllATB() { return all_attributes; }
+
+    public int get_dmg() { return damage; }
+
+    public bool get_cursed() { return cursed; }
+
+    public bool get_frozen() { return frozen; }
+
+    public bool get_burned() { return burned; }
+
+    public bool get_poisoned() { return poisoned; }
+
+
+    public void set_cursed() { cursed = !cursed; }
+
+    public void set_frozen() { frozen = !frozen; }
+
+    public void set_burned() { burned = !burned; }
+
+    public void set_poisoned() { poisoned = !poisoned; }
+
+
+    public void define_attributes<T>(T [] symbiosis, string [] attribute, Dictionary<string, T> arr)
     {
-        burnMultiplier = 1; // change to weakness
-        strengths.Add(0, new int[] { -1 }); // list that it is strong against, list that it is weak against
-        strengths.Add(1, new int[] { 2 }); // fire
-        strengths.Add(2, new int[] { 3 }); // grass
-        strengths.Add(3, new int[] { 1 }); // water
-        weaknesses.Add(0, new int[] { -1 }); // list that it is strong against, list that it is weak against
-        weaknesses.Add(1, new int[] { 3 }); // fire
-        weaknesses.Add(2, new int[] { 1 }); // grass
-        weaknesses.Add(3, new int[] { 2 }); // water
+
+        for (int i = 0; i < symbiosis.Length; i++)
+            arr.Add(attribute[i], symbiosis[i]);
     }
 
-    // override
 
-
-    public bool takeDamage(float dmg, int damageType)
+    public void takeDamage(float dmg, string damageType)
     {
-        float typeMultiplier = getMultiplier(damageType);
+        float multiplier = unit_attributes[damageType];
 
         if (cursed)
-        {
-            currentHP -= (int)((float)Math.Round(dmg) * typeMultiplier * 1.1f);
+            multiplier += 0.15f;
 
-        }
-        else
-        {
-            currentHP -= (int)((float)Math.Round(dmg) * typeMultiplier);
+        if (burned)
+            dmg += 10f;
 
-        }
+        if (poisoned)
+            dmg += 10f;
 
-        if (currentHP <= 0)
-        {
+        currentHP -= Mathf.RoundToInt(dmg * multiplier);
+
+        if (currentHP < 0)
             currentHP = 0;
+    }
+
+    public bool CheckIfDead()
+    {
+        if (currentHP == 0)
             return true;
-        }
-        else
-            return false;
+        return false;
     }
 
     public void usePotion(int amnt)
@@ -79,40 +100,19 @@ public class BattleUnit : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    float getMultiplier(int dmgType)
+    public void RemoveAilments()
     {
+        if (burned)
+            if (get_rand_number() < 26)
+                set_burned();
 
-        int[] weakTo = strengths[type];
-        int[] strongTo = weaknesses[type];
-
-        // If weak to
-        if (weakTo[0] != -1)
-        {
-            foreach (int x in weakTo)
-            {
-                if (weakTo[x] == dmgType)
-                {
-                    return 1.5f;
-                }
-            }
-        }
-        if (strongTo[0] != -1)
-        {
-            // If strong against
-            foreach (int x in strongTo)
-            {
-                if (strongTo[x] == dmgType)
-                {
-                    return 0.5f;
-                }
-            }
-        }
-        
-
-
-        // If no type advantage, return 1
-        return 1;
-
+        if (poisoned)
+            if (get_rand_number() < 26)
+                set_poisoned();
     }
 
+    private int get_rand_number ()
+    {
+        return UnityEngine.Random.Range(0, 100);
+    }
 }
