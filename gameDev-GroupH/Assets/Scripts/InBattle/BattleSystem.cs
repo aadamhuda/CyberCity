@@ -75,6 +75,8 @@ public class BattleSystem : MonoBehaviour
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
 
+		itemMenu.GetComponent<InventoryMenu>().AddTestItems();
+
 		//starts battle
 		state = BattleState.START;
         StartCoroutine(InitialiseBattle());
@@ -339,6 +341,22 @@ public class BattleSystem : MonoBehaviour
 		yield return new WaitForSeconds(2f);
 		ChangePartyTurn(1);
 	}
+
+	public void UseItem()
+	{
+		StartCoroutine(ItemWait());
+		ChangePartyTurn(1);
+	}
+
+	IEnumerator ItemWait()
+    {
+		itemMenu.SetActive(false);
+		state = BattleState.PLAYERWAIT;
+		yield return new WaitForSeconds(2f);
+	}
+
+
+
 
 	//-------------------------------------------ENEMY-------------------------------------------------------
 	IEnumerator EnemyTurn()

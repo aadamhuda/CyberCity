@@ -6,6 +6,8 @@ using TMPro;
 
 public class InventoryMenu : MonoBehaviour
 {
+	public Button cancelButton;
+	public GameObject battleSystem;
 	public GameObject inventoryMenu;
 	private List<Button> items = new List<Button>();
 	
@@ -13,7 +15,7 @@ public class InventoryMenu : MonoBehaviour
 	
 	public Player[] players;
 	public string[] playerNames;
-	private List<Button> playerButtons = new List<Button>();
+	public List<Button> playerButtons = new List<Button>();
 	
 	public GameObject itemPrefab;
 	public GameObject playerButtonPrefab;
@@ -22,24 +24,17 @@ public class InventoryMenu : MonoBehaviour
 	public RectTransform playerTitlePos;
 
 	public Dictionary<string, int> inventory = new Dictionary<string, int>(); // Item, Quantity	
-	
-    // Start is called before the first frame update
+
     public void LoadMenu(Player[] players, string[] playerNames)
     {
 		this.players = players;
 		this.playerNames = playerNames;
-		
-		// Test inventory
-		addItem("smallPotion");
-		addItem("smallPotion");
-		addItem("smallPotion");
-		
-		addItem("maxPotion");
-		
-		addItem("revive");
-		addItem("revive");
-		addItem("maxRevive");
-		
+
+		items.Clear();
+		playerButtons.Clear();
+
+		cancelButton.interactable = false;
+
 		// Draw inv
 		fillPlayers();
 		fillInv();
@@ -49,18 +44,21 @@ public class InventoryMenu : MonoBehaviour
 		// Create player buttons
 		int i = 0;
 		foreach (Player player in players) {
-			GameObject newPlayer = GameObject.Instantiate(playerButtonPrefab, new Vector3(playerTitlePos.position.x, playerTitlePos.position.y + (i * -70), playerTitlePos.position.z), playerTitlePos.rotation, playerTitlePos);
+
+			GameObject newPlayer = GameObject.Instantiate(playerButtonPrefab, new Vector3(playerTitlePos.position.x, playerTitlePos.position.y + ((i+1) * -70), playerTitlePos.position.z), playerTitlePos.rotation, playerTitlePos);
 
 			TextMeshProUGUI playerName = newPlayer.GetComponentInChildren<TextMeshProUGUI>(true);
 
 			// Set text
 			playerName.text = playerNames[i];
-			
+
+			newPlayer.GetComponent<InvPlayer>().menu = this;
+
 			playerButtons.Add(newPlayer.GetComponent<Button>());
 			i++;
 		}
 
-		disableButtons();
+		disableButtons(playerButtons);
 		
 	}
 	
@@ -77,45 +75,56 @@ public class InventoryMenu : MonoBehaviour
 			textFields[0].text = entry.Key;
 			
 			// Set count
-			textFields[1].text = "x" + entry.Value.ToString();
-			
+			textFields[1].text = entry.Value.ToString();
+
+			newItem.GetComponent<InvItem>().menu = this;
+
 			// Store button
 			items.Add(newItem.GetComponent<Button>());
 			
 		}
 	}
 	
-	public void toggleInvButtons(bool val) {
-		// Transparencies
-		float itemTransparency;
-		float playerTransparency;
-		
-		if (val) {
-			itemTransparency = 1f;
-			playerTransparency = 0.2f;
-		} else {
-			itemTransparency = 0.2f;
-			playerTransparency = 1f;
-		}
-		
-		// Toggle Inv
-		for (int i=0; i < items.Count; i++) {
-			items[i].enabled = val;
-			items[i].targetGraphic.CrossFadeAlpha(itemTransparency, 0, false);
-		}
-		
-		// Toggle Players
-		for (int i=0; i < playerButtons.Count; i++) {
-			playerButtons[i].enabled = (!val);
-			playerButtons[i].targetGraphic.CrossFadeAlpha(playerTransparency, 0, false);
-		}
-	}
 	
-	// Select a player
-	public void PlayerSelect(string itemName) {
+	// Select item
+	public void ItemSelect(string itemName) {
 		currentItem = itemName;
-		//Debug.Log("Selected item: "+ itemName);
-	
+
+		disableButtons(items);
+		enableButtons(playerButtons);
+		cancelButton.interactable = true;
+
+		switch (currentItem)
+		{
+			case "smallPotion":
+				DownedButtonFilter(playerButtons, false);
+				break;
+			case "maxPotion":
+				DownedButtonFilter(playerButtons, false);
+				break;
+			case "revive":
+				DownedButtonFilter(playerButtons, true);
+				break;
+			case "maxRevive":
+				DownedButtonFilter(playerButtons, true);
+				break;
+			default:
+				break;
+		}
+
+
+	}
+
+	public void PlayerSelect(string playerName)
+	{
+		for (int i = 0; i< players.Length; i++)
+        {
+			if(players[i].unitName == playerName)
+            {
+				UseItemOnPlayer(players[i]);
+            }
+        }
+
 	}
 
 	// Use item on player
@@ -143,7 +152,9 @@ public class InventoryMenu : MonoBehaviour
 				break;
 		}
 
-		this.inventoryMenu.SetActive(false);
+		DestroyMenuButtons(items);
+		DestroyMenuButtons(playerButtons);
+		battleSystem.GetComponent<BattleSystem>().UseItem();
 
 	}
 
@@ -178,25 +189,80 @@ public class InventoryMenu : MonoBehaviour
 		}
 	}
 
-	 void enableButtons()
-    {
-		for (int i = 0; i < playerButtons.Count; i++)
+	void DownedButtonFilter(List<Button> buttons, bool active)
+	{
+		for (int i = 0; i < buttons.Count; i++)
 		{
-			playerButtons[i].interactable = false;
+			if(players[i].downed)
+            {
+				buttons[i].interactable = active;
+			}
+            else
+            {
+				buttons[i].interactable = !active;
+			}
+		}
+	}
+
+
+
+
+	void enableButtons(List<Button> buttons)
+    {
+		for (int i = 0; i < buttons.Count; i++)
+		{
+			buttons[i].interactable = true;
 		}
     }
 
-	void disableButtons()
+	void disableButtons(List<Button> buttons)
 	{
-		for (int i = 0; i < playerButtons.Count; i++)
+		for (int i = 0; i < buttons.Count; i++)
 		{
-			playerButtons[i].interactable = false;
+			buttons[i].interactable = false;
 		}
 
+	}
+
+    void DestroyMenuButtons(List<Button> buttons)
+    {
+		enableButtons(buttons);
+		enableButtons(playerButtons);
+		for (int i = 0; i < buttons.Count; i++)
+		{
+			Destroy(buttons[i].gameObject);
+		}
+
+		buttons.Clear();
 	}
 
     public void OnBackButton()
     {
 		this.inventoryMenu.SetActive(false);
 	}
+	public void OnCancelButton()
+	{
+		currentItem = "";
+
+		disableButtons(playerButtons);
+		enableButtons(items);
+
+		cancelButton.interactable = false;
+	}
+
+	public void AddTestItems()
+    {
+		// Test inventory
+		addItem("smallPotion");
+		addItem("smallPotion");
+		addItem("smallPotion");
+
+		addItem("maxPotion");
+
+		addItem("revive");
+		addItem("revive");
+		addItem("maxRevive");
+	}
+
+
 }
