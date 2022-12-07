@@ -227,7 +227,6 @@ public class InventoryMenu : MonoBehaviour
     void DestroyMenuButtons(List<Button> buttons)
     {
 		enableButtons(buttons);
-		enableButtons(playerButtons);
 		for (int i = 0; i < buttons.Count; i++)
 		{
 			Destroy(buttons[i].gameObject);
@@ -238,6 +237,8 @@ public class InventoryMenu : MonoBehaviour
 
     public void OnBackButton()
     {
+		DestroyMenuButtons(items);
+		DestroyMenuButtons(playerButtons);
 		this.inventoryMenu.SetActive(false);
 	}
 	public void OnCancelButton()
