@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 0dbe160501fc0f94fb944eb88b2dd011
+guid: b8ae761a769247a4dbf46dbfb1f24276
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Freeze
+    second: Kneel
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Freeze
+      name: Kneel
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 69
+      lastFrame: 83
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
