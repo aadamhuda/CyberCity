@@ -271,10 +271,16 @@ public class BattleSystem : MonoBehaviour
 		}*/
 
 
+		
+	private void DeathAnimation (BattleUnit Target, Animator anim)
+    {
+		if (Target.CheckIfDead()) 
+			anim.CrossFade("Death", 0.1f);
+	}
 
 
-		//-------------------------------------------Player Attack-------------------------------------------------------
-		IEnumerator PlayerAttack(string attackType)
+	//-------------------------------------------Player Attack-------------------------------------------------------
+	IEnumerator PlayerAttack(string attackType)
 	{
         if (players[tracker].downed)
         {
@@ -284,18 +290,22 @@ public class BattleSystem : MonoBehaviour
 		DestroyAbilities();
 
 		Player playerScript = players[tracker].GetComponent<Player>();
-		bool isDead;
+		bool isDead = false;
 		Debug.Log(attackType);
 		string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
 
-
+		Enemy enemyTarget = enemies[target];
 
 		// Coords of player start and enemy start positions
 		Vector3 playerPos = currPlayer.transform.position;
-		Vector3 enemyPos = enemies[target].transform.position;
+		Vector3 enemyPos = enemyTarget.transform.position;
+
+		
 
 		// Animator for player
-		var animator = currPlayer.GetComponent<Animator>();
+		var playerAnimator = currPlayer.GetComponent<Animator>();
+		var enemyAnimator = enemyTarget.GetComponent<Animator>();
+
 
 		// Player is attacking
 		state = BattleState.PLAYERWAIT;
@@ -313,68 +323,106 @@ public class BattleSystem : MonoBehaviour
 			if (number > 66)
 				players[tracker].set_frozen();
 		}
-		if (attackType == "fire")
-		{
-
-			// Animation
-			animator.CrossFade("Burn", 0.1f);
-			yield return new WaitForSeconds(1.3f);
-
-			enemies[target].takeDamage( players[tracker].GetATK()[attackType] , attackType );
-
-			int number = UnityEngine.Random.Range(0, 100);
-			if (number < 26)
-				enemies[target].set_burned();
-		}
-		else if (attackType == "poison")
-		{
-			enemies[target].takeDamage(players[tracker].GetATK()[attackType] , attackType);
-
-			int number = UnityEngine.Random.Range(0, 100);
-			if (number < 26)
-				enemies[target].set_poisoned();
-		}
-		else if (attackType == "curse")
+		else
         {
-			enemies[target].set_cursed();
-        }
-		else if (attackType == "ice")
-		{
-			// Animation
-			animator.CrossFade("Freeze", 0.1f);
-			yield return new WaitForSeconds(1.3f);
+			if (attackType == "fire")
+			{
 
-			enemies[target].set_frozen();
-        }
-        else if (attackType == "shoot")
-        {
-			for (int i = 0; i<enemies.Length; i++)
+				// Animation
+				playerAnimator.CrossFade("Magic", 0.1f);
+				yield return new WaitForSeconds(0.8f);
+
+				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
+				DeathAnimation(enemyTarget, enemyAnimator);
+
+				int number = UnityEngine.Random.Range(0, 100);
+				if (number < 26)
+					enemyTarget.set_burned();
+
+			}
+			else if (attackType == "curse")
+			{
+				playerAnimator.CrossFade("Magic", 0.1f);
+				yield return new WaitForSeconds(0.8f);
+
+				enemyTarget.set_cursed();
+			}
+			else if (attackType == "ice")
+			{
+				// Animation
+				playerAnimator.CrossFade("Magic", 0.1f);
+				yield return new WaitForSeconds(0.8f);
+
+				enemyTarget.set_frozen();
+			}
+			else if (attackType == "grass")
             {
-				enemies[i].takeDamage(players[tracker].GetATK()[attackType], attackType);
-				if (enemies[i].CheckIfDead())
-                {
-					enemies = RemoveEnemies(i);
-					enemiesHUD = RemoveHUDs(i, enemiesHUD);
+				playerAnimator.CrossFade("Magic", 0.1f);
+				yield return new WaitForSeconds(0.8f);
+
+				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
+				DeathAnimation(enemyTarget, enemyAnimator);
+
+
+				int number = UnityEngine.Random.Range(0, 100);
+				if (number < 26)
+					enemyTarget.set_poisoned();
+				
+			}
+			else if (attackType == "water")
+			{
+				playerAnimator.CrossFade("Magic", 0.1f);
+				yield return new WaitForSeconds(0.8f);
+
+				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
+				DeathAnimation(enemyTarget, enemyAnimator);
+			}
+			else if (attackType == "shoot")
+			{
+				// Equip Bow
+				playerAnimator.CrossFade("EquipBow", 0.1f);
+				yield return new WaitForSeconds(0.3f);
+
+				for (int i = 0; i < enemies.Length; i++)
+				{
+
+					yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[i].transform.position));
+					playerAnimator.CrossFade("DrawArrow", 0.1f);
+					yield return new WaitForSeconds(0.5f);
+
+					enemies[i].takeDamage(players[tracker].GetATK()[attackType], attackType);
+					if (enemies[i].CheckIfDead())
+					{
+						DeathAnimation(enemies[i], enemies[i].GetComponent<Animator>());
+						enemies = RemoveEnemies(i);
+						enemiesHUD = RemoveHUDs(i, enemiesHUD);
+					}
 				}
-            }
-        }
-        else 
-        {
-			// Moving player until next to enemy
-			yield return StartCoroutine(MovePlayer(currPlayer, true, 0, 2f, enemyPos));
+				// 
+				playerAnimator.CrossFade("DisarmBow", 0.3f);
 
-			// Attack animation
-			animator.CrossFade("Melee", 0.1f);
-			yield return new WaitForSeconds(1.3f);
+			}
+			else
+			{
+				// Moving player until next to enemy
+				yield return StartCoroutine(MovePlayer(currPlayer, true, 0, 2f, enemyPos));
 
-			enemies[target].takeDamage(players[tracker].GetATK()[attackType], attackType);
+				// Attack animation
+				playerAnimator.CrossFade("Melee", 0.1f);
+				yield return new WaitForSeconds(0.5f);
 
-			// Moving player back to original position
-			yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
+				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
+
+				DeathAnimation(enemyTarget, enemyAnimator);
+
+				// Moving player back to original position
+				yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
+			}
 		}
+		                      
 
-		isDead = enemies[target].CheckIfDead();
-		dialogue.text = currPlayer.unitName + " attacked " + enemies[target].unitName;
+		isDead = enemyTarget.CheckIfDead();
+		dialogue.text = currPlayer.unitName + " attacked " + enemyTarget.unitName;
 		yield return new WaitForSeconds(2f);
 
 		if (isDead)
@@ -410,12 +458,22 @@ public class BattleSystem : MonoBehaviour
 
 		int amount = Random.Range(60, 100);
 		currPlayer.heal(amount);
+		currPlayer.GetComponent<Animator>().CrossFade("Heal", 0.1f);
 
 		dialogue.text = "You healed by " + amount + " hp!";
 
 		state = BattleState.PLAYERWAIT;
 		yield return new WaitForSeconds(2f);
 		ChangePartyTurn(1);
+	}
+
+	//---------------------------------------- Enemy Death ---------------------------------------------------
+
+	private IEnumerator PlayerDeathAnimation(BattleUnit target, Animator anim)
+    {
+		if (target.CheckIfDead())
+			anim.CrossFade("Kneel", 0.1f);
+		yield return new WaitForSeconds(0.4f);
 	}
 
 	//-------------------------------------------ENEMY-------------------------------------------------------
@@ -433,17 +491,28 @@ public class BattleSystem : MonoBehaviour
             {
 				player_target = Random.Range(0, players.Length);
 			}
-			
 
-			// Current enemy
+			float multi = 1f;
+			if (savedata.EnemyDouble)
+				multi += 0.15f;
+
+			// Current enemy & Player
 			Enemy currEnemy = enemies[i];
+			Player playerTarget = players[player_target];
+
 
 			// Coords of player start and enemy start positions
-			Vector3 playerPos = players[player_target].transform.position;
+			Vector3 playerPos = playerTarget.transform.position;
 			Vector3 enemyPos = currEnemy.transform.position;
 
-			// Animator for current enemy
-			var animator = currEnemy.GetComponent<Animator>();
+		
+
+			// Animator for player
+			var playerAnimator = playerTarget.GetComponent<Animator>();
+			var enemyAnimator = currEnemy.GetComponent<Animator>();
+
+
+			currEnemy.RemoveAilments();
 
 			dialogue.text = enemies[i].unitName + " attacks!";
 			yield return new WaitForSeconds(1f);
@@ -463,82 +532,85 @@ public class BattleSystem : MonoBehaviour
             {
 				var randomKey = enemies[i].GetATK().Keys.ElementAt((int)Random.Range(0, enemies[i].GetATK().Keys.Count - 1));
 
-
-				if (randomKey == "shoot")
-                {
-					for (int interate = 0; i < enemies.Length; i++)
-					{
-						players[interate].takeDamage(enemies[i].GetATK()[randomKey], randomKey);
-						if (players[interate].CheckIfDead())
-							players[i].downed = true;
-					}
-				}
-
-				// Moving enemy until next to player
-				yield return StartCoroutine(MoveEnemy(currEnemy, true, 0, 2f, playerPos));
-
-				// Animation
-				animator.CrossFade("Melee", 0.1f);
-				yield return new WaitForSeconds(1.3f);
-
-				//adds 15% damage if enemy hits player first
-				if (savedata.EnemyDouble == true)
-					players[player_target].takeDamage( enemies[i].GetATK()[randomKey] * 1.15f, randomKey); // change 1 to enemy's move type
-				else //regular damage
-					players[player_target].takeDamage(enemies[i].GetATK()[randomKey] , randomKey);
-				// Moving enemy back to original position
-				yield return StartCoroutine(MoveEnemy(currEnemy, false, 0, 0.1f, enemyPos));
-
 				if (randomKey == "curse")
-					players[player_target].set_cursed();
-				if (randomKey == "ice")
-					players[player_target].set_frozen();
-				if (randomKey == "fire")
                 {
+					players[player_target].set_cursed();
+				}
+				else if (randomKey == "ice")
+                {
+					players[player_target].set_frozen();
+
+				}
+				else if (randomKey == "fire")
+                {
+					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey);
+					PlayerDeathAnimation(playerTarget, playerAnimator);
+
 					int number = UnityEngine.Random.Range(0, 100);
 					if (number < 26)
 						players[player_target].set_burned();
 				}
-				if (randomKey == "grass")
+				else if (randomKey == "grass")
 				{
+					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey);
+					PlayerDeathAnimation(playerTarget, playerAnimator);
+
 					int number = UnityEngine.Random.Range(0, 100);
 					if (number < 26)
 						players[player_target].set_poisoned();
 				}
+				else if (randomKey == "shoot")
+				{
+					for (int j = 0; j < enemies.Length; j++)
+					{
+						players[j].takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey);
+						PlayerDeathAnimation(players[j], players[j].GetComponent<Animator>());
+						if (players[j].CheckIfDead())
+							players[j].downed = true;
+					}
+				}
+				else
+                {
+					// Moving enemy until next to player
+					yield return StartCoroutine(MoveEnemy(currEnemy, true, 0, 2f, playerPos));
+
+					// Animation
+					enemyAnimator.CrossFade("Melee", 0.1f);
+					yield return new WaitForSeconds(0.5f);
+
+					//adds 15% damage if enemy hits player first
+					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey); // change 1 to enemy's move type
+					PlayerDeathAnimation(playerTarget, playerAnimator);
+
+
+					// Moving enemy back to original position
+					yield return StartCoroutine(MoveEnemy(currEnemy, false, 0, 0.1f, enemyPos));
+				}
 			}
 
-			//deal burn damage
-/*			if (enemies[i].burned)
+            //deal burn damage
+            if (currEnemy.get_burned())
             {
-				float damage = (float)enemies[i].maxHP * enemies[i].burnDamage * enemies[i].burnMultiplier;
-				isDead = enemies[i].takeDamage(damage, 1);
-				int number = UnityEngine.Random.Range(0, 100);
-				// 20% chance to stop burning 
-				if (number > 80)
-				{
-					enemies[i].burned = false;
-				}
+				currEnemy.takeDamage(10f, "fire");
+
+				DeathAnimation(currEnemy, enemyAnimator);
+            }
+
+            //deal poison damage
+            if (currEnemy.get_poisoned())
+            {
+				currEnemy.takeDamage(10f, "grass");
+
+				DeathAnimation(currEnemy, enemyAnimator);
 			}
 
-			//deal poison damage
-			if (enemies[i].poisoned)
-			{
-				isDead = enemies[i].takeDamage(enemies[i].poisonDamage, -1);
-				int number = UnityEngine.Random.Range(0, 100);
-				// 20% chance to stop poisoned
-				if (number > 80)
-				{
-					enemies[i].poisoned = false;
-				}
-			}*/
 
-
-			isDead = players[player_target].CheckIfDead();
+			isDead = playerTarget.CheckIfDead();
 			//stops enemy attacking if player is already dead
 
 			if (isDead)
             {
-				players[player_target].downed = true;
+				playerTarget.downed = true;
             }
 
 			if (CheckAllDead())

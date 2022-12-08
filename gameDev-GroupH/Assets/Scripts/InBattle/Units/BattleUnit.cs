@@ -66,12 +66,6 @@ public class BattleUnit : MonoBehaviour
         if (cursed)
             multiplier += 0.15f;
 
-        if (burned)
-            dmg += 10f;
-
-        if (poisoned)
-            dmg += 10f;
-
         currentHP -= Mathf.RoundToInt(dmg * multiplier);
 
         if (currentHP < 0)
