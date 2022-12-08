@@ -203,10 +203,12 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(PlayerTurn());
     }
 		
-	private void DeathAnimation(BattleUnit Target, Animator anim)
+	private IEnumerator DeathAnimation(BattleUnit Target, Animator anim)
     {
 		if (Target.CheckIfDead()) 
 			anim.CrossFade("Death", 0.1f);
+
+		yield return new WaitForSeconds(0.4f);
 	}
 
 
@@ -265,7 +267,7 @@ public class BattleSystem : MonoBehaviour
 				yield return new WaitForSeconds(0.8f);
 
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
-				DeathAnimation(enemyTarget, enemyAnimator);
+				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
 
 				int number = UnityEngine.Random.Range(0, 100);
 				if (number < 26)
@@ -294,7 +296,7 @@ public class BattleSystem : MonoBehaviour
 
 
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
-				DeathAnimation(enemyTarget, enemyAnimator);
+				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
 
 
 				int number = UnityEngine.Random.Range(0, 100);
@@ -308,7 +310,7 @@ public class BattleSystem : MonoBehaviour
 				yield return new WaitForSeconds(0.8f);
 
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
-				DeathAnimation(enemyTarget, enemyAnimator);
+				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
 			}
 			else if (attackType == "shoot")
 			{
@@ -326,7 +328,7 @@ public class BattleSystem : MonoBehaviour
 					enemies[i].takeDamage(players[tracker].GetATK()[attackType], attackType);
 					if (enemies[i].CheckIfDead())
 					{
-						DeathAnimation(enemies[i], enemies[i].GetComponent<Animator>());
+						StartCoroutine(DeathAnimation(enemies[i], enemies[i].GetComponent<Animator>()));
 						enemies = RemoveEnemies(i);
 						enemiesHUD = RemoveHUDs(i, enemiesHUD);
 					}
@@ -346,7 +348,7 @@ public class BattleSystem : MonoBehaviour
 
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 
-				DeathAnimation(enemyTarget, enemyAnimator);
+				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
 
 				// Moving player back to original position
 				yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
@@ -563,7 +565,7 @@ public class BattleSystem : MonoBehaviour
             {
 				currEnemy.takeDamage(10f, "fire");
 
-				DeathAnimation(currEnemy, enemyAnimator);
+				StartCoroutine(DeathAnimation(currEnemy, enemyAnimator));
             }
 
             //deal poison damage
@@ -571,7 +573,7 @@ public class BattleSystem : MonoBehaviour
             {
 				currEnemy.takeDamage(10f, "grass");
 
-				DeathAnimation(currEnemy, enemyAnimator);
+				StartCoroutine(DeathAnimation(currEnemy, enemyAnimator));
 			}
 
 
