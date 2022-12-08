@@ -126,11 +126,11 @@ public class BattleSystem : MonoBehaviour
 		{
 			if (Input.GetKeyDown("a"))
 			{
-				ChangeTarget(-1);
+				StartCoroutine(ChangeTarget(-1));
 			}
 			if (Input.GetKeyDown("d"))
 			{
-				ChangeTarget(1);
+				StartCoroutine(ChangeTarget(1));
 			}
 		}
 	}
@@ -192,7 +192,7 @@ public class BattleSystem : MonoBehaviour
         }
 
 
-		ChangeTarget(0);
+		StartCoroutine(ChangeTarget(0));
 
 		InitialiseHUD();
 
@@ -200,7 +200,7 @@ public class BattleSystem : MonoBehaviour
 		state = BattleState.PLAYERTURN;
 		EnableCamera(battleCameras[0]);
 		DisableCamera(mainCamera);
-        PlayerTurn();
+        StartCoroutine(PlayerTurn());
     }
 		
 	private void DeathAnimation(BattleUnit Target, Animator anim)
@@ -237,12 +237,13 @@ public class BattleSystem : MonoBehaviour
 		var playerAnimator = currPlayer.GetComponent<Animator>();
 		var enemyAnimator = enemyTarget.GetComponent<Animator>();
 
+		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
 
 		// Player is attacking
 		state = BattleState.PLAYERWAIT;
 
 		// Rotating player until facing enemy
-		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
+		
 
 		players[tracker].RemoveAilments();
 
@@ -362,7 +363,7 @@ public class BattleSystem : MonoBehaviour
         {
 			enemies = RemoveEnemies(target);
 			enemiesHUD = RemoveHUDs(target, enemiesHUD);
-			ChangeTarget(0); //automatically changes target on enemy death
+			StartCoroutine(ChangeTarget(0)); //automatically changes target on enemy death
         }
 
 		//checks if all enemies are dead - win condition
@@ -381,9 +382,12 @@ public class BattleSystem : MonoBehaviour
 		}
 
 	}
-	void PlayerTurn()
+	IEnumerator PlayerTurn()
 	{
+		Vector3 enemyPos = enemies[target].transform.position;
+
 		dialogue.text = "Choose an action!";
+		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
 	}
 
 	IEnumerator PlayerHeal()
@@ -597,7 +601,7 @@ public class BattleSystem : MonoBehaviour
 		{
 			state = BattleState.PLAYERTURN;
 			ChangePartyTurn(0);
-			PlayerTurn();
+			StartCoroutine(PlayerTurn());
 		}
 	}
 
@@ -638,7 +642,7 @@ public class BattleSystem : MonoBehaviour
 				DisableAllPlayerCameras(tracker);
 				currPlayer = players[tracker];
 				state = BattleState.PLAYERTURN;
-				PlayerTurn();
+				StartCoroutine(PlayerTurn());
 			}
 			else
 			{
@@ -715,10 +719,10 @@ public class BattleSystem : MonoBehaviour
 	}
 
 	//allows player to change targeted enemy
-	public void ChangeTarget(int x)
+	public IEnumerator ChangeTarget(int x)
     {
 		if (enemies.Length == 0)
-			return;
+			yield return new WaitForSeconds(0.1f);
 		if (x == 0)
         {
 			target = 0;
@@ -739,7 +743,7 @@ public class BattleSystem : MonoBehaviour
 				target = enemies.Length - 1;
 			}
 		}
-		StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[target].transform.position));
+		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[target].transform.position));
 	}
 
 
