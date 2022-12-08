@@ -203,7 +203,7 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 		
-	private void DeathAnimation (BattleUnit Target, Animator anim)
+	private void DeathAnimation(BattleUnit Target, Animator anim)
     {
 		if (Target.CheckIfDead()) 
 			anim.CrossFade("Death", 0.1f);
@@ -213,10 +213,10 @@ public class BattleSystem : MonoBehaviour
 	//-------------------------------------------Player Attack-------------------------------------------------------
 	IEnumerator PlayerAttack(string attackType)
 	{
-        if (players[tracker].downed)
-        {
+		if (currPlayer.downed)
+		{
 			ChangePartyTurn(1);
-        }
+		}
 
 		DestroyAbilities();
 
@@ -358,7 +358,7 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = currPlayer.unitName + " attacked " + enemyTarget.unitName;
 		yield return new WaitForSeconds(2f);
 
-		if (enemyIsDead)
+		if (isDead)
         {
 			enemies = RemoveEnemies(target);
 			enemiesHUD = RemoveHUDs(target, enemiesHUD);
@@ -407,6 +407,7 @@ public class BattleSystem : MonoBehaviour
 
 	private IEnumerator PlayerDeathAnimation(BattleUnit target, Animator anim)
     {
+		Debug.Log("downed");
 		if (target.CheckIfDead())
 			anim.CrossFade("Kneel", 0.1f);
 		yield return new WaitForSeconds(0.4f);
@@ -434,7 +435,7 @@ public class BattleSystem : MonoBehaviour
 	IEnumerator EnemyTurn()
 	{
     
-    bool isDead;
+		bool isDead;
 		for (int i = 0; i < enemies.Length; i++)
 		{
 			bool playerIsDead = false;
@@ -506,7 +507,8 @@ public class BattleSystem : MonoBehaviour
 				else if (randomKey == "fire")
                 {
 					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey);
-					PlayerDeathAnimation(playerTarget, playerAnimator);
+					StartCoroutine(PlayerDeathAnimation(playerTarget, playerAnimator));
+					
 
 					int number = UnityEngine.Random.Range(0, 100);
 					if (number < 26)
@@ -516,7 +518,7 @@ public class BattleSystem : MonoBehaviour
 				else if (randomKey == "grass")
 				{
 					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey);
-					PlayerDeathAnimation(playerTarget, playerAnimator);
+					StartCoroutine(PlayerDeathAnimation(playerTarget, playerAnimator));
 
 
 					int number = UnityEngine.Random.Range(0, 100);
@@ -525,10 +527,10 @@ public class BattleSystem : MonoBehaviour
 				}
 				else if (randomKey == "shoot")
 				{
-					for (int j = 0; j < enemies.Length; j++)
+					for (int j = 0; j < players.Length; j++)
 					{
 						players[j].takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey);
-						PlayerDeathAnimation(players[j], players[j].GetComponent<Animator>());
+						StartCoroutine(PlayerDeathAnimation(players[j], players[j].GetComponent<Animator>()));
 						if (players[j].CheckIfDead())
 							players[j].downed = true;
 					}
@@ -545,8 +547,7 @@ public class BattleSystem : MonoBehaviour
 
 					//adds 15% damage if enemy hits player first
 					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey); // change 1 to enemy's move type
-					PlayerDeathAnimation(playerTarget, playerAnimator);
-
+					StartCoroutine(PlayerDeathAnimation(playerTarget, playerAnimator));
 
 					// Moving enemy back to original position
 					yield return StartCoroutine(MoveEnemy(currEnemy, false, 0, 0.1f, enemyPos));
@@ -571,9 +572,10 @@ public class BattleSystem : MonoBehaviour
 
 
 			isDead = playerTarget.CheckIfDead();
+
 			//stops enemy attacking if player is already dead
 
-			if (playerIsDead)
+			if (isDead)
             {
 				playerTarget.downed = true;
             }

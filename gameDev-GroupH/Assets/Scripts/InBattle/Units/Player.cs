@@ -96,6 +96,9 @@ public class Player : BattleUnit
     {
         this.downed = false;
         this.usePotion((int)Math.Round((float)this.maxHP * percentage));
+
+        this.gameObject.GetComponent<Animator>().CrossFade("Idle", 0.2f); ;
+        
     }
 
     public void heal(int amount)

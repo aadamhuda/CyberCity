@@ -48,7 +48,7 @@ public class BattleUnit : MonoBehaviour
 
     public void set_burned() { burned = !burned; }
 
-    public void set_poisoned() { poisoned = !poisoned; }
+    public void set_poisoned() {poisoned = !poisoned;}
 
 
     public void define_attributes<T>(T [] symbiosis, string [] attribute, Dictionary<string, T> arr)

@@ -15,16 +15,12 @@ MonoBehaviour:
   isNextScene: 1
   EnemyDeath: 1
   EnemyDouble: 0
-  x: -65.39178
-  y: 1.0099999
-  z: -42.722004
+  x: -48.234093
+  y: 1.5907346
+  z: -65.64936
   enem: 01
   ClueCount: 0
   inBattle: 1
-  team_health:
-  - 1
-  - 1
-  - 1
-  - 1
+  team_health: 01000000010000000100000001000000
   respawn_location: {x: 17.1985, y: 1.0099999, z: -97.64579}
   respawn: 0
