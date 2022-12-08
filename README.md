@@ -61,7 +61,7 @@ The player may respawn at spawn sometimes after battle [Issue #105](https://gith
 - [Lifelike](https://pixabay.com/music/future-bass-lifelike-126735/)
 - [Dark Ambient](https://pixabay.com/music/ambient-dark-ambient-126122/)
 
-### Previous releases:
+## Previous releases:
 - [Version 1.11.0](https://aadamhuda.github.io/CyberCityBuilds/v1.11.0/index.html)
 - [Version 1.10.0](https://aadamhuda.github.io/CyberCityBuilds/v1.10.0/index.html)
 - [Version 1.9.0](https://aadamhuda.github.io/CyberCityBuilds/v1.9.0/index.html)
