@@ -137,14 +137,11 @@ MonoBehaviour:
   damage: 35
   unitName: 
   burned: 0
-  burnDamage: 0
   poisoned: 0
-  poisonDamage: 0
   cursed: 0
-  burnMultiplier: 0
   frozen: 0
   type: 0
-  ID: 0
+  ID: 2
   selectedMove: burn
   downed: 0
 --- !u!95 &5386070564629830177
