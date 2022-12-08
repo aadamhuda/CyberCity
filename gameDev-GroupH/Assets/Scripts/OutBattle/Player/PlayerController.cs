@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     public TextMeshProUGUI winText;
     public TextMeshProUGUI interaction;
+    [SerializeField]
+    private TextMeshProUGUI saveText;
     public bool won = false;
     public int numClues = 3;
     public int clueCount;
@@ -170,12 +172,16 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(gameObject.transform.position, -transform.up, 3f, safe_area))
         {
+            saveText.text = "Press 'm' to save";
             if (Input.GetKey("m"))
             {
                 Debug.Log("This WOMAN is spending 3k on a PC");
                 savedata.Set_respawn(gameObject.transform.position);
+                
             }
         }
+        else
+            saveText.text = "";
     }
     void checkGrounded()
     {

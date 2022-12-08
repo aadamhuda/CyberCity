@@ -253,7 +253,7 @@ public class BattleSystem : MonoBehaviour
 			int number = UnityEngine.Random.Range(0, 100);
 			// 34% chance to unfreeze 
 			if (number > 66)
-				players[tracker].set_frozen();
+				players[tracker].set_frozen(false);
 		}
 		else
         {
@@ -269,7 +269,7 @@ public class BattleSystem : MonoBehaviour
 
 				int number = UnityEngine.Random.Range(0, 100);
 				if (number < 26)
-					enemyTarget.set_burned();
+					enemyTarget.set_burned(true);
 
 			}
 			else if (attackType == "curse")
@@ -277,7 +277,7 @@ public class BattleSystem : MonoBehaviour
 				playerAnimator.CrossFade("Magic", 0.1f);
 				yield return new WaitForSeconds(0.8f);
 
-				enemyTarget.set_cursed();
+				enemyTarget.set_cursed(true);
 			}
 			else if (attackType == "ice")
 			{
@@ -285,7 +285,7 @@ public class BattleSystem : MonoBehaviour
 				playerAnimator.CrossFade("Magic", 0.1f);
 				yield return new WaitForSeconds(0.8f);
 
-				enemyTarget.set_frozen();
+				enemyTarget.set_frozen(true);
 			}
 			else if (attackType == "grass")
             {
@@ -299,7 +299,7 @@ public class BattleSystem : MonoBehaviour
 
 				int number = UnityEngine.Random.Range(0, 100);
 				if (number < 26)
-					enemyTarget.set_poisoned();
+					enemyTarget.set_poisoned(true);
 				
 			}
 			else if (attackType == "water")
@@ -492,7 +492,7 @@ public class BattleSystem : MonoBehaviour
 				// 34% chance to unfreeze 
 				if (number > 66)
 
-					enemies[i].set_frozen();
+					enemies[i].set_frozen(false);
 			}
             else
             {
@@ -501,11 +501,11 @@ public class BattleSystem : MonoBehaviour
 
 				if (randomKey == "curse")
                 {
-					players[player_target].set_cursed();
+					players[player_target].set_cursed(true);
 				}
 				else if (randomKey == "ice")
                 {
-					players[player_target].set_frozen();
+					players[player_target].set_frozen(true);
 
 				}
 				else if (randomKey == "fire")
@@ -516,7 +516,7 @@ public class BattleSystem : MonoBehaviour
 
 					int number = UnityEngine.Random.Range(0, 100);
 					if (number < 26)
-						players[player_target].set_burned();
+						players[player_target].set_burned(true);
 
 				}
 				else if (randomKey == "grass")
@@ -527,7 +527,7 @@ public class BattleSystem : MonoBehaviour
 
 					int number = UnityEngine.Random.Range(0, 100);
 					if (number < 26)
-						players[player_target].set_poisoned();
+						players[player_target].set_poisoned(true);
 				}
 				else if (randomKey == "shoot")
 				{

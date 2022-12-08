@@ -42,13 +42,13 @@ public class BattleUnit : MonoBehaviour
     public bool get_poisoned() { return poisoned; }
 
 
-    public void set_cursed() { cursed = !cursed; }
+    public void set_cursed( bool set_value ) { cursed = set_value; }
 
-    public void set_frozen() { frozen = !frozen; }
+    public void set_frozen(bool set_value) { frozen = set_value; }
 
-    public void set_burned() { burned = !burned; }
+    public void set_burned(bool set_value) { burned = set_value; }
 
-    public void set_poisoned() {poisoned = !poisoned;}
+    public void set_poisoned(bool set_value) {poisoned = set_value; }
 
 
     public void define_attributes<T>(T [] symbiosis, string [] attribute, Dictionary<string, T> arr)
@@ -98,11 +98,11 @@ public class BattleUnit : MonoBehaviour
     {
         if (burned)
             if (get_rand_number() < 26)
-                set_burned();
+                set_burned(false);
 
         if (poisoned)
             if (get_rand_number() < 26)
-                set_poisoned();
+                set_poisoned(false);
     }
 
     private int get_rand_number ()
