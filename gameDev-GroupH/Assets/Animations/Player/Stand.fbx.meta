@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 7db71c5d98544ee42ba201ce207523e1
+guid: 8cdc06c0d39617941bddae2041c8b3e1
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Melee
+    second: Stand
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Melee
+      name: Stand
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 67
+      lastFrame: 83
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

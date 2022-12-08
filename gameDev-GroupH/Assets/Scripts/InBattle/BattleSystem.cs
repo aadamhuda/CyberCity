@@ -48,14 +48,14 @@ public class BattleSystem : MonoBehaviour
 
 	public RectTransform[] enemyHudLocations;
 
-
+	public GameObject itemMenu;
 	public GameObject BattleHUD;
 
 	//Animations
 	private bool playerAttacking;
 	private bool enemyAttacking;
   
-	private float speed = 1.5f;
+	private float speed = 1f;
 
 	//Cameras
 	[SerializeField]
@@ -79,6 +79,8 @@ public class BattleSystem : MonoBehaviour
 		//shows cursor so buttons can be selected
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
+
+		itemMenu.GetComponent<InventoryMenu>().AddTestItems();
 
 		//starts battle
 		state = BattleState.START;
@@ -175,8 +177,6 @@ public class BattleSystem : MonoBehaviour
 		string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
 
 		players = InstantiatePlayers();
-		BattleInventory invMenu = GameObject.FindGameObjectsWithTag("InventoryButton")[0].GetComponent<BattleInventory>();
-		invMenu.Init(players, playerNames);
 		// player moves
 
 		currPlayer = players[tracker];
@@ -202,75 +202,6 @@ public class BattleSystem : MonoBehaviour
 		DisableCamera(mainCamera);
         PlayerTurn();
     }
-
-	//------------------------------------------------------------------- Ibraheem Work --------------------------------------------
-
-
-
-
-/*	private IEnumerator unit_attack(BattleUnit attacker, BattleUnit defender, Animator anim, string attackType)
-	{
-		Vector3 attackerPos = attacker.transform.position;
-		Vector3 defenderPos = defender.transform.position;
-
-		// Animator for player
-
-		// Player is attacking
-
-
-		// Rotating player until facing enemy
-		yield return StartCoroutine(RotateUnit(attacker, 0.2f, defenderPos));
-
-
-
-		if (attackType == "fire")
-		{
-
-			// Animation
-			anim.CrossFade("Burn", 0.1f);
-			yield return new WaitForSeconds(1.3f);
-
-			defender.takeDamage(attacker.GetATK()[attackType], attackType);
-		}
-		else if (attackType == "poison")
-		{
-			defender.takeDamage(attacker.GetATK()[attackType], attackType);
-		}
-		else if (attackType == "curse")
-		{
-			defender.set_cursed();
-		}
-		else if (attackType == "ice")
-		{
-			// Animation
-			anim.CrossFade("Freeze", 0.1f);
-			yield return new WaitForSeconds(1.3f);
-
-			defender.frozen = true;
-		}
-		else if (attackType == "shoot")
-		{
-			for (int i = 0; i < enemies.Length; i++)
-			{
-				defender.takeDamage(attacker.GetATK()[attackType], attackType);
-			}
-		}
-		else
-		{
-			// Moving player until next to enemy
-			yield return StartCoroutine(MoveUnit(attacker, true, 0, 2f, defenderPos));
-
-			// Attack animation
-			anim.CrossFade("Melee", 0.1f);
-			yield return new WaitForSeconds(1.3f);
-
-			defender.takeDamage(attacker.GetATK()[attackType], attackType);
-
-			// Moving player back to original position
-			yield return StartCoroutine(MoveUnit(attacker, false, 0, 0.1f, attackerPos));
-		}*/
-
-
 		
 	private void DeathAnimation (BattleUnit Target, Animator anim)
     {
@@ -360,6 +291,7 @@ public class BattleSystem : MonoBehaviour
 				playerAnimator.CrossFade("Magic", 0.1f);
 				yield return new WaitForSeconds(0.8f);
 
+
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 				DeathAnimation(enemyTarget, enemyAnimator);
 
@@ -422,10 +354,11 @@ public class BattleSystem : MonoBehaviour
 		                      
 
 		isDead = enemyTarget.CheckIfDead();
+
 		dialogue.text = currPlayer.unitName + " attacked " + enemyTarget.unitName;
 		yield return new WaitForSeconds(2f);
 
-		if (isDead)
+		if (enemyIsDead)
         {
 			enemies = RemoveEnemies(target);
 			enemiesHUD = RemoveHUDs(target, enemiesHUD);
@@ -460,12 +393,15 @@ public class BattleSystem : MonoBehaviour
 		currPlayer.heal(amount);
 		currPlayer.GetComponent<Animator>().CrossFade("Heal", 0.1f);
 
+		currPlayer.GetComponent<Animator>().CrossFade("Heal", 0.1f);
+
 		dialogue.text = "You healed by " + amount + " hp!";
 
 		state = BattleState.PLAYERWAIT;
 		yield return new WaitForSeconds(2f);
 		ChangePartyTurn(1);
 	}
+
 
 	//---------------------------------------- Enemy Death ---------------------------------------------------
 
@@ -477,12 +413,32 @@ public class BattleSystem : MonoBehaviour
 	}
 
 	//-------------------------------------------ENEMY-------------------------------------------------------
+
+	public void UseItem()
+	{
+		StartCoroutine(ItemWait());
+		ChangePartyTurn(1);
+	}
+
+	IEnumerator ItemWait()
+    {
+		itemMenu.SetActive(false);
+		state = BattleState.PLAYERWAIT;
+		yield return new WaitForSeconds(2f);
+	}
+
+
+
+
+	//-------------------------------------------ENEMY-------------------------------------------------------
 	IEnumerator EnemyTurn()
 	{
-		bool isDead;
-
+    
+    bool isDead;
 		for (int i = 0; i < enemies.Length; i++)
 		{
+			bool playerIsDead = false;
+			bool enemyIsDead = false;
 
 			int player_target = Random.Range(0, players.Length);
 
@@ -491,6 +447,7 @@ public class BattleSystem : MonoBehaviour
             {
 				player_target = Random.Range(0, players.Length);
 			}
+
 
 			float multi = 1f;
 			if (savedata.EnemyDouble)
@@ -505,6 +462,7 @@ public class BattleSystem : MonoBehaviour
 			Vector3 playerPos = playerTarget.transform.position;
 			Vector3 enemyPos = currEnemy.transform.position;
 
+
 		
 
 			// Animator for player
@@ -515,10 +473,12 @@ public class BattleSystem : MonoBehaviour
 			currEnemy.RemoveAilments();
 
 			dialogue.text = enemies[i].unitName + " attacks!";
+
 			yield return new WaitForSeconds(1f);
 
 			// Rotating enemy until facing player
 			yield return StartCoroutine(RotateEnemy(currEnemy, 0.2f, playerPos));
+
 
 			if (enemies[i].get_frozen())
             {
@@ -526,11 +486,13 @@ public class BattleSystem : MonoBehaviour
 				int number = UnityEngine.Random.Range(0, 100);
 				// 34% chance to unfreeze 
 				if (number > 66)
+
 					enemies[i].set_frozen();
 			}
             else
             {
 				var randomKey = enemies[i].GetATK().Keys.ElementAt((int)Random.Range(0, enemies[i].GetATK().Keys.Count - 1));
+
 
 				if (randomKey == "curse")
                 {
@@ -549,11 +511,13 @@ public class BattleSystem : MonoBehaviour
 					int number = UnityEngine.Random.Range(0, 100);
 					if (number < 26)
 						players[player_target].set_burned();
+
 				}
 				else if (randomKey == "grass")
 				{
 					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey);
 					PlayerDeathAnimation(playerTarget, playerAnimator);
+
 
 					int number = UnityEngine.Random.Range(0, 100);
 					if (number < 26)
@@ -568,6 +532,7 @@ public class BattleSystem : MonoBehaviour
 						if (players[j].CheckIfDead())
 							players[j].downed = true;
 					}
+
 				}
 				else
                 {
@@ -608,7 +573,7 @@ public class BattleSystem : MonoBehaviour
 			isDead = playerTarget.CheckIfDead();
 			//stops enemy attacking if player is already dead
 
-			if (isDead)
+			if (playerIsDead)
             {
 				playerTarget.downed = true;
             }
@@ -982,6 +947,9 @@ public class BattleSystem : MonoBehaviour
 	{
 		if (state != BattleState.PLAYERTURN)
 			return;
+
+		itemMenu.SetActive(true);
+		itemMenu.GetComponent<InventoryMenu>().LoadMenu(players, playerNames);
 
 	}
 	public void OnAbilityButton()

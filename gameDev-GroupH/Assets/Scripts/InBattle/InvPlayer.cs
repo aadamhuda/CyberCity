@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class InvItem : MonoBehaviour
+public class InvPlayer : MonoBehaviour
 {
 	public InventoryMenu menu;
 	public Button thisButton;
-	public TextMeshProUGUI itemName;
+	public TextMeshProUGUI playerName;
 
 	// Init
 	void Start()
@@ -16,8 +16,9 @@ public class InvItem : MonoBehaviour
 		thisButton.onClick.AddListener(TaskOnClick);
 	}
 
-    // Use item
-    void TaskOnClick(){
-		menu.ItemSelect(itemName.text);
+	// Use item
+	void TaskOnClick()
+	{
+		menu.PlayerSelect(playerName.text);
 	}
 }

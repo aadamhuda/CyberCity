@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerButtonScript : MonoBehaviour
 {
-    public BattleInventory parent;
+    public InventoryMenu parent;
 	public Button thisButton;
 	public Player player;
 
