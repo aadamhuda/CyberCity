@@ -1530,12 +1530,22 @@ MonoBehaviour:
   - {fileID: 1947965354}
   itemMenu: {fileID: 951402726}
   BattleHUD: {fileID: 966434265}
+  animationAudio:
+  - {fileID: 8300000, guid: 7c97757b075294342858b013d394159f, type: 3}
+  - {fileID: 8300000, guid: 20f9c900bb9ffd54b81902a1603d67f6, type: 3}
+  - {fileID: 8300000, guid: a45cff451ecf6e0459d6c2e27393498f, type: 3}
+  - {fileID: 8300000, guid: e0e3b46ced2bead4aa790587a5945987, type: 3}
+  - {fileID: 8300000, guid: 5e418625f0c96ca46be25eaa74c85bcc, type: 3}
+  - {fileID: 8300000, guid: 5f446aaa26d35034d9e17b48f33dc875, type: 3}
+  - {fileID: 8300000, guid: 875a287eda6cf5e4b8e1129857c40982, type: 3}
+  - {fileID: 8300000, guid: 24c5b313660358e45a5a1b5d471772af, type: 3}
   battleCameras:
   - {fileID: 248219075}
   - {fileID: 470173669}
   - {fileID: 1827915457}
   - {fileID: 620247400}
   mainCamera: {fileID: 2120378203}
+  play_attack: {fileID: 0}
 --- !u!4 &509939005
 Transform:
   m_ObjectHideFlags: 0

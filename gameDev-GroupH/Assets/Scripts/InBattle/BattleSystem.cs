@@ -51,11 +51,14 @@ public class BattleSystem : MonoBehaviour
 	public GameObject itemMenu;
 	public GameObject BattleHUD;
 
-	//Animations
+	// Animations
 	private bool playerAttacking;
 	private bool enemyAttacking;
   
 	private float speed = 1f;
+
+	// Animation audio
+	public AudioClip[] animationAudio;
 
 	//Cameras
 	[SerializeField]
@@ -264,7 +267,9 @@ public class BattleSystem : MonoBehaviour
 
 				// Animation
 				playerAnimator.CrossFade("Magic", 0.1f);
-				yield return new WaitForSeconds(0.8f);
+				yield return new WaitForSeconds(0.5f);
+				AudioSource.PlayClipAtPoint(animationAudio[3], currPlayer.transform.position);
+				yield return new WaitForSeconds(0.3f);
 
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
@@ -277,7 +282,9 @@ public class BattleSystem : MonoBehaviour
 			else if (attackType == "curse")
 			{
 				playerAnimator.CrossFade("Magic", 0.1f);
-				yield return new WaitForSeconds(0.8f);
+				yield return new WaitForSeconds(0.5f);
+				AudioSource.PlayClipAtPoint(animationAudio[5], currPlayer.transform.position);
+				yield return new WaitForSeconds(0.3f);
 
 				enemyTarget.set_cursed(true);
 			}
@@ -285,13 +292,16 @@ public class BattleSystem : MonoBehaviour
 			{
 				// Animation
 				playerAnimator.CrossFade("Magic", 0.1f);
-				yield return new WaitForSeconds(0.8f);
+				yield return new WaitForSeconds(0.5f);
+				AudioSource.PlayClipAtPoint(animationAudio[4], currPlayer.transform.position);
+				yield return new WaitForSeconds(0.3f);
 
 				enemyTarget.set_frozen(true);
 			}
 			else if (attackType == "grass")
             {
 				playerAnimator.CrossFade("Magic", 0.1f);
+				AudioSource.PlayClipAtPoint(animationAudio[2], currPlayer.transform.position);
 				yield return new WaitForSeconds(0.8f);
 
 
@@ -307,7 +317,10 @@ public class BattleSystem : MonoBehaviour
 			else if (attackType == "water")
 			{
 				playerAnimator.CrossFade("Magic", 0.1f);
-				yield return new WaitForSeconds(0.8f);
+				yield return new WaitForSeconds(0.5f);
+				AudioSource.PlayClipAtPoint(animationAudio[6], currPlayer.transform.position);
+				yield return new WaitForSeconds(0.3f);
+				
 
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
@@ -324,6 +337,7 @@ public class BattleSystem : MonoBehaviour
 					yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[i].transform.position));
 					playerAnimator.CrossFade("DrawArrow", 0.1f);
 					yield return new WaitForSeconds(0.5f);
+					AudioSource.PlayClipAtPoint(animationAudio[7], currPlayer.transform.position);
 
 					enemies[i].takeDamage(players[tracker].GetATK()[attackType], attackType);
 					if (enemies[i].CheckIfDead())
@@ -344,13 +358,16 @@ public class BattleSystem : MonoBehaviour
 
 				// Attack animation
 				playerAnimator.CrossFade("Melee", 0.1f);
+				AudioSource.PlayClipAtPoint(animationAudio[0], currPlayer.transform.position);
 				yield return new WaitForSeconds(0.5f);
+				
 
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 
 				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
 
 				// Moving player back to original position
+				yield return new WaitForSeconds(0.4f);
 				yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
 			}
 		}
@@ -398,9 +415,7 @@ public class BattleSystem : MonoBehaviour
 		int amount = Random.Range(60, 100);
 		currPlayer.heal(amount);
 		currPlayer.GetComponent<Animator>().CrossFade("Heal", 0.1f);
-
-		currPlayer.GetComponent<Animator>().CrossFade("Heal", 0.1f);
-
+		AudioSource.PlayClipAtPoint(animationAudio[1], currPlayer.transform.position);
 		dialogue.text = "You healed by " + amount + " hp!";
 
 		state = BattleState.PLAYERWAIT;
@@ -549,13 +564,15 @@ public class BattleSystem : MonoBehaviour
 
 					// Animation
 					enemyAnimator.CrossFade("Melee", 0.1f);
+					AudioSource.PlayClipAtPoint(animationAudio[0], currEnemy.transform.position);
 					yield return new WaitForSeconds(0.5f);
-
+					
 					//adds 15% damage if enemy hits player first
 					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey); // change 1 to enemy's move type
 					StartCoroutine(PlayerDeathAnimation(playerTarget, playerAnimator));
 
 					// Moving enemy back to original position
+					yield return new WaitForSeconds(0.4f);
 					yield return StartCoroutine(MoveEnemy(currEnemy, false, 0, 0.1f, enemyPos));
 				}
 			}
