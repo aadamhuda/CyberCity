@@ -20,9 +20,6 @@ public class PlayerController : MonoBehaviour
     private Transform mainCamera;
 
     [SerializeField]
-    private Vector2 moveValue;
-
-    [SerializeField]
     private float walkSpeed = 7f;
 
     [SerializeField]
@@ -87,13 +84,6 @@ public class PlayerController : MonoBehaviour
         clueCount = savedata.ClueCount;
     }
 
-    // Input action
-    // Can move with multiple control schemes, e.g. keyboard, controller etc
-    void OnMove(InputValue value)
-    {
-        moveValue = value.Get<Vector2>();
-
-    }
 
     public void collectClue(Collider other)
     {
