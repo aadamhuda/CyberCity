@@ -198,9 +198,12 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         // Movement based on player input direction and camera direction 
-        Vector3 movement = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0) * new Vector3(moveValue.x, 0, moveValue.y).normalized;
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
-        float currentSpeed = Mathf.Clamp01(Mathf.Abs(moveValue.x) + Mathf.Abs(moveValue.y));
+        Vector3 movement = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput).normalized;
+
+        float currentSpeed = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
 
         // If you are on the ground and not holding shift, walk
         if (groundedPlayer && !Input.GetKey(KeyCode.LeftShift))
