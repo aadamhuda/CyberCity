@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
 using System.Linq;
 
 public class SettingsMenu : MonoBehaviour
@@ -14,6 +15,7 @@ public class SettingsMenu : MonoBehaviour
 	public Slider brightness;
 	public Slider mousesens;
 	public Slider volumeSlider;
+	public CinemachineFreeLook cam;
 	float currentVolume;
 	Resolution[] resolutions;
 
@@ -68,7 +70,9 @@ public class SettingsMenu : MonoBehaviour
 
 	public void SetSensitivity(Slider slider)
 	{
-		Screen.brightness = slider.value;
+		float sens = mousesens.value;
+		cam.m_XAxis.m_MaxSpeed = 600 * sens;
+		cam.m_YAxis.m_MaxSpeed = 4 * sens;
 	}
 
 	public void SaveSettings()
