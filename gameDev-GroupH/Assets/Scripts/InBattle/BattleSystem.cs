@@ -329,8 +329,7 @@ public class BattleSystem : MonoBehaviour
 					if (enemies[i].CheckIfDead())
 					{
 						StartCoroutine(DeathAnimation(enemies[i], enemies[i].GetComponent<Animator>()));
-						enemies = RemoveEnemies(i);
-						enemiesHUD = RemoveHUDs(i, enemiesHUD);
+						
 					}
 				}
 				// 
@@ -360,6 +359,12 @@ public class BattleSystem : MonoBehaviour
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemyTarget.unitName;
 		yield return new WaitForSeconds(2f);
+
+		for (int i = enemies.Length; i <= 0; i--)
+        {
+			enemies = RemoveEnemies(i);
+			enemiesHUD = RemoveHUDs(i, enemiesHUD);
+		}
 
 		if (isDead)
         {

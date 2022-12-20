@@ -11,7 +11,7 @@ public class Enemy : BattleUnit
 
     private void Start()
     {
-        currentHP = maxHP;
+        currentHP = 1;
 
 		float norm = 1f;
 		float weakness = 1.25f;
