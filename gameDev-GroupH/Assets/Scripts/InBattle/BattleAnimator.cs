@@ -55,7 +55,7 @@ public class BattleAnimator : MonoBehaviour
 
     public IEnumerator Magic(Animator a, Transform t, string attack)
     {
-        if (attack.Equals("earth"))
+        if (attack.Equals("grass"))
         {
             a.CrossFade("Magic", 0.1f);
             AudioSource.PlayClipAtPoint(audioDict["grass"], t.position);

@@ -695,7 +695,10 @@ public class BattleSystem : MonoBehaviour
 				target = enemies.Length - 1;
 			}
 		}
-		yield return StartCoroutine(currPlayer.RotatePlayer(0.2f, enemies[target].transform.position));
+		if (enemies.Length > 0)
+		{
+			yield return StartCoroutine(currPlayer.RotatePlayer(0.2f, enemies[target].transform.position));
+		}
 	}
 
 
