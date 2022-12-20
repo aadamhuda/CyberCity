@@ -39,7 +39,7 @@ ModelImporter:
       name: Death
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 10
+      firstFrame: 15
       lastFrame: 138
       wrapMode: 0
       orientationOffsetY: 0
