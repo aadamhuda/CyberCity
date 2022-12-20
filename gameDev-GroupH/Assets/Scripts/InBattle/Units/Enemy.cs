@@ -45,4 +45,51 @@ public class Enemy : BattleUnit
 
 
 
+	// Turn enemy to a position
+	public IEnumerator RotateEnemy(float speed, Vector3 targetPos)
+	{
+		var transform = this.transform;
+		var startRotation = transform.rotation;
+		var direction = targetPos - transform.position;
+		var targetRotation = Quaternion.LookRotation(direction);
+		targetRotation.x = 0;
+		var t = 0f;
+		while (t <= 1f)
+		{
+			t += Time.deltaTime / speed;
+			transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+			yield return null;
+		}
+		transform.rotation = targetRotation;
+	}
+
+	// Move enemy to a position
+	public IEnumerator MoveEnemy(bool forward, float speed, float maxSpeed, float distOffsetToTarget, Vector3 targetPos)
+	{
+		var transform = this.transform;
+		var cc = this.GetComponent<CharacterController>();
+		var offset = targetPos - transform.position;
+		var animator = this.GetComponent<Animator>();
+
+		// Movement
+		animator.SetBool("moveBackwards", !forward);
+		animator.SetBool("isMoving", true);
+
+		// Speed up until close to target
+		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget)
+		{
+			if (speed > maxSpeed)
+			{
+				speed = maxSpeed;
+			}
+
+			cc.Move(offset * speed * Time.deltaTime);
+			speed += 0.1f;
+			yield return null;
+		}
+
+		// Stop moving when target reached
+		animator.SetBool("isMoving", false);
+
+	}
 }

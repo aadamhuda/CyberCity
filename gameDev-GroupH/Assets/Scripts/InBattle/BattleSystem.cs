@@ -238,7 +238,7 @@ public class BattleSystem : MonoBehaviour
 		var playerAnimator = currPlayer.GetComponent<Animator>();
 		var enemyAnimator = enemyTarget.GetComponent<Animator>();
 
-		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
+		yield return StartCoroutine(currPlayer.RotatePlayer(0.2f, enemyPos));
 
 		// Player is attacking
 		state = BattleState.PLAYERWAIT;
@@ -330,7 +330,7 @@ public class BattleSystem : MonoBehaviour
 				for (int i = 0; i < enemies.Length; i++)
 				{
 
-					yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[i].transform.position));
+					yield return StartCoroutine(currPlayer.RotatePlayer(0.2f, enemies[i].transform.position));
 					playerAnimator.CrossFade("DrawArrow", 0.1f);
 					yield return new WaitForSeconds(0.5f);
 					AudioSource.PlayClipAtPoint(animationAudio[7], currPlayer.transform.position);
@@ -350,7 +350,7 @@ public class BattleSystem : MonoBehaviour
 			else
 			{
 				// Moving player until next to enemy
-				yield return StartCoroutine(MovePlayer(currPlayer, true, 0, 2f, enemyPos));
+				yield return StartCoroutine(currPlayer.MovePlayer(true, 0, speed, 2f, enemyPos));
 
 				// Attack animation
 				playerAnimator.CrossFade("Melee", 0.1f);
@@ -364,7 +364,7 @@ public class BattleSystem : MonoBehaviour
 
 				// Moving player back to original position
 				yield return new WaitForSeconds(0.6f);
-				yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
+				yield return StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.1f, playerPos));
 			}
 		}
 		                      
@@ -402,7 +402,7 @@ public class BattleSystem : MonoBehaviour
 		Vector3 enemyPos = enemies[target].transform.position;
 
 		dialogue.text = "Choose an action!";
-		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemyPos));
+		yield return StartCoroutine(currPlayer.RotatePlayer(0.2f, enemyPos));
 	}
 
 	IEnumerator PlayerHeal()
@@ -489,7 +489,7 @@ public class BattleSystem : MonoBehaviour
 			yield return new WaitForSeconds(1f);
 
 			// Rotating enemy until facing player
-			yield return StartCoroutine(RotateEnemy(currEnemy, 0.2f, playerPos));
+			yield return StartCoroutine(currEnemy.RotateEnemy(0.2f, playerPos));
 
 
 			if (currEnemy.get_frozen())
@@ -550,7 +550,7 @@ public class BattleSystem : MonoBehaviour
 				else
                 {
 					// Moving enemy until next to player
-					yield return StartCoroutine(MoveEnemy(currEnemy, true, 0, 2f, playerPos));
+					yield return StartCoroutine(currEnemy.MoveEnemy(true, 0, speed, 2f, playerPos));
 
 					// Animation
 					enemyAnimator.CrossFade("Melee", 0.1f);
@@ -563,7 +563,7 @@ public class BattleSystem : MonoBehaviour
 
 					// Moving enemy back to original position
 					yield return new WaitForSeconds(0.4f);
-					yield return StartCoroutine(MoveEnemy(currEnemy, false, 0, 0.1f, enemyPos));
+					yield return StartCoroutine(currEnemy.MoveEnemy(false, 0, speed, 0.1f, enemyPos));
 				}
 			}
 
@@ -752,106 +752,9 @@ public class BattleSystem : MonoBehaviour
 				target = enemies.Length - 1;
 			}
 		}
-		yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[target].transform.position));
+		yield return StartCoroutine(currPlayer.RotatePlayer(0.2f, enemies[target].transform.position));
 	}
 
-
-
-//-------------------------------------------ANIMATIONS/MOVEMENT-------------------------------------------------------
-
-	// Turn player to a position
-	IEnumerator RotatePlayer(Player p,  float speed, Vector3 targetPos)
-	{
-		var transform = p.transform;
-		var startRotation = transform.rotation;
-		var direction = targetPos - transform.position;
-		var targetRotation = Quaternion.LookRotation(direction);
-		targetRotation.x = 0;
-		var t = 0f;
-		while (t <= 1f)
-		{
-			t += Time.deltaTime / speed;
-			transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
-			yield return null;
-		}
-		transform.rotation = targetRotation;
-	}
-
-	// Turn enemy to a position
-	IEnumerator RotateEnemy(Enemy e, float speed, Vector3 targetPos)
-	{
-		var transform = e.transform;
-		var startRotation = transform.rotation;
-		var direction = targetPos - transform.position;
-		var targetRotation = Quaternion.LookRotation(direction);
-		targetRotation.x = 0;
-		var t = 0f;
-		while (t <= 1f)
-		{
-			t += Time.deltaTime / speed;
-			transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
-			yield return null;
-		}
-		transform.rotation = targetRotation;
-	}
-
-	// Move player to a position
-	IEnumerator MovePlayer(Player p, bool forward, float speed, float distOffsetToTarget, Vector3 targetPos)
-	{
-		var transform = p.transform;
-		var cc = p.GetComponent<CharacterController>();
-		var offset = targetPos - transform.position;
-		var animator = p.GetComponent<Animator>();
-
-		// Movement
-		animator.SetBool("moveBackwards", !forward);
-		animator.SetBool("isMoving", true);
-
-		// Gradually speed up until close to target
-		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget)
-		{
-			if (speed > this.speed)
-			{
-				speed = this.speed;
-			}
-
-			cc.Move(offset * speed * Time.deltaTime);
-			speed += 0.1f;
-			yield return null;
-		}
-		// Stop moving when target reached
-		animator.SetBool("isMoving", false);
-	}
-
-	// Move enemy to a position
-	IEnumerator MoveEnemy(Enemy e, bool forward, float speed, float distOffsetToTarget, Vector3 targetPos)
-	{
-		var transform = e.transform;
-		var cc = e.GetComponent<CharacterController>();
-		var offset = targetPos - transform.position;
-		var animator = e.GetComponent<Animator>();
-
-		// Movement
-		animator.SetBool("moveBackwards", !forward);
-		animator.SetBool("isMoving", true);
-
-		// Speed up until close to target
-		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget )
-		{
-			if (speed > this.speed)
-			{
-				speed = this.speed;
-			}
-
-			cc.Move(offset * speed * Time.deltaTime);
-			speed += 0.1f;
-			yield return null;
-		}
-
-		// Stop moving when target reached
-		animator.SetBool("isMoving", false);
-
-	}
 
 	//-------------------------------------------CAMERAS-------------------------------------------------------
 	private void DisableAllPlayerCameras(int dontRemove)
