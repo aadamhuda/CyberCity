@@ -52,9 +52,6 @@ public class BattleSystem : MonoBehaviour
 	public GameObject BattleHUD;
 
 	// Animations
-	private bool playerAttacking;
-	private bool enemyAttacking;
-  
 	private float speed = 1f;
 
 	// Animation audio
@@ -208,6 +205,7 @@ public class BattleSystem : MonoBehaviour
 		
 	private IEnumerator DeathAnimation(BattleUnit Target, Animator anim)
     {
+		anim.CrossFade("React", 0.1f);
 		if (Target.CheckIfDead()) 
 			anim.CrossFade("Death", 0.1f);
 
@@ -235,8 +233,6 @@ public class BattleSystem : MonoBehaviour
 		// Coords of player start and enemy start positions
 		Vector3 playerPos = currPlayer.transform.position;
 		Vector3 enemyPos = enemyTarget.transform.position;
-
-		
 
 		// Animator for player
 		var playerAnimator = currPlayer.GetComponent<Animator>();
@@ -359,7 +355,7 @@ public class BattleSystem : MonoBehaviour
 				// Attack animation
 				playerAnimator.CrossFade("Melee", 0.1f);
 				AudioSource.PlayClipAtPoint(animationAudio[0], currPlayer.transform.position);
-				yield return new WaitForSeconds(0.5f);
+				yield return new WaitForSeconds(0.3f);
 				
 
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
@@ -367,7 +363,7 @@ public class BattleSystem : MonoBehaviour
 				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
 
 				// Moving player back to original position
-				yield return new WaitForSeconds(0.4f);
+				yield return new WaitForSeconds(0.6f);
 				yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
 			}
 		}
@@ -429,6 +425,7 @@ public class BattleSystem : MonoBehaviour
 	private IEnumerator PlayerDeathAnimation(BattleUnit target, Animator anim)
     {
 		Debug.Log("downed");
+		anim.CrossFade("React", 0.1f);
 		if (target.CheckIfDead())
 			anim.CrossFade("Kneel", 0.1f);
 		yield return new WaitForSeconds(0.4f);
@@ -459,9 +456,6 @@ public class BattleSystem : MonoBehaviour
 		bool isDead;
 		for (int i = 0; i < enemies.Length; i++)
 		{
-			bool playerIsDead = false;
-			bool enemyIsDead = false;
-
 			int player_target = Random.Range(0, players.Length);
 
 
@@ -484,13 +478,9 @@ public class BattleSystem : MonoBehaviour
 			Vector3 playerPos = playerTarget.transform.position;
 			Vector3 enemyPos = currEnemy.transform.position;
 
-
-		
-
 			// Animator for player
 			var playerAnimator = playerTarget.GetComponent<Animator>();
 			var enemyAnimator = currEnemy.GetComponent<Animator>();
-
 
 			currEnemy.RemoveAilments();
 
@@ -502,7 +492,7 @@ public class BattleSystem : MonoBehaviour
 			yield return StartCoroutine(RotateEnemy(currEnemy, 0.2f, playerPos));
 
 
-			if (enemies[i].get_frozen())
+			if (currEnemy.get_frozen())
             {
 				// skip turn
 				int number = UnityEngine.Random.Range(0, 100);
