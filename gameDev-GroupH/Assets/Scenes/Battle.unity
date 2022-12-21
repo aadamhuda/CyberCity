@@ -1543,7 +1543,12 @@ MonoBehaviour:
   - {fileID: 1841968219785206952, guid: c74a214d57d7e444fbf16911444b0d4b, type: 3}
   - {fileID: 1841968219785206952, guid: 46b46595ff7e79c4cbde028b8b20134f, type: 3}
   - {fileID: 1841968219785206952, guid: 1b975a9c260d64749af3fe51bc637eba, type: 3}
-  enemyPrefab: {fileID: 1841968219785206952, guid: 5509905d27665f94483899e6c708ad7e, type: 3}
+  enemyPrefabs:
+  - {fileID: 1841968219785206952, guid: 5509905d27665f94483899e6c708ad7e, type: 3}
+  - {fileID: 1841968219785206952, guid: a168cef343ff3f9438cf9e5bfd012ef2, type: 3}
+  - {fileID: 1841968219785206952, guid: 4e19af7725419244d933289a11c4a287, type: 3}
+  - {fileID: 1841968219785206952, guid: 50567d99d2fba6a4dae62197c348f5d7, type: 3}
+  - {fileID: 1841968219785206952, guid: 88e55fc62c4f98646864dcedb70ec941, type: 3}
   playerNames:
   - Main Character
   - Companion 1
