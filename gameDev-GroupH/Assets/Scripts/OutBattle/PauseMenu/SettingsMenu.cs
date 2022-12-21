@@ -35,7 +35,6 @@ public class SettingsMenu : MonoBehaviour
 			}
 		}
 
-		Debug.Log(currentResolutionIndex);
 
 		resolutionDropdown.AddOptions(options);
 		resolutionDropdown.RefreshShownValue();
@@ -62,8 +61,6 @@ public class SettingsMenu : MonoBehaviour
 	public void SetBrightness(Slider slider)
 	{
 		Screen.brightness = slider.value;
-		Debug.Log(slider.value);
-		Debug.Log(Screen.brightness);
 	}
 
 	public void SetSensitivity(Slider slider)

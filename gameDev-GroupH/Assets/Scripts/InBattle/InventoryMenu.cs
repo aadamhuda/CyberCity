@@ -23,10 +23,12 @@ public class InventoryMenu : MonoBehaviour
 	public RectTransform itemTitlePos;
 	public RectTransform playerTitlePos;
 
-	public Dictionary<string, int> inventory = new Dictionary<string, int>(); // Item, Quantity	
+	[SerializeField]
+	private InventorySystem inventory; // Item, Quantity	
 
     public void LoadMenu(Player[] players, string[] playerNames)
     {
+
 		this.players = players;
 		this.playerNames = playerNames;
 
@@ -34,7 +36,7 @@ public class InventoryMenu : MonoBehaviour
 		playerButtons.Clear();
 
 		cancelButton.interactable = false;
-
+		inventory.define_inventory();
 		// Draw inv
 		fillPlayers();
 		fillInv();
@@ -65,7 +67,8 @@ public class InventoryMenu : MonoBehaviour
 	void fillInv() {
 		// Create item buttons
 		int i = 0;
-		foreach (KeyValuePair<string, int> entry in inventory) {
+		foreach (KeyValuePair<string, int> entry in inventory.get_inventory()) {
+			Debug.Log("Edgeo ajdsb the : " + entry.Key);
 			i++;
 			GameObject newItem = GameObject.Instantiate(itemPrefab, new Vector3(itemTitlePos.position.x, itemTitlePos.position.y + (i * -70), itemTitlePos.position.z), itemTitlePos.rotation, itemTitlePos);
 			
@@ -162,31 +165,20 @@ public class InventoryMenu : MonoBehaviour
 	public void useItem(string item) {
 		int quantity;
 		
-		inventory.TryGetValue(item, out quantity); // Store current quantity 
+		inventory.get_inventory().TryGetValue(item, out quantity); // Store current quantity 
 			
 		// Decrement quantity
-		inventory[item] = quantity - 1; // Decrement
+		inventory.get_inventory()[item] = quantity - 1; // Decrement
 		
 		// Remove if 0
 		if (quantity - 1 <= 0) {
-			inventory.Remove(item);
+			inventory.get_inventory().Remove(item);
 		}
 	}
 	
 	// Add item
 	public void addItem(string item) {
-		int quantity;
-		
-		inventory.TryGetValue(item, out quantity);
-		
-		// Already have, then increment
-		if (quantity > 0) {
-			inventory[item] = quantity + 1; // Increment
-		}
-		// Not in inventory, then add
-		else {
-			inventory.Add(item, 1);
-		}
+		inventory.addItem(item , 1);
 	}
 
 	void DownedButtonFilter(List<Button> buttons, bool active)

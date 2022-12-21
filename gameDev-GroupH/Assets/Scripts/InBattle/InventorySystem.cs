@@ -5,26 +5,34 @@ using System.Collections.Generic;
 
 public class InventorySystem : MonoBehaviour
 {
-    public Dictionary<string, int> inventory = new Dictionary<string, int>(); // Item, Quantity
+    [SerializeField]
+    private SaveData savedata;
+
+    private Dictionary<string, int> inventory = new Dictionary<string, int>(); // Item, Quantity
     // NOTE: May change value to array of [category, value, quantity]
     // e.g. "smallPotion", ["healing", 20, 3] 
     // e.g. "maxRevive", ["reviving", 100%, 1]
 
     // Start is called before the first frame update
-    void Start()
+    public void define_inventory()
     {
-        // Fill battle inventory from main out-of-battle inventory
+        Debug.Log("Don't even know how it has entries : " + inventory.Count );
 
-        // Test inventory
-        addItem("smallPotion");
-        addItem("smallPotion");
-        addItem("smallPotion");
+        inventory.Clear();
 
-        addItem("maxPotion");
 
-        addItem("revive");
-        addItem("maxRevive");
+
+
+        foreach (KeyValuePair<string , int> i in savedata.get_items())
+            addItem(i.Key, i.Value);
+
+        Debug.Log("bruh");
+
+        foreach (KeyValuePair<string, int> i in inventory)
+            Debug.Log(i.Key + " + " + i.Value);
     }
+
+    public Dictionary<string , int> get_inventory() { return this.inventory; }
 
     //// Inventory Functions
 
@@ -46,21 +54,15 @@ public class InventorySystem : MonoBehaviour
     }
 
     // Add item
-    public void addItem(string item)
+    public void addItem(string item , int quantity)
     {
-        int quantity;
+        int amount;
+        inventory.TryGetValue(item, out amount);
 
-        inventory.TryGetValue(item, out quantity);
-
-        // Already have, then increment
-        if (quantity > 0)
-        {
-            inventory[item] = quantity + 1; // Increment
-        }
-        // Not in inventory, then add
+        if (amount > 0)
+            inventory[item] += quantity;
         else
-        {
-            inventory.Add(item, 1);
-        }
+            inventory.Add(item, quantity);
+        
     }
 }

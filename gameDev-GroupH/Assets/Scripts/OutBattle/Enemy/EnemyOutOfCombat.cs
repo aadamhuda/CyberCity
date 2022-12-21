@@ -31,10 +31,15 @@ public class EnemyOutOfCombat : EnemyCollider
     protected void Start()
     {
         engage.text = "";
+        // Adding collider
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
         sc.radius = 5;
         sc.isTrigger = true;
+
+        // Saving object in scriptatble
         PosSave.AddToDict(PosSave.Death, gameObject.name);
+
+        //If entry already exists, and classified as dead then do not spawn it
         dead = PosSave.getDict(PosSave.Death, gameObject.name);
 
         anim = GetComponent<Animator>();
@@ -42,6 +47,7 @@ public class EnemyOutOfCombat : EnemyCollider
         anim.SetBool("isWalking", false);
         anim.SetBool("isRunning", false);
 
+        // If already dead then keep dead
         if (dead == true)
             gameObject.SetActive(false);
         else
@@ -61,6 +67,8 @@ public class EnemyOutOfCombat : EnemyCollider
 
     private void FieldOfViewCheck()
     {
+
+        // Make sure that the enemy cannot wall clip
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, PlayerMask);
 
         if (rangeChecks.Length != 0)
@@ -93,7 +101,7 @@ public class EnemyOutOfCombat : EnemyCollider
 
     private void ChaseInArea()
     {
-
+        // Chase player with Layermask area
         if (!Physics.Raycast(player.transform.position, -transform.up, 3f, whatisGround))
         {
             WithInArea = false;
@@ -106,7 +114,7 @@ public class EnemyOutOfCombat : EnemyCollider
 
     private IEnumerator AmbushPlayer()
     {
-
+        // The enemy starts battle with bonus dmg
         anim.SetBool("isAttacking", true);
         walkPointSet = agent.SetDestination(gameObject.transform.position);
         player.GetComponent<PlayerController>().canMove = false;
@@ -117,13 +125,19 @@ public class EnemyOutOfCombat : EnemyCollider
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+
         radius = 35;
+
+        //test
+        radius = 0;
+
         angle = 120;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+        // Checks for player, if it is then run to it otherwise patrol
         base.Update();
 
         ChaseInArea();
@@ -138,14 +152,6 @@ public class EnemyOutOfCombat : EnemyCollider
             Patrol();
 
 
-
-
-        /*        Debug.DrawRay(walkPoint, transform.up*20, Color.green);
-                if (Physics.Raycast(walkPoint, -transform.up, 3f, whatisGround))
-                {
-                    Debug.DrawRay(walkPoint, -transform.up * 3, Color.red);
-                }*/
-
     }
 
     void Patrol()
@@ -153,11 +159,7 @@ public class EnemyOutOfCombat : EnemyCollider
         anim.SetBool("isWalking", true);
         agent.speed = 4;
 
-
-        /*        Debug.Log("WalkingPointSet: " + walkPointSet);
-                Debug.Log("GoosePoint: " + walkPoint);
-                Debug.Log("THICK SAUCE: " + gameObject.transform.position);*/
-
+        // Set walking point
         if (!walkPointSet)
             FindWalkRange();
 
@@ -175,6 +177,7 @@ public class EnemyOutOfCombat : EnemyCollider
 
     void FindWalkRange()
     {
+        // Patrol set area and reset when reaching end of patrol
         if (PatrolPointsFoward_Backwards == false)
             PatrolNumber(1, PatrolPoints.Length - 1);
         else
@@ -184,6 +187,7 @@ public class EnemyOutOfCombat : EnemyCollider
 
     private void PatrolNumber(int increment, int size)
     {
+        // Finding out which direction the enemy should patrol
         walkPoint = PatrolPoints[PatrolPointsCounter];
         PatrolPointsCounter += increment;
         walkPointSet = true;

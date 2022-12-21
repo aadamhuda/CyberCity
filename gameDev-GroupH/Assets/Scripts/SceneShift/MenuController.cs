@@ -20,7 +20,7 @@ public class MenuController : MonoBehaviour
         saveState.Clue.Clear();
         saveState.Death.Clear();
         saveState.ClueCount = 0;
-        saveState.SaveLocation((float)-115.4, 1, (float)-65.9);
+        saveState.SaveLocation(new Vector3((float)-115.4, 1, (float)-65.9));
         saveState.SavePlayerHealth(new int [] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
     }
 

@@ -1,62 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
 {
     //generate a list of items
-    private List<PlayerItem> itemInventory;
-    public int amountItems = 8;
+    [SerializeField]
+    private Inventory itemInventory;
 
     [SerializeField]
-    private GameObject buttonTemplate;
-    [SerializeField]
-    private GridLayoutGroup gridGroup;
+    private Sprite sprite;
 
     [SerializeField]
-    private Sprite[] iconSprites; 
+    private Sprite[] iconSprites;
 
-    private void Start()
+    [SerializeField]
+    GameObject text_field;
+
+    [SerializeField]
+    GameObject pause;
+
+
+    public void LoadMenu()
     {
-        itemInventory = new List<PlayerItem>();
 
-        //generates a random icon to the button
-        for (int i = 1; i < amountItems; i++)
+        int start_x = -500;
+        int start_y = 100;
+
+
+        foreach (KeyValuePair<string, int> i in itemInventory.get_items())
         {
-            PlayerItem newItem = new PlayerItem();
-            newItem.iconSprite = iconSprites[Random.Range(0, iconSprites.Length)];
 
-            itemInventory.Add(newItem);
+            GameObject temp = Instantiate(new GameObject() , new Vector3( start_x + gameObject.transform.position.x , start_y + gameObject.transform.position.y , 0 ) , Quaternion.identity , gameObject.transform);
+            temp.name = i.Key;
+            Image temp_image = temp.AddComponent<Image>();
+            temp_image.sprite = sprite;
+            temp_image.type = Image.Type.Sliced;
+            GameObject temp_text_obj = Instantiate(text_field , temp.transform);
+            TextMeshProUGUI temp_text = temp_text_obj.GetComponent<TextMeshProUGUI>();
+            temp_text.text = i.Key + " x" + i.Value;
+            start_y -= 250;
+            if (start_y < -150)
+            {
+                start_x += 250;
+                start_y = 100;
+            }
         }
-
-        GenerateInventory();
     }
+
 
     //generates the buttons in the inventory
-    void GenerateInventory()
-    {
-        if(itemInventory.Count < amountItems)
-        {
-            gridGroup.constraintCount = itemInventory.Count;
-        } else
-        {
-            gridGroup.constraintCount = amountItems - 1;
-        }
 
-        foreach(PlayerItem newPlayerItem in itemInventory)
-        {
-            GameObject newItemButton = Instantiate(buttonTemplate) as GameObject;
-            newItemButton.SetActive(true);
 
-            newItemButton.GetComponent<InventoryButton>().SetIcon(newPlayerItem.iconSprite);
-            newItemButton.transform.SetParent(buttonTemplate.transform.parent, false);
-        }
-
-    }
-
-    public class PlayerItem
-    {
-        public Sprite iconSprite;
-    }
 }

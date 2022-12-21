@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using UnityEngine.SceneManagement;
 using System.Linq;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //NOTE: damage and healing must be balanced to provide a challenge while not making it too difficult
 
@@ -83,7 +83,6 @@ public class BattleSystem : MonoBehaviour
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
 
-		itemMenu.GetComponent<InventoryMenu>().AddTestItems();
 
 		//starts battle
 		state = BattleState.START;
@@ -246,149 +245,149 @@ public class BattleSystem : MonoBehaviour
 
 		// Player is attacking
 		state = BattleState.PLAYERWAIT;
+/*        StartCoroutine(play_attack.cmd_attack(players, enemies, target, tracker, attackType, playerAnimator, enemyAnimator));
+*/
+        // Rotating player until facing enemy
 
-		// Rotating player until facing enemy
-		
 
-		players[tracker].RemoveAilments();
 
-		
-		if (players[target].get_frozen())
+        players[tracker].RemoveAilments();
+
+
+        if (players[target].get_frozen())
         {
-			int number = UnityEngine.Random.Range(0, 100);
-			// 34% chance to unfreeze 
-			if (number > 66)
-				players[tracker].set_frozen(false);
-		}
-		else
+            int number = UnityEngine.Random.Range(0, 100);
+            // 34% chance to unfreeze 
+            if (number > 66)
+                players[tracker].set_frozen(false);
+        }
+        else
         {
-			if (attackType == "fire")
-			{
-
-				// Animation
-				playerAnimator.CrossFade("Magic", 0.1f);
-				yield return new WaitForSeconds(0.5f);
-				AudioSource.PlayClipAtPoint(animationAudio[3], currPlayer.transform.position);
-				yield return new WaitForSeconds(0.3f);
-
-				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
-				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
-
-				int number = UnityEngine.Random.Range(0, 100);
-				if (number < 26)
-					enemyTarget.set_burned(true);
-
-			}
-			else if (attackType == "curse")
-			{
-				playerAnimator.CrossFade("Magic", 0.1f);
-				yield return new WaitForSeconds(0.5f);
-				AudioSource.PlayClipAtPoint(animationAudio[5], currPlayer.transform.position);
-				yield return new WaitForSeconds(0.3f);
-
-				enemyTarget.set_cursed(true);
-			}
-			else if (attackType == "ice")
-			{
-				// Animation
-				playerAnimator.CrossFade("Magic", 0.1f);
-				yield return new WaitForSeconds(0.5f);
-				AudioSource.PlayClipAtPoint(animationAudio[4], currPlayer.transform.position);
-				yield return new WaitForSeconds(0.3f);
-
-				enemyTarget.set_frozen(true);
-			}
-			else if (attackType == "grass")
+            if (attackType == "fire")
             {
-				playerAnimator.CrossFade("Magic", 0.1f);
-				AudioSource.PlayClipAtPoint(animationAudio[2], currPlayer.transform.position);
-				yield return new WaitForSeconds(0.8f);
+
+                // Animation
+                playerAnimator.CrossFade("Magic", 0.1f);
+                yield return new WaitForSeconds(0.5f);
+                AudioSource.PlayClipAtPoint(animationAudio[3], currPlayer.transform.position);
+                yield return new WaitForSeconds(0.3f);
+
+                enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
+                StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
+
+                int number = UnityEngine.Random.Range(0, 100);
+                if (number < 26)
+                    enemyTarget.set_burned(true);
+
+            }
+            else if (attackType == "curse")
+            {
+                playerAnimator.CrossFade("Magic", 0.1f);
+                yield return new WaitForSeconds(0.5f);
+                AudioSource.PlayClipAtPoint(animationAudio[5], currPlayer.transform.position);
+                yield return new WaitForSeconds(0.3f);
+
+                enemyTarget.set_cursed(true);
+            }
+            else if (attackType == "ice")
+            {
+                // Animation
+                playerAnimator.CrossFade("Magic", 0.1f);
+                yield return new WaitForSeconds(0.5f);
+                AudioSource.PlayClipAtPoint(animationAudio[4], currPlayer.transform.position);
+                yield return new WaitForSeconds(0.3f);
+
+                enemyTarget.set_frozen(true);
+            }
+            else if (attackType == "grass")
+            {
+                playerAnimator.CrossFade("Magic", 0.1f);
+                AudioSource.PlayClipAtPoint(animationAudio[2], currPlayer.transform.position);
+                yield return new WaitForSeconds(0.8f);
 
 
-				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
-				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
+                enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
+                StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
 
 
-				int number = UnityEngine.Random.Range(0, 100);
-				if (number < 26)
-					enemyTarget.set_poisoned(true);
-				
-			}
-			else if (attackType == "water")
-			{
-				playerAnimator.CrossFade("Magic", 0.1f);
-				yield return new WaitForSeconds(0.5f);
-				AudioSource.PlayClipAtPoint(animationAudio[6], currPlayer.transform.position);
-				yield return new WaitForSeconds(0.3f);
-				
+                int number = UnityEngine.Random.Range(0, 100);
+                if (number < 26)
+                    enemyTarget.set_poisoned(true);
 
-				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
-				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
-			}
-			else if (attackType == "shoot")
-			{
-				// Equip Bow
-				playerAnimator.CrossFade("EquipBow", 0.1f);
-				yield return new WaitForSeconds(0.3f);
+            }
+            else if (attackType == "water")
+            {
+                playerAnimator.CrossFade("Magic", 0.1f);
+                yield return new WaitForSeconds(0.5f);
+                AudioSource.PlayClipAtPoint(animationAudio[6], currPlayer.transform.position);
+                yield return new WaitForSeconds(0.3f);
 
-				for (int i = 0; i < enemies.Length; i++)
-				{
 
-					yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[i].transform.position));
-					playerAnimator.CrossFade("DrawArrow", 0.1f);
-					yield return new WaitForSeconds(0.5f);
-					AudioSource.PlayClipAtPoint(animationAudio[7], currPlayer.transform.position);
+                enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
+                StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
+            }
+            else if (attackType == "shoot")
+            {
+                // Equip Bow
+                playerAnimator.CrossFade("EquipBow", 0.1f);
+                yield return new WaitForSeconds(0.3f);
 
-					enemies[i].takeDamage(players[tracker].GetATK()[attackType], attackType);
-					if (enemies[i].CheckIfDead())
-					{
-						StartCoroutine(DeathAnimation(enemies[i], enemies[i].GetComponent<Animator>()));
-						
-					}
-				}
-				// 
-				playerAnimator.CrossFade("DisarmBow", 0.3f);
+                for (int i = 0; i < enemies.Length; i++)
+                {
 
-			}
-			else
-			{
-				// Moving player until next to enemy
-				yield return StartCoroutine(MovePlayer(currPlayer, true, 0, 2f, enemyPos));
+                    yield return StartCoroutine(RotatePlayer(currPlayer, 0.2f, enemies[i].transform.position));
+                    playerAnimator.CrossFade("DrawArrow", 0.1f);
+                    yield return new WaitForSeconds(0.5f);
+                    AudioSource.PlayClipAtPoint(animationAudio[7], currPlayer.transform.position);
 
-				// Attack animation
-				playerAnimator.CrossFade("Melee", 0.1f);
-				AudioSource.PlayClipAtPoint(animationAudio[0], currPlayer.transform.position);
-				yield return new WaitForSeconds(0.5f);
-				
+                    enemies[i].takeDamage(players[tracker].GetATK()[attackType], attackType);
+                    if (enemies[i].CheckIfDead())
+                    {
+                        StartCoroutine(DeathAnimation(enemies[i], enemies[i].GetComponent<Animator>()));
 
-				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
+                    }
+                }
+                // 
+                playerAnimator.CrossFade("DisarmBow", 0.3f);
 
-				StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
+            }
+            else
+            {
+                // Moving player until next to enemy
+                yield return StartCoroutine(MovePlayer(currPlayer, true, 0, 2f, enemyPos));
 
-				// Moving player back to original position
-				yield return new WaitForSeconds(0.4f);
-				yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
-			}
-		}
-		                      
+                // Attack animation
+                playerAnimator.CrossFade("Melee", 0.1f);
+                AudioSource.PlayClipAtPoint(animationAudio[0], currPlayer.transform.position);
+                yield return new WaitForSeconds(0.5f);
 
-		isDead = enemyTarget.CheckIfDead();
+
+                enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
+
+                StartCoroutine(DeathAnimation(enemyTarget, enemyAnimator));
+
+                // Moving player back to original position
+                yield return new WaitForSeconds(0.4f);
+                yield return StartCoroutine(MovePlayer(currPlayer, false, 0, 0.1f, playerPos));
+            }
+        }
+
+
 
 		dialogue.text = currPlayer.unitName + " attacked " + enemyTarget.unitName;
 		yield return new WaitForSeconds(2f);
 
-		for (int i = enemies.Length; i <= 0; i--)
+		for (int i = 0; i < enemies.Length;)
         {
-			enemies = RemoveEnemies(i);
-			enemiesHUD = RemoveHUDs(i, enemiesHUD);
+			if (enemies[i].CheckIfDead())
+			{
+				enemies = RemoveEnemies(i);
+				enemiesHUD = RemoveHUDs(i, enemiesHUD);
+			}
+			else
+				i++;
 		}
 
-		if (isDead)
-        {
-			enemies = RemoveEnemies(target);
-			enemiesHUD = RemoveHUDs(target, enemiesHUD);
-			StartCoroutine(ChangeTarget(0)); //automatically changes target on enemy death
-        }
 
 		//checks if all enemies are dead - win condition
 		bool enemiesDead = (enemies.Length == 0);
@@ -775,7 +774,7 @@ public class BattleSystem : MonoBehaviour
 //-------------------------------------------ANIMATIONS/MOVEMENT-------------------------------------------------------
 
 	// Turn player to a position
-	IEnumerator RotatePlayer(Player p,  float speed, Vector3 targetPos)
+	protected IEnumerator RotatePlayer(BattleUnit p,  float speed, Vector3 targetPos)
 	{
 		var transform = p.transform;
 		var startRotation = transform.rotation;
@@ -811,7 +810,7 @@ public class BattleSystem : MonoBehaviour
 	}
 
 	// Move player to a position
-	IEnumerator MovePlayer(Player p, bool forward, float speed, float distOffsetToTarget, Vector3 targetPos)
+	protected IEnumerator MovePlayer(BattleUnit p, bool forward, float speed, float distOffsetToTarget, Vector3 targetPos)
 	{
 		var transform = p.transform;
 		var cc = p.GetComponent<CharacterController>();

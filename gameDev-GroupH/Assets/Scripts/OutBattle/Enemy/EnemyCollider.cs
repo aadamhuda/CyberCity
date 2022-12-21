@@ -23,14 +23,7 @@ public class EnemyCollider : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("I dnt like this keyboard : " + gameObject.layer);
-/*        EnemyPatrolInfo temp = plane[0].GetPatrols()[0];
-        GameObject obj = Instantiate(enemy_object, temp.GetFirst(), Quaternion.identity, gameObject.transform);
-        var assigner = obj.GetComponent<EnemyOutOfCombat>();
-        assigner.player = player;
-        assigner.engage = engage;
-        assigner.whatisGround = plane[0].GetLayer();
-        assigner.PatrolPoints = temp.GetPath();*/
+
         Enemies = new EnemyOutOfCombat[4 * PosSave.GetDifficulty()];
         for (int area = 0; area < 4; area++)
         {
@@ -70,7 +63,7 @@ public class EnemyCollider : MonoBehaviour
     }
 
     protected void BattleScene() {
-        PosSave.SaveLocation(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+        PosSave.SaveLocation(player.transform.position);
         PosSave.TruthBool();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
