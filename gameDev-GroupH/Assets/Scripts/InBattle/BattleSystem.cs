@@ -403,7 +403,7 @@ public class BattleSystem : MonoBehaviour
 	}
 
 
-	//-------------------------------------------ENEMY-------------------------------------------------------
+	//-------------------------------------------ITEM-------------------------------------------------------
 
 	public void UseItem()
 	{
@@ -635,6 +635,7 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = "You WIN the battle!";
 			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
+			savedata.SavePlayerMP(new int[] { players[0].currentMP, players[1].currentMP, players[2].currentMP, players[3].currentMP });
 			savedata.SavePlayerHealth(new int[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
 			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
