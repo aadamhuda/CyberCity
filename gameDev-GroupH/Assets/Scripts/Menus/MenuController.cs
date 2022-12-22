@@ -13,7 +13,7 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    //clears all saved data variables
+    //clears all saved data variables and gives starting defaults
     public void initialiseGame()
     {
         Time.timeScale = 1.0f;
@@ -21,6 +21,7 @@ public class MenuController : MonoBehaviour
         saveState.Death.Clear();
         saveState.ClueCount = 0;
         saveState.SaveLocation((float)-115.4, 1, (float)-65.9);
+        saveState.SavePlayerMP(new int[] {30, 30, 30, 30});
         saveState.SavePlayerHealth(new int [] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
     }
 

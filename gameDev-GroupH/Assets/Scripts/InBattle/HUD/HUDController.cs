@@ -26,7 +26,7 @@ public class HUDController : MonoBehaviour
         {
             GameObject abilityButton = Instantiate(abilityButtonPrefab, new Vector3(abilitiesHUDPos.position.x, abilitiesHUDPos.position.y + (i*50), abilitiesHUDPos.position.z), abilitiesHUDPos.rotation, abilitiesHUDPos);
             abilities[i] = abilityButton;
-            abilityButton.GetComponent<AbilityButtonController>().updateAbilityName(attacks[i]);
+            abilityButton.GetComponent<AbilityButtonController>().updateAbilityName(attacks[i], currPlayer);
         }
 
         cancelButton = Instantiate(cancelButtonPrefab, cancelButtonPos);

@@ -155,7 +155,7 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 100
   damage: 50
-  unitName: 
+  unitName: CyberHuman
   burned: 0
   poisoned: 0
   cursed: 0

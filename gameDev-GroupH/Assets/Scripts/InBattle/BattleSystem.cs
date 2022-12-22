@@ -94,7 +94,11 @@ public class BattleSystem : MonoBehaviour
 
 		//refreshes HUDs every frame
 		for (int i = 0; i < playerHUD.Length; i++)
+        {
 			playerHUD[i].SetHealth(players[i]);
+			playerHUD[i].SetMagic(players[i]);
+		}
+			
 
 		for (int i = 0; i < enemiesHUD.Length; i++)
 		{
@@ -161,6 +165,7 @@ public class BattleSystem : MonoBehaviour
 			allPlayers[i] = playerObj.GetComponent<Player>();
 			allPlayers[i].unitName = playerNames[i];
 			allPlayers[i].setHealth(savedata.team_health[i]);
+			allPlayers[i].SetMP(savedata.team_MP[i]);
 			if (allPlayers[i].currentHP == 0)
 				allPlayers[i].downed = true;
 			else
@@ -214,8 +219,8 @@ public class BattleSystem : MonoBehaviour
 		
 
 	//-------------------------------------------Player Attack-------------------------------------------------------
-	IEnumerator PlayerAttack(string attackType)
-	{
+	void PreAttackChecks(string attackType, int mpConsumption)
+    {
 		if (currPlayer.downed)
 		{
 			ChangePartyTurn(1);
@@ -223,9 +228,21 @@ public class BattleSystem : MonoBehaviour
 
 		DestroyAbilities();
 
-		Player playerScript = players[tracker].GetComponent<Player>();
-		bool isDead = false;
-		Debug.Log(attackType);
+		if (players[tracker].UseMP(mpConsumption) == false)
+		{
+			dialogue.text = "You do not have enough MP for this attack!";
+			PlayerTurn();
+			state = BattleState.PLAYERTURN;
+		}
+        else
+        {
+			StartCoroutine(PlayerAttack(attackType));
+		}
+	}
+	
+	IEnumerator PlayerAttack(string attackType)
+	{
+		bool isDead;
 		string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
 
 		Enemy enemyTarget = enemies[target];
@@ -361,7 +378,6 @@ public class BattleSystem : MonoBehaviour
 		else
 		{
 			ChangePartyTurn(1);
-				
 		}
 
 	}
@@ -387,7 +403,7 @@ public class BattleSystem : MonoBehaviour
 	}
 
 
-	//-------------------------------------------ENEMY-------------------------------------------------------
+	//-------------------------------------------ITEM-------------------------------------------------------
 
 	public void UseItem()
 	{
@@ -619,6 +635,7 @@ public class BattleSystem : MonoBehaviour
 			dialogue.text = "You WIN the battle!";
 			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
+			savedata.SavePlayerMP(new int[] { players[0].currentMP, players[1].currentMP, players[2].currentMP, players[3].currentMP });
 			savedata.SavePlayerHealth(new int[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
 			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
@@ -784,12 +801,12 @@ public class BattleSystem : MonoBehaviour
 
 	//button methods
 
-	public void OnAttackButton(string attackType)
+	public void OnAttackButton(string attackType, int mpConsumption)
 	{
 		if (state != BattleState.SELECTINGATTACK)
 			return;
 
-		StartCoroutine(PlayerAttack(attackType));
+		PreAttackChecks(attackType, mpConsumption);
 	}
 
 	public void OnHealButton()
