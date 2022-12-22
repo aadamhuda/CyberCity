@@ -1595,7 +1595,7 @@ MonoBehaviour:
   - {fileID: 1827915457}
   - {fileID: 620247400}
   mainCamera: {fileID: 2120378203}
-  play_attack: {fileID: 2099643385}
+  play_attack: {fileID: 0}
 --- !u!4 &509939005
 Transform:
   m_ObjectHideFlags: 0
@@ -1607,8 +1607,7 @@ Transform:
   m_LocalPosition: {x: -18.903751, y: -12.199808, z: 20.938288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2099643386}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5203,80 +5202,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047690334}
   m_CullTransparentMesh: 1
---- !u!1 &2099643384
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2099643386}
-  - component: {fileID: 2099643385}
-  m_Layer: 0
-  m_Name: Attack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &2099643385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2099643384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dc96c45ed6d61f4c914a3ac4b10c790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  savedata: {fileID: 0}
-  playerPrefabs: []
-  enemyPrefab: {fileID: 0}
-  playerNames:
-  - Main Character
-  - Companion 1
-  - Companion 2
-  - Companion 3
-  enemyLocations: []
-  playerLocation: {fileID: 0}
-  state: 0
-  dialogue: {fileID: 0}
-  enemies: []
-  players: []
-  tracker: 0
-  currPlayer: {fileID: 0}
-  target: 0
-  restartButtonPrefab: {fileID: 0}
-  rbLocation: {fileID: 0}
-  playerMoveButtons: []
-  hudPrefab: {fileID: 0}
-  playerHUD: []
-  enemiesHUD: []
-  enemyHudLocations: []
-  itemMenu: {fileID: 0}
-  BattleHUD: {fileID: 0}
-  animationAudio: []
-  battleCameras: []
-  mainCamera: {fileID: 0}
-  play_attack: {fileID: 0}
---- !u!4 &2099643386
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2099643384}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.903751, y: 12.199808, z: -20.938288}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 509939005}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2112153136 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8574604136036947440, guid: 44190480d91551c448d002d769b6ba4a, type: 3}
