@@ -12,6 +12,13 @@ public class PauseController : MonoBehaviour
     //private string sceneName;
     public SaveData saveState;
 
+    [SerializeField]
+    GameObject inventory;
+    [SerializeField]
+    GameObject main_pause_screen;
+    [SerializeField]
+    PlayerController player;
+
     private void Start()
     {
 
@@ -39,6 +46,48 @@ public class PauseController : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void SaveGame()
+    {
+        if (player.get_save())
+        {
+            saveState.set_respawn(player.transform.position);
+            saveState.SaveGame();
+        }
+        else
+        {
+            Debug.LogError("Cannot save in this area.");
+        }
+    }
+
+    public void LoadGame()
+    {
+        if (player.get_save())
+        {
+            saveState.LoadData();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Debug.LogError("Cannot load in this area.");
+        }
+    }
+
+    public void Inventory()
+    {
+        inventory.SetActive(true);
+        inventory.GetComponent<InventoryController>().LoadMenu();
+        main_pause_screen.SetActive(false);
+    }
+
+    public void quit_inventory()
+    {
+        inventory.SetActive(false);
+        for (int i = 1; i < inventory.transform.childCount; i++)
+            Destroy(inventory.transform.GetChild(i).gameObject);
+        main_pause_screen.SetActive(true);
     }
 
     //quits to the main menu when the quit button is pressed

@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI winText;
     public TextMeshProUGUI interaction;
     [SerializeField]
-    private TextMeshProUGUI saveText;
+    private bool save;
     public bool won = false;
     public int numClues = 3;
     public int clueCount;
@@ -62,12 +62,12 @@ public class PlayerController : MonoBehaviour
 
         if (savedata.getRespawn())
         {
-            move.position = savedata.GetLocation();
+            move.position = savedata.get_respawn_location();
             savedata.ChangeRespawn();
         }
             
         else
-            move.position = new Vector3(savedata.getX(), savedata.getY(), savedata.getZ());
+            move.position = savedata.get_player_location();
 
 
         canMove = true;
@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
         clueCount = savedata.ClueCount;
     }
 
+    public bool get_save() { return this.save; }
 
     public void collectClue(Collider other)
     {
@@ -161,17 +162,9 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Physics.Raycast(gameObject.transform.position, -transform.up, 3f, safe_area))
-        {
-            saveText.text = "Press 'm' to save";
-            if (Input.GetKey("m"))
-            {
-                Debug.Log("This WOMAN is spending 3k on a PC");
-                savedata.Set_respawn(gameObject.transform.position);
-                
-            }
-        }
+            save = true;
         else
-            saveText.text = "";
+            save = false;
     }
     void checkGrounded()
     {

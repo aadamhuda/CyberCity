@@ -7,7 +7,7 @@ using System.Linq;
 
 public class EnemyCollider : MonoBehaviour
 {
-    private EnemyOutOfCombat [] Enemies;
+    private EnemyOutOfCombat[] Enemies;
     [SerializeField]
     private GameObject enemy_object;
 
@@ -23,24 +23,26 @@ public class EnemyCollider : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("I dnt like this keyboard : " + gameObject.layer);
-/*        EnemyPatrolInfo temp = plane[0].GetPatrols()[0];
-        GameObject obj = Instantiate(enemy_object, temp.GetFirst(), Quaternion.identity, gameObject.transform);
-        var assigner = obj.GetComponent<EnemyOutOfCombat>();
-        assigner.player = player;
-        assigner.engage = engage;
-        assigner.whatisGround = plane[0].GetLayer();
-        assigner.PatrolPoints = temp.GetPath();*/
+
         Enemies = new EnemyOutOfCombat[4 * PosSave.GetDifficulty()];
+
+        // Instantiate enemies on each area
         for (int area = 0; area < 4; area++)
         {
+            // Instantiating a number amount of enemies depending on difficulty
             for (int i = 0; i < PosSave.GetDifficulty(); i++)
             {
-
+                // Graps the patrol paths
                 EnemyPatrolInfo temp = plane[area].GetPatrols()[i];
+
+                // Creates enemy with patrol path
                 GameObject enem = Instantiate(enemy_object, temp.GetFirst(), Quaternion.identity, gameObject.transform);
-                enem.name = area.ToString() + i.ToString();
+
+                // Assigning name such that : (  area number  -  enemy number  )
+                enem.name = area.ToString() + "-" + i.ToString();
                 var assigner = enem.GetComponent<EnemyOutOfCombat>();
+
+                // Assigning variables to each enemy
                 assigner.player = player;
                 assigner.engage = engage;
                 assigner.whatisGround = plane[area].GetLayer();
@@ -57,20 +59,22 @@ public class EnemyCollider : MonoBehaviour
         return inRange;
     }
 
-    private void OnTriggerEnter(Collider Other) {
-        //Debug.Log("You have entered.");
+    private void OnTriggerEnter(Collider Other)
+    {
         inRange = true;
         engage.text = "Press F to engage";
     }
 
-    private void OnTriggerExit(Collider Other) {
-        //Debug.Log("a");
+    private void OnTriggerExit(Collider Other)
+    {
         inRange = false;
         engage.text = "";
     }
 
-    protected void BattleScene() {
-        PosSave.SaveLocation(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+    protected void BattleScene()
+    {
+        // Engage combat
+        PosSave.SaveLocation(player.transform.position);
         PosSave.TruthBool();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -79,15 +83,16 @@ public class EnemyCollider : MonoBehaviour
     {
         if (inRange == true)
         {
-            
+
             if (Input.GetKeyDown(KeyCode.F))
             {
+                // Player engages combat
                 PosSave.SaveEnem(gameObject.name);
                 BattleScene();
             }
         }
 
-        
+
     }
 
 }

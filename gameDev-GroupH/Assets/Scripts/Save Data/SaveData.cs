@@ -6,7 +6,7 @@ using UnityEngine;
 public class SaveData : ScriptableObject
 {
     public bool isNextScene, EnemyDeath, EnemyDouble = false;
-    public float x, y, z = 0;
+
     public Dictionary<string, bool> Death = new Dictionary<string, bool>();
     public Dictionary<string, bool> Clue = new Dictionary<string, bool>();
     public string enem;
@@ -17,67 +17,35 @@ public class SaveData : ScriptableObject
     private int difficulty = 2;
 
     [SerializeField]
+    private Vector3 player_location;
+
+    [SerializeField]
     private Vector3 respawn_location;
 
     [SerializeField]
     private bool respawn = true;
 
-    public int GetDifficulty()
-    { return difficulty; }
+    [SerializeField]
+    private Dictionary<string, int> items = new Dictionary<string, int>();
 
+    [SerializeField]
+    private int item_spawn;
 
-    public void SaveLocation(float Nx, float Ny, float Nz)
-    {
-        x = Nx;
-        y = Ny;
-        z = Nz;
-    }
+    public int GetDifficulty() { return difficulty; }
 
-    public void Set_respawn(Vector3 transform)
-    {
-        respawn_location = transform;
-    }
+    public bool getDict(Dictionary<string, bool> dict, string obj) { return (dict[obj]); }
 
-    public void SaveEnem(string obj)
-    {
-        Debug.Log(obj);
-        enem = obj;
-    }
+    public Vector3 get_player_location() { return this.player_location; }
 
-    public string GetEnemy()
-    { return enem; }
+    public bool getRespawn() { return respawn; }
 
+    public Vector3 get_respawn_location() { return respawn_location; }
 
+    public string GetEnemy() { return enem; }
 
-    public void DictBoolSwitch(Dictionary<string, bool> dict, string obj)
-    { dict[obj] = true; }
+    public Dictionary<string, int> get_items() { return this.items; }
 
-    public void AddToDict(Dictionary<string, bool> dict, string obj)
-    {
-        if (!(dict.ContainsKey(obj)))
-        {
-            Debug.Log("It's True");
-            dict.Add(obj, false);
-        }
-            
-        else
-            Debug.Log("Fail");
-    }
-
-    public void SavePlayerHealth(int [] arr)
-    {
-        for (int i = 0; i < arr.Length; i++)
-            team_health[i] = arr[i];
-    }
-
-    public void SavePlayerMP(int[] arr)
-    {
-        for (int i = 0; i < arr.Length; i++)
-            team_MP[i] = arr[i];
-    }
-
-    public bool getDict(Dictionary<string, bool> dict, string obj)
-    { return (dict[obj]); }
+    public int get_item_respawn() { return this.item_spawn; }
 
     public void SwitchBool()
     { isNextScene = !isNextScene; }
@@ -91,16 +59,68 @@ public class SaveData : ScriptableObject
     public void OffEnemyDouble()
     { EnemyDouble = false; }
 
-    public float getX()
-    { return x; }
-    public float getY()
-    { return y; }
-    public float getZ()
-    { return z; }
+    public void ChangeRespawn()
+    { respawn = !respawn; }
 
-    public bool getRespawn() { return respawn;  }
+    public void SaveLocation(Vector3 location)
+    { this.player_location = location; }
 
-    public Vector3 GetLocation() { return respawn_location;  }
+    public void set_respawn(Vector3 transform)
+    { respawn_location = transform; }
 
-    public void ChangeRespawn() { respawn = !respawn;  }
+    public void SaveEnem(string obj)
+    { enem = obj; }
+
+    public void set_items(Dictionary<string, int> arr)
+    { this.items = arr; }
+
+    public void set_item_respawn(int arr)
+    { this.item_spawn = arr; }
+
+
+    public void DictBoolSwitch(Dictionary<string, bool> dict, string obj)
+    { dict[obj] = true; }
+
+    public void AddToDict(Dictionary<string, bool> dict, string obj)
+    {
+        if (!(dict.ContainsKey(obj)))
+            dict.Add(obj, false);
+
+    }
+
+    public void SavePlayerHealth(int[] arr)
+    {
+        for (int i = 0; i < arr.Length; i++)
+            team_health[i] = arr[i];
+    }
+
+    public void SavePlayerMP(int[] arr)
+    {
+        for (int i = 0; i < arr.Length; i++)
+            team_MP[i] = arr[i];
+    }
+
+    public void SaveGame()
+    {
+        SaveSystem.SaveSystemInformation(this);
+    }
+
+    public void LoadData()
+    {
+        SystemSaveData data = SaveSystem.LoadData();
+
+        this.team_health = data.get_team_health();
+        this.team_MP = data.get_team_mp();
+        this.Death = data.get_death();
+        this.Clue = data.get_clue();
+        this.ClueCount = data.get_clue_count();
+        this.difficulty = data.get_difficulty();
+        this.player_location = new Vector3(data.get_player_location()[0], data.get_player_location()[1], data.get_player_location()[2]);
+        this.respawn_location = new Vector3(data.get_respawn_location()[0], data.get_respawn_location()[1], data.get_respawn_location()[2]);
+        this.items = data.get_items();
+        this.item_spawn = data.get_item_respawn();
+
+        this.respawn = !this.respawn;
+    }
+
 }

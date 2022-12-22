@@ -13,16 +13,17 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    //clears all saved data variables and gives starting defaults
+    //clears all saved data variables
     public void initialiseGame()
     {
         Time.timeScale = 1.0f;
         saveState.Clue.Clear();
         saveState.Death.Clear();
         saveState.ClueCount = 0;
-        saveState.SaveLocation((float)-115.4, 1, (float)-65.9);
-        saveState.SavePlayerMP(new int[] {30, 30, 30, 30});
-        saveState.SavePlayerHealth(new int [] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
+        saveState.SaveLocation(new Vector3((float)-115.4, 1, (float)-65.9));
+        saveState.set_item_respawn(4);
+        saveState.SavePlayerMP(new int[] { 30, 30, 30, 30 });
+        saveState.SavePlayerHealth(new int[] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
     }
 
     //starts the game when play button is pressed
@@ -39,3 +40,4 @@ public class MenuController : MonoBehaviour
         Application.Quit(); //application quits
     }
 }
+

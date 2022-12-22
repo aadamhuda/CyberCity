@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNextScene: 1
   EnemyDeath: 1
-  EnemyDouble: 0
-  x: -48.234093
-  y: 1.5907346
-  z: -65.64936
-  enem: 01
+  EnemyDouble: 1
+  enem: 2-1
   ClueCount: 0
   inBattle: 1
-  team_health: 01000000010000000100000001000000
+  team_health: 64000000640000006400000064000000
+  team_MP: 00000000000000000000000000000000
+  player_location: {x: -19.403631, y: 1.0099999, z: 16.27642}
   respawn_location: {x: 17.1985, y: 1.0099999, z: -97.64579}
   respawn: 0
+  item_spawn: 20

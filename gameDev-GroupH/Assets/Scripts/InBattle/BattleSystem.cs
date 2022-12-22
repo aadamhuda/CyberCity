@@ -80,7 +80,6 @@ public class BattleSystem : MonoBehaviour
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
 
-		itemMenu.GetComponent<InventoryMenu>().AddTestItems();
 
 		//starts battle
 		state = BattleState.START;
