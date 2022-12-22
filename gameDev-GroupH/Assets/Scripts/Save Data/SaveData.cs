@@ -13,6 +13,7 @@ public class SaveData : ScriptableObject
     public int ClueCount;
     public bool inBattle;
     public int[] team_health = new int[4];
+    public int[] team_MP = new int[4];
     private int difficulty = 2;
 
     [SerializeField]
@@ -67,6 +68,12 @@ public class SaveData : ScriptableObject
     {
         for (int i = 0; i < arr.Length; i++)
             team_health[i] = arr[i];
+    }
+
+    public void SavePlayerMP(int[] arr)
+    {
+        for (int i = 0; i < arr.Length; i++)
+            team_MP[i] = arr[i];
     }
 
     public bool getDict(Dictionary<string, bool> dict, string obj)

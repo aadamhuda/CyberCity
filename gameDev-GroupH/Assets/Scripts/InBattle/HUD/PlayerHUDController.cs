@@ -6,19 +6,29 @@ using TMPro;
 
 public class PlayerHUDController : MonoBehaviour
 {
-    public Slider slider;
+    public Slider hpSlider;
     public TextMeshProUGUI hpValue;
+
+    public Slider mpSlider;
+    public TextMeshProUGUI mpValue;
 
 
 
     public void SetHealth(Player player)
     {
-        slider.value = player.currentHP;
+        hpSlider.value = player.currentHP;
         hpValue.text = player.currentHP.ToString();
     }
 
     public void InitialiseSlider(Player player)
     {
-        slider.maxValue = player.maxHP;
+        hpSlider.maxValue = player.maxHP;
     }
+
+    public void SetMagic(Player player)
+    {
+        mpSlider.value = player.currentMP;
+        mpValue.text = player.currentMP.ToString();
+    }
+
 }

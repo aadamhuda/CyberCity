@@ -155,15 +155,12 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 100
   damage: 50
-  unitName: 
+  unitName: Exo Soldier
   burned: 0
-  burnDamage: 0
   poisoned: 0
-  poisonDamage: 0
   cursed: 0
-  burnMultiplier: 0
-  frozen: 0
   type: 0
+  ID: 0
 --- !u!1001 &2519149066907817450
 PrefabInstance:
   m_ObjectHideFlags: 0

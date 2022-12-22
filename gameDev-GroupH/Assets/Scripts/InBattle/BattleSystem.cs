@@ -94,7 +94,11 @@ public class BattleSystem : MonoBehaviour
 
 		//refreshes HUDs every frame
 		for (int i = 0; i < playerHUD.Length; i++)
+        {
 			playerHUD[i].SetHealth(players[i]);
+			playerHUD[i].SetMagic(players[i]);
+		}
+			
 
 		for (int i = 0; i < enemiesHUD.Length; i++)
 		{
@@ -161,6 +165,7 @@ public class BattleSystem : MonoBehaviour
 			allPlayers[i] = playerObj.GetComponent<Player>();
 			allPlayers[i].unitName = playerNames[i];
 			allPlayers[i].setHealth(savedata.team_health[i]);
+			allPlayers[i].SetMP(savedata.team_MP[i]);
 			if (allPlayers[i].currentHP == 0)
 				allPlayers[i].downed = true;
 			else

@@ -15,11 +15,22 @@ public class Player : BattleUnit
     public Dictionary<string, int> playerAttacks = new Dictionary<string, int>();
     public string selectedMove = "normal";
     public bool downed;
+    public int currentMP;
+    public int maxMP;
 
+    public Dictionary<string, int> mpCost = new Dictionary<string, int>();
     // Set initial player attacks
 
     private void Start()
     {
+        mpCost.Add("normal", 0);
+        mpCost.Add("shoot", 0);
+        mpCost.Add("fire", 3);
+        mpCost.Add("water", 3);
+        mpCost.Add("ice", 4);
+        mpCost.Add("grass", 3);
+        mpCost.Add("curse", 5);
+
         float norm = 1f;
         float weakness = 1.25f;
         float strength = 0.75f;
@@ -107,6 +118,32 @@ public class Player : BattleUnit
 		if (currentHP > maxHP)
 			currentHP = maxHP;
 	}
+
+    public void SetMP(int mp)
+    {
+        this.currentMP = mp;
+    }
+
+    public void Restore(int amount)
+    {
+        currentMP += amount;
+        if (currentMP > maxMP)
+            currentMP = maxMP;
+    }
+
+    public bool UseMP(int mpUsed)
+    {
+        int newMP = currentMP - mpUsed;
+        if(newMP == 0)
+        {
+            return false;
+        }
+        else
+        {
+            currentMP = newMP;
+            return true;
+        }
+    }
 
     public int getTotalMaxHP()
     {

@@ -17,10 +17,12 @@ public class AbilityButtonController : MonoBehaviour
         battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         thisButton.onClick.AddListener(TaskOnClick);
     }
-    public void updateAbilityName(string name)
+    public void updateAbilityName(string name, Player currPlayer)
     {
         abilityName.text = name;
         attackType = name;
+        
+        abilityMP.text = currPlayer.mpCost[attackType].ToString();
     }
 
     // Do attack of Type attackType

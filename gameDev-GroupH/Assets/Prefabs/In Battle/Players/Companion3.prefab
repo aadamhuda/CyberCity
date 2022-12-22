@@ -139,11 +139,12 @@ MonoBehaviour:
   burned: 0
   poisoned: 0
   cursed: 0
-  frozen: 0
   type: 0
   ID: 3
   selectedMove: burn
   downed: 0
+  currentMP: 0
+  maxMP: 30
 --- !u!95 &5386070564629830177
 Animator:
   serializedVersion: 4
