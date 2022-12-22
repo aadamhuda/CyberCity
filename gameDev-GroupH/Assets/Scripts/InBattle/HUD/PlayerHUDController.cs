@@ -23,6 +23,7 @@ public class PlayerHUDController : MonoBehaviour
     public void InitialiseSlider(Player player)
     {
         hpSlider.maxValue = player.maxHP;
+        mpSlider.maxValue = player.maxMP;
     }
 
     public void SetMagic(Player player)

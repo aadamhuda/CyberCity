@@ -219,8 +219,8 @@ public class BattleSystem : MonoBehaviour
 		
 
 	//-------------------------------------------Player Attack-------------------------------------------------------
-	IEnumerator PlayerAttack(string attackType)
-	{
+	void PreAttackChecks(string attackType, int mpConsumption)
+    {
 		if (currPlayer.downed)
 		{
 			ChangePartyTurn(1);
@@ -228,9 +228,21 @@ public class BattleSystem : MonoBehaviour
 
 		DestroyAbilities();
 
-		Player playerScript = players[tracker].GetComponent<Player>();
-		bool isDead = false;
-		Debug.Log(attackType);
+		if (players[tracker].UseMP(mpConsumption) == false)
+		{
+			dialogue.text = "You do not have enough MP for this attack!";
+			PlayerTurn();
+			state = BattleState.PLAYERTURN;
+		}
+        else
+        {
+			StartCoroutine(PlayerAttack(attackType));
+		}
+	}
+	
+	IEnumerator PlayerAttack(string attackType)
+	{
+		bool isDead;
 		string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
 
 		Enemy enemyTarget = enemies[target];
@@ -366,7 +378,6 @@ public class BattleSystem : MonoBehaviour
 		else
 		{
 			ChangePartyTurn(1);
-				
 		}
 
 	}
@@ -789,12 +800,12 @@ public class BattleSystem : MonoBehaviour
 
 	//button methods
 
-	public void OnAttackButton(string attackType)
+	public void OnAttackButton(string attackType, int mpConsumption)
 	{
 		if (state != BattleState.SELECTINGATTACK)
 			return;
 
-		StartCoroutine(PlayerAttack(attackType));
+		PreAttackChecks(attackType, mpConsumption);
 	}
 
 	public void OnHealButton()

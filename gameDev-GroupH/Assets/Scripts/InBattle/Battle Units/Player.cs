@@ -134,7 +134,7 @@ public class Player : BattleUnit
     public bool UseMP(int mpUsed)
     {
         int newMP = currentMP - mpUsed;
-        if(newMP == 0)
+        if(newMP < 0)
         {
             return false;
         }

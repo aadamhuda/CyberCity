@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 6851139617462028622}
   - component: {fileID: 1990517357796447114}
   m_Layer: 5
-  m_Name: HP Bar Border
+  m_Name: MP Bar Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 8580045265331805814}
   - component: {fileID: 6920763039393842817}
   m_Layer: 5
-  m_Name: HP Bar Slider
+  m_Name: MP Bar Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,6 +11,7 @@ public class AbilityButtonController : MonoBehaviour
     public Button thisButton;
     public string attackType;
     public BattleSystem battleSystem;
+    public int mpConsumption;
 
     private void Start()
     {
@@ -21,13 +22,13 @@ public class AbilityButtonController : MonoBehaviour
     {
         abilityName.text = name;
         attackType = name;
-        
-        abilityMP.text = currPlayer.mpCost[attackType].ToString();
+        mpConsumption = currPlayer.mpCost[attackType];
+        abilityMP.text = mpConsumption.ToString();
     }
 
     // Do attack of Type attackType
     void TaskOnClick()
     {
-        battleSystem.OnAttackButton(attackType);
+        battleSystem.OnAttackButton(attackType, mpConsumption);
     }
 }
