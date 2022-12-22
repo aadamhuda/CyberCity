@@ -17,8 +17,8 @@ public class BattleSystem : MonoBehaviour
 	SaveData savedata;
 
 	public GameObject[] playerPrefabs;
-	public GameObject enemyPrefab;
-	public string[] playerNames = new string[] {"Main Character", "Companion 1", "Companion 2", "Companion 3" };
+	public GameObject[] enemyPrefabs;
+	public string[] playerNames = new string[] {"Eve", "Companion 1", "Companion 2", "Companion 3" };
 
 	public Transform[] enemyLocations;
 	public Transform playerLocation; //to be changed to hold multiple players once party system is created
@@ -169,6 +169,25 @@ public class BattleSystem : MonoBehaviour
 		return allPlayers;
 	}
 
+	public Enemy[] InstantiateEnemies()
+    {
+		int enemyCount = 3;
+		Enemy[] allEnemies = new Enemy[enemyCount];
+
+		for (int i = 0; i < enemyCount; i++)
+		{
+			int enemID = Random.Range(0, 5);
+			Debug.Log(i);
+			Debug.Log(enemID);
+			
+			GameObject enemyObj = Instantiate(enemyPrefabs[enemID], enemyLocations[i]);
+			allEnemies[i] = enemyObj.GetComponent<Enemy>();
+			
+		}
+		return allEnemies;
+		
+	}
+
     //initialises battle - spawns player and enemies, selects first target and then starts player turn
     IEnumerator InitialiseBattle()
     {
@@ -177,20 +196,10 @@ public class BattleSystem : MonoBehaviour
 		string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
 
 		players = InstantiatePlayers();
-		// player moves
 
 		currPlayer = players[tracker];
 
-        enemies = new Enemy[3];
-		
-		for (int i = 0; i < enemyLocations.Length; i++)
-        {
-			GameObject enemyObj = Instantiate(enemyPrefab, enemyLocations[i]);
-            enemies[i] = enemyObj.GetComponent<Enemy>();
-			enemies[i].unitName = "enemy " + (i + 1);
-			enemies[i].set_ID(i);
-        }
-
+		enemies = InstantiateEnemies();
 
 		StartCoroutine(ChangeTarget(0));
 
