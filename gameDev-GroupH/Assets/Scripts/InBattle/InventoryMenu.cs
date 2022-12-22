@@ -163,16 +163,14 @@ public class InventoryMenu : MonoBehaviour
 
 	// Use item
 	public void useItem(string item) {
-		int quantity;
-		
-		inventory.get_inventory().TryGetValue(item, out quantity); // Store current quantity 
 			
 		// Decrement quantity
-		inventory.get_inventory()[item] = quantity - 1; // Decrement
-		
+		inventory.get_inventory()[item] -= 1; // Decrement
+
+
 		// Remove if 0
-		if (quantity - 1 <= 0) {
-			inventory.get_inventory().Remove(item);
+		if (inventory.get_inventory()[item] == 0) {
+			inventory.remove_item(item);
 		}
 	}
 	

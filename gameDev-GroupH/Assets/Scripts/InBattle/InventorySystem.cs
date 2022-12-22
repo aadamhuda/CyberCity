@@ -16,20 +16,7 @@ public class InventorySystem : MonoBehaviour
     // Start is called before the first frame update
     public void define_inventory()
     {
-        Debug.Log("Don't even know how it has entries : " + inventory.Count );
-
-        inventory.Clear();
-
-
-
-
-        foreach (KeyValuePair<string , int> i in savedata.get_items())
-            addItem(i.Key, i.Value);
-
-        Debug.Log("bruh");
-
-        foreach (KeyValuePair<string, int> i in inventory)
-            Debug.Log(i.Key + " + " + i.Value);
+        inventory = savedata.get_items();
     }
 
     public Dictionary<string , int> get_inventory() { return this.inventory; }
@@ -64,5 +51,15 @@ public class InventorySystem : MonoBehaviour
         else
             inventory.Add(item, quantity);
         
+    }
+
+    public void remove_item(string item)
+    {
+        Debug.Log("We're cming after u : " + item);
+
+        inventory.Remove(item);
+        savedata.set_items(inventory);
+
+        Debug.Log("solve tha mysutreyt : " + inventory.Count);
     }
 }

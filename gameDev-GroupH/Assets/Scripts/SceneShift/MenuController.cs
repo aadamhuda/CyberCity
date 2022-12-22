@@ -21,6 +21,7 @@ public class MenuController : MonoBehaviour
         saveState.Death.Clear();
         saveState.ClueCount = 0;
         saveState.SaveLocation(new Vector3((float)-115.4, 1, (float)-65.9));
+        saveState.set_item_respawn(4);
         saveState.SavePlayerHealth(new int [] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
     }
 

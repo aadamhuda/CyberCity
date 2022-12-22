@@ -33,7 +33,6 @@ public class ItemSpawn : MonoBehaviour
 		// Edge of map
 
 		remaining_items = savedata.get_item_respawn();
-		Debug.Log(remaining_items);
             
 
 		// Y pos
@@ -48,7 +47,6 @@ public class ItemSpawn : MonoBehaviour
 				baseCoods = new Vector3(Random.Range(max, -max), 0, Random.Range(max, -max));
 
 			// Instantiate item within map
-			bool check = Physics.Raycast(baseCoods, -transform.up, 3f, surface[i]);
 
 
 			GameObject newItem = Instantiate(baseItem, baseCoods, Quaternion.identity, parent.transform);
