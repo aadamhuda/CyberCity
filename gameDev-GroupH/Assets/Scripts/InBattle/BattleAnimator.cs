@@ -51,8 +51,6 @@ public class BattleAnimator : MonoBehaviour
                 break;
             }
         }
-
-        Debug.Log(sword.name);
         a.CrossFade("EquipSword", 0.1f);
         yield return new WaitForSeconds(0.5f);
 
