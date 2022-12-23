@@ -41,14 +41,14 @@ public class PlayerController : MonoBehaviour
 
     public bool canMove = true;
 
-    public GameObject [] Clues = new GameObject[3];
+    public GameObject [] Clues = new GameObject[4];
 
     public TextMeshProUGUI winText;
     public TextMeshProUGUI interaction;
     [SerializeField]
     private bool save;
     public bool won = false;
-    public int numClues = 3;
+    public int numClues = 4;
     public int clueCount;
 
     public SaveData savedata;
