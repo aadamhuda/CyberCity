@@ -85,11 +85,11 @@ public class BattleAnimator : MonoBehaviour
                 break;
             }
         }
-
-        a.CrossFade("DisarmSword", 0.1f);
-        yield return new WaitForSeconds(0.2f);
         sword.GetComponent<MeshRenderer>().enabled = false;
         sword.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+        a.CrossFade("DisarmSword", 0.1f);
+        yield return null;
+
     }
 
 

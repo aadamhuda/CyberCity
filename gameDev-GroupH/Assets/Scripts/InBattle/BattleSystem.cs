@@ -343,8 +343,9 @@ public class BattleSystem : MonoBehaviour
 
 				// Moving player back to original position
 				yield return new WaitForSeconds(0.7f);
-				yield return StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.1f, playerPos));
-				StartCoroutine(animator.DisarmSword(playerAnimator, currPlayer.transform));
+				yield return StartCoroutine(animator.DisarmSword(playerAnimator, currPlayer.transform));
+				StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.1f, playerPos));
+
 			}
 		}
 		                      
