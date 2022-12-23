@@ -352,18 +352,16 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = currPlayer.unitName + " attacked " + enemyTarget.unitName;
 		yield return new WaitForSeconds(2f);
 
-		for (int i = enemies.Length; i <= 0; i--)
-        {
-			enemies = RemoveEnemies(i);
-			enemiesHUD = RemoveHUDs(i, enemiesHUD);
+		for (int i = 0; i < enemies.Length;)
+		{
+			if (enemies[i].CheckIfDead())
+			{
+				enemies = RemoveEnemies(i);
+				enemiesHUD = RemoveHUDs(i, enemiesHUD);
+			}
+			else
+				i++;
 		}
-
-		if (isDead)
-        {
-			enemies = RemoveEnemies(target);
-			enemiesHUD = RemoveHUDs(target, enemiesHUD);
-			StartCoroutine(ChangeTarget(0)); //automatically changes target on enemy death
-        }
 
 		//checks if all enemies are dead - win condition
 		bool enemiesDead = (enemies.Length == 0);
