@@ -7,6 +7,12 @@ TagManager:
   - Clue
   - attackIndicator
   - Restart
+  - PlayerIB
+  - Companion3
+  - BattleSystem
+  - Companion1
+  - Comapnion2
+  - PlayerSword
   layers:
   - Default
   - TransparentFX
