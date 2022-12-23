@@ -15,9 +15,9 @@ MonoBehaviour:
   isNextScene: 1
   EnemyDeath: 1
   EnemyDouble: 0
-  x: -48.234093
+  x: 0
   y: 1.5907346
-  z: -65.64936
+  z: 0
   enem: 01
   ClueCount: 0
   inBattle: 1
