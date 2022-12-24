@@ -47,17 +47,15 @@ public class BattleAnimator : MonoBehaviour
         {
             if (sword.GetChild(i).name.Contains("Hips"))
             {
-                sword = sword.GetChild(i).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5).GetChild(0).GetChild(0);
+                sword = sword.GetChild(i).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
                 break;
             }
         }
-
         Debug.Log(sword.name);
         a.CrossFade("EquipSword", 0.1f);
         yield return new WaitForSeconds(0.5f);
 
-        sword.GetComponent<MeshRenderer>().enabled = true;
-        sword.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+        sword.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.3f);
     }
 
@@ -81,15 +79,14 @@ public class BattleAnimator : MonoBehaviour
         {
             if (sword.GetChild(i).name.Contains("Hips"))
             {
-                sword = sword.GetChild(i).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5).GetChild(0).GetChild(0);
+                sword = sword.GetChild(i).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
                 break;
             }
         }
-
+        sword.gameObject.SetActive(false);
         a.CrossFade("DisarmSword", 0.1f);
-        yield return new WaitForSeconds(0.2f);
-        sword.GetComponent<MeshRenderer>().enabled = false;
-        sword.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+        yield return null;
+
     }
 
 
@@ -124,6 +121,7 @@ public class BattleAnimator : MonoBehaviour
         a.CrossFade("React", 0.1f);
         if (target.CheckIfDead())
             a.CrossFade("Death", 0.1f);
+
 
         yield return new WaitForSeconds(0.4f);
     }
