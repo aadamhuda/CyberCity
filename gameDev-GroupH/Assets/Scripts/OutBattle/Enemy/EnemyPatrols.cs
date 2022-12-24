@@ -6,9 +6,14 @@ public class EnemyPatrols : MonoBehaviour
 {
     [SerializeField]
     private EnemyPatrolInfo[] Patrols;
+
     [SerializeField]
     private LayerMask area;
 
+    [SerializeField]
+    private int max;
+
+    public int get_max() { return this.max; }
     public EnemyPatrolInfo [] GetPatrols()
     {
         return Patrols;
