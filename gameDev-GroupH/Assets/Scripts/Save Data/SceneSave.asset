@@ -20,7 +20,7 @@ MonoBehaviour:
   inBattle: 1
   team_health: 64000000640000006400000064000000
   team_MP: 00000000000000000000000000000000
-  player_location: {x: 0, y: 0, z: 0}
+  player_location: {x: -19.403631, y: 1.0099999, z: 16.27642}
   respawn_location: {x: 17.1985, y: 1.0099999, z: -97.64579}
   respawn: 0
   item_spawn: 20
