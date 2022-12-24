@@ -64,6 +64,8 @@ public class BattleUnit : MonoBehaviour
         float multiplier = unit_attributes[damageType];
 
         if (cursed)
+            if (unit_attributes[damageType] > 1f)
+                multiplier += 0.15f;
             multiplier += 0.15f;
 
         currentHP -= Mathf.RoundToInt(dmg * multiplier);

@@ -81,8 +81,8 @@ public class EnemyCollider : MonoBehaviour
     {
         // Engage combat
         PosSave.SaveLocation(player.transform.position);
-        PosSave.TruthBool();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PosSave.set_current_level(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(PosSave.get_cargo_battle());
     }
 
     protected virtual void Update()
