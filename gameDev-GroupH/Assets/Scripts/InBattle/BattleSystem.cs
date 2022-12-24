@@ -227,15 +227,15 @@ public class BattleSystem : MonoBehaviour
 
 		DestroyAbilities();
 
-		if (players[tracker].UseMP(mpConsumption) == false)
-		{
-			dialogue.text = "You do not have enough MP for this attack!";
-			PlayerTurn();
-			state = BattleState.PLAYERTURN;
-		}
+        if (players[tracker].UseMP(mpConsumption) == false)
+        {
+            dialogue.text = "You do not have enough MP for this attack!";
+            PlayerTurn();
+            state = BattleState.PLAYERTURN;
+        }
         else
         {
-			StartCoroutine(PlayerAttack(attackType));
+        StartCoroutine(PlayerAttack(attackType));
 		}
 	}
 	
@@ -274,7 +274,7 @@ public class BattleSystem : MonoBehaviour
         {
 			if (attackType == "fire")
 			{
-				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, "fire"));
+				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, enemyTarget.transform, "fire"));
 
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 				StartCoroutine(animator.EnemyDeath(enemyTarget, enemyAnimator));
@@ -286,18 +286,18 @@ public class BattleSystem : MonoBehaviour
 			}
 			else if (attackType == "curse")
 			{
-				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, "curse"));
+				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, enemyTarget.transform, "curse"));
 				enemyTarget.set_cursed(true);
 			}
 			else if (attackType == "ice")
 			{
-				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, "ice"));
+				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, enemyTarget.transform, "ice"));
 
 				enemyTarget.set_frozen(true);
 			}
 			else if (attackType == "grass")
             {
-				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, "grass"));
+				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, enemyTarget.transform, "grass"));
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 				StartCoroutine(animator.EnemyDeath(enemyTarget, enemyAnimator));
 
@@ -307,7 +307,7 @@ public class BattleSystem : MonoBehaviour
 			}
 			else if (attackType == "water")
 			{
-				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, "water"));
+				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, enemyTarget.transform, "water"));
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 				StartCoroutine(animator.EnemyDeath(enemyTarget, enemyAnimator));
 			}
@@ -343,8 +343,9 @@ public class BattleSystem : MonoBehaviour
 
 				// Moving player back to original position
 				yield return new WaitForSeconds(0.7f);
-				yield return StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.1f, playerPos));
-				StartCoroutine(animator.DisarmSword(playerAnimator, currPlayer.transform));
+				yield return StartCoroutine(animator.DisarmSword(playerAnimator, currPlayer.transform));
+				StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.1f, playerPos));
+
 			}
 		}
 		                      
