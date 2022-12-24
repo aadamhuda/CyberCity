@@ -117,8 +117,8 @@ public class EnemyOutOfCombat : EnemyCollider
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        radius = 35;
-        angle = 120;
+        radius = 15;
+        angle = 25;
     }
 
     // Update is called once per frame
@@ -151,7 +151,7 @@ public class EnemyOutOfCombat : EnemyCollider
     void Patrol()
     {
         anim.SetBool("isWalking", true);
-        agent.speed = 4;
+        agent.speed = 2;
 
 
         /*        Debug.Log("WalkingPointSet: " + walkPointSet);
