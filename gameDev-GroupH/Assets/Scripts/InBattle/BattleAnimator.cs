@@ -4,33 +4,41 @@ using UnityEngine;
 
 public class BattleAnimator : MonoBehaviour
 {
-    public AudioClip[] audio;
-    Dictionary<string, AudioClip> audioDict = new Dictionary<string, AudioClip>();
+    public AudioClip[] attackAudio;
+    public AudioClip[] hitAudio;
+    public GameObject[] attackFX;
+    public GameObject[] hitFX;
+    Dictionary<string, AudioClip> attackAudioDict = new Dictionary<string, AudioClip>();
+    Dictionary<string, AudioClip> hitAudioDict = new Dictionary<string, AudioClip>();
+    Dictionary<string, GameObject> attackFXDict = new Dictionary<string, GameObject>();
+    Dictionary<string, GameObject> hitFXDict = new Dictionary<string, GameObject>();
+    
+    public float effectSpeed;
+    string[] attacks = new string[] { "melee", "heal", "fire", "curse", "ice", "grass", "water", "shoot" };
 
     // Start is called before the first frame update
     void Start()
     {
-        audioDict.Add("melee", audio[0]);
-        audioDict.Add("heal", audio[1]);
-        audioDict.Add("fire", audio[2]);
-        audioDict.Add("curse", audio[3]);
-        audioDict.Add("ice", audio[4]);
-        audioDict.Add("grass", audio[5]);
-        audioDict.Add("water", audio[6]);
-        audioDict.Add("shoot", audio[7]);
+        for (int i = 0; i < attacks.Length; i++)
+        {
+            attackAudioDict.Add(attacks[i], attackAudio[i]);
+            hitAudioDict.Add(attacks[i], hitAudio[i]);
+            attackFXDict.Add(attacks[i], attackFX[i]);
+            hitFXDict.Add(attacks[i], hitFX[i]);
+        }
     }
 
     public IEnumerator Melee(Animator a, Transform t)
     {
         a.CrossFade("Melee", 0.1f);
-        AudioSource.PlayClipAtPoint(audioDict["melee"], t.position);
+        AudioSource.PlayClipAtPoint(attackAudioDict["melee"], t.position);
         yield return new WaitForSeconds(0.4f);
     }
 
     public IEnumerator Heal(Animator a, Transform t)
     {
         a.GetComponent<Animator>().CrossFade("Heal", 0.1f);
-        AudioSource.PlayClipAtPoint(audioDict["heal"], t.position);
+        AudioSource.PlayClipAtPoint(attackAudioDict["heal"], t.position);
         yield return null;
     }
 
@@ -63,7 +71,7 @@ public class BattleAnimator : MonoBehaviour
     {
         a.CrossFade("DrawArrow", 0.1f);
         yield return new WaitForSeconds(0.5f);
-        AudioSource.PlayClipAtPoint(audioDict["shoot"], t.position);
+        AudioSource.PlayClipAtPoint(attackAudioDict["shoot"], t.position);
     }
 
     public IEnumerator DisarmBow(Animator a, Transform t)
@@ -88,23 +96,30 @@ public class BattleAnimator : MonoBehaviour
         yield return null;
 
     }
-
-
-    public IEnumerator Magic(Animator a, Transform t, string attack)
+    public IEnumerator Magic(Animator a, Transform player, Transform enemy, string attack)
     {
+        a.CrossFade("Magic", 0.1f);
+        GameObject instantiatedAttackFX = Instantiate(attackFXDict[attack], player.position + player.forward, player.rotation);
         if (attack.Equals("grass"))
         {
-            a.CrossFade("Magic", 0.1f);
-            AudioSource.PlayClipAtPoint(audioDict["grass"], t.position);
-            yield return new WaitForSeconds(0.8f);
+            AudioSource.PlayClipAtPoint(attackAudioDict[attack], player.position);
+            yield return new WaitForSeconds(0.9f);
+
         }
         else
         {
-            a.CrossFade("Magic", 0.1f);
             yield return new WaitForSeconds(0.5f);
-            AudioSource.PlayClipAtPoint(audioDict[attack], t.position);
+            AudioSource.PlayClipAtPoint(attackAudioDict[attack], player.position);
             yield return new WaitForSeconds(0.3f);
+
         }
+        instantiatedAttackFX.GetComponent<Rigidbody>().velocity = player.forward * effectSpeed;
+        while (instantiatedAttackFX != null)
+        {
+            yield return null;
+        }
+        AudioSource.PlayClipAtPoint(hitAudioDict[attack], enemy.position);
+        Destroy(Instantiate(hitFXDict[attack], enemy.position, enemy.rotation), 1);
     }
 
     public IEnumerator PlayerDeath(BattleUnit target, Animator a)
@@ -121,7 +136,6 @@ public class BattleAnimator : MonoBehaviour
         a.CrossFade("React", 0.1f);
         if (target.CheckIfDead())
             a.CrossFade("Death", 0.1f);
-
 
         yield return new WaitForSeconds(0.4f);
     }
