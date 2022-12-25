@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986c8844de34b8646882a16532980a4f, type: 3}
   m_Name: SceneSave
   m_EditorClassIdentifier: 
-  isNextScene: 1
   EnemyDeath: 1
   EnemyDouble: 1
   enem: 2-1
-  ClueCount: 0
+  ClueCount: 2
   inBattle: 1
   team_health: 64000000640000006400000064000000
   team_MP: 00000000000000000000000000000000
-  player_location: {x: -19.403631, y: 1.0099999, z: 16.27642}
-  respawn_location: {x: 17.1985, y: 1.0099999, z: -97.64579}
+  current_level: Cargo Level
+  cargo_level: Cargo Level
+  cyber_level: cyber Level
+  cargo_battle: Battle
+  cyber_battle: Cyber Battle
+  player_location: {x: 11.32, y: 0, z: 25.21}
+  respawn_location: {x: 0, y: 0, z: 0}
   respawn: 0
   item_spawn: 20

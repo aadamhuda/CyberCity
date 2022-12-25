@@ -20,7 +20,8 @@ public class MenuController : MonoBehaviour
         saveState.Clue.Clear();
         saveState.Death.Clear();
         saveState.ClueCount = 0;
-        saveState.SaveLocation(new Vector3((float)-115.4, 1, (float)-65.9));
+        saveState.SaveLocation(new Vector3(0f, 0f, 0f));
+        saveState.set_respawn(new Vector3(0f, 0f, 0f));
         saveState.set_item_respawn(4);
         saveState.SavePlayerMP(new int[] { 30, 30, 30, 30 });
         saveState.SavePlayerHealth(new int[] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
@@ -30,7 +31,7 @@ public class MenuController : MonoBehaviour
     public void PlayGame()
     {
         initialiseGame(); //clears saved data variables
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(saveState.get_cargo_battle());
     }
 
     //quits the game when the quit button is pressed

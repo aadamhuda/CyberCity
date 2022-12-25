@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SaveData : ScriptableObject
 {
-    public bool isNextScene, EnemyDeath, EnemyDouble = false;
+    public bool EnemyDeath, EnemyDouble = false;
 
     public Dictionary<string, bool> Death = new Dictionary<string, bool>();
     public Dictionary<string, bool> Clue = new Dictionary<string, bool>();
@@ -15,6 +15,27 @@ public class SaveData : ScriptableObject
     public int[] team_health = new int[4];
     public int[] team_MP = new int[4];
     private int difficulty = 2;
+
+    // Current Level
+    [SerializeField]
+    private string current_level;
+
+    // Cargo Level
+    [SerializeField]
+    private string cargo_level = "Cargo Level";
+
+    // Cargo Level
+    [SerializeField]
+    private string cyber_level = "cyber Level";
+
+
+    // Switch into cargo battle
+    [SerializeField]
+    private string cargo_battle = "Battle";
+    
+    // Switch into cyber battle
+    [SerializeField]
+    private string cyber_battle = "Cyber Battle";
 
     [SerializeField]
     private Vector3 player_location;
@@ -31,6 +52,14 @@ public class SaveData : ScriptableObject
     [SerializeField]
     private int item_spawn;
 
+    public string get_current_level() { return this.current_level; }
+    public string get_cargo_level() { return this.cargo_level; }
+
+    public string get_cyber_level() { return this.cyber_level; }
+
+    public string get_cargo_battle() { return this.cargo_battle; }
+    
+    public string get_cyber_battle() { return this.cyber_battle; }
     public int GetDifficulty() { return difficulty; }
 
     public bool getDict(Dictionary<string, bool> dict, string obj) { return (dict[obj]); }
@@ -47,11 +76,8 @@ public class SaveData : ScriptableObject
 
     public int get_item_respawn() { return this.item_spawn; }
 
-    public void SwitchBool()
-    { isNextScene = !isNextScene; }
-
-    public void TruthBool()
-    { isNextScene = true; }
+    public void set_current_level(string level)
+    { this.current_level = level; }
 
     public void OnEnemyDouble()
     { EnemyDouble = true; }
