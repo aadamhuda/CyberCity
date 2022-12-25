@@ -1,11 +1,20 @@
 fileFormatVersion: 2
-guid: 27349e8d52d7b4bfe8ce7f1abc8d4feb
+guid: fb59bb1708671414193e33fbeb67409f
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable:
   - first:
-      74: -623603649343465320
-    second: Scene
+      74: 2432266616761508529
+    second: DoorOpening
+  - first:
+      74: -2265025488229062160
+    second: '#DOR0004_Armature|DoorIdle'
+  - first:
+      74: -3711400750690882918
+    second: '#DOR0004_Armature|DoorOpen'
+  - first:
+      74: -3301751920407274512
+    second: '#DOR0004_Armature|DoorOpening'
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -101,7 +110,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

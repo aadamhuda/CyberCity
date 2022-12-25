@@ -56,6 +56,9 @@ public class PlayerController : MonoBehaviour
     bool collecterBool = false;
     Collider collecter;
 
+    [SerializeField]
+    Gates gate;
+
     void Start()
     {
         var move = gameObject.GetComponent<Transform>();
@@ -70,6 +73,7 @@ public class PlayerController : MonoBehaviour
             move.position = savedata.get_player_location();
 
 
+
         canMove = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -82,6 +86,7 @@ public class PlayerController : MonoBehaviour
         winText.text = "";
         interaction.text = "";
         clueCount = savedata.ClueCount;
+
     }
 
     public bool get_save() { return this.save; }
@@ -89,10 +94,12 @@ public class PlayerController : MonoBehaviour
     public void collectClue(Collider other)
     {
         other.gameObject.SetActive(false);
+        
         interaction.text = "";
         clueCount++;
         savedata.ClueCount = clueCount;
-        checkPlayerWin();
+
+        gate.CheckGates(clueCount);
         collecterBool = false;
         collecter = null;
         savedata.DictBoolSwitch(savedata.Clue, other.name);
@@ -120,16 +127,6 @@ public class PlayerController : MonoBehaviour
     }
 
     //checks if the player has collected all the clues
-    void checkPlayerWin()
-    {
-        if (clueCount >= numClues)
-        {
-            winText.text = "You Win! Press X to go to the main menu";
-            won = true;
-            Time.timeScale = 0;
-            savedata.SwitchBool();
-        }
-    }
 
     // Player movement
     void Update()

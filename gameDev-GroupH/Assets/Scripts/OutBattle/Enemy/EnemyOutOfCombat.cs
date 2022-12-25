@@ -117,8 +117,8 @@ public class EnemyOutOfCombat : EnemyCollider
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        radius = 35;
-        angle = 120;
+        radius = 15;
+        angle = 0;
     }
 
     // Update is called once per frame
@@ -137,26 +137,13 @@ public class EnemyOutOfCombat : EnemyCollider
         else
             Patrol();
 
-
-
-
-        /*        Debug.DrawRay(walkPoint, transform.up*20, Color.green);
-                if (Physics.Raycast(walkPoint, -transform.up, 3f, whatisGround))
-                {
-                    Debug.DrawRay(walkPoint, -transform.up * 3, Color.red);
-                }*/
-
     }
 
     void Patrol()
     {
         anim.SetBool("isWalking", true);
-        agent.speed = 4;
+        agent.speed = 2;
 
-
-        /*        Debug.Log("WalkingPointSet: " + walkPointSet);
-                Debug.Log("GoosePoint: " + walkPoint);
-                Debug.Log("THICK SAUCE: " + gameObject.transform.position);*/
 
         if (!walkPointSet)
             FindWalkRange();
@@ -165,8 +152,6 @@ public class EnemyOutOfCombat : EnemyCollider
             walkPointSet = agent.SetDestination(walkPoint);
 
         Vector3 distanceCovered = transform.position - walkPoint;
-
-        // Debug.Log("Men In Yellow: " + distanceCovered.magnitude);
 
 
         if (distanceCovered.magnitude < 1f)

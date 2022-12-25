@@ -181,8 +181,6 @@ public class BattleSystem : MonoBehaviour
 		for (int i = 0; i < enemyCount; i++)
 		{
 			int enemID = Random.Range(0, 5);
-			Debug.Log(i);
-			Debug.Log(enemID);
 			
 			GameObject enemyObj = Instantiate(enemyPrefabs[enemID], enemyLocations[i]);
 			allEnemies[i] = enemyObj.GetComponent<Enemy>();
@@ -638,7 +636,7 @@ public class BattleSystem : MonoBehaviour
 			savedata.SavePlayerMP(new int[] { players[0].currentMP, players[1].currentMP, players[2].currentMP, players[3].currentMP });
 			savedata.SavePlayerHealth(new int[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
 			yield return new WaitForSeconds(3f);
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+			SceneManager.LoadScene(savedata.get_current_level());
 		}
 		else if (state == BattleState.LOSE)
 		{
@@ -755,17 +753,7 @@ public class BattleSystem : MonoBehaviour
 	public void createRestartButton()
 	{
 		savedata.ChangeRespawn();
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-
-	}
-
-	//reloads scene on restart
-	IEnumerator Restart()
-    {
-		dialogue.text = "Restarting Battle...";
-		yield return new WaitForSeconds(2f);
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
+		SceneManager.LoadScene(savedata.get_current_level());
 
 	}
 
@@ -776,7 +764,7 @@ public class BattleSystem : MonoBehaviour
 		yield return new WaitForSeconds(2f);
 
 		savedata.ChangeRespawn();
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+		SceneManager.LoadScene(savedata.get_current_level());
 	}
 
 	public void DisplayAbilities()
@@ -815,14 +803,6 @@ public class BattleSystem : MonoBehaviour
 			return;
 
 		StartCoroutine(PlayerHeal());
-	}
-
-	public void OnRestartButton()
-	{
-		if (state != BattleState.LOSE)
-			return;
-
-		StartCoroutine(Restart());
 	}
 
     public void OnEscapeButton()
