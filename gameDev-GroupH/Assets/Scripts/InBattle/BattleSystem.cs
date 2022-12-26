@@ -64,7 +64,9 @@ public class BattleSystem : MonoBehaviour
 	private Camera mainCamera;
 	[SerializeField]
 	private Attack play_attack;
-	private Dictionary<string, Dictionary<string, string>> checklist = new Dictionary<string, Dictionary<string, string>>();
+
+	// Strores attributes of players known by enemies i.e { player : { AttackType : affinity, ... } , ... }
+	private Dictionary<int, Dictionary<string, string>> checklist = new Dictionary<int, Dictionary<string, string>>();
 
 
 	// Start is called before the first frame update
@@ -79,7 +81,6 @@ public class BattleSystem : MonoBehaviour
 		//shows cursor so buttons can be selected
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
-
 
 		//starts battle
 		state = BattleState.START;
@@ -187,36 +188,51 @@ public class BattleSystem : MonoBehaviour
 			
 		}
 		return allEnemies;
-		
-	}
+
+    }
 
     //initialises battle - spawns player and enemies, selects first target and then starts player turn
     IEnumerator InitialiseBattle()
     {
-		float norm = 1f;
 
-		string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
+        string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
 
-		players = InstantiatePlayers();
+        players = InstantiatePlayers();
 
-		currPlayer = players[tracker];
+        currPlayer = players[tracker];
 
-		enemies = InstantiateEnemies();
+        enemies = InstantiateEnemies();
 
-		StartCoroutine(ChangeTarget(0));
+        StartCoroutine(ChangeTarget(0));
 
-		InitialiseHUD();
+        InitialiseHUD();
+
+
+
+		InitialiseMemory();
 
 		yield return new WaitForSeconds(1f);
-		state = BattleState.PLAYERTURN;
-		EnableCamera(battleCameras[0]);
-		DisableCamera(mainCamera);
+        state = BattleState.PLAYERTURN;
+        EnableCamera(battleCameras[0]);
+        DisableCamera(mainCamera);
         StartCoroutine(PlayerTurn());
     }
-		
 
-	//-------------------------------------------Player Attack-------------------------------------------------------
-	void PreAttackChecks(string attackType, int mpConsumption)
+	// Initialise Enemy Memory
+
+	private void InitialiseMemory()
+    {
+		// Check if there is data already on 
+		if (savedata.get_checklist().Count != 0)
+			this.checklist = savedata.get_checklist();
+		else
+			foreach (Player i in players)
+				this.checklist.Add(i.getID(), new Dictionary<string, string>());
+    }
+
+
+    //-------------------------------------------Player Attack-------------------------------------------------------
+    void PreAttackChecks(string attackType, int mpConsumption)
     {
 		if (currPlayer.downed)
 		{
@@ -426,23 +442,65 @@ public class BattleSystem : MonoBehaviour
 		bool isDead;
 		for (int i = 0; i < enemies.Length; i++)
 		{
-			int player_target = Random.Range(0, players.Length);
 
 
-			while (players[player_target].downed)
-            {
-				player_target = Random.Range(0, players.Length);
-			}
-
+			Enemy currEnemy = enemies[i];
+			Player playerTarget = null;
 
 			float multi = 1f;
 			if (savedata.EnemyDouble)
 				multi += 0.15f;
 
-			// Current enemy & Player
-			Enemy currEnemy = enemies[i];
-			Player playerTarget = players[player_target];
+			string randomKey = "attacknotfound";
+			int highest = 0;
 
+			foreach (KeyValuePair<int, Dictionary<string, string>> dict in this.checklist)
+            {
+				Debug.Log("Length of dict : " + dict.Value.Count);
+				if (dict.Value.Count > 0)
+				{
+					Player temp_playerTarget = players[dict.Key];
+					foreach (KeyValuePair<string, string> affinity in dict.Value)
+					{
+						Debug.Log("Hey, get in my BELLE! : " + affinity.Value);
+						if (affinity.Value == "weak")
+							if (currEnemy.GetATK().ContainsKey(affinity.Key))
+								if (affinity.Key != "curse")
+								{
+									if (currEnemy.GetATK()[affinity.Key] > highest)
+									{
+										randomKey = affinity.Key;
+										playerTarget = players[dict.Key];
+									}
+								}
+								else
+									if (temp_playerTarget.get_cursed() == false)
+									randomKey = affinity.Key;
+					}
+				}
+			}
+
+
+
+			
+
+			// Current enemy & Player
+
+			if (playerTarget == null)
+            {
+				int player_target = Random.Range(0, players.Length);
+				Debug.Log("DId it go through here : " + playerTarget);
+
+				while (players[player_target].downed)
+				{
+					player_target = Random.Range(0, players.Length);
+				}
+
+				playerTarget = players[player_target];
+			}
+			
+
+			int playerTarget_HP = playerTarget.currentHP;
 
 			// Coords of player start and enemy start positions
 			Vector3 playerPos = playerTarget.transform.position;
@@ -473,16 +531,21 @@ public class BattleSystem : MonoBehaviour
 			}
             else
             {
-				var randomKey = enemies[i].GetATK().Keys.ElementAt((int)Random.Range(0, enemies[i].GetATK().Keys.Count - 1));
+
+				Debug.Log("I have to eat soon : " + randomKey);
+
+				if (randomKey == "attacknotfound")
+					randomKey = enemies[i].GetATK().Keys.ElementAt((int)Random.Range(0, enemies[i].GetATK().Keys.Count - 1));
+
 
 
 				if (randomKey == "curse")
                 {
-					players[player_target].set_cursed(true);
+					playerTarget.set_cursed(true);
 				}
 				else if (randomKey == "ice")
                 {
-					players[player_target].set_frozen(true);
+					playerTarget.set_frozen(true);
 
 				}
 				else if (randomKey == "fire")
@@ -493,7 +556,7 @@ public class BattleSystem : MonoBehaviour
 
 					int number = UnityEngine.Random.Range(0, 100);
 					if (number < 26)
-						players[player_target].set_burned(true);
+						playerTarget.set_burned(true);
 
 				}
 				else if (randomKey == "grass")
@@ -504,7 +567,7 @@ public class BattleSystem : MonoBehaviour
 
 					int number = UnityEngine.Random.Range(0, 100);
 					if (number < 26)
-						players[player_target].set_poisoned(true);
+						playerTarget.set_poisoned(true);
 				}
 				else if (randomKey == "shoot")
 				{
@@ -533,6 +596,104 @@ public class BattleSystem : MonoBehaviour
 					yield return StartCoroutine(currEnemy.MoveEnemy(false, 0, speed, 0.1f, enemyPos));
 				}
 			}
+
+			string state;
+			if (this.checklist[playerTarget.getID()].ContainsKey(randomKey) == false)
+            {
+				// Stores affinity of attribute in list
+				if (playerTarget.GetATB()[randomKey] > 1f)
+					state = "weak"; 
+				else if (playerTarget.GetATB()[randomKey] == 1f)
+					state = "norm";
+				else
+					state = "strength";
+
+				this.checklist[playerTarget.getID()].Add(randomKey, state);
+
+
+				/*				if (playerTarget.get_cursed())
+									additional_base = 0.15f;
+								supposed_dmg = Mathf.RoundToInt(currEnemy.GetATK()[randomKey] * additional_base);
+
+				// If player took more damage then they meant, this means they are weak to something
+
+								if (playerTarget_HP - playerTarget.currentHP > supposed_dmg)
+								{
+				// If player affected by curse then they must be weak to the element
+									if (playerTarget.get_cursed())
+									{
+				// Increasing the base to match with weak to curse
+										additional_base += 0.15f;
+										supposed_dmg = Mathf.RoundToInt(currEnemy.GetATK()[randomKey] * additional_base);
+				// If they take more dmg even when accounting for weak to curse, then they must be weak to both
+										if (playerTarget_HP - playerTarget.currentHP > supposed_dmg)
+										{
+											this.checklist[playerTarget.getID()].Add("curse", "weak");
+											this.checklist[playerTarget.getID()].Add(randomKey, "weak");
+										}
+				// If they are take increase damage from curse, then they are weak to curse
+										else if (playerTarget_HP - playerTarget.currentHP == supposed_dmg)
+										{
+											this.checklist[playerTarget.getID()].Add("curse", "weak");
+											this.checklist[playerTarget.getID()].Add(randomKey, "norm");
+										}
+				// If they take incresed damage but less the 1.3 multiplier curse, then they must be weak to the element
+										else
+										{
+											this.checklist[playerTarget.getID()].Add("curse", "norm");
+											this.checklist[playerTarget.getID()].Add(randomKey, "weak");
+										}
+									}
+									else
+										this.checklist[playerTarget.getID()].Add(randomKey, "weak");
+
+								}
+				// If damage perfectly lines up, then they didnt take extra dmg or less so they are normal
+								else if (playerTarget_HP - playerTarget.currentHP == supposed_dmg)
+								{
+				// If they are cursed and took expected damage, then curse must be normal
+									if (playerTarget.get_cursed())
+										this.checklist[playerTarget.getID()].Add("curse", "norm");
+									this.checklist[playerTarget.getID()].Add(randomKey, "norm");
+								}
+				// Player took less dmg than usual, meaning they must be resistant to something
+								else
+								{
+				// Decreasing curse damage to check if they are resistant to curse
+									supposed_dmg = Mathf.RoundToInt(currEnemy.GetATK()[randomKey] * 0.85f);
+				// If they took less damamge even with accounted curse then they must be weak to both
+									if (playerTarget_HP - playerTarget.currentHP < supposed_dmg)
+									{
+										this.checklist[playerTarget.getID()].Add("curse", "strength");
+										this.checklist[playerTarget.getID()].Add(randomKey, "strength");
+									}
+									else if (playerTarget.get_cursed())
+									{
+				// If they are cursed then we account they are resistant to curse
+										if (playerTarget_HP - playerTarget.currentHP == Mathf.RoundToInt(currEnemy.GetATK()[randomKey]))
+										{
+				// They tok no extra damage from curse but took full damage from ability
+											this.checklist[playerTarget.getID()].Add("curse", "strength");
+											this.checklist[playerTarget.getID()].Add(randomKey, "norm");
+										}
+				// Above but in reverse
+										else
+										{
+											this.checklist[playerTarget.getID()].Add("curse", "norm");
+											this.checklist[playerTarget.getID()].Add(randomKey, "strength");
+										}
+									}
+				// If they dnt have cursed then the only resistance is the element
+									else
+									{
+										this.checklist[playerTarget.getID()].Add(randomKey, "strength");
+									} 
+								}*/
+
+
+			}
+
+				
 
             //deal burn damage
             if (currEnemy.get_burned())
@@ -635,6 +796,7 @@ public class BattleSystem : MonoBehaviour
 			savedata.OffEnemyDouble();
 			savedata.SavePlayerMP(new int[] { players[0].currentMP, players[1].currentMP, players[2].currentMP, players[3].currentMP });
 			savedata.SavePlayerHealth(new int[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
+			savedata.set_checklist(this.checklist);
 			yield return new WaitForSeconds(3f);
 			SceneManager.LoadScene(savedata.get_current_level());
 		}

@@ -59,7 +59,7 @@ public class BattleAnimator : MonoBehaviour
                 break;
             }
         }
-        Debug.Log(sword.name);
+//        Debug.Log(sword.name);
         a.CrossFade("EquipSword", 0.1f);
         yield return new WaitForSeconds(0.5f);
 
@@ -124,8 +124,7 @@ public class BattleAnimator : MonoBehaviour
 
     public IEnumerator PlayerDeath(BattleUnit target, Animator a)
     {
-        Debug.Log("downed");
-        a.CrossFade("React", 0.1f);
+//        a.CrossFade("React", 0.1f);
         if (target.CheckIfDead())
             a.CrossFade("Kneel", 0.1f);
         yield return new WaitForSeconds(0.4f);

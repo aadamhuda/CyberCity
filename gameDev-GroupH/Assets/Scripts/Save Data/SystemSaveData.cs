@@ -25,6 +25,8 @@ public class SystemSaveData
 
     private int remainng_items;
 
+    private Dictionary<int, Dictionary<string, string>> checklist = new Dictionary<int, Dictionary<string, string>>();
+
     public SystemSaveData (SaveData savedata)
     {
 
@@ -39,6 +41,7 @@ public class SystemSaveData
         this.respawn_location = new float[] { savedata.get_respawn_location().x, savedata.get_respawn_location().y, savedata.get_respawn_location().z };
         this.items = savedata.get_items();
         this.remainng_items = savedata.get_item_respawn();
+        this.checklist = savedata.get_checklist();
     }
 
 
@@ -62,6 +65,6 @@ public class SystemSaveData
 
     public int get_item_respawn() { return this.remainng_items; }
 
-
+    public Dictionary<int, Dictionary<string, string>> get_checklist() { return checklist; }
 
 }

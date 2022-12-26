@@ -11,10 +11,10 @@ public class Enemy : BattleUnit
 
     private void Start()
     {
-        currentHP = 1;
+        currentHP = 50;
 
 		float norm = 1f;
-		float weakness = 1.25f;
+		float weak = 1.25f;
 		float strength = 0.75f;
 
 		if (ID == 1)
