@@ -1,0 +1,243 @@
+fileFormatVersion: 2
+guid: ed15a8b526ffe4901b0ca54813cbe1fa
+ModelImporter:
+  serializedVersion: 22103
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: addiional wall_
+    second: {fileID: 2100000, guid: e4f827c3c863841ab81958bace9040f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: back door and umbrella
+    second: {fileID: 2100000, guid: 84660afcda09642d4a71a165707d9bdf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bricks
+    second: {fileID: 2100000, guid: b32121c16101c4153894b527705bc615, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gorund side path
+    second: {fileID: 2100000, guid: 3fb9b912e8b524677b6cd570c6708400, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ground main path
+    second: {fileID: 2100000, guid: c6db8e7465cfe4bb1b89da98748552ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hero_body_mat
+    second: {fileID: 2100000, guid: cf5ea3769b08949078135189fc516424, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hero_holograms_mat
+    second: {fileID: 2100000, guid: 00b6c2fe796c642f6a23150ebe8dad18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hero_metalDetails_mat
+    second: {fileID: 2100000, guid: 928e9e55b2e474ad695cb39c2c2ddc6d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: house wall
+    second: {fileID: 2100000, guid: 3d50fd6d09a774b63b3b385c57306b5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: logs
+    second: {fileID: 2100000, guid: 0f55712c5d207467db04fb80fb9aacb9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pipe details.001
+    second: {fileID: 2100000, guid: 1f8a68e54fd0843efbbb95fa59393c49, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pipes
+    second: {fileID: 2100000, guid: b73eb1c80edb94b97b1ed12b6a1368cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: porch
+    second: {fileID: 2100000, guid: 0e0ddc37371e346ba833ca210789c071, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: porch pillars
+    second: {fileID: 2100000, guid: 2929f14dbf2ff4c3faaf3c6fc384c2ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rood top
+    second: {fileID: 2100000, guid: ab71b02427ae3432180b4796fa6e3c9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof
+    second: {fileID: 2100000, guid: 231d86276584d4b84b91576a7a858d3b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof side wood
+    second: {fileID: 2100000, guid: 09c14807b502847af9888150f8bbd32e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: siding and small chimney
+    second: {fileID: 2100000, guid: 3262c0cbeebff428a96744e48d2c1c03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small wood and metal details
+    second: {fileID: 2100000, guid: ce145e835d967405bbaf99b0452207df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stairs
+    second: {fileID: 2100000, guid: 0878146ac15b34368a4ae36cd7eeb403, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: std_barrel_mat
+    second: {fileID: 2100000, guid: 1509f68f73cbf4085967e0ca2a32b65d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: std_potatoBagBag_mat
+    second: {fileID: 2100000, guid: dd26e094d99ea4ff2b04bad4a6d65b58, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: std_potatoBagPotatoes_mat
+    second: {fileID: 2100000, guid: d7d0f95699cd1455e872e8f6936623da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: std_signHolo_mat
+    second: {fileID: 2100000, guid: fd1d7bc361af14b299bdf96db35dd5ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: std_sign_mat
+    second: {fileID: 2100000, guid: 57ac1cc2e66ef4723bd3015572da694e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: streetligh_mat
+    second: {fileID: 2100000, guid: ab31ad03cfd644c7e869b8ec681af043, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: windows
+    second: {fileID: 2100000, guid: 8b73458dbeea243f6bdaa4eb92fe848d, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
