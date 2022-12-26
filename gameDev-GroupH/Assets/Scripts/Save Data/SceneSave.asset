@@ -17,7 +17,7 @@ MonoBehaviour:
   enem: 2-1
   ClueCount: 2
   inBattle: 1
-  team_health: 64000000640000006400000064000000
+  team_health: e8030000e8030000e8030000e8030000
   team_MP: 00000000000000000000000000000000
   current_level: Cargo Level
   cargo_level: Cargo Level

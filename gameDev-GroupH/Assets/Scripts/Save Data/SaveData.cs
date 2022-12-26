@@ -52,6 +52,9 @@ public class SaveData : ScriptableObject
     [SerializeField]
     private int item_spawn;
 
+    private Dictionary<int, Dictionary<string, string>> checklist = new Dictionary<int, Dictionary<string, string>>();
+
+
     public string get_current_level() { return this.current_level; }
     public string get_cargo_level() { return this.cargo_level; }
 
@@ -75,6 +78,8 @@ public class SaveData : ScriptableObject
     public Dictionary<string, int> get_items() { return this.items; }
 
     public int get_item_respawn() { return this.item_spawn; }
+
+    public Dictionary<int, Dictionary<string, string>> get_checklist() { return checklist; }
 
     public void set_current_level(string level)
     { this.current_level = level; }
@@ -106,6 +111,9 @@ public class SaveData : ScriptableObject
 
     public void DictBoolSwitch(Dictionary<string, bool> dict, string obj)
     { dict[obj] = true; }
+
+    public void set_checklist(Dictionary<int, Dictionary<string, string>> arr) 
+        { this.checklist = arr; }
 
     public void AddToDict(Dictionary<string, bool> dict, string obj)
     {
@@ -145,7 +153,7 @@ public class SaveData : ScriptableObject
         this.respawn_location = new Vector3(data.get_respawn_location()[0], data.get_respawn_location()[1], data.get_respawn_location()[2]);
         this.items = data.get_items();
         this.item_spawn = data.get_item_respawn();
-
+        this.checklist = data.get_checklist();
         this.respawn = !this.respawn;
     }
 
