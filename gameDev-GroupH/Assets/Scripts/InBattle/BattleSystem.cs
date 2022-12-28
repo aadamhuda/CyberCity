@@ -358,7 +358,7 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = currPlayer.unitName + " attacked " + enemyTarget.unitName;
 		yield return new WaitForSeconds(2f);
 
-		if (enemyIsDead)
+		if (isDead)
         {
 			enemies = RemoveEnemies(target);
 			enemiesHUD = RemoveHUDs(target, enemiesHUD);
