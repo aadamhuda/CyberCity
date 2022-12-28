@@ -26,7 +26,7 @@ public class SaveData : ScriptableObject
 
     // Cargo Level
     [SerializeField]
-    private string cyber_level = "cyber Level";
+    private string cyber_level = "City Level";
 
 
     // Switch into cargo battle
@@ -149,6 +149,7 @@ public class SaveData : ScriptableObject
         this.Clue = data.get_clue();
         this.ClueCount = data.get_clue_count();
         this.difficulty = data.get_difficulty();
+        this.current_level = data.get_current_level();
         this.player_location = new Vector3(data.get_player_location()[0], data.get_player_location()[1], data.get_player_location()[2]);
         this.respawn_location = new Vector3(data.get_respawn_location()[0], data.get_respawn_location()[1], data.get_respawn_location()[2]);
         this.items = data.get_items();

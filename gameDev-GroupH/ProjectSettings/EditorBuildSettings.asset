@@ -8,16 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 130b62f0360ab495b817b2bf743e946d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Cargo Level.unity
     guid: a30c89e88639a42199b996084d5c5c90
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/City Level.unity
+    guid: 340ff3470eb694a979b4feac445abf6e
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: cb4d0983ca8a9e64187da1725de65f05
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: 8c971a942d538854684995271a2090f0
   - enabled: 0
@@ -29,7 +32,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/City Level 1.unity
-    guid: e60f5b82be9ffc04db7ea3423b98d2ef
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

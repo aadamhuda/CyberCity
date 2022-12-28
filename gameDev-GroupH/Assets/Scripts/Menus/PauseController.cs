@@ -53,6 +53,7 @@ public class PauseController : MonoBehaviour
         if (player.get_save())
         {
             saveState.set_respawn(player.transform.position);
+            saveState.set_current_level(SceneManager.GetActiveScene().name);
             saveState.SaveGame();
         }
         else

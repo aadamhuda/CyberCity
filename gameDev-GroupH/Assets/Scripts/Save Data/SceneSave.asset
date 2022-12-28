@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDeath: 1
   EnemyDouble: 1
-  enem: 2-1
-  ClueCount: 2
+  enem: 0-0
+  ClueCount: 4
   inBattle: 1
   team_health: e8030000e8030000e8030000e8030000
   team_MP: 00000000000000000000000000000000
   current_level: Cargo Level
   cargo_level: Cargo Level
-  cyber_level: cyber Level
+  cyber_level: City Level
   cargo_battle: Battle
   cyber_battle: Cyber Battle
-  player_location: {x: 11.32, y: 0, z: 25.21}
-  respawn_location: {x: 0, y: 0, z: 0}
+  player_location: {x: 0, y: 1.5, z: 0}
+  respawn_location: {x: 0, y: 1.5, z: 0}
   respawn: 0
   item_spawn: 20

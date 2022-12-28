@@ -15,6 +15,9 @@ public class SystemSaveData
     private int difficulty = 2;
 
     [SerializeField]
+    private string current_level;
+
+    [SerializeField]
     private float[] player_location;
 
     [SerializeField]
@@ -37,6 +40,7 @@ public class SystemSaveData
         this.clue = savedata.Clue;
         this.clue_count = savedata.ClueCount;
         this.difficulty = savedata.GetDifficulty();
+        this.current_level = savedata.get_current_level();
         this.player_location = new float[] { savedata.get_player_location().x , savedata.get_player_location().y , savedata.get_player_location().z };
         this.respawn_location = new float[] { savedata.get_respawn_location().x, savedata.get_respawn_location().y, savedata.get_respawn_location().z };
         this.items = savedata.get_items();
@@ -56,6 +60,8 @@ public class SystemSaveData
     public int[] get_team_mp () { return this.team_mp; }
 
     public int get_difficulty() { return this.difficulty; }
+
+    public string get_current_level() { return this.current_level; }
 
     public float[] get_player_location() { return this.player_location; }
 
