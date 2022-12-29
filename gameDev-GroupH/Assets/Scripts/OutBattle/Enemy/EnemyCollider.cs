@@ -103,7 +103,7 @@ public class EnemyCollider : MonoBehaviour
         Transform t = player.transform;
         Animator a = player.GetComponent<Animator>();
         Transform sword = t.GetChild(1).GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
-        StartCoroutine(RotatePlayer(0.2f, gameObject.transform.position));
+        StartCoroutine(Rotate(player, 0.2f, gameObject.transform.position));
         player.GetComponent<PlayerController>().canMove = false;
 
         a.CrossFade("EquipSword", 0.1f);
@@ -117,9 +117,9 @@ public class EnemyCollider : MonoBehaviour
         BattleScene();
     }
 
-    public IEnumerator RotatePlayer(float speed, Vector3 targetPos)
+    public IEnumerator Rotate(GameObject o, float speed, Vector3 targetPos)
     {
-        var transform = player.transform;
+        var transform = o.transform;
         var startRotation = transform.rotation;
         var direction = targetPos - transform.position;
         var targetRotation = Quaternion.LookRotation(direction);
