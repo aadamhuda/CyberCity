@@ -40,6 +40,10 @@ public class BattleSystem : MonoBehaviour
 
 	public Button[] playerMoveButtons;
 
+	//Environment
+	public GameObject cargoEnv;
+	public GameObject cityEnv;
+
 	//HUD
 	public GameObject hudPrefab;
 
@@ -81,6 +85,8 @@ public class BattleSystem : MonoBehaviour
 		//shows cursor so buttons can be selected
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
+
+		SetEnvironment();
 
 		//starts battle
 		state = BattleState.START;
@@ -189,6 +195,20 @@ public class BattleSystem : MonoBehaviour
 		}
 		return allEnemies;
 
+    }
+
+	public void SetEnvironment()
+    {
+        if (savedata.get_current_level() == savedata.get_cyber_level())
+        {
+			cityEnv.SetActive(true);
+			cargoEnv.SetActive(false);
+		}
+        else
+        {
+			cityEnv.SetActive(false);
+			cargoEnv.SetActive(true);
+		}
     }
 
     //initialises battle - spawns player and enemies, selects first target and then starts player turn

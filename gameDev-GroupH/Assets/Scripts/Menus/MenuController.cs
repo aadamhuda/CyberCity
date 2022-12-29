@@ -31,7 +31,7 @@ public class MenuController : MonoBehaviour
     public void PlayGame()
     {
         initialiseGame(); //clears saved data variables
-        SceneManager.LoadScene(saveState.get_cargo_battle());
+        SceneManager.LoadScene(saveState.get_cargo_level());
     }
 
     //quits the game when the quit button is pressed
