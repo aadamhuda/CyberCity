@@ -158,6 +158,7 @@ public class Player : BattleUnit
         var direction = targetPos - transform.position;
         var targetRotation = Quaternion.LookRotation(direction);
         targetRotation.x = 0;
+        targetRotation.z = 0;
         var t = 0f;
         while (t <= 1f)
         {

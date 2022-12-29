@@ -110,6 +110,7 @@ public class EnemyOutOfCombat : EnemyCollider
         anim.SetBool("isAttacking", true);
         walkPointSet = agent.SetDestination(gameObject.transform.position);
         player.GetComponent<PlayerController>().canMove = false;
+        base.RotatePlayer(0.2f, agent.transform.position);
         yield return new WaitForSeconds(2f);
         PosSave.OnEnemyDouble();
         base.BattleScene();

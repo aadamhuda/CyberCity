@@ -93,12 +93,45 @@ public class EnemyCollider : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 // Player engages combat
-                PosSave.SaveEnem(gameObject.name);
-                BattleScene();
+                StartCoroutine(PlayerEngage());
             }
         }
-
-
     }
 
+    public IEnumerator PlayerEngage()
+    {
+        Transform t = player.transform;
+        Animator a = player.GetComponent<Animator>();
+        Transform sword = t.GetChild(1).GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
+        StartCoroutine(RotatePlayer(0.2f, gameObject.transform.position));
+        player.GetComponent<PlayerController>().canMove = false;
+
+        a.CrossFade("EquipSword", 0.1f);
+        yield return new WaitForSeconds(0.5f);
+
+        sword.gameObject.SetActive(true);
+        a.CrossFade("Melee", 0.1f);
+        yield return new WaitForSeconds(1f);
+
+        PosSave.SaveEnem(gameObject.name);
+        BattleScene();
+    }
+
+    public IEnumerator RotatePlayer(float speed, Vector3 targetPos)
+    {
+        var transform = player.transform;
+        var startRotation = transform.rotation;
+        var direction = targetPos - transform.position;
+        var targetRotation = Quaternion.LookRotation(direction);
+        targetRotation.x = 0;
+        targetRotation.z = 0;
+        var t = 0f;
+        while (t <= 1f)
+        {
+            t += Time.deltaTime / speed;
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+            yield return null;
+        }
+        transform.rotation = targetRotation;
+    }
 }
