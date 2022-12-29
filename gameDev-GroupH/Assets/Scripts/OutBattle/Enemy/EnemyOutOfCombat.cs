@@ -32,7 +32,7 @@ public class EnemyOutOfCombat : EnemyCollider
     {
         engage.text = "";
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
-        sc.radius = 5;
+        sc.radius = 3;
         sc.isTrigger = true;
         PosSave.AddToDict(PosSave.Death, gameObject.name);
         dead = PosSave.getDict(PosSave.Death, gameObject.name);
@@ -106,11 +106,16 @@ public class EnemyOutOfCombat : EnemyCollider
 
     private IEnumerator AmbushPlayer()
     {
-
         anim.SetBool("isAttacking", true);
         walkPointSet = agent.SetDestination(gameObject.transform.position);
         player.GetComponent<PlayerController>().canMove = false;
-        yield return new WaitForSeconds(2f);
+
+        StartCoroutine(Rotate(this.gameObject, 0.2f, player.transform.position));
+        Transform sword = this.transform.GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(0);
+        yield return new WaitForSeconds(0.8f);
+        sword.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.3f);
         PosSave.OnEnemyDouble();
         base.BattleScene();
     }
@@ -118,7 +123,7 @@ public class EnemyOutOfCombat : EnemyCollider
     {
         agent = GetComponent<NavMeshAgent>();
         radius = 15;
-        angle = 0;
+        angle = 120;
     }
 
     // Update is called once per frame
