@@ -15,6 +15,9 @@ public class SystemSaveData
     private int difficulty = 2;
 
     [SerializeField]
+    private string current_level;
+
+    [SerializeField]
     private float[] player_location;
 
     [SerializeField]
@@ -24,6 +27,8 @@ public class SystemSaveData
     private Dictionary<string, int> items = new Dictionary<string, int>();
 
     private int remainng_items;
+
+    private Dictionary<int, Dictionary<string, string>> checklist = new Dictionary<int, Dictionary<string, string>>();
 
     public SystemSaveData (SaveData savedata)
     {
@@ -35,10 +40,12 @@ public class SystemSaveData
         this.clue = savedata.Clue;
         this.clue_count = savedata.ClueCount;
         this.difficulty = savedata.GetDifficulty();
+        this.current_level = savedata.get_current_level();
         this.player_location = new float[] { savedata.get_player_location().x , savedata.get_player_location().y , savedata.get_player_location().z };
         this.respawn_location = new float[] { savedata.get_respawn_location().x, savedata.get_respawn_location().y, savedata.get_respawn_location().z };
         this.items = savedata.get_items();
         this.remainng_items = savedata.get_item_respawn();
+        this.checklist = savedata.get_checklist();
     }
 
 
@@ -54,6 +61,8 @@ public class SystemSaveData
 
     public int get_difficulty() { return this.difficulty; }
 
+    public string get_current_level() { return this.current_level; }
+
     public float[] get_player_location() { return this.player_location; }
 
     public float[] get_respawn_location() { return this.respawn_location; }
@@ -62,6 +71,6 @@ public class SystemSaveData
 
     public int get_item_respawn() { return this.remainng_items; }
 
-
+    public Dictionary<int, Dictionary<string, string>> get_checklist() { return checklist; }
 
 }

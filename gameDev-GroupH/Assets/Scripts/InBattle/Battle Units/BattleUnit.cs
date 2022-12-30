@@ -25,32 +25,44 @@ public class BattleUnit : MonoBehaviour
     private Dictionary<string, float> unit_attributes = new Dictionary<string, float>();
     private Dictionary<string, int> unit_attacks = new Dictionary<string, int>();
 
+
+    // All attributes
     public Dictionary<string, float> GetATB () { return unit_attributes;  }
 
+    // Attacks of unit
     public Dictionary<string, int> GetATK () { return unit_attacks;  }
 
+    // Attributes of unit
     public string [] GetAllATB() { return all_attributes; }
 
+    // Dmg of units
     public int get_dmg() { return damage; }
 
+    // Check of units cursed
     public bool get_cursed() { return cursed; }
 
+    // Check is unit id frozen
     public bool get_frozen() { return frozen; }
 
+    // Check if unity is burned
     public bool get_burned() { return burned; }
 
+    // Check if unity is poisoned
     public bool get_poisoned() { return poisoned; }
 
-
+    // Curses or removes curse
     public void set_cursed( bool set_value ) { cursed = set_value; }
 
+    // frozen or removes frozen
     public void set_frozen(bool set_value) { frozen = set_value; }
 
+    // burned or removes burned
     public void set_burned(bool set_value) { burned = set_value; }
 
+    // poisoned or removes poisoned
     public void set_poisoned(bool set_value) {poisoned = set_value; }
 
-
+    // Defines attributes and attacks
     public void define_attributes<T>(T [] symbiosis, string [] attribute, Dictionary<string, T> arr)
     {
 
@@ -58,12 +70,19 @@ public class BattleUnit : MonoBehaviour
             arr.Add(attribute[i], symbiosis[i]);
     }
 
-
+    // Dmg formula
+    // If weak take 25% more dmg
+    // If cursed take 15% more dmg
+    // If weak to curse and cursed take 30%
     public void takeDamage(float dmg, string damageType)
     {
         float multiplier = unit_attributes[damageType];
 
         if (cursed)
+            if (unit_attributes[damageType] > 1f)
+                multiplier += 0.15f;
+            else
+                multiplier -= 0.15f;
             multiplier += 0.15f;
 
         currentHP -= Mathf.RoundToInt(dmg * multiplier);
@@ -72,6 +91,7 @@ public class BattleUnit : MonoBehaviour
             currentHP = 0;
     }
 
+    // Check if unit is dead --- boolean output
     public bool CheckIfDead()
     {
         if (currentHP == 0)
@@ -79,6 +99,7 @@ public class BattleUnit : MonoBehaviour
         return false;
     }
 
+    // Makes sure potion recovers health and doesnt exceed health cap
     public void usePotion(int amnt)
     {
         currentHP += amnt;
@@ -88,12 +109,13 @@ public class BattleUnit : MonoBehaviour
         }
     }
 
-
+    // Disables unit
     public void disableUnit()
     {
         gameObject.SetActive(false);
     }
 
+    // Removes ailments, 33% of removing aillemnt per round
     public void RemoveAilments()
     {
         if (burned)
@@ -105,6 +127,7 @@ public class BattleUnit : MonoBehaviour
                 set_poisoned(false);
     }
 
+    // Random number generator -- saves coding time
     private int get_rand_number ()
     {
         return UnityEngine.Random.Range(0, 100);

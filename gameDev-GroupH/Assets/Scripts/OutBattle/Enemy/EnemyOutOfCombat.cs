@@ -32,7 +32,7 @@ public class EnemyOutOfCombat : EnemyCollider
     {
         engage.text = "";
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
-        sc.radius = 5;
+        sc.radius = 3;
         sc.isTrigger = true;
         PosSave.AddToDict(PosSave.Death, gameObject.name);
         dead = PosSave.getDict(PosSave.Death, gameObject.name);
@@ -106,18 +106,23 @@ public class EnemyOutOfCombat : EnemyCollider
 
     private IEnumerator AmbushPlayer()
     {
-
         anim.SetBool("isAttacking", true);
         walkPointSet = agent.SetDestination(gameObject.transform.position);
         player.GetComponent<PlayerController>().canMove = false;
-        yield return new WaitForSeconds(2f);
+
+        StartCoroutine(Rotate(this.gameObject, 0.2f, player.transform.position));
+        Transform sword = this.transform.GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(0);
+        yield return new WaitForSeconds(0.8f);
+        sword.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.3f);
         PosSave.OnEnemyDouble();
         base.BattleScene();
     }
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        radius = 35;
+        radius = 15;
         angle = 120;
     }
 
@@ -137,26 +142,13 @@ public class EnemyOutOfCombat : EnemyCollider
         else
             Patrol();
 
-
-
-
-        /*        Debug.DrawRay(walkPoint, transform.up*20, Color.green);
-                if (Physics.Raycast(walkPoint, -transform.up, 3f, whatisGround))
-                {
-                    Debug.DrawRay(walkPoint, -transform.up * 3, Color.red);
-                }*/
-
     }
 
     void Patrol()
     {
         anim.SetBool("isWalking", true);
-        agent.speed = 4;
+        agent.speed = 2;
 
-
-        /*        Debug.Log("WalkingPointSet: " + walkPointSet);
-                Debug.Log("GoosePoint: " + walkPoint);
-                Debug.Log("THICK SAUCE: " + gameObject.transform.position);*/
 
         if (!walkPointSet)
             FindWalkRange();
@@ -165,8 +157,6 @@ public class EnemyOutOfCombat : EnemyCollider
             walkPointSet = agent.SetDestination(walkPoint);
 
         Vector3 distanceCovered = transform.position - walkPoint;
-
-        // Debug.Log("Men In Yellow: " + distanceCovered.magnitude);
 
 
         if (distanceCovered.magnitude < 1f)

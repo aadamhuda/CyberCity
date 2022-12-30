@@ -23,14 +23,20 @@ public class EnemyCollider : MonoBehaviour
 
     private void Start()
     {
-
+        int limit;
         Enemies = new EnemyOutOfCombat[4 * PosSave.GetDifficulty()];
 
+
         // Instantiate enemies on each area
-        for (int area = 0; area < 4; area++)
+        for (int area = 0; area < plane.Length; area++)
         {
+            limit = Mathf.RoundToInt( plane[area].get_max() / PosSave.GetDifficulty() );
+
+            if (limit == 0)
+                limit = 1;
+
             // Instantiating a number amount of enemies depending on difficulty
-            for (int i = 0; i < PosSave.GetDifficulty(); i++)
+            for (int i = 0; i < limit; i++)
             {
                 // Graps the patrol paths
                 EnemyPatrolInfo temp = plane[area].GetPatrols()[i];
@@ -75,8 +81,8 @@ public class EnemyCollider : MonoBehaviour
     {
         // Engage combat
         PosSave.SaveLocation(player.transform.position);
-        PosSave.TruthBool();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PosSave.set_current_level(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(PosSave.get_cargo_battle());
     }
 
     protected virtual void Update()
@@ -87,12 +93,45 @@ public class EnemyCollider : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 // Player engages combat
-                PosSave.SaveEnem(gameObject.name);
-                BattleScene();
+                StartCoroutine(PlayerEngage());
             }
         }
-
-
     }
 
+    public IEnumerator PlayerEngage()
+    {
+        Transform t = player.transform;
+        Animator a = player.GetComponent<Animator>();
+        Transform sword = t.GetChild(1).GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
+        StartCoroutine(Rotate(player, 0.2f, gameObject.transform.position));
+        player.GetComponent<PlayerController>().canMove = false;
+
+        a.CrossFade("EquipSword", 0.1f);
+        yield return new WaitForSeconds(0.5f);
+
+        sword.gameObject.SetActive(true);
+        a.CrossFade("Melee", 0.1f);
+        yield return new WaitForSeconds(1f);
+
+        PosSave.SaveEnem(gameObject.name);
+        BattleScene();
+    }
+
+    public IEnumerator Rotate(GameObject o, float speed, Vector3 targetPos)
+    {
+        var transform = o.transform;
+        var startRotation = transform.rotation;
+        var direction = targetPos - transform.position;
+        var targetRotation = Quaternion.LookRotation(direction);
+        targetRotation.x = 0;
+        targetRotation.z = 0;
+        var t = 0f;
+        while (t <= 1f)
+        {
+            t += Time.deltaTime / speed;
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+            yield return null;
+        }
+        transform.rotation = targetRotation;
+    }
 }

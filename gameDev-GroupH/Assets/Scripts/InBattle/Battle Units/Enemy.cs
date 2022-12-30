@@ -11,10 +11,10 @@ public class Enemy : BattleUnit
 
     private void Start()
     {
-        currentHP = 1;
+        currentHP = 50;
 
 		float norm = 1f;
-		float weakness = 1.25f;
+		float weak = 1.25f;
 		float strength = 0.75f;
 
 		if (ID == 1)
@@ -65,6 +65,7 @@ public class Enemy : BattleUnit
 		var direction = targetPos - transform.position;
 		var targetRotation = Quaternion.LookRotation(direction);
 		targetRotation.x = 0;
+		targetRotation.z = 0;
 		var t = 0f;
 		while (t <= 1f)
 		{
