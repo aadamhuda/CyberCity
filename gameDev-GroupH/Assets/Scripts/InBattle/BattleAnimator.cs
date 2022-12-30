@@ -28,11 +28,12 @@ public class BattleAnimator : MonoBehaviour
         }
     }
 
-    public IEnumerator Melee(Animator a, Transform t)
+    public IEnumerator Melee(Animator a, Transform player, Transform enemy)
     {
         a.CrossFade("Melee", 0.1f);
-        AudioSource.PlayClipAtPoint(attackAudioDict["melee"], t.position);
-        yield return new WaitForSeconds(0.4f);
+        AudioSource.PlayClipAtPoint(attackAudioDict["melee"], player.position);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(Instantiate(hitFXDict["melee"], enemy.position, enemy.rotation), 1);
     }
 
     public IEnumerator Heal(Animator a, Transform t)
@@ -99,7 +100,7 @@ public class BattleAnimator : MonoBehaviour
     public IEnumerator Magic(Animator a, Transform player, Transform enemy, string attack)
     {
         a.CrossFade("Magic", 0.1f);
-        GameObject instantiatedAttackFX = Instantiate(attackFXDict[attack], player.position + player.forward, player.rotation);
+        GameObject instantiatedAttackFX = Instantiate(attackFXDict[attack], player.position + player.forward + (0.2f*player.up), player.rotation);
         if (attack.Equals("grass"))
         {
             AudioSource.PlayClipAtPoint(attackAudioDict[attack], player.position);
@@ -119,7 +120,7 @@ public class BattleAnimator : MonoBehaviour
             yield return null;
         }
         AudioSource.PlayClipAtPoint(hitAudioDict[attack], enemy.position);
-        Destroy(Instantiate(hitFXDict[attack], enemy.position, enemy.rotation), 1);
+        Destroy(Instantiate(hitFXDict[attack], enemy.position - (0.2f*player.forward) + (0.2f*enemy.up), enemy.rotation), 3);
     }
 
     public IEnumerator PlayerDeath(BattleUnit target, Animator a)
