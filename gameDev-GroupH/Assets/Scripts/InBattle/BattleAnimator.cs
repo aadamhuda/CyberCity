@@ -125,7 +125,7 @@ public class BattleAnimator : MonoBehaviour
 
     public IEnumerator PlayerDeath(BattleUnit target, Animator a)
     {
-//        a.CrossFade("React", 0.1f);
+        a.CrossFade("React", 0.1f);
         if (target.CheckIfDead())
             a.CrossFade("Kneel", 0.1f);
         yield return new WaitForSeconds(0.4f);
