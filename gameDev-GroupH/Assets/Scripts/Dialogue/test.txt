@@ -3,5 +3,5 @@ Eve_Test2
 Eve_Someone Rang The Doorbell
 Distant Voice_Use 'WASD' to move
 ------
-Eve_This hosuld not apprat
+Distant Voice_Press 'F' to interact
 ------

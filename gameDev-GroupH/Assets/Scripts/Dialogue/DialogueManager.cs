@@ -25,11 +25,12 @@ public class DialogueManager : MonoBehaviour
 
     public Image img;
 
+
     [SerializeField]
     private PlayerController player;
 
     [SerializeField]
-    private GameObject enemy;
+    private EnemyCollider enemy;
 
     [SerializeField]
     private Sprite [] characters;
@@ -41,7 +42,6 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
 
-        this.dialogue = new Dialogue(this.savedata.get_dialogue_index() , "/Scripts/Dialogue/test.txt");
 
 
         string[] temp = new string[] { "Eve", "Dreyar", "Astra", "Joe" , "Distant Voice" };
@@ -50,18 +50,13 @@ public class DialogueManager : MonoBehaviour
             charac_sprites.Add(temp[i], characters[i]);
 
 
-        Debug.Log(this.dialogue.GetParts().Length);
-
-        if (this.dialogue.GetParts().Length > 0)
-        {
-            this.StartDialogue();
-            savedata.set_dialogue_index(this.dialogue.GetIndex());
-        }
+        if (this.savedata.get_dialogue_index() == 0)
+            this.Script(0, "/Scripts/Dialogue/test.txt", "dialogue");
         else
             gameObject.SetActive(false);
-    }
 
-    public void ClueScript(int start , string path)
+    }
+    public void Script(int start , string path, string save)
     {
         gameObject.SetActive(true);
 
@@ -70,7 +65,11 @@ public class DialogueManager : MonoBehaviour
         if (this.dialogue.GetParts().Length > 0)
         {
             this.StartDialogue();
-            savedata.set_clues_text_index(this.dialogue.GetIndex());
+            Debug.Log(this.dialogue.GetIndex());
+            if (save=="clue")
+                savedata.set_clues_text_index(this.dialogue.GetIndex());
+            else if (save== "dialogue")
+                savedata.set_dialogue_index(this.dialogue.GetIndex());
         }
         else
         {
@@ -82,7 +81,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if ( this.displaytext.text == this.parts[this.index][1] ) {
+            if (this.displaytext.text == this.parts[this.index][1])
+            {
                 this.NextLine();
             }
             else
@@ -90,7 +90,10 @@ public class DialogueManager : MonoBehaviour
                 StopAllCoroutines();
                 this.displaytext.text = this.parts[this.index][1];
             }
+
         }
+
+
     }
 
 
@@ -100,7 +103,7 @@ public class DialogueManager : MonoBehaviour
         //Time.timeScale = 0.1f;
 
         player.canMove = false;
-        enemy.SetActive(false);
+        enemy.can_move = false;
 
         this.lines = dialogue.GetSentences();
         this.parts = this.dialogue.GetParts();
@@ -138,7 +141,7 @@ public class DialogueManager : MonoBehaviour
             gameObject.SetActive(false);
 
             player.canMove = true;
-            enemy.SetActive(true);
+            enemy.can_move = true;
 
         }
     }
