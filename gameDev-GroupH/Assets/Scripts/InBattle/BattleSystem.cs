@@ -603,6 +603,11 @@ public class BattleSystem : MonoBehaviour
 				else
                 {
 					// Moving enemy until next to player
+					if (!currEnemy.transform.GetChild(0).name.Equals("Ely By K.Atienza"))
+					{
+						yield return StartCoroutine(animator.EquipSword(enemyAnimator, currEnemy.transform));
+					}
+					Debug.Log("curr enemy name: " + currEnemy.transform.name);
 					yield return StartCoroutine(currEnemy.MoveEnemy(true, 0, speed, 2f, playerPos));
 
 					yield return StartCoroutine(animator.Melee(enemyAnimator, currEnemy.transform));
@@ -613,6 +618,10 @@ public class BattleSystem : MonoBehaviour
 
 					// Moving enemy back to original position
 					yield return new WaitForSeconds(0.7f);
+					if (!currEnemy.transform.GetChild(0).name.Equals("Ely By K.Atienza"))
+					{
+						yield return StartCoroutine(animator.DisarmSword(enemyAnimator, currEnemy.transform));
+					}
 					yield return StartCoroutine(currEnemy.MoveEnemy(false, 0, speed, 0.1f, enemyPos));
 				}
 				string state;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.02910482, g: 0.02989216, b: 0.029935637, a: 1}
+  m_IndirectSpecularColor: {r: 0.029087335, g: 0.0298977, b: 0.029896766, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1307,32 +1307,32 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 875a287eda6cf5e4b8e1129857c40982, type: 3}
   - {fileID: 8300000, guid: 24c5b313660358e45a5a1b5d471772af, type: 3}
   hitAudio:
-  - {fileID: 8300000, guid: 09e3e4788c880064c9d47ddf21e65261, type: 3}
-  - {fileID: 8300000, guid: 09e3e4788c880064c9d47ddf21e65261, type: 3}
-  - {fileID: 8300000, guid: 09e3e4788c880064c9d47ddf21e65261, type: 3}
-  - {fileID: 8300000, guid: 09e3e4788c880064c9d47ddf21e65261, type: 3}
-  - {fileID: 8300000, guid: 09e3e4788c880064c9d47ddf21e65261, type: 3}
-  - {fileID: 8300000, guid: 09e3e4788c880064c9d47ddf21e65261, type: 3}
-  - {fileID: 8300000, guid: 09e3e4788c880064c9d47ddf21e65261, type: 3}
-  - {fileID: 8300000, guid: 09e3e4788c880064c9d47ddf21e65261, type: 3}
+  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
+  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
+  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
+  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
+  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
+  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
+  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
+  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
   attackFX:
-  - {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
-  - {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
-  - {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
-  - {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
-  - {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
-  - {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
-  - {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
-  - {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
+  - {fileID: 1919913695092184, guid: f6f7312df153e8443887e05d59efa8ee, type: 3}
+  - {fileID: 1399491476850481373, guid: 7e691a0229efacd4cba2922df3888456, type: 3}
+  - {fileID: 1919913695092184, guid: f6f7312df153e8443887e05d59efa8ee, type: 3}
+  - {fileID: 1919913695092184, guid: 9c6eb97eb757ae6498a33ae136e7bd54, type: 3}
+  - {fileID: 1919913695092184, guid: 631a55ba87fae6344bb2ba8abfd83648, type: 3}
+  - {fileID: 1919913695092184, guid: 068793efeb229bb478817a7c8e1e35c1, type: 3}
+  - {fileID: 1919913695092184, guid: 899d18792ac0aac45af4bdc39da08283, type: 3}
+  - {fileID: 1919913695092184, guid: f6f7312df153e8443887e05d59efa8ee, type: 3}
   hitFX:
-  - {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  - {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  - {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  - {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  - {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  - {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  - {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  - {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+  - {fileID: 2955623459812423943, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
+  - {fileID: 7226583673155636401, guid: 4cb058e79cf387c4f985d834e6a5f5ee, type: 3}
+  - {fileID: 7226583673155636401, guid: 4cb058e79cf387c4f985d834e6a5f5ee, type: 3}
+  - {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd, type: 3}
+  - {fileID: 7226583673155636401, guid: 86b922ccc834d244c98779558f6b0c06, type: 3}
+  - {fileID: 7226583673155636401, guid: 5c8adb31ef41f2d428cb28d6511e2fd2, type: 3}
+  - {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  - {fileID: 7226583673155636401, guid: 4cb058e79cf387c4f985d834e6a5f5ee, type: 3}
   effectSpeed: 4
 --- !u!4 &328337032
 Transform:
@@ -2231,8 +2231,6 @@ MonoBehaviour:
   - {fileID: 337391031}
   - {fileID: 1960059561}
   - {fileID: 945452202}
-  cargoEnv: {fileID: 1109122052}
-  cityEnv: {fileID: 179935066}
   hudPrefab: {fileID: 7677056974057124145, guid: f90f2ae8186c8ee44882307a0cc0ada2, type: 3}
   playerHUD:
   - {fileID: 725320528}

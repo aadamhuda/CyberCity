@@ -28,17 +28,19 @@ public class BattleAnimator : MonoBehaviour
         }
     }
 
-    public IEnumerator Melee(Animator a, Transform t)
+    public IEnumerator Melee(Animator a, Transform player, Transform enemy)
     {
         a.CrossFade("Melee", 0.1f);
-        AudioSource.PlayClipAtPoint(attackAudioDict["melee"], t.position);
-        yield return new WaitForSeconds(0.4f);
+        AudioSource.PlayClipAtPoint(attackAudioDict["melee"], player.position);
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(hitFXDict["melee"], enemy.position, enemy.rotation);
     }
 
     public IEnumerator Heal(Animator a, Transform t)
     {
         a.GetComponent<Animator>().CrossFade("Heal", 0.1f);
         AudioSource.PlayClipAtPoint(attackAudioDict["heal"], t.position);
+        Instantiate(attackFXDict["heal"], t.position -t.up, t.rotation);
         yield return null;
     }
 
@@ -51,12 +53,20 @@ public class BattleAnimator : MonoBehaviour
     public IEnumerator EquipSword(Animator a, Transform t)
     {
         Transform sword = t.GetChild(0);
-        for (int i = 0; i < sword.childCount; i++)
+        if (sword.name.Equals("Kachujin G Rosales"))
         {
-            if (sword.GetChild(i).name.Contains("Hips"))
+            sword = sword.GetChild(1).GetChild(2).GetChild(2).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
+        }
+        else
+        {
+            for (int i = 0; i < sword.childCount; i++)
             {
-                sword = sword.GetChild(i).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
-                break;
+                if (sword.GetChild(i).name.Contains("Hips"))
+                {
+                    sword = sword.GetChild(i).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
+
+                    break;
+                }
             }
         }
 //        Debug.Log(sword.name);
@@ -83,12 +93,20 @@ public class BattleAnimator : MonoBehaviour
     public IEnumerator DisarmSword(Animator a, Transform t)
     {
         Transform sword = t.GetChild(0);
-        for (int i = 0; i < sword.childCount; i++)
+        if (sword.name.Equals("Kachujin G Rosales"))
         {
-            if (sword.GetChild(i).name.Contains("Hips"))
+            sword = sword.GetChild(1).GetChild(2).GetChild(2).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
+        }
+        else
+        {
+            for (int i = 0; i < sword.childCount; i++)
             {
-                sword = sword.GetChild(i).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
-                break;
+                if (sword.GetChild(i).name.Contains("Hips"))
+                {
+                    sword = sword.GetChild(i).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
+
+                    break;
+                }
             }
         }
         sword.gameObject.SetActive(false);
@@ -99,7 +117,7 @@ public class BattleAnimator : MonoBehaviour
     public IEnumerator Magic(Animator a, Transform player, Transform enemy, string attack)
     {
         a.CrossFade("Magic", 0.1f);
-        GameObject instantiatedAttackFX = Instantiate(attackFXDict[attack], player.position + player.forward, player.rotation);
+        GameObject instantiatedAttackFX = Instantiate(attackFXDict[attack], player.position + player.forward + (0.2f*player.up), player.rotation);
         if (attack.Equals("grass"))
         {
             AudioSource.PlayClipAtPoint(attackAudioDict[attack], player.position);
@@ -119,12 +137,12 @@ public class BattleAnimator : MonoBehaviour
             yield return null;
         }
         AudioSource.PlayClipAtPoint(hitAudioDict[attack], enemy.position);
-        Destroy(Instantiate(hitFXDict[attack], enemy.position, enemy.rotation), 1);
+        Instantiate(hitFXDict[attack], enemy.position - (0.2f*player.forward) + (0.2f*enemy.up), enemy.rotation);
     }
 
     public IEnumerator PlayerDeath(BattleUnit target, Animator a)
     {
-//        a.CrossFade("React", 0.1f);
+        a.CrossFade("React", 0.1f);
         if (target.CheckIfDead())
             a.CrossFade("Kneel", 0.1f);
         yield return new WaitForSeconds(0.4f);
