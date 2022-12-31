@@ -15,18 +15,18 @@ MonoBehaviour:
   EnemyDeath: 1
   EnemyDouble: 1
   enem: 3-0
-  ClueCount: 7
+  ClueCount: 9
   inBattle: 1
   team_health: e8030000e8030000e8030000e8030000
-  team_MP: 00000000000000000000000000000000
+  team_MP: e8030000e8030000e8030000e8030000
   current_level: Cargo Level
   cargo_level: Cargo Level
   cyber_level: City Level
   cargo_battle: Battle
   cyber_battle: Cyber Battle
-  player_location: {x: -2.8032775, y: 1.01, z: 37.74722}
+  player_location: {x: -1.1945755, y: 1.0099999, z: 8.608953}
   respawn_location: {x: 0, y: 1.5, z: 0}
   respawn: 0
   item_spawn: 20
   clues_text_index: 0
-  dialogue_index: 4
+  dialogue_index: 7

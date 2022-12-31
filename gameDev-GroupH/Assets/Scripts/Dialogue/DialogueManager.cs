@@ -44,9 +44,9 @@ public class DialogueManager : MonoBehaviour
         this.dialogue = new Dialogue(this.savedata.get_dialogue_index() , "/Scripts/Dialogue/test.txt");
 
 
-        string[] temp = new string[] { "Eve", "Dreyar", "Astra", "Joe" };
+        string[] temp = new string[] { "Eve", "Dreyar", "Astra", "Joe" , "Distant Voice" };
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5 ; i++)
             charac_sprites.Add(temp[i], characters[i]);
 
 
