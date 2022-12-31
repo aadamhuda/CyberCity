@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float gravityValue = -15f;
 
+    [SerializeField]
+    private DialogueManager dialogue;
+
     private float speed;
 
     private Animator animator;
@@ -103,6 +106,8 @@ public class PlayerController : MonoBehaviour
         collecterBool = false;
         collecter = null;
         savedata.DictBoolSwitch(savedata.Clue, other.name);
+
+        this.dialogue.ClueScript( savedata.get_clues_text_index() , "/Scripts/Dialogue/clues.txt");
     }
 
     void OnTriggerEnter(Collider other)

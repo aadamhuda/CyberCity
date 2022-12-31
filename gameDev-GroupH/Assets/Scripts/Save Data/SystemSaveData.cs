@@ -30,6 +30,9 @@ public class SystemSaveData
 
     private Dictionary<int, Dictionary<string, string>> checklist = new Dictionary<int, Dictionary<string, string>>();
 
+    public int clues_text_index;
+    public int dialogue_index;
+
     public SystemSaveData (SaveData savedata)
     {
 
@@ -46,6 +49,8 @@ public class SystemSaveData
         this.items = savedata.get_items();
         this.remainng_items = savedata.get_item_respawn();
         this.checklist = savedata.get_checklist();
+        this.clues_text_index = savedata.get_clues_text_index();
+        this.dialogue_index = savedata.get_dialogue_index();
     }
 
 

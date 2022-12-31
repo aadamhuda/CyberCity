@@ -2231,6 +2231,8 @@ MonoBehaviour:
   - {fileID: 337391031}
   - {fileID: 1960059561}
   - {fileID: 945452202}
+  cargoEnv: {fileID: 1109122052}
+  cityEnv: {fileID: 179935066}
   hudPrefab: {fileID: 7677056974057124145, guid: f90f2ae8186c8ee44882307a0cc0ada2, type: 3}
   playerHUD:
   - {fileID: 725320528}

@@ -21,7 +21,6 @@ public class Gates : MonoBehaviour
         {
             if (savedata.ClueCount >= gate.GetComponent<Gate_Info>().get_condition())
             {
-                Debug.Log("eh eh ehe heh eh: ");
                 Animator anim = gate.GetComponent<Animator>();
                 anim.SetBool("ImmediateOpen", true);
             }
