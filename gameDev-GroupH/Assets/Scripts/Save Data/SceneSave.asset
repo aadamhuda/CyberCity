@@ -19,12 +19,12 @@ MonoBehaviour:
   inBattle: 1
   team_health: e8030000e8030000e8030000e8030000
   team_MP: e8030000e8030000e8030000e8030000
-  current_level: Cargo Level
+  current_level: City Level
   cargo_level: Cargo Level
   cyber_level: City Level
   cargo_battle: Battle
   cyber_battle: Cyber Battle
-  player_location: {x: -1.1945755, y: 1.0099999, z: 8.608953}
+  player_location: {x: 16.509966, y: 1.01, z: 20.225546}
   respawn_location: {x: 0, y: 1.5, z: 0}
   respawn: 0
   item_spawn: 20
