@@ -20,6 +20,7 @@ public class EnemyCollider : MonoBehaviour
     public SaveData PosSave;
     public TextMeshProUGUI engage;
 
+    public bool can_move = true;
 
     private void Start()
     {
@@ -82,7 +83,7 @@ public class EnemyCollider : MonoBehaviour
         // Engage combat
         PosSave.SaveLocation(player.transform.position);
         PosSave.set_current_level(SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene(PosSave.get_cargo_battle());
+        SceneManager.LoadScene("Battle");
     }
 
     protected virtual void Update()

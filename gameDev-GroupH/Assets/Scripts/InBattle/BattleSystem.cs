@@ -40,6 +40,10 @@ public class BattleSystem : MonoBehaviour
 
 	public Button[] playerMoveButtons;
 
+	//Environment
+	public GameObject cargoEnv;
+	public GameObject cityEnv;
+
 	//HUD
 	public GameObject hudPrefab;
 
@@ -81,6 +85,8 @@ public class BattleSystem : MonoBehaviour
 		//shows cursor so buttons can be selected
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
+
+		SetEnvironment();
 
 		//starts battle
 		state = BattleState.START;
@@ -189,6 +195,20 @@ public class BattleSystem : MonoBehaviour
 		}
 		return allEnemies;
 
+    }
+
+	public void SetEnvironment()
+    {
+        if (savedata.get_current_level() == savedata.get_cyber_level())
+        {
+			cityEnv.SetActive(true);
+			cargoEnv.SetActive(false);
+		}
+        else
+        {
+			cityEnv.SetActive(false);
+			cargoEnv.SetActive(true);
+		}
     }
 
     //initialises battle - spawns player and enemies, selects first target and then starts player turn
@@ -336,8 +356,11 @@ public class BattleSystem : MonoBehaviour
 					yield return StartCoroutine(animator.Shoot(playerAnimator, currPlayer.transform));
 
 					enemies[i].takeDamage(players[tracker].GetATK()[attackType], attackType);
-					StartCoroutine(animator.EnemyDeath(enemies[i], enemies[i].GetComponent<Animator>()));
-
+					if (enemies[i].CheckIfDead())
+					{
+						StartCoroutine(animator.EnemyDeath(enemies[i], enemies[i].GetComponent<Animator>()));
+						
+					}
 				}
 				StartCoroutine(animator.DisarmBow(playerAnimator, currPlayer.transform));
 
@@ -348,7 +371,7 @@ public class BattleSystem : MonoBehaviour
 				yield return StartCoroutine(animator.EquipSword(playerAnimator, currPlayer.transform));
 				yield return StartCoroutine(currPlayer.MovePlayer(true, 0, speed, 2f, enemyPos));
 
-				yield return StartCoroutine(animator.Melee(playerAnimator, currPlayer.transform, enemyTarget.transform));
+				yield return StartCoroutine(animator.Melee(playerAnimator, currPlayer.transform));
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 				StartCoroutine(animator.EnemyDeath(enemyTarget, enemyAnimator));
 
@@ -587,7 +610,7 @@ public class BattleSystem : MonoBehaviour
 					Debug.Log("curr enemy name: " + currEnemy.transform.name);
 					yield return StartCoroutine(currEnemy.MoveEnemy(true, 0, speed, 2f, playerPos));
 
-					yield return StartCoroutine(animator.Melee(enemyAnimator, currEnemy.transform, playerTarget.transform));
+					yield return StartCoroutine(animator.Melee(enemyAnimator, currEnemy.transform));
 					
 					//adds 15% damage if enemy hits player first
 					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey); // change 1 to enemy's move type
@@ -601,100 +624,19 @@ public class BattleSystem : MonoBehaviour
 					}
 					yield return StartCoroutine(currEnemy.MoveEnemy(false, 0, speed, 0.1f, enemyPos));
 				}
-			}
+				string state;
+				if (this.checklist[playerTarget.getID()].ContainsKey(randomKey) == false)
+				{
+					// Stores affinity of attribute in list
+					if (playerTarget.GetATB()[randomKey] > 1f)
+						state = "weak";
+					else if (playerTarget.GetATB()[randomKey] == 1f)
+						state = "norm";
+					else
+						state = "strength";
 
-			string state;
-			if (this.checklist[playerTarget.getID()].ContainsKey(randomKey) == false)
-            {
-				// Stores affinity of attribute in list
-				if (playerTarget.GetATB()[randomKey] > 1f)
-					state = "weak"; 
-				else if (playerTarget.GetATB()[randomKey] == 1f)
-					state = "norm";
-				else
-					state = "strength";
-
-				this.checklist[playerTarget.getID()].Add(randomKey, state);
-
-
-				/*				if (playerTarget.get_cursed())
-									additional_base = 0.15f;
-								supposed_dmg = Mathf.RoundToInt(currEnemy.GetATK()[randomKey] * additional_base);
-
-				// If player took more damage then they meant, this means they are weak to something
-
-								if (playerTarget_HP - playerTarget.currentHP > supposed_dmg)
-								{
-				// If player affected by curse then they must be weak to the element
-									if (playerTarget.get_cursed())
-									{
-				// Increasing the base to match with weak to curse
-										additional_base += 0.15f;
-										supposed_dmg = Mathf.RoundToInt(currEnemy.GetATK()[randomKey] * additional_base);
-				// If they take more dmg even when accounting for weak to curse, then they must be weak to both
-										if (playerTarget_HP - playerTarget.currentHP > supposed_dmg)
-										{
-											this.checklist[playerTarget.getID()].Add("curse", "weak");
-											this.checklist[playerTarget.getID()].Add(randomKey, "weak");
-										}
-				// If they are take increase damage from curse, then they are weak to curse
-										else if (playerTarget_HP - playerTarget.currentHP == supposed_dmg)
-										{
-											this.checklist[playerTarget.getID()].Add("curse", "weak");
-											this.checklist[playerTarget.getID()].Add(randomKey, "norm");
-										}
-				// If they take incresed damage but less the 1.3 multiplier curse, then they must be weak to the element
-										else
-										{
-											this.checklist[playerTarget.getID()].Add("curse", "norm");
-											this.checklist[playerTarget.getID()].Add(randomKey, "weak");
-										}
-									}
-									else
-										this.checklist[playerTarget.getID()].Add(randomKey, "weak");
-
-								}
-				// If damage perfectly lines up, then they didnt take extra dmg or less so they are normal
-								else if (playerTarget_HP - playerTarget.currentHP == supposed_dmg)
-								{
-				// If they are cursed and took expected damage, then curse must be normal
-									if (playerTarget.get_cursed())
-										this.checklist[playerTarget.getID()].Add("curse", "norm");
-									this.checklist[playerTarget.getID()].Add(randomKey, "norm");
-								}
-				// Player took less dmg than usual, meaning they must be resistant to something
-								else
-								{
-				// Decreasing curse damage to check if they are resistant to curse
-									supposed_dmg = Mathf.RoundToInt(currEnemy.GetATK()[randomKey] * 0.85f);
-				// If they took less damamge even with accounted curse then they must be weak to both
-									if (playerTarget_HP - playerTarget.currentHP < supposed_dmg)
-									{
-										this.checklist[playerTarget.getID()].Add("curse", "strength");
-										this.checklist[playerTarget.getID()].Add(randomKey, "strength");
-									}
-									else if (playerTarget.get_cursed())
-									{
-				// If they are cursed then we account they are resistant to curse
-										if (playerTarget_HP - playerTarget.currentHP == Mathf.RoundToInt(currEnemy.GetATK()[randomKey]))
-										{
-				// They tok no extra damage from curse but took full damage from ability
-											this.checklist[playerTarget.getID()].Add("curse", "strength");
-											this.checklist[playerTarget.getID()].Add(randomKey, "norm");
-										}
-				// Above but in reverse
-										else
-										{
-											this.checklist[playerTarget.getID()].Add("curse", "norm");
-											this.checklist[playerTarget.getID()].Add(randomKey, "strength");
-										}
-									}
-				// If they dnt have cursed then the only resistance is the element
-									else
-									{
-										this.checklist[playerTarget.getID()].Add(randomKey, "strength");
-									} 
-								}*/
+					this.checklist[playerTarget.getID()].Add(randomKey, state);
+				}
 
 
 			}

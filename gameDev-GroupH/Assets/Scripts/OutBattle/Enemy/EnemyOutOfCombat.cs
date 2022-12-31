@@ -27,8 +27,8 @@ public class EnemyOutOfCombat : EnemyCollider
     public bool inSight;
 
     [SerializeField]
-    private Animator anim;
-    protected void Start()
+    protected Animator anim;
+    protected virtual void Start()
     {
         engage.text = "";
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
@@ -59,7 +59,7 @@ public class EnemyOutOfCombat : EnemyCollider
         }
     }
 
-    private void FieldOfViewCheck()
+    protected virtual void FieldOfViewCheck()
     {
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, PlayerMask);
 
@@ -131,16 +131,20 @@ public class EnemyOutOfCombat : EnemyCollider
     {
         base.Update();
 
-        ChaseInArea();
-        if (inSight & WithInArea)
+        if (can_move)
         {
-            ChasePlayer();
-            if (inSight & inRange)
-                StartCoroutine(AmbushPlayer());
+            ChaseInArea();
+            if (inSight & WithInArea)
+            {
+                ChasePlayer();
+                if (inSight & inRange)
+                    StartCoroutine(AmbushPlayer());
+            }
+
+            else
+                Patrol();
         }
 
-        else
-            Patrol();
 
     }
 

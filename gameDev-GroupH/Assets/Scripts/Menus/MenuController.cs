@@ -24,6 +24,8 @@ public class MenuController : MonoBehaviour
         saveState.set_respawn(new Vector3(0f, 0f, 0f));
         saveState.set_item_respawn(4);
         saveState.SavePlayerMP(new int[] { 30, 30, 30, 30 });
+        saveState.set_clues_text_index(0);
+        saveState.set_dialogue_index(0);
         saveState.SavePlayerHealth(new int[] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
     }
 
@@ -31,7 +33,7 @@ public class MenuController : MonoBehaviour
     public void PlayGame()
     {
         initialiseGame(); //clears saved data variables
-        SceneManager.LoadScene(saveState.get_cargo_battle());
+        SceneManager.LoadScene(saveState.get_cargo_level());
     }
 
     //quits the game when the quit button is pressed
