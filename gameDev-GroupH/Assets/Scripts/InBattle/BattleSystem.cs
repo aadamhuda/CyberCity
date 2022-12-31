@@ -336,8 +336,11 @@ public class BattleSystem : MonoBehaviour
 					yield return StartCoroutine(animator.Shoot(playerAnimator, currPlayer.transform));
 
 					enemies[i].takeDamage(players[tracker].GetATK()[attackType], attackType);
-					StartCoroutine(animator.EnemyDeath(enemies[i], enemies[i].GetComponent<Animator>()));
-
+					if (enemies[i].CheckIfDead())
+					{
+						StartCoroutine(animator.EnemyDeath(enemies[i], enemies[i].GetComponent<Animator>()));
+						
+					}
 				}
 				StartCoroutine(animator.DisarmBow(playerAnimator, currPlayer.transform));
 
@@ -348,7 +351,7 @@ public class BattleSystem : MonoBehaviour
 				yield return StartCoroutine(animator.EquipSword(playerAnimator, currPlayer.transform));
 				yield return StartCoroutine(currPlayer.MovePlayer(true, 0, speed, 2f, enemyPos));
 
-				yield return StartCoroutine(animator.Melee(playerAnimator, currPlayer.transform, enemyTarget.transform));
+				yield return StartCoroutine(animator.Melee(playerAnimator, currPlayer.transform));
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 				StartCoroutine(animator.EnemyDeath(enemyTarget, enemyAnimator));
 
@@ -582,7 +585,7 @@ public class BattleSystem : MonoBehaviour
 					// Moving enemy until next to player
 					yield return StartCoroutine(currEnemy.MoveEnemy(true, 0, speed, 2f, playerPos));
 
-					yield return StartCoroutine(animator.Melee(enemyAnimator, currEnemy.transform, playerTarget.transform));
+					yield return StartCoroutine(animator.Melee(enemyAnimator, currEnemy.transform));
 					
 					//adds 15% damage if enemy hits player first
 					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey); // change 1 to enemy's move type
