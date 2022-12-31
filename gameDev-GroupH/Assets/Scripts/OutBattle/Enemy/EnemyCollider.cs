@@ -20,6 +20,7 @@ public class EnemyCollider : MonoBehaviour
     public SaveData PosSave;
     public TextMeshProUGUI engage;
 
+    public bool can_move = true;
 
     private void Start()
     {
