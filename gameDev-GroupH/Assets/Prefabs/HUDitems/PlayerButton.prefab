@@ -173,7 +173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 2.7674}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0.3}
   m_SizeDelta: {x: -0.000030518, y: 5.5348}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4941101719369996455
@@ -206,15 +206,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: PlayerName
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6607905b5d2055543839b541c06ceac1, type: 2}
-  m_sharedMaterial: {fileID: -6642441344533962239, guid: 6607905b5d2055543839b541c06ceac1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 26bb167ca98ca1e42838332324380c17, type: 2}
+  m_sharedMaterial: {fileID: -7277523142528850039, guid: 26bb167ca98ca1e42838332324380c17, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294170627
+  m_fontColor: {r: 0.011764706, g: 0.84705883, b: 0.9529412, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
