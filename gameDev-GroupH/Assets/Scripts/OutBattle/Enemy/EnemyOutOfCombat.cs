@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyOutOfCombat : EnemyCollider
 {
     private bool dead = false;
+
     public float radius;
     [Range(0, 360)]
     public float angle;
@@ -27,10 +28,14 @@ public class EnemyOutOfCombat : EnemyCollider
     public bool inSight;
 
     [SerializeField]
+    private GameObject canvas;
+
+    [SerializeField]
     protected Animator anim;
     protected virtual void Start()
     {
-        engage.text = "";
+        this.canvas.SetActive(false);
+
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
         sc.radius = 3;
         sc.isTrigger = true;
@@ -46,6 +51,18 @@ public class EnemyOutOfCombat : EnemyCollider
             gameObject.SetActive(false);
         else
             StartCoroutine(FOVRoutine());
+    }
+
+    private new void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        this.canvas.SetActive(true);
+    }
+
+    private new void OnTriggerExit(Collider other)
+    {
+        base.OnTriggerExit(other);
+        this.canvas.SetActive(false);
     }
 
     private IEnumerator FOVRoutine()
@@ -123,7 +140,7 @@ public class EnemyOutOfCombat : EnemyCollider
     {
         agent = GetComponent<NavMeshAgent>();
         radius = 15;
-        angle = 120;
+        angle = 0;
     }
 
     // Update is called once per frame

@@ -9,6 +9,10 @@ public class ClueController : MonoBehaviour
     public float ceiling;
     public float floor;
     public SaveData savedata;
+
+    [SerializeField]
+    private GameObject canvas;
+
     bool collected;
     bool moveUp;
 
@@ -59,5 +63,15 @@ public class ClueController : MonoBehaviour
             }
         }
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        this.canvas.SetActive(true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        this.canvas.SetActive(false);
+    }
+
 }

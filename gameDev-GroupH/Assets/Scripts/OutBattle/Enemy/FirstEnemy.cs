@@ -35,6 +35,7 @@ public class FirstEnemy : EnemyOutOfCombat
         if (inSight) 
             if (triggered == false)
             {
+                this.dialogue.PauseAll();
                 this.dialogue.Script(PosSave.get_dialogue_index(), "/Scripts/Dialogue/test.txt", "dialogue");
                 triggered = true;
 

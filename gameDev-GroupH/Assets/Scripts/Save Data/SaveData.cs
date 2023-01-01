@@ -60,6 +60,10 @@ public class SaveData : ScriptableObject
     [SerializeField]
     private int dialogue_index;
 
+        [SerializeField]
+    private int save_index;
+
+    
 
     public string get_current_level() { return this.current_level; }
     public string get_cargo_level() { return this.cargo_level; }
@@ -89,7 +93,9 @@ public class SaveData : ScriptableObject
 
     public int get_clues_text_index() { return this.clues_text_index; }
     
-    public int get_dialogue_index() { return this.dialogue_index; }
+    public int get_dialogue_index() { return this.dialogue_index; } 
+    
+    public int get_save_index() { return this.save_index; }
 
 
     public void set_current_level(string level)
@@ -124,6 +130,9 @@ public class SaveData : ScriptableObject
     
     public void set_dialogue_index(int index) 
         { this.dialogue_index = index; }
+    
+    public void set_save_index(int index) 
+        { this.save_index = index; }
 
 
 

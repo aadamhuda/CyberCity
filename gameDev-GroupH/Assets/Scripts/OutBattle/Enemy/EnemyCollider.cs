@@ -18,7 +18,8 @@ public class EnemyCollider : MonoBehaviour
     protected bool inRange = false;
     public GameObject player;
     public SaveData PosSave;
-    public TextMeshProUGUI engage;
+
+
 
     public bool can_move = true;
 
@@ -26,7 +27,6 @@ public class EnemyCollider : MonoBehaviour
     {
         int limit;
         Enemies = new EnemyOutOfCombat[4 * PosSave.GetDifficulty()];
-
 
         // Instantiate enemies on each area
         for (int area = 0; area < plane.Length; area++)
@@ -51,7 +51,6 @@ public class EnemyCollider : MonoBehaviour
 
                 // Assigning variables to each enemy
                 assigner.player = player;
-                assigner.engage = engage;
                 assigner.whatisGround = plane[area].GetLayer();
                 assigner.PatrolPoints = temp.GetPath();
                 assigner.whatisGround = plane[area].GetLayer();
@@ -66,16 +65,29 @@ public class EnemyCollider : MonoBehaviour
         return inRange;
     }
 
-    private void OnTriggerEnter(Collider Other)
+    public void StopAll()
     {
-        inRange = true;
-        engage.text = "Press F to engage";
+        for (int i = 1; i < gameObject.transform.childCount; i++)
+        {
+            gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().can_move = false;
+        }
+    }
+    public void ResumeAll()
+    {
+        for (int i = 1; i < gameObject.transform.childCount; i++)
+        {
+            gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().can_move = true;
+        }
     }
 
-    private void OnTriggerExit(Collider Other)
+    protected void OnTriggerEnter(Collider Other)
+    {
+        inRange = true;
+    }
+
+    protected void OnTriggerExit(Collider Other)
     {
         inRange = false;
-        engage.text = "";
     }
 
     protected void BattleScene()

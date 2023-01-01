@@ -25,6 +25,7 @@ public class DialogueManager : MonoBehaviour
 
     public Image img;
 
+    private bool paused;
 
     [SerializeField]
     private PlayerController player;
@@ -51,7 +52,10 @@ public class DialogueManager : MonoBehaviour
 
 
         if (this.savedata.get_dialogue_index() == 0)
+        {
+            this.PauseAll();
             this.Script(0, "/Scripts/Dialogue/test.txt", "dialogue");
+        }
         else
             gameObject.SetActive(false);
 
@@ -66,10 +70,12 @@ public class DialogueManager : MonoBehaviour
         {
             this.StartDialogue();
             Debug.Log(this.dialogue.GetIndex());
-            if (save=="clue")
+            if (save == "clue")
                 savedata.set_clues_text_index(this.dialogue.GetIndex());
-            else if (save== "dialogue")
+            else if (save == "dialogue")
                 savedata.set_dialogue_index(this.dialogue.GetIndex());
+            else if (save == "save")
+                savedata.set_save_index(this.dialogue.GetIndex());
         }
         else
         {
@@ -96,14 +102,19 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    public void PauseAll()
+    {
+        player.canMove = false;
+        enemy.StopAll();
+        this.paused = true;
+    }
 
 
     public void StartDialogue()
     {
         //Time.timeScale = 0.1f;
 
-        player.canMove = false;
-        enemy.can_move = false;
+
 
         this.lines = dialogue.GetSentences();
         this.parts = this.dialogue.GetParts();
@@ -140,8 +151,12 @@ public class DialogueManager : MonoBehaviour
         {
             gameObject.SetActive(false);
 
-            player.canMove = true;
-            enemy.can_move = true;
+            if (this.paused)
+            {
+                player.canMove = true;
+                enemy.ResumeAll(); 
+            }
+
 
         }
     }
