@@ -41,7 +41,14 @@ public class SaveGame : MonoBehaviour
     private void Update()
     {
         if (player.get_save())
+        {
             this.indicator.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                savedata.SaveGame();
+            }
+
+        }
         else
             this.indicator.SetActive(false);
     }
