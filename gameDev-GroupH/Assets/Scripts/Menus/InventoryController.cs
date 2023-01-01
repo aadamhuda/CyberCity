@@ -22,26 +22,26 @@ public class InventoryController : MonoBehaviour
     [SerializeField]
     GameObject pause;
 
+    [SerializeField]
+    private Transform parent;
+
+
+    [SerializeField]
+    private GameObject button;
 
     public void LoadMenu()
     {
 
-        int start_x = 215;
-        int start_y = 410;
 
 
         foreach (KeyValuePair<string, int> i in itemInventory.get_items())
         {
             // Creates 'plate' for every item in inventory
-            GameObject temp = Instantiate(new GameObject() , new Vector3( start_x + gameObject.transform.position.x , start_y + gameObject.transform.position.y , 0 ) , Quaternion.identity , gameObject.transform);
+            GameObject temp = Instantiate(button, parent);
 
             // Appropriately named 
             temp.name = i.Key;
-            Image temp_image = temp.AddComponent<Image>();
-            temp_image.sprite = sprite;
-
             // Make the image cleaner
-            temp_image.type = Image.Type.Sliced;
             GameObject temp_text_obj = Instantiate(text_field , temp.transform);
 
             // Adds text
@@ -51,12 +51,6 @@ public class InventoryController : MonoBehaviour
             temp_text.text = i.Key + " x" + i.Value;
 
             // Positioning variables
-            start_y -= 200;
-            if (start_y < 10)
-            {
-                start_x += 150;
-                start_y = 360;
-            }
         }
     }
 
