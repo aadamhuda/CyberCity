@@ -33,7 +33,7 @@ public class BattleAnimator : MonoBehaviour
         a.CrossFade("Melee", 0.1f);
         AudioSource.PlayClipAtPoint(attackAudioDict["melee"], player.position);
         yield return new WaitForSeconds(0.5f);
-        Instantiate(hitFXDict["melee"], enemy.position, enemy.rotation);
+        Instantiate(hitFXDict["melee"], enemy.position-(0.2f*player.forward) + (0.2f*player.up), enemy.rotation);
     }
 
     public IEnumerator Heal(Animator a, Transform t)
@@ -46,8 +46,32 @@ public class BattleAnimator : MonoBehaviour
 
     public IEnumerator EquipBow(Animator a, Transform t)
     {
+        Transform bow = t.GetChild(0).GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(6);
         a.CrossFade("EquipBow", 0.1f);
+        yield return new WaitForSeconds(0.5f);
+        bow.gameObject.SetActive(true);
+    }
+    public IEnumerator DisarmBow(Animator a, Transform t)
+    {
+        Transform bow = t.GetChild(0).GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(6);
+        a.CrossFade("DisarmBow", 0.3f);
+        yield return new WaitForSeconds(0.5f) ;
+        bow.gameObject.SetActive(false);
+    }
+    public IEnumerator Shoot(Animator a, Transform t, Transform enemy)
+    {
+        GameObject shootOrb = Instantiate(attackFXDict["shoot"], t.position + t.forward + (0.2f*t.up), t.rotation);
+        a.CrossFade("DrawArrow", 0.1f);
+        yield return new WaitForSeconds(0.2f);
+        AudioSource.PlayClipAtPoint(attackAudioDict["shoot"], t.position);
         yield return new WaitForSeconds(0.3f);
+        shootOrb.GetComponent<Rigidbody>().velocity = t.forward * 15;
+        AudioSource.PlayClipAtPoint(hitAudioDict["shoot"], enemy.position);
+        while (shootOrb != null)
+        {
+            yield return null;
+        }
+        Instantiate(hitFXDict["shoot"], enemy.position-(0.2f*t.forward) + (0.2f * t.up), enemy.rotation);
     }
 
     public IEnumerator EquipSword(Animator a, Transform t)
@@ -75,19 +99,6 @@ public class BattleAnimator : MonoBehaviour
 
         sword.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.3f);
-    }
-
-    public IEnumerator Shoot(Animator a, Transform t)
-    {
-        a.CrossFade("DrawArrow", 0.1f);
-        yield return new WaitForSeconds(0.5f);
-        AudioSource.PlayClipAtPoint(attackAudioDict["shoot"], t.position);
-    }
-
-    public IEnumerator DisarmBow(Animator a, Transform t)
-    {
-        a.CrossFade("DisarmBow", 0.3f);
-        yield return null;
     }
 
     public IEnumerator DisarmSword(Animator a, Transform t)
