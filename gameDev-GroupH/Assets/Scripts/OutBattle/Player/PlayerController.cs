@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     public bool canMove = true;
 
-    public GameObject [] Clues = new GameObject[4];
+    public GameObject[] Clues = new GameObject[4];
 
     public TextMeshProUGUI winText;
     public TextMeshProUGUI interaction;
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
             move.position = savedata.get_respawn_location();
             savedata.ChangeRespawn();
         }
-            
+
         else
             move.position = savedata.get_player_location();
 
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
     public void collectClue(Collider other)
     {
         other.gameObject.SetActive(false);
-        
+
         interaction.text = "";
         clueCount++;
         savedata.ClueCount = clueCount;
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         collecter = null;
         savedata.DictBoolSwitch(savedata.Clue, other.name);
 
-        this.dialogue.Script( savedata.get_clues_text_index() , "/Scripts/Dialogue/clues.txt" , "clue");
+        this.dialogue.Script(savedata.get_clues_text_index(), "/Scripts/Dialogue/clues.txt", "clue");
     }
 
     void OnTriggerEnter(Collider other)
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            controller.Move(new Vector3(0f,0f,0f));
+            controller.Move(new Vector3(0f, 0f, 0f));
             animator.SetFloat("Speed", 0, 0.2f, Time.deltaTime);
         }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -238,6 +238,8 @@ GameObject:
   - component: {fileID: 23978105}
   - component: {fileID: 23978107}
   - component: {fileID: 23978108}
+  - component: {fileID: 23978110}
+  - component: {fileID: 23978109}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -297,11 +299,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   mainCamera: {fileID: 1525408406}
-  walkSpeed: 50
+  walkSpeed: 5
   runSpeed: 10
   rotationSpeed: 7
   jumpHeight: 0.5
   gravityValue: -15
+  dialogue: {fileID: 0}
   canMove: 1
   Clues:
   - {fileID: 998941876}
@@ -405,7 +408,7 @@ Animator:
   m_GameObject: {fileID: 23978098}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f179249f14d033d418edde73040de7b3, type: 3}
-  m_Controller: {fileID: 9100000, guid: f2056cc9ed715c64aac26c596839c686, type: 2}
+  m_Controller: {fileID: 9100000, guid: bba2ddcb477a1374e9b1d2c75bec85ff, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -432,6 +435,114 @@ MonoBehaviour:
   inventory: {fileID: 0}
   main_pause_screen: {fileID: 0}
   player: {fileID: 0}
+--- !u!114 &23978109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23978098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb4190a905f35340abd361edc3fe094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &23978110
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23978098}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &34467348
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +979,7 @@ MonoBehaviour:
   player: {fileID: 23978098}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   engage: {fileID: 971016572}
+  can_move: 1
 --- !u!4 &88389612
 Transform:
   m_ObjectHideFlags: 0
@@ -2587,6 +2699,7 @@ MonoBehaviour:
   player: {fileID: 23978098}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   engage: {fileID: 971016572}
+  can_move: 1
   radius: 0
   angle: 0
   agent: {fileID: 430079408}
@@ -9618,7 +9731,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424095125}
-  m_LocalRotation: {x: 0.045337986, y: 0.7056518, z: -0.045337986, w: 0.7056518}
+  m_LocalRotation: {x: 0.045337994, y: 0.70565176, z: -0.045337994, w: 0.7056519}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
