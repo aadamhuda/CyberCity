@@ -34,7 +34,7 @@ public class InventoryMenu : MonoBehaviour
 
 		items.Clear();
 		playerButtons.Clear();
-
+		AddTestItems();
 		cancelButton.interactable = false;
 		inventory.define_inventory();
 		// Draw inv
@@ -90,7 +90,7 @@ public class InventoryMenu : MonoBehaviour
 	
 	
 	// Select item
-	public void ItemSelect(string itemName) {
+	public void ItemSelect(string itemName) {   
 		currentItem = itemName;
 
 		disableButtons(items);
@@ -110,6 +110,12 @@ public class InventoryMenu : MonoBehaviour
 				break;
 			case "maxRevive":
 				DownedButtonFilter(playerButtons, true);
+				break;
+			case "ether":
+				DownedButtonFilter(playerButtons, false);
+				break;
+			case "maxEther":
+				DownedButtonFilter(playerButtons, false);
 				break;
 			default:
 				break;
@@ -150,6 +156,12 @@ public class InventoryMenu : MonoBehaviour
 				break;
 			case "maxRevive":
 				player.GetComponent<Player>().revive(1f);
+				break;
+			case "ether":
+				player.GetComponent<Player>().Restore(20);
+				break;
+			case "maxEther":
+				player.GetComponent<Player>().Restore(999999999);
 				break;
 			default:
 				break;
@@ -253,6 +265,10 @@ public class InventoryMenu : MonoBehaviour
 		addItem("revive");
 		addItem("revive");
 		addItem("maxRevive");
+
+		addItem("ether");
+		addItem("ether");
+		addItem("maxEther");
 	}
 
 
