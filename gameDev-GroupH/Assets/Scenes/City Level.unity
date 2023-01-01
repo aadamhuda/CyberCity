@@ -15231,7 +15231,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651488005}
-  m_LocalRotation: {x: 0.04776067, y: -0.00000006065934, z: 0.0000000029004399, w: 0.9988588}
+  m_LocalRotation: {x: 0.047760665, y: -0.000000053217256, z: 0.000000002544595, w: 0.9988588}
   m_LocalPosition: {x: 0.00000039775588, y: 2.9630082, z: -3.738882}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18005,7 +18005,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935893423}
-  m_LocalRotation: {x: 0.04776066, y: -0.00000006065933, z: 0.0000000029004394, w: 0.9988588}
+  m_LocalRotation: {x: 0.047760658, y: -0.00000005693829, z: 0.000000002722517, w: 0.9988588}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26502,6 +26502,7 @@ MonoBehaviour:
   player: {fileID: 0}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   engage: {fileID: 1167437453}
+  can_move: 1
   radius: 0
   angle: 0
   agent: {fileID: 1794601098}
@@ -27445,6 +27446,7 @@ MonoBehaviour:
   rotationSpeed: 7
   jumpHeight: 0.5
   gravityValue: -15
+  dialogue: {fileID: 0}
   canMove: 1
   Clues:
   - {fileID: 5631926}
@@ -29569,6 +29571,7 @@ MonoBehaviour:
   player: {fileID: 1857149337}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   engage: {fileID: 1167437453}
+  can_move: 1
 --- !u!4 &1938016329
 Transform:
   m_ObjectHideFlags: 0
