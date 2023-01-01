@@ -11,6 +11,9 @@ public class ItemPickUp : MonoBehaviour
     [SerializeField]
     Inventory inven;
 
+    [SerializeField]
+    private GameObject indicator;
+
     //check user is within range
     private void OnTriggerEnter(Collider Other)
     {
@@ -28,8 +31,8 @@ public class ItemPickUp : MonoBehaviour
     {
         if (in_range == true)
         {
-
-            if (Input.GetKeyDown(KeyCode.G))
+            this.indicator.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 // Add item to Inventory
                 inven.add_item(this.itemName);
@@ -37,7 +40,8 @@ public class ItemPickUp : MonoBehaviour
                 spawner.GetComponent<ItemSpawn>().decrease_items();
             }
         }
-
+        else
+            this.indicator.SetActive(false);
 
     }
 }

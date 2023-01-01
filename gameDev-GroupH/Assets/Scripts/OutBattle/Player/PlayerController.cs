@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
     public GameObject [] Clues = new GameObject[4];
 
     public TextMeshProUGUI winText;
-    public TextMeshProUGUI interaction;
     [SerializeField]
     private bool save;
     public bool won = false;
@@ -87,7 +86,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         jumpHash = Animator.StringToHash("Jump");
         winText.text = "";
-        interaction.text = "";
         clueCount = savedata.ClueCount;
 
     }
@@ -98,7 +96,6 @@ public class PlayerController : MonoBehaviour
     {
         other.gameObject.SetActive(false);
         
-        interaction.text = "";
         clueCount++;
         savedata.ClueCount = clueCount;
 
@@ -107,6 +104,7 @@ public class PlayerController : MonoBehaviour
         collecter = null;
         savedata.DictBoolSwitch(savedata.Clue, other.name);
 
+        this.dialogue.PauseAll();
         this.dialogue.Script( savedata.get_clues_text_index() , "/Scripts/Dialogue/clues.txt" , "clue");
     }
 
@@ -117,7 +115,6 @@ public class PlayerController : MonoBehaviour
         {
             if (obj.name == other.name)
             {
-                interaction.text = "Press k to interact";
                 collecter = other;
                 collecterBool = true;
             }
@@ -127,8 +124,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        interaction.text = "";
-
+        collecterBool = false;
     }
 
     //checks if the player has collected all the clues
@@ -157,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
         if (collecterBool == true)
         {
-            if (Input.GetKey(KeyCode.K))
+            if (Input.GetKey(KeyCode.E))
             {
                 collectClue(collecter);
             }

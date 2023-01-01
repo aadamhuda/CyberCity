@@ -14,6 +14,9 @@ public class ItemSpawn : MonoBehaviour
 
 	private int remaining_items;
 
+	[SerializeField]
+	private GameObject baseItem;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -26,7 +29,6 @@ public class ItemSpawn : MonoBehaviour
 		items.Add("maxEther", 1f); // 5%
 
 		// Get parent 
-		GameObject baseItem = this.gameObject.transform.GetChild(0).gameObject;
 		GameObject parent = this.gameObject;
 
 		int max = 70;
@@ -41,7 +43,7 @@ public class ItemSpawn : MonoBehaviour
 		for (int i = 0; i < remaining_items; i++)
 		{
 
-			Vector3 baseCoods = new Vector3(Random.Range(max, -max), 1, Random.Range(max, -max));
+			Vector3 baseCoods = new Vector3(Random.Range(max, -max), 0, Random.Range(max, -max));
 			//Rnd vector within map
 			while (Physics.Raycast(baseCoods, -transform.up, 3f, surface[Random.Range(0, surface.Length)]) == false)
 				baseCoods = new Vector3(Random.Range(max, -max), 0, Random.Range(max, -max));
@@ -49,7 +51,7 @@ public class ItemSpawn : MonoBehaviour
 			// Instantiate item within map
 
 
-			GameObject newItem = Instantiate(baseItem, baseCoods, Quaternion.identity, parent.transform);
+			GameObject newItem = Instantiate(this.baseItem, baseCoods, Quaternion.identity, parent.transform);
 			newItem.name = "item";
 
 
@@ -79,7 +81,6 @@ public class ItemSpawn : MonoBehaviour
 		
 
 		// Delete base item
-		Destroy(baseItem);
 	}
 
 	public void decrease_items() { this.remaining_items--; savedata.set_item_respawn(this.remaining_items); }
