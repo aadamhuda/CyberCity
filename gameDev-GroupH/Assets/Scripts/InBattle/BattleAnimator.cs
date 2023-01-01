@@ -12,7 +12,7 @@ public class BattleAnimator : MonoBehaviour
     Dictionary<string, AudioClip> hitAudioDict = new Dictionary<string, AudioClip>();
     Dictionary<string, GameObject> attackFXDict = new Dictionary<string, GameObject>();
     Dictionary<string, GameObject> hitFXDict = new Dictionary<string, GameObject>();
-    
+
     public float effectSpeed;
     string[] attacks = new string[] { "melee", "heal", "fire", "curse", "ice", "grass", "water", "shoot" };
 
@@ -40,7 +40,7 @@ public class BattleAnimator : MonoBehaviour
     {
         a.GetComponent<Animator>().CrossFade("Heal", 0.1f);
         AudioSource.PlayClipAtPoint(attackAudioDict["heal"], t.position);
-        Instantiate(attackFXDict["heal"], t.position -t.up, t.rotation);
+        Instantiate(attackFXDict["heal"], t.position - t.up, t.rotation);
         yield return null;
     }
 
@@ -69,7 +69,7 @@ public class BattleAnimator : MonoBehaviour
                 }
             }
         }
-//        Debug.Log(sword.name);
+        //        Debug.Log(sword.name);
         a.CrossFade("EquipSword", 0.1f);
         yield return new WaitForSeconds(0.5f);
 
@@ -117,7 +117,7 @@ public class BattleAnimator : MonoBehaviour
     public IEnumerator Magic(Animator a, Transform player, Transform enemy, string attack)
     {
         a.CrossFade("Magic", 0.1f);
-        GameObject instantiatedAttackFX = Instantiate(attackFXDict[attack], player.position + player.forward + (0.2f*player.up), player.rotation);
+        GameObject instantiatedAttackFX = Instantiate(attackFXDict[attack], player.position + player.forward + (0.2f * player.up), player.rotation);
         if (attack.Equals("grass"))
         {
             AudioSource.PlayClipAtPoint(attackAudioDict[attack], player.position);
@@ -137,7 +137,7 @@ public class BattleAnimator : MonoBehaviour
             yield return null;
         }
         AudioSource.PlayClipAtPoint(hitAudioDict[attack], enemy.position);
-        Instantiate(hitFXDict[attack], enemy.position - (0.2f*player.forward) + (0.2f*enemy.up), enemy.rotation);
+        Instantiate(hitFXDict[attack], enemy.position - (0.2f * player.forward) + (0.2f * enemy.up), enemy.rotation);
     }
 
     public IEnumerator PlayerDeath(BattleUnit target, Animator a)

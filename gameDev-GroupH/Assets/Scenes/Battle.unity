@@ -1307,14 +1307,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 875a287eda6cf5e4b8e1129857c40982, type: 3}
   - {fileID: 8300000, guid: 24c5b313660358e45a5a1b5d471772af, type: 3}
   hitAudio:
-  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
-  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
-  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
-  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
-  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
-  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
-  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
-  - {fileID: 8300000, guid: 6debb04701061fb45851264e6498894e, type: 3}
+  - {fileID: 8300000, guid: 7c97757b075294342858b013d394159f, type: 3}
+  - {fileID: 8300000, guid: ea57a4eccaac1544b893413bd1036deb, type: 3}
+  - {fileID: 8300000, guid: ea57a4eccaac1544b893413bd1036deb, type: 3}
+  - {fileID: 8300000, guid: 5f446aaa26d35034d9e17b48f33dc875, type: 3}
+  - {fileID: 8300000, guid: 5e418625f0c96ca46be25eaa74c85bcc, type: 3}
+  - {fileID: 8300000, guid: ea57a4eccaac1544b893413bd1036deb, type: 3}
+  - {fileID: 8300000, guid: ea57a4eccaac1544b893413bd1036deb, type: 3}
+  - {fileID: 8300000, guid: ea57a4eccaac1544b893413bd1036deb, type: 3}
   attackFX:
   - {fileID: 1919913695092184, guid: f6f7312df153e8443887e05d59efa8ee, type: 3}
   - {fileID: 1399491476850481373, guid: 7e691a0229efacd4cba2922df3888456, type: 3}
@@ -2231,6 +2231,8 @@ MonoBehaviour:
   - {fileID: 337391031}
   - {fileID: 1960059561}
   - {fileID: 945452202}
+  cargoEnv: {fileID: 1109122052}
+  cityEnv: {fileID: 179935066}
   hudPrefab: {fileID: 7677056974057124145, guid: f90f2ae8186c8ee44882307a0cc0ada2, type: 3}
   playerHUD:
   - {fileID: 725320528}
