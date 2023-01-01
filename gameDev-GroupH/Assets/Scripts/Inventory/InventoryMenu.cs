@@ -23,6 +23,10 @@ public class InventoryMenu : MonoBehaviour
 	public RectTransform itemTitlePos;
 	public RectTransform playerTitlePos;
 
+	public Sprite[] itemImages;
+	[SerializeField]
+	private GameObject itemImage;
+
 	[SerializeField]
 	private InventorySystem inventory; // Item, Quantity	
 
@@ -34,7 +38,7 @@ public class InventoryMenu : MonoBehaviour
 
 		items.Clear();
 		playerButtons.Clear();
-		AddTestItems();
+		itemImage.SetActive(false);
 		cancelButton.interactable = false;
 		inventory.define_inventory();
 		// Draw inv
@@ -173,6 +177,33 @@ public class InventoryMenu : MonoBehaviour
 
 	}
 
+	void ItemImageUpdate()
+    {
+		itemImage.SetActive(true);
+		switch (currentItem)
+		{
+			case "smallPotion":
+				itemImage.GetComponent<Image>().sprite = itemImages[0];
+				break;
+			case "maxPotion":
+				itemImage.GetComponent<Image>().sprite = itemImages[1];
+				break;
+			case "revive":
+				itemImage.GetComponent<Image>().sprite = itemImages[2];
+				break;
+			case "maxRevive":
+				itemImage.GetComponent<Image>().sprite = itemImages[3];
+				break;
+			case "ether":
+				itemImage.GetComponent<Image>().sprite = itemImages[4];
+				break;
+			case "maxEther":
+				itemImage.GetComponent<Image>().sprite = itemImages[5];
+				break;
+			default:
+				break;
+		}
+	}
 	// Use item
 	public void useItem(string item) {
 			
@@ -204,6 +235,7 @@ public class InventoryMenu : MonoBehaviour
 				buttons[i].interactable = !active;
 			}
 		}
+		ItemImageUpdate();
 	}
 
 
@@ -249,7 +281,7 @@ public class InventoryMenu : MonoBehaviour
 
 		disableButtons(playerButtons);
 		enableButtons(items);
-
+		itemImage.SetActive(false);
 		cancelButton.interactable = false;
 	}
 

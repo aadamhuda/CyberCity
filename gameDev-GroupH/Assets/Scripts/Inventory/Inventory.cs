@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
         // Checks if there already items saved 
         if (savedata.get_items().Count > 0)
             items = savedata.get_items();
-        
+        AddTestItems();
     }
     public Dictionary<string, int> get_items() { return items; }
 
@@ -34,6 +34,25 @@ public class Inventory : MonoBehaviour
         else
             items.Add(new_item, 1);
         // Saves data into sciptable object
-        savedata.set_items(this.items);                    
+        savedata.set_items(this.items);      
+        
+    }
+
+    public void AddTestItems()
+    {
+        // Test inventory
+        add_item("smallPotion");
+        add_item("smallPotion");
+        add_item("smallPotion");
+
+        add_item("maxPotion");
+
+        add_item("revive");
+        add_item("revive");
+        add_item("maxRevive");
+
+        add_item("ether");
+        add_item("ether");
+        add_item("maxEther");
     }
 }
