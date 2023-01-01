@@ -347,13 +347,13 @@ public class BattleSystem : MonoBehaviour
 			}
 			else if (attackType == "shoot")
 			{
-				StartCoroutine(animator.EquipBow(playerAnimator, currPlayer.transform));
+				yield return StartCoroutine(animator.EquipBow(playerAnimator, currPlayer.transform));
 
 				for (int i = 0; i < enemies.Length; i++)
 				{
 
 					yield return StartCoroutine(currPlayer.RotatePlayer(0.2f, enemies[i].transform.position));
-					yield return StartCoroutine(animator.Shoot(playerAnimator, currPlayer.transform));
+					yield return StartCoroutine(animator.Shoot(playerAnimator, currPlayer.transform, enemies[i].transform));
 
 					enemies[i].takeDamage(players[tracker].GetATK()[attackType], attackType);
 					StartCoroutine(animator.EnemyDeath(enemies[i], enemies[i].GetComponent<Animator>()));

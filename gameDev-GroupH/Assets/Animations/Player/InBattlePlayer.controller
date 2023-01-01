@@ -380,7 +380,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DisarmBow
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4007404630161994125}
@@ -393,7 +393,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 0994e7bcef01a7a4bb48f72e0c24c053, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 568a8de7448ae6642b75594ea0d98a5d, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -758,7 +758,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: EquipBow
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -770,7 +770,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 4170edb0143f7c24f9ed3673b1116b8e, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 00c68bc74e07adc498a54e9ccf3f835e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
