@@ -23,6 +23,8 @@ public class Inventory : MonoBehaviour
             items = savedata.get_items();
         AddTestItems();
     }
+
+    public Sprite GetSprite() { return this.icon_sprite; }
     public Dictionary<string, int> get_items() { return items; }
 
     //Add items
