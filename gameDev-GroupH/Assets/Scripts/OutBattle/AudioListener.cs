@@ -9,6 +9,6 @@ public class AudioListener : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.rotation = Quaternion.Euler(Vector3.zero);
+        transform.rotation = Quaternion.LookRotation(mainCamera.forward, mainCamera.up);
     }
 }
