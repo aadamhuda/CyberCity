@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             Move();
-            Jump();
+            Gravity();
         }
         else
         {
@@ -174,8 +174,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
     void Move()
     {
         // Movement based on player input direction and camera direction 
@@ -196,18 +194,7 @@ public class PlayerController : MonoBehaviour
         {
             speed = runSpeed;
         }
-        // If you are not running anymore, walk if you are on the ground otherwise if you are mid air, continue running
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            if (groundedPlayer)
-            {
-                speed = walkSpeed;
-            }
-            else
-            {
-                speed = runSpeed;
-            }
-        }
+
         controller.Move(movement * speed * Time.deltaTime);
 
         // Rotation
@@ -238,18 +225,8 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    void Jump()
+    void Gravity()
     {
-        // Changes the height position of the player..
-        if (Input.GetAxisRaw("Jump") == 1 && groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-
-            // Jump animation
-            animator.Play(jumpHash);
-        }
-
-        // Jump movement
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
