@@ -54,6 +54,7 @@ public class BattleSystem : MonoBehaviour
 
 	public GameObject itemMenu;
 	public GameObject BattleHUD;
+	public ElementInformation BattleInformation;
 
 	// Animations
 	private float speed = 1f;
@@ -70,7 +71,8 @@ public class BattleSystem : MonoBehaviour
 	private Attack play_attack;
 
 	// Strores attributes of players known by enemies i.e { player : { AttackType : affinity, ... } , ... }
-	private Dictionary<int, Dictionary<string, string>> checklist = new Dictionary<int, Dictionary<string, string>>();
+	private Dictionary<int, Dictionary<string, string>> checklist;
+	private Dictionary<int, Dictionary<string, string>> KnownEnemyAttributes = new Dictionary<int, Dictionary<string, string>>();
 
 	[SerializeField]
 	private GameObject WinLoseScreen;
@@ -244,13 +246,23 @@ public class BattleSystem : MonoBehaviour
 
 	private void InitialiseMemory()
     {
+		this.checklist = new Dictionary<int, Dictionary<string, string>>();
+		this.KnownEnemyAttributes = new Dictionary<int, Dictionary<string, string>>();
 		// Check if there is data already on 
 		if (savedata.get_checklist().Count != 0)
 			this.checklist = savedata.get_checklist();
 		else
 			foreach (Player i in players)
-				this.checklist.Add(i.getID(), new Dictionary<string, string>());
-    }
+				this.checklist.Add(i.getID(), new Dictionary<string, string>());	
+		
+		if (savedata.GetKnownEnemyAttributes().Count != 0)
+			this.KnownEnemyAttributes = savedata.GetKnownEnemyAttributes();
+
+		foreach (Enemy i in enemies)
+			if (this.KnownEnemyAttributes.ContainsKey(i.getID()) == false)
+				this.KnownEnemyAttributes.Add(i.getID(), new Dictionary<string, string>());
+
+	}
 
 
     //-------------------------------------------Player Attack-------------------------------------------------------
@@ -379,6 +391,19 @@ public class BattleSystem : MonoBehaviour
 				yield return StartCoroutine(animator.DisarmSword(playerAnimator, currPlayer.transform));
 				StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.1f, playerPos));
 
+			}
+			string state;
+			if (this.KnownEnemyAttributes[enemyTarget.getID()].ContainsKey(attackType) == false)
+			{
+				// Stores affinity of attribute in list
+				if (enemyTarget.GetATB()[attackType] > 1f)
+					state = "weak";
+				else if (enemyTarget.GetATB()[attackType] == 1f)
+					state = "norm";
+				else
+					state = "strength";
+
+				this.KnownEnemyAttributes[enemyTarget.getID()].Add(attackType, state);
 			}
 		}
 		                      
@@ -941,6 +966,14 @@ public class BattleSystem : MonoBehaviour
 
 		state = BattleState.SELECTINGATTACK;
 		DisplayAbilities();
+	}	
+	
+	public void DisplayInfo()
+	{
+		if (state != BattleState.PLAYERTURN)
+			return;
+
+		this.BattleInformation.LoadElements(players[tracker], this.KnownEnemyAttributes[enemies[target].getID()], enemies[target].unitName);
 	}
 
 	public void OnExitAbilityButton()

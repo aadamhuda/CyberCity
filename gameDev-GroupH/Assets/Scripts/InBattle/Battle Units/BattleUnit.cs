@@ -19,13 +19,16 @@ public class BattleUnit : MonoBehaviour
     private Boolean cursed;
     private Boolean frozen;
     public int type = 0; // 0 is normal (default), 1 is fire, 2 is grass, 3 is water, -1 is no type
+    [SerializeField]
+    protected int ID;
 
 
-    private string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
+    private static string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
     private Dictionary<string, float> unit_attributes = new Dictionary<string, float>();
     private Dictionary<string, int> unit_attacks = new Dictionary<string, int>();
 
 
+    public int getID() { return ID; }
     // All attributes
     public Dictionary<string, float> GetATB () { return unit_attributes;  }
 
@@ -33,7 +36,7 @@ public class BattleUnit : MonoBehaviour
     public Dictionary<string, int> GetATK () { return unit_attacks;  }
 
     // Attributes of unit
-    public string [] GetAllATB() { return all_attributes; }
+    public static string [] GetAllATB() { return all_attributes; }
 
     // Dmg of units
     public int get_dmg() { return damage; }
