@@ -27,7 +27,7 @@ MonoBehaviour:
   player_location: {x: 0, y: 1.5, z: 0}
   respawn_location: {x: 0, y: 1.5, z: 0}
   respawn: 0
-  item_spawn: 37
+  item_spawn: 47
   clues_text_index: 0
   dialogue_index: 5
   save_index: 2
