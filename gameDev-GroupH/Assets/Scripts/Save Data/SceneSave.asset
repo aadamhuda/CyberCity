@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SceneSave
   m_EditorClassIdentifier: 
   EnemyDeath: 1
-  EnemyDouble: 1
+  EnemyDouble: 0
   enem: 0-0
-  ClueCount: 3
+  ClueCount: 0
   inBattle: 1
   team_health: 96000000960000009600000096000000
   team_MP: 1e0000001e0000001e0000001e000000
@@ -24,10 +24,10 @@ MonoBehaviour:
   cyber_level: City Level
   cargo_battle: Battle
   cyber_battle: Cyber Battle
-  player_location: {x: 0, y: 0, z: 0}
-  respawn_location: {x: 0, y: 0, z: 0}
+  player_location: {x: 0, y: 1.5, z: 0}
+  respawn_location: {x: 0, y: 1.5, z: 0}
   respawn: 0
-  item_spawn: 27
-  clues_text_index: 3
+  item_spawn: 39
+  clues_text_index: 0
   dialogue_index: 5
   save_index: 2

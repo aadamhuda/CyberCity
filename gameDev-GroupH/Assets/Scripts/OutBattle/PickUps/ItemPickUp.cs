@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class ItemPickUp : MonoBehaviour
 {
     public string itemName = "null";
@@ -14,10 +14,13 @@ public class ItemPickUp : MonoBehaviour
     [SerializeField]
     private GameObject indicator;
 
+    [SerializeField]
+    private ItemNotification PickUp;
+
+
     //check user is within range
     private void OnTriggerEnter(Collider Other)
     {
-        Debug.Log("a");
         in_range = true;
     }
 
@@ -34,10 +37,12 @@ public class ItemPickUp : MonoBehaviour
             this.indicator.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                // Add item to Inventory
+                /*StartCoroutine(this.PickUp.Activate(this.itemName));*/
+                this.PickUp.Activate(this.itemName);
                 inven.add_item(this.itemName);
-                gameObject.SetActive(false);
+                this.gameObject.SetActive(false);
                 spawner.GetComponent<ItemSpawn>().decrease_items();
+
             }
         }
         else
