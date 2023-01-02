@@ -37,7 +37,6 @@ public class ItemPickUp : MonoBehaviour
             this.indicator.SetActive(true);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                /*StartCoroutine(this.PickUp.Activate(this.itemName));*/
                 this.PickUp.Activate(this.itemName);
                 inven.add_item(this.itemName);
                 this.gameObject.SetActive(false);

@@ -218,7 +218,7 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 150
   damage: 35
-  unitName: 
+  unitName: Nadiya
   burned: 0
   poisoned: 0
   cursed: 0

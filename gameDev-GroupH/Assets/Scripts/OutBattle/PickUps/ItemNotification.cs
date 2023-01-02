@@ -9,24 +9,27 @@ public class ItemNotification : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI ItemName;
 
-    // Update is called once per frame
-    private void disable()
-    {
-        this.gameObject.SetActive(false);
-    }
 
+    private Queue<string> notifications = new Queue<string>();
+    
     public void Activate(string itemanme)
     {
-        this.ItemName.text = itemanme;
-        
         this.gameObject.SetActive(true);
+        this.notifications.Enqueue(itemanme);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (this.notifications.Count > 0)
         {
-            this.gameObject.SetActive(false);
+            this.ItemName.text = this.notifications.Peek();
+            if (Input.GetMouseButtonDown(0))
+            {
+                this.notifications.Dequeue();
+                if (notifications.Count == 0)
+                    this.gameObject.SetActive(false);
+            }
         }
+
     }
 }
