@@ -20,13 +20,14 @@ public class MenuController : MonoBehaviour
         saveState.Clue.Clear();
         saveState.Death.Clear();
         saveState.ClueCount = 0;
-        saveState.SaveLocation(new Vector3(0f, 0f, 0f));
-        saveState.set_respawn(new Vector3(0f, 0f, 0f));
+        saveState.SaveLocation(new Vector3(0f, 0.5f, 0f));
+        saveState.set_respawn(new Vector3(0f, 0.5f, 0f));
         saveState.set_item_respawn(4);
         saveState.SavePlayerMP(new int[] { 30, 30, 30, 30 });
         saveState.set_clues_text_index(0);
         saveState.set_dialogue_index(0);
         saveState.set_save_index(0);
+        saveState.SaveGame();
         saveState.SavePlayerHealth(new int[] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
     }
 

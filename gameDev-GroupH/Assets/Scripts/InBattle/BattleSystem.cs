@@ -72,6 +72,8 @@ public class BattleSystem : MonoBehaviour
 	// Strores attributes of players known by enemies i.e { player : { AttackType : affinity, ... } , ... }
 	private Dictionary<int, Dictionary<string, string>> checklist = new Dictionary<int, Dictionary<string, string>>();
 
+	[SerializeField]
+	private GameObject WinLoseScreen;
 
 	// Start is called before the first frame update
 	void Start()
@@ -471,37 +473,43 @@ public class BattleSystem : MonoBehaviour
 			string randomKey = "attacknotfound";
 			int highest = 0;
 
+			if (savedata.GetDifficulty() == 3)
+            {
+				// The FOREACH below should go in here
+            }
 			foreach (KeyValuePair<int, Dictionary<string, string>> dict in this.checklist)
             {
-				Debug.Log("Length of dict : " + dict.Value.Count);
-				if (dict.Value.Count > 0)
-				{
-					Player temp_playerTarget = players[dict.Key];
-					foreach (KeyValuePair<string, string> affinity in dict.Value)
+				if (players[dict.Key].downed == false)
+                {
+					if (dict.Value.Count > 0)
 					{
-						Debug.Log("Hey, get in my BELLE! : " + affinity.Value);
-						if (affinity.Value == "weak")
-							if (currEnemy.GetATK().ContainsKey(affinity.Key))
-								if (affinity.Key != "curse")
-								{
-									if (currEnemy.GetATK()[affinity.Key] > highest)
+						Player temp_playerTarget = players[dict.Key];
+						foreach (KeyValuePair<string, string> affinity in dict.Value)
+						{
+							Debug.Log("Hey, get in my BELLE! : " + affinity.Value);
+							if (affinity.Value == "weak")
+								if (currEnemy.GetATK().ContainsKey(affinity.Key))
+									if (affinity.Key != "curse")
 									{
-										randomKey = affinity.Key;
-										playerTarget = players[dict.Key];
+										if (currEnemy.GetATK()[affinity.Key] > highest)
+										{
+											randomKey = affinity.Key;
+											playerTarget = players[dict.Key];
+										}
 									}
-								}
-								else
-									if (temp_playerTarget.get_cursed() == false)
-									randomKey = affinity.Key;
+									else
+										if (temp_playerTarget.get_cursed() == false)
+										randomKey = affinity.Key;
+						}
 					}
 				}
+
 			}
 
 			// Current enemy & Player
 			if (playerTarget == null)
             {
 				int player_target = Random.Range(0, players.Length);
-				Debug.Log("DId it go through here : " + playerTarget);
 
 				while (players[player_target].downed)
 				{
@@ -733,23 +741,21 @@ public class BattleSystem : MonoBehaviour
 
 	IEnumerator EndBattle()
 	{
+		yield return new WaitForSeconds(1f);
+		this.WinLoseScreen.SetActive(true);
 		if (state == BattleState.WIN)
 		{
-			dialogue.text = "You WIN the battle!";
+			this.WinLoseScreen.GetComponent<WinLoseScreen>().ActivateWin();
 			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
 			savedata.SavePlayerMP(new int[] { players[0].currentMP, players[1].currentMP, players[2].currentMP, players[3].currentMP });
 			savedata.SavePlayerHealth(new int[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
 			savedata.set_checklist(this.checklist);
-			yield return new WaitForSeconds(3f);
-			SceneManager.LoadScene(savedata.get_current_level());
+			
 		}
 		else if (state == BattleState.LOSE)
 		{
-			dialogue.text = "You were defeated.";
-			yield return new WaitForSeconds(2f);
-
-			createRestartButton();
+			this.WinLoseScreen.GetComponent<WinLoseScreen>().ActivateLose();
 		}
 	}
 
