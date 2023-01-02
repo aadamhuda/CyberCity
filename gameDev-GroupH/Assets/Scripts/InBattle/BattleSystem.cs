@@ -422,9 +422,10 @@ public class BattleSystem : MonoBehaviour
 
 	IEnumerator PlayerHeal()
 	{
-
+		int mpCost = 4;
 		int amount = Random.Range(60, 100);
 		currPlayer.heal(amount);
+		currPlayer.UseMP(mpCost);
 		StartCoroutine(animator.Heal(currPlayer.GetComponent<Animator>(), currPlayer.transform));
 		dialogue.text = "You healed by " + amount + " hp!";
 
