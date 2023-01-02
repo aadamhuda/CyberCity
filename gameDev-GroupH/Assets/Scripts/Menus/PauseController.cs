@@ -18,6 +18,10 @@ public class PauseController : MonoBehaviour
     GameObject main_pause_screen;
     [SerializeField]
     PlayerController player;
+    [SerializeField]
+    Transform items;
+    [SerializeField]
+    GameObject SettingPage;
 
     private void Start()
     {
@@ -79,16 +83,29 @@ public class PauseController : MonoBehaviour
     public void Inventory()
     {
         inventory.SetActive(true);
-        inventory.GetComponent<InventoryController>().LoadMenu();
         main_pause_screen.SetActive(false);
+        inventory.GetComponent<InventoryController>().LoadMenu();
+        
     }
 
     public void quit_inventory()
     {
         inventory.SetActive(false);
-        for (int i = 1; i < inventory.transform.childCount; i++)
-            Destroy(inventory.transform.GetChild(i).gameObject);
+        for (int i = 0; i < items.childCount; i++)
+            Destroy(items.GetChild(i).gameObject);
         main_pause_screen.SetActive(true);
+    }
+
+    public void LoadSettings()
+    {
+        this.SettingPage.SetActive(true);
+        this.main_pause_screen.SetActive(false);
+    }    
+    
+    public void QuitSettings()
+    {
+        this.SettingPage.SetActive(false);
+        this.main_pause_screen.SetActive(true);
     }
 
     //quits to the main menu when the quit button is pressed

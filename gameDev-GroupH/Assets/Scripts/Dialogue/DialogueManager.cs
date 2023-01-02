@@ -45,7 +45,7 @@ public class DialogueManager : MonoBehaviour
 
 
 
-        string[] temp = new string[] { "Eve", "Dreyar", "Astra", "Joe" , "Distant Voice" };
+        string[] temp = new string[] { "Nadiya", "Dreyar", "Astra", "Joe" , "Distant Voice" };
 
         for (int i = 0; i < 5 ; i++)
             charac_sprites.Add(temp[i], characters[i]);
