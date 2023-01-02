@@ -7,8 +7,8 @@ public class OutBattleFootsteps : MonoBehaviour
     public AudioClip[] metalWalk;
     public AudioClip[] metalRun;
     private AudioSource audioSource;
-    public const float playerWalkVolume = 0.05f;
-    public const float playerRunVolume = 0.1f;
+    public const float playerWalkVolume = 0.1f;
+    public const float playerRunVolume = 0.2f;
     public const float enemyWalkVolume = 0.5f;
     public const float enemyRunVolume = 1f;
 
@@ -24,43 +24,42 @@ public class OutBattleFootsteps : MonoBehaviour
     }
     private void WalkStep()
     {
-        float walkVolume;
         if (this.name.Equals("Player"))
         {
-            walkVolume = playerWalkVolume;
-        }
-        else
-        {
-            walkVolume = enemyWalkVolume;
+            return;
         }
 
-        if (audioSource.volume != walkVolume)
+        if (audioSource.volume != enemyWalkVolume)
         {
-            audioSource.volume = walkVolume;
+            audioSource.volume = enemyWalkVolume;
         }
         int rand = Random.Range(0, metalWalk.Length);
         AudioClip clip = metalWalk[rand];
         audioSource.PlayOneShot(clip);
     }
-
-    private void RunStep()
+    private void SlowRunStep()
     {
-        float runVolume;
-        if (this.name.Equals("Player"))
+        if (audioSource.volume != playerWalkVolume)
         {
-            runVolume = playerRunVolume;
-        }
-        else
-        {
-            runVolume = enemyRunVolume;
-        }
-
-        if (audioSource.volume != runVolume)
-        {
-            audioSource.volume = runVolume;
+            audioSource.volume = playerWalkVolume;
         }
         int rand = Random.Range(0, metalWalk.Length);
-        AudioClip clip = metalWalk[rand];
+        AudioClip clip = metalRun[rand];
+        audioSource.PlayOneShot(clip);
+    }
+    private void RunStep()
+    {
+        if (this.name.Equals("Player"))
+        {
+            return;
+        }
+
+        if (audioSource.volume != enemyRunVolume)
+        {
+            audioSource.volume = enemyRunVolume;
+        }
+        int rand = Random.Range(0, metalRun.Length);
+        AudioClip clip = metalRun[rand];
         audioSource.PlayOneShot(clip);
     }
 }
