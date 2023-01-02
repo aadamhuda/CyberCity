@@ -155,7 +155,7 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 110
   damage: 40
-  unitName: 
+  unitName: Sentient
   burned: 0
   poisoned: 0
   cursed: 0

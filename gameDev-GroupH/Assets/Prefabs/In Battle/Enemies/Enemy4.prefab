@@ -155,7 +155,7 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 150
   damage: 45
-  unitName: 
+  unitName: Ibraheem
   burned: 0
   poisoned: 0
   cursed: 0
