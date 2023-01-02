@@ -138,9 +138,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 9
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -257,7 +257,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d51df139d4e50794993d2130348b08d9, type: 3}
   - {fileID: 8300000, guid: 39ca7e88dc461e8458d02a2284708c0d, type: 3}
   - {fileID: 8300000, guid: d772d1b334ef5f148bf1308d5fb3e4b0, type: 3}
-  metalJump: []
 --- !u!1 &170017226000294076
 GameObject:
   m_ObjectHideFlags: 0
