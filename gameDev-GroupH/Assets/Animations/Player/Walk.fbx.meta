@@ -60,14 +60,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.2776204
+      - time: 0.8640226
         functionName: WalkStep
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.7592068
+      - time: 0.3937677
         functionName: WalkStep
         data: 
         objectReferenceParameter: {instanceID: 0}
