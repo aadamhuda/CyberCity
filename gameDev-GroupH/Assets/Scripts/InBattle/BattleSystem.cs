@@ -18,7 +18,6 @@ public class BattleSystem : MonoBehaviour
 
 	public GameObject[] playerPrefabs;
 	public GameObject[] enemyPrefabs;
-	public string[] playerNames = new string[] {"Eve", "Companion 1", "Companion 2", "Companion 3" };
 
 	public Transform[] enemyLocations;
 	public Transform playerLocation; //to be changed to hold multiple players once party system is created
@@ -169,7 +168,6 @@ public class BattleSystem : MonoBehaviour
 		{
 			GameObject playerObj = Instantiate(playerPrefabs[i], new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
 			allPlayers[i] = playerObj.GetComponent<Player>();
-			allPlayers[i].unitName = playerNames[i];
 			allPlayers[i].setHealth(savedata.team_health[i]);
 			allPlayers[i].SetMP(savedata.team_MP[i]);
 			if (allPlayers[i].currentHP == 0)
@@ -926,7 +924,7 @@ public class BattleSystem : MonoBehaviour
 			return;
 
 		itemMenu.SetActive(true);
-		itemMenu.GetComponent<InventoryMenu>().LoadMenu(players, playerNames);
+		itemMenu.GetComponent<InventoryMenu>().LoadMenu(players);
 
 	}
 	public void OnAbilityButton()

@@ -135,7 +135,7 @@ MonoBehaviour:
   currentHP: 0
   maxHP: 150
   damage: 35
-  unitName: 
+  unitName: Astra
   burned: 0
   poisoned: 0
   cursed: 0
