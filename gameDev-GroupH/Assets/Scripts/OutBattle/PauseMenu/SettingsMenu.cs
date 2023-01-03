@@ -71,8 +71,8 @@ public class SettingsMenu : MonoBehaviour
 	public void SetSensitivity(Slider slider)
 	{
 		float sens = mousesens.value;
-		cam.m_XAxis.m_MaxSpeed = 600 * sens;
-		cam.m_YAxis.m_MaxSpeed = 4 * sens;
+		cam.m_XAxis.m_MaxSpeed = 0.1f * sens;
+		cam.m_YAxis.m_MaxSpeed = 0.001f * sens;
 	}
 
 	public void SaveSettings()
