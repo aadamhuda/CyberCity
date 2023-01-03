@@ -71,7 +71,7 @@ public class PauseController : MonoBehaviour
         if (player.get_save())
         {
             saveState.LoadData();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(saveState.get_current_level());
             Time.timeScale = 1f;
         }
         else

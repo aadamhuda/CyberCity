@@ -14,7 +14,6 @@ public class InventoryMenu : MonoBehaviour
 	private string currentItem;
 	
 	public Player[] players;
-	public string[] playerNames;
 	public List<Button> playerButtons = new List<Button>();
 	
 	public GameObject itemPrefab;
@@ -30,11 +29,10 @@ public class InventoryMenu : MonoBehaviour
 	[SerializeField]
 	private InventorySystem inventory; // Item, Quantity	
 
-    public void LoadMenu(Player[] players, string[] playerNames)
+    public void LoadMenu(Player[] players)
     {
 
 		this.players = players;
-		this.playerNames = playerNames;
 
 		items.Clear();
 		playerButtons.Clear();
@@ -56,7 +54,7 @@ public class InventoryMenu : MonoBehaviour
 			TextMeshProUGUI playerName = newPlayer.GetComponentInChildren<TextMeshProUGUI>(true);
 
 			// Set text
-			playerName.text = playerNames[i];
+			playerName.text = players[i].unitName;
 
 			newPlayer.GetComponent<InvPlayer>().menu = this;
 
