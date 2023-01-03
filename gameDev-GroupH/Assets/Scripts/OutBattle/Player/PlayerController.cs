@@ -37,14 +37,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private DialogueManager dialogue;
 
+    //Movement
+    private Vector2 moveValue;
+    private bool isRunning = false;
     private float speed;
-
     private Animator animator;
-    private int jumpHash;
 
     public bool canMove = true;
 
-    public GameObject [] Clues = new GameObject[4];
+    public GameObject[] Clues = new GameObject[4];
 
     public TextMeshProUGUI winText;
     [SerializeField]
@@ -70,10 +71,9 @@ public class PlayerController : MonoBehaviour
             move.position = savedata.get_respawn_location();
             savedata.ChangeRespawn();
         }
-            
+
         else
             move.position = savedata.get_player_location();
-
 
 
         canMove = true;
@@ -84,18 +84,38 @@ public class PlayerController : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        jumpHash = Animator.StringToHash("Jump");
         winText.text = "";
         clueCount = savedata.ClueCount;
 
     }
+
+    // Input action controls
+    void OnMove(InputValue value)
+    {
+        moveValue = value.Get<Vector2>();
+    }
+
+    void OnRun(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            // On Button Down
+            isRunning = true;
+        }
+        else 
+        {
+            // On Button Up
+            isRunning = false;
+        }
+    }
+
 
     public bool get_save() { return this.save; }
 
     public void collectClue(Collider other)
     {
         other.gameObject.SetActive(false);
-        
+
         clueCount++;
         savedata.ClueCount = clueCount;
 
@@ -105,7 +125,7 @@ public class PlayerController : MonoBehaviour
         savedata.DictBoolSwitch(savedata.Clue, other.name);
 
         this.dialogue.PauseAll();
-        this.dialogue.Script( savedata.get_clues_text_index() , "/Scripts/Dialogue/clues.txt" , "clue");
+        this.dialogue.Script(savedata.get_clues_text_index(), "/Scripts/Dialogue/clues.txt", "clue");
     }
 
     void OnTriggerEnter(Collider other)
@@ -140,7 +160,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            controller.Move(new Vector3(0f,0f,0f));
+            controller.Move(new Vector3(0f, 0f, 0f));
             animator.SetFloat("Speed", 0, 0.2f, Time.deltaTime);
         }
 
@@ -177,20 +197,20 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         // Movement based on player input direction and camera direction 
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        float horizontalInput = moveValue.x;
+        float verticalInput = moveValue.y;
 
         Vector3 movement = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput).normalized;
 
         float currentSpeed = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
 
         // If you are on the ground and not holding shift, walk
-        if (groundedPlayer && !Input.GetKey(KeyCode.LeftShift))
+        if (groundedPlayer && (!isRunning))
         {
             speed = walkSpeed;
         }
         // If you are holding shift and you are on the ground, run
-        if (Input.GetKey(KeyCode.LeftShift) && groundedPlayer)
+        if (isRunning && groundedPlayer)
         {
             speed = runSpeed;
         }
