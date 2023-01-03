@@ -12,11 +12,12 @@ public class LoadingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //gets the current level, and then starts loading procedures
         targetScene = saveState.get_current_level();
         PickScreen();
         StartCoroutine(LoadScene());
     }
-
+    //picks either cargo or city screen dependent on the level to be loaded
     void PickScreen()
     {
         if (targetScene == saveState.get_cyber_level())
@@ -31,6 +32,7 @@ public class LoadingManager : MonoBehaviour
         }
     }
     
+    //loads the scene with short wait time
     IEnumerator LoadScene()
     {
         yield return new WaitForSeconds(3f);
