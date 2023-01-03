@@ -21,7 +21,11 @@ public class PauseController : MonoBehaviour
     [SerializeField]
     Transform items;
     [SerializeField]
-    GameObject SettingPage;
+    LoadController LoadMenu;
+    [SerializeField]
+    SaveController SaveMenu;
+    [SerializeField]
+    SaveANDLoad SaveLoadNotification;
 
     private void Start()
     {
@@ -52,13 +56,29 @@ public class PauseController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void SaveGame()
+    public void OpenSaveMenu()
+    {
+        this.main_pause_screen.SetActive(false);
+        this.SaveMenu.LoadMenu();
+    }
+
+    public void CloseSaveMenu()
+    {
+        this.SaveMenu.Disable();
+        Debug.Log("bruh");
+        this.main_pause_screen.SetActive(true);
+    }
+
+    public void SaveGame(string SaveName)
     {
         if (player.get_save())
         {
+            this.SaveLoadNotification.Activate("Saving Data", this.SaveMenu.gameObject);
+            this.SaveMenu.Disable();
             saveState.set_respawn(player.transform.position);
             saveState.set_current_level(SceneManager.GetActiveScene().name);
-            saveState.SaveGame();
+            saveState.SaveGame(SaveName);
+            this.SaveLoadNotification.ChangeText("Saved");
         }
         else
         {
@@ -66,18 +86,12 @@ public class PauseController : MonoBehaviour
         }
     }
 
-    public void LoadGame()
+    public void LoadGame(string PathName)
     {
-        if (player.get_save())
-        {
-            saveState.LoadData();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            Debug.LogError("Cannot load in this area.");
-        }
+        saveState.LoadData(PathName);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        Time.timeScale = 1f;
     }
 
     public void Inventory()
@@ -96,15 +110,16 @@ public class PauseController : MonoBehaviour
         main_pause_screen.SetActive(true);
     }
 
-    public void LoadSettings()
+    public void OpenLoadMenu()
     {
-        this.SettingPage.SetActive(true);
         this.main_pause_screen.SetActive(false);
+        this.LoadMenu.LoadMenu();
+        
     }    
     
-    public void QuitSettings()
+    public void CloseLoadMenu()
     {
-        this.SettingPage.SetActive(false);
+        this.LoadMenu.Disable();
         this.main_pause_screen.SetActive(true);
     }
 

@@ -27,7 +27,7 @@ public class MenuController : MonoBehaviour
         saveState.set_clues_text_index(0);
         saveState.set_dialogue_index(0);
         saveState.set_save_index(0);
-        saveState.SaveGame();
+        saveState.SaveGame("SaveOne");
         saveState.SavePlayerHealth(new int[] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
     }
 

@@ -65,7 +65,7 @@ public class SaveData : ScriptableObject
         [SerializeField]
     private int save_index;
 
-    
+    public string LastSave;
 
     public string get_current_level() { return this.current_level; }
     public string get_cargo_level() { return this.cargo_level; }
@@ -168,14 +168,15 @@ public class SaveData : ScriptableObject
             team_MP[i] = arr[i];
     }
 
-    public void SaveGame()
+    public void SaveGame(string PathName)
     {
-        SaveSystem.SaveSystemInformation(this);
+        SaveSystem.SaveSystemInformation(this, PathName);
+        this.LastSave = PathName;
     }
 
-    public void LoadData()
+    public void LoadData(string FileName)
     {
-        SystemSaveData data = SaveSystem.LoadData();
+        SystemSaveData data = SaveSystem.LoadData(FileName);
 
         this.team_health = data.get_team_health();
         this.team_MP = data.get_team_mp();

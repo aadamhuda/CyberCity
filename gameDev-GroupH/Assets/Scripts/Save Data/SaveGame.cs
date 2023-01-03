@@ -21,6 +21,9 @@ public class SaveGame : MonoBehaviour
     [SerializeField]
     private GameObject indicator;
 
+    [SerializeField]
+    private GameObject PauseMenu;
+
     void Start()
     {
         triggered = false;
@@ -43,9 +46,16 @@ public class SaveGame : MonoBehaviour
         if (player.get_save())
         {
             this.indicator.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.O))
             {
-                savedata.SaveGame();
+                Time.timeScale = 0; //freezes the game
+                this.PauseMenu.SetActive(true); //pause menu appears
+
+                //cursor is now visible 
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+
+                this.PauseMenu.GetComponent<PauseController>().OpenSaveMenu();
             }
 
         }
