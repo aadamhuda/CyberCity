@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class MenuController : MonoBehaviour
 {
     public SaveData saveState;
     public Player ply;
+
     private void Start()
     {
         Cursor.visible = true;
@@ -42,8 +44,12 @@ public class MenuController : MonoBehaviour
     //quits the game when the quit button is pressed
     public void LoadGame()
     {
-        saveState.LoadData();
-        SceneManager.LoadScene("Loading");
+        if (File.Exists(Application.persistentDataPath + "/"+saveState.LastSave+".test"))
+        {
+            saveState.LoadData(saveState.LastSave);
+            SceneManager.LoadScene("Loading");
+        }
+
     }
 }
 
