@@ -12,7 +12,7 @@ public class SwitchScene : MonoBehaviour
     private SaveData savedata;
     public void ReturnButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(savedata.get_current_level());
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -35,8 +35,9 @@ public class SwitchScene : MonoBehaviour
 
                 savedata.SaveLocation(new Vector3(0,1.5f,0));
 
-                SceneManager.LoadScene(savedata.get_cyber_level());
+                savedata.set_current_level(savedata.get_cyber_level());
 
+                SceneManager.LoadScene("Loading");
             }
         }
     }
