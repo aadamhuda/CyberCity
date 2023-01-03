@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 23978105}
   - component: {fileID: 23978107}
   - component: {fileID: 23978108}
+  - component: {fileID: 23978109}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -302,13 +303,13 @@ MonoBehaviour:
   rotationSpeed: 7
   jumpHeight: 0.5
   gravityValue: -15
+  dialogue: {fileID: 0}
   canMove: 1
   Clues:
   - {fileID: 998941876}
   - {fileID: 1039659276}
   - {fileID: 633710975}
   winText: {fileID: 202907140}
-  interaction: {fileID: 168066725}
   save: 0
   won: 0
   numClues: 3
@@ -432,6 +433,38 @@ MonoBehaviour:
   inventory: {fileID: 0}
   main_pause_screen: {fileID: 0}
   player: {fileID: 0}
+  items: {fileID: 0}
+  SettingPage: {fileID: 0}
+--- !u!114 &23978109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23978098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 5e97f9b91d7e317449dd3688be50c053, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &34467348
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +900,7 @@ MonoBehaviour:
   - {fileID: 1074517573}
   player: {fileID: 23978098}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
-  engage: {fileID: 971016572}
+  can_move: 1
 --- !u!4 &88389612
 Transform:
   m_ObjectHideFlags: 0
@@ -2056,7 +2089,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299866618}
-  m_LocalRotation: {x: 0.032495044, y: 0.70635974, z: -0.032495044, w: 0.70635974}
+  m_LocalRotation: {x: 0.043203562, y: 0.7057857, z: -0.043203555, w: 0.70578575}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2139,7 +2172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2, z: -8}
+  m_FollowOffset: {x: 0, y: 2, z: -6.5}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -2586,7 +2619,7 @@ MonoBehaviour:
   plane: []
   player: {fileID: 23978098}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
-  engage: {fileID: 971016572}
+  can_move: 1
   radius: 0
   angle: 0
   agent: {fileID: 430079408}
@@ -2607,6 +2640,7 @@ MonoBehaviour:
   - {x: -65.3, y: 0, z: -6.3}
   WithInArea: 0
   inSight: 0
+  canvas: {fileID: 0}
   anim: {fileID: 0}
 --- !u!195 &430079408
 NavMeshAgent:
@@ -3388,6 +3422,8 @@ MonoBehaviour:
   itemName: null
   spawner: {fileID: 1806528229}
   inven: {fileID: 1444717346}
+  indicator: {fileID: 0}
+  PickUp: {fileID: 0}
 --- !u!135 &631520101
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4563,7 +4599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2, z: -8}
+  m_FollowOffset: {x: 0, y: 2, z: -6.5}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -7901,7 +7937,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085963074}
-  m_LocalRotation: {x: 0.019675303, y: 0.70683306, z: -0.019675307, w: 0.706833}
+  m_LocalRotation: {x: 0.03039247, y: 0.7064533, z: -0.030392462, w: 0.7064534}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8408,7 +8444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 0
-  m_FollowOffset: {x: 0, y: 2, z: -8}
+  m_FollowOffset: {x: 0, y: 2, z: -6.5}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -9618,7 +9654,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424095125}
-  m_LocalRotation: {x: 0.045337986, y: 0.7056518, z: -0.045337986, w: 0.7056518}
+  m_LocalRotation: {x: 0.0560343, y: 0.70488316, z: -0.056034293, w: 0.7048831}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9638,6 +9674,7 @@ GameObject:
   - component: {fileID: 1428016175}
   - component: {fileID: 1428016174}
   - component: {fileID: 1428016173}
+  - component: {fileID: 1428016176}
   m_Layer: 0
   m_Name: CM FreeLook1
   m_TagString: Untagged
@@ -9715,8 +9752,8 @@ MonoBehaviour:
   m_LegacyBlendHint: 0
   m_YAxis:
     Value: 0.5
-    m_SpeedMode: 0
-    m_MaxSpeed: 2
+    m_SpeedMode: 1
+    m_MaxSpeed: 0.0005
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -9739,8 +9776,8 @@ MonoBehaviour:
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
     Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
+    m_SpeedMode: 1
+    m_MaxSpeed: 0.05
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -9771,9 +9808,9 @@ MonoBehaviour:
   - m_Height: 6
     m_Radius: 4
   - m_Height: 2
-    m_Radius: 8
+    m_Radius: 6.5
   - m_Height: 0
-    m_Radius: 8
+    m_Radius: 6.5
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 1424095126}
@@ -9787,7 +9824,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428016172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -111.31, y: 3, z: -65.74}
+  m_LocalPosition: {x: -109.81, y: 3, z: -65.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9797,6 +9834,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1428016176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428016172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  AutoEnableInputs: 1
+  XYAxis: {fileID: -7151100819660495734, guid: 5e97f9b91d7e317449dd3688be50c053, type: 3}
+  ZAxis: {fileID: 0}
 --- !u!1 &1444717344
 GameObject:
   m_ObjectHideFlags: 0
@@ -10378,8 +10431,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525408405}
-  m_LocalRotation: {x: 0.032495048, y: 0.70635974, z: -0.032495048, w: 0.70635974}
-  m_LocalPosition: {x: -111.31, y: 3, z: -65.74}
+  m_LocalRotation: {x: 0.04320356, y: 0.7057857, z: -0.04320356, w: 0.70578575}
+  m_LocalPosition: {x: -109.81, y: 3, z: -65.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11878,6 +11931,7 @@ MonoBehaviour:
   - serializedVersion: 2
     m_Bits: 1024
   savedata: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
+  baseItem: {fileID: 0}
 --- !u!65 &1806528231
 BoxCollider:
   m_ObjectHideFlags: 0
