@@ -66,8 +66,7 @@ public class BattleSystem : MonoBehaviour
 	private Camera[] battleCameras;
 	[SerializeField]
 	private Camera mainCamera;
-	[SerializeField]
-	private Attack play_attack;
+	
 
 	// Strores attributes of players known by enemies i.e { player : { AttackType : affinity, ... } , ... }
 	private Dictionary<int, Dictionary<string, string>> checklist;
@@ -216,9 +215,6 @@ public class BattleSystem : MonoBehaviour
     //initialises battle - spawns player and enemies, selects first target and then starts player turn
     IEnumerator InitialiseBattle()
     {
-
-        string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
-
         players = InstantiatePlayers();
 
         currPlayer = players[tracker];
@@ -275,7 +271,7 @@ public class BattleSystem : MonoBehaviour
 
         if (players[tracker].UseMP(mpConsumption) == false)
         {
-            dialogue.text = "You do not have enough MP for this attack!";
+            dialogue.text = "You do not have enough MP for this move!";
             PlayerTurn();
             state = BattleState.PLAYERTURN;
         }
@@ -288,7 +284,6 @@ public class BattleSystem : MonoBehaviour
 	IEnumerator PlayerAttack(string attackType)
 	{
 		bool isDead;
-		string[] all_attributes = new string[] { "normal", "shoot", "fire", "water", "ice", "grass", "curse" };
 
 		Enemy enemyTarget = enemies[target];
 

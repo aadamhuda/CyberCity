@@ -23,49 +23,49 @@ public class Player : BattleUnit
     private void Start()
     {
         mpCost.Add("normal", 0);
-        mpCost.Add("shoot", 0);
+        mpCost.Add("shoot", 5);
         mpCost.Add("fire", 3);
         mpCost.Add("water", 3);
         mpCost.Add("ice", 4);
         mpCost.Add("grass", 3);
-        mpCost.Add("curse", 5);
+        mpCost.Add("curse", 3);
 
         float norm = 1f;
         float weak = 1.25f;
-        float strength = 0.75f;
+        float strong = 0.75f;
 
         if (ID == 0)
         {
-            base.define_attributes<float>(new float[] { weak, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
+            base.define_attributes<float>(new float[] { strong, norm, strong, norm, norm, norm, strong }, BattleUnit.GetAllATB(), base.GetATB());
             base.define_attributes<int>(new int[] { base.get_dmg(), 0, base.get_dmg() - 10 }, new string[] { "normal", "curse", "shoot" }, base.GetATK());
             this.unitName = "Nadiya";
         }
         else if (ID == 1)
         {
             //base.playerAttacks.Add("burn", new int[] { 1, 12, 5 }); 
-            base.define_attributes<float>(new float[] { weak, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
-            base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 10 }, new string[] { "normal", "fire" }, base.GetATK());
+            base.define_attributes<float>(new float[] { norm, norm, strong, weak, norm, norm, strong }, BattleUnit.GetAllATB(), base.GetATB());
+            base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 10, 0 }, new string[] { "normal", "fire", "curse" }, base.GetATK());
             this.unitName = "Dreyar";
         }
         else if (ID == 2)
         {
             //base.playerAttacks.Add("poison", new int[] { -1, 40 });
-            base.define_attributes<float>(new float[] { weak, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
-            base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 5 }, new string[] { "normal", "grass" }, base.GetATK());
+            base.define_attributes<float>(new float[] { weak, norm, weak, strong, norm, strong, norm }, BattleUnit.GetAllATB(), base.GetATB());
+            base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() + 5, base.get_dmg() + 5 }, new string[] { "normal", "grass", "water" }, base.GetATK());
             this.unitName = "Astra";
         }
         else
         {
-            base.define_attributes<float>(new float[] { norm, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
+            base.define_attributes<float>(new float[] { weak, norm, weak, strong, strong, weak, norm }, BattleUnit.GetAllATB(), base.GetATB());
             base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() + 5, 0 }, new string[] { "normal", "water", "ice" }, base.GetATK());
             this.unitName = "Joe";
         }
     }
 
 
-    public void setHealth(int fml)
+    public void setHealth(int newHealth)
     {
-        currentHP = fml;
+        currentHP = newHealth;
     }
 
     // Get All Attacks
@@ -97,9 +97,6 @@ public class Player : BattleUnit
                 break;
             }
         }
-        TextMeshProUGUI indicator = GameObject.FindWithTag("attackIndicator").GetComponent<TextMeshProUGUI>();
-        indicator.text = attackName;
-        Debug.Log(attackName);
     }
 
     public void revive(float percentage) // can heal 50 or 100 percent for max revive
@@ -108,7 +105,6 @@ public class Player : BattleUnit
         this.usePotion((int)Math.Round((float)this.maxHP * percentage));
 
         this.gameObject.GetComponent<Animator>().CrossFade("Idle", 0.2f); ;
-        
     }
 
     public void heal(int amount)

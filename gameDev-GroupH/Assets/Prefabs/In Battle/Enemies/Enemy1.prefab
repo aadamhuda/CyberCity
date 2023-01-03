@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 0
   maxHP: 100
-  damage: 50
+  damage: 30
   unitName: Exo Soldier
   burned: 0
   poisoned: 0

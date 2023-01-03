@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 150
+  maxHP: 100
   damage: 35
   unitName: Astra
   burned: 0
