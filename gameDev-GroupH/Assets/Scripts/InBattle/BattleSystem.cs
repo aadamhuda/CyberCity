@@ -53,6 +53,7 @@ public class BattleSystem : MonoBehaviour
 
 	public GameObject itemMenu;
 	public GameObject BattleHUD;
+	public ElementInformation BattleInformation;
 
 	// Animations
 	private float speed = 1f;
@@ -69,8 +70,11 @@ public class BattleSystem : MonoBehaviour
 	private Attack play_attack;
 
 	// Strores attributes of players known by enemies i.e { player : { AttackType : affinity, ... } , ... }
-	private Dictionary<int, Dictionary<string, string>> checklist = new Dictionary<int, Dictionary<string, string>>();
+	private Dictionary<int, Dictionary<string, string>> checklist;
+	private Dictionary<int, Dictionary<string, string>> KnownEnemyAttributes = new Dictionary<int, Dictionary<string, string>>();
 
+	[SerializeField]
+	private GameObject WinLoseScreen;
 
 	// Start is called before the first frame update
 	void Start()
@@ -240,13 +244,23 @@ public class BattleSystem : MonoBehaviour
 
 	private void InitialiseMemory()
     {
+		this.checklist = new Dictionary<int, Dictionary<string, string>>();
+		this.KnownEnemyAttributes = new Dictionary<int, Dictionary<string, string>>();
 		// Check if there is data already on 
 		if (savedata.get_checklist().Count != 0)
 			this.checklist = savedata.get_checklist();
 		else
 			foreach (Player i in players)
-				this.checklist.Add(i.getID(), new Dictionary<string, string>());
-    }
+				this.checklist.Add(i.getID(), new Dictionary<string, string>());	
+		
+		if (savedata.GetKnownEnemyAttributes().Count != 0)
+			this.KnownEnemyAttributes = savedata.GetKnownEnemyAttributes();
+
+		foreach (Enemy i in enemies)
+			if (this.KnownEnemyAttributes.ContainsKey(i.getID()) == false)
+				this.KnownEnemyAttributes.Add(i.getID(), new Dictionary<string, string>());
+
+	}
 
 
     //-------------------------------------------Player Attack-------------------------------------------------------
@@ -376,6 +390,19 @@ public class BattleSystem : MonoBehaviour
 				StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.1f, playerPos));
 
 			}
+			string state;
+			if (this.KnownEnemyAttributes[enemyTarget.getID()].ContainsKey(attackType) == false)
+			{
+				// Stores affinity of attribute in list
+				if (enemyTarget.GetATB()[attackType] > 1f)
+					state = "weak";
+				else if (enemyTarget.GetATB()[attackType] == 1f)
+					state = "norm";
+				else
+					state = "strength";
+
+				this.KnownEnemyAttributes[enemyTarget.getID()].Add(attackType, state);
+			}
 		}
 		                      
 
@@ -470,37 +497,43 @@ public class BattleSystem : MonoBehaviour
 			string randomKey = "attacknotfound";
 			int highest = 0;
 
+			if (savedata.GetDifficulty() == 3)
+            {
+				// The FOREACH below should go in here
+            }
 			foreach (KeyValuePair<int, Dictionary<string, string>> dict in this.checklist)
             {
-				Debug.Log("Length of dict : " + dict.Value.Count);
-				if (dict.Value.Count > 0)
-				{
-					Player temp_playerTarget = players[dict.Key];
-					foreach (KeyValuePair<string, string> affinity in dict.Value)
+				if (players[dict.Key].downed == false)
+                {
+					if (dict.Value.Count > 0)
 					{
-						Debug.Log("Hey, get in my BELLE! : " + affinity.Value);
-						if (affinity.Value == "weak")
-							if (currEnemy.GetATK().ContainsKey(affinity.Key))
-								if (affinity.Key != "curse")
-								{
-									if (currEnemy.GetATK()[affinity.Key] > highest)
+						Player temp_playerTarget = players[dict.Key];
+						foreach (KeyValuePair<string, string> affinity in dict.Value)
+						{
+							Debug.Log("Hey, get in my BELLE! : " + affinity.Value);
+							if (affinity.Value == "weak")
+								if (currEnemy.GetATK().ContainsKey(affinity.Key))
+									if (affinity.Key != "curse")
 									{
-										randomKey = affinity.Key;
-										playerTarget = players[dict.Key];
+										if (currEnemy.GetATK()[affinity.Key] > highest)
+										{
+											randomKey = affinity.Key;
+											playerTarget = players[dict.Key];
+										}
 									}
-								}
-								else
-									if (temp_playerTarget.get_cursed() == false)
-									randomKey = affinity.Key;
+									else
+										if (temp_playerTarget.get_cursed() == false)
+										randomKey = affinity.Key;
+						}
 					}
 				}
+
 			}
 
 			// Current enemy & Player
 			if (playerTarget == null)
             {
 				int player_target = Random.Range(0, players.Length);
-				Debug.Log("DId it go through here : " + playerTarget);
 
 				while (players[player_target].downed)
 				{
@@ -732,23 +765,21 @@ public class BattleSystem : MonoBehaviour
 
 	IEnumerator EndBattle()
 	{
+		yield return new WaitForSeconds(1f);
+		this.WinLoseScreen.SetActive(true);
 		if (state == BattleState.WIN)
 		{
-			dialogue.text = "You WIN the battle!";
+			this.WinLoseScreen.GetComponent<WinLoseScreen>().ActivateWin();
 			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
 			savedata.SavePlayerMP(new int[] { players[0].currentMP, players[1].currentMP, players[2].currentMP, players[3].currentMP });
 			savedata.SavePlayerHealth(new int[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
 			savedata.set_checklist(this.checklist);
-			yield return new WaitForSeconds(3f);
-			SceneManager.LoadScene(savedata.get_current_level());
+			
 		}
 		else if (state == BattleState.LOSE)
 		{
-			dialogue.text = "You were defeated.";
-			yield return new WaitForSeconds(2f);
-
-			createRestartButton();
+			this.WinLoseScreen.GetComponent<WinLoseScreen>().ActivateLose();
 		}
 	}
 
@@ -934,6 +965,14 @@ public class BattleSystem : MonoBehaviour
 
 		state = BattleState.SELECTINGATTACK;
 		DisplayAbilities();
+	}	
+	
+	public void DisplayInfo()
+	{
+		if (state != BattleState.PLAYERTURN)
+			return;
+
+		this.BattleInformation.LoadElements(players[tracker], this.KnownEnemyAttributes[enemies[target].getID()], enemies[target].unitName);
 	}
 
 	public void OnExitAbilityButton()

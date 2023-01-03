@@ -10,7 +10,6 @@ using System;
 public class Player : BattleUnit
 {
     [SerializeField]
-    private int ID;
 	// Player attacks
     public Dictionary<string, int> playerAttacks = new Dictionary<string, int>();
     public string selectedMove = "normal";
@@ -37,32 +36,32 @@ public class Player : BattleUnit
 
         if (ID == 0)
         {
-            base.define_attributes<float>(new float[] { weak, norm, norm, norm, norm, norm, norm }, base.GetAllATB(), base.GetATB());
+            base.define_attributes<float>(new float[] { weak, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
             base.define_attributes<int>(new int[] { base.get_dmg(), 0, base.get_dmg() - 10 }, new string[] { "normal", "curse", "shoot" }, base.GetATK());
+            this.unitName = "Nadiya";
         }
         else if (ID == 1)
         {
             //base.playerAttacks.Add("burn", new int[] { 1, 12, 5 }); 
-            base.define_attributes<float>(new float[] { weak, norm, norm, norm, norm, norm, norm }, base.GetAllATB(), base.GetATB());
+            base.define_attributes<float>(new float[] { weak, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
             base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 10 }, new string[] { "normal", "fire" }, base.GetATK());
+            this.unitName = "Dreyar";
         }
         else if (ID == 2)
         {
             //base.playerAttacks.Add("poison", new int[] { -1, 40 });
-            base.define_attributes<float>(new float[] { weak, norm, norm, norm, norm, norm, norm }, base.GetAllATB(), base.GetATB());
+            base.define_attributes<float>(new float[] { weak, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
             base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 5 }, new string[] { "normal", "grass" }, base.GetATK());
+            this.unitName = "Astra";
         }
         else
         {
-            base.define_attributes<float>(new float[] { norm, norm, norm, norm, norm, norm, norm }, base.GetAllATB(), base.GetATB());
+            base.define_attributes<float>(new float[] { norm, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
             base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() + 5, 0 }, new string[] { "normal", "water", "ice" }, base.GetATK());
+            this.unitName = "Joe";
         }
     }
 
-    public int getID()
-    {
-        return ID;
-    }
 
     public void setHealth(int fml)
     {
