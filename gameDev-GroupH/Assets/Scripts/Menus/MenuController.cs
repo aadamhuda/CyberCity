@@ -39,10 +39,10 @@ public class MenuController : MonoBehaviour
     }
 
     //quits the game when the quit button is pressed
-    public void QuitGame()
+    public void LoadGame()
     {
-        Debug.Log("Quit");
-        Application.Quit(); //application quits
+        saveState.LoadData();
+        SceneManager.LoadScene(saveState.get_current_level());
     }
 }
 
