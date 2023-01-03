@@ -20,6 +20,7 @@ public class MenuController : MonoBehaviour
         saveState.Clue.Clear();
         saveState.Death.Clear();
         saveState.ClueCount = 0;
+        saveState.set_current_level(saveState.get_cargo_level());
         saveState.SaveLocation(new Vector3(0f, 0.5f, 0f));
         saveState.set_respawn(new Vector3(0f, 0.5f, 0f));
         saveState.set_item_respawn(4);
@@ -35,14 +36,14 @@ public class MenuController : MonoBehaviour
     public void PlayGame()
     {
         initialiseGame(); //clears saved data variables
-        SceneManager.LoadScene(saveState.get_cargo_level());
+        SceneManager.LoadScene("Loading");
     }
 
     //quits the game when the quit button is pressed
-    public void QuitGame()
+    public void LoadGame()
     {
-        Debug.Log("Quit");
-        Application.Quit(); //application quits
+        saveState.LoadData();
+        SceneManager.LoadScene("Loading");
     }
 }
 
