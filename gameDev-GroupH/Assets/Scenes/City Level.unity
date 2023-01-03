@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029087335, g: 0.0298977, b: 0.029896766, a: 1}
+  m_IndirectSpecularColor: {r: 0.029098222, g: 0.029918972, b: 0.029954132, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -715,7 +715,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128199585}
-  m_LocalRotation: {x: 0.081461206, y: -0.00000005252786, z: 0.000000004293251, w: 0.99667656}
+  m_LocalRotation: {x: 0.081461206, y: -0.000000061102455, z: 0.0000000049940776, w: 0.99667656}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15052,7 +15052,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695881047}
-  m_LocalRotation: {x: 0.045203228, y: -0.000000059094933, z: 0.0000000026740152, w: 0.99897784}
+  m_LocalRotation: {x: 0.045203228, y: -0.000000054797738, z: 0.000000002479569, w: 0.99897784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15605,6 +15605,26 @@ PrefabInstance:
     - target: {fileID: 4898629116904695226, guid: 548070f664340a7458c17f8ba9a0c74e, type: 3}
       propertyPath: m_Name
       value: ItemNotification
+      objectReference: {fileID: 0}
+    - target: {fileID: 6330822838252937928, guid: 548070f664340a7458c17f8ba9a0c74e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -799
+      objectReference: {fileID: 0}
+    - target: {fileID: 6330822838252937928, guid: 548070f664340a7458c17f8ba9a0c74e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -424
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296605640280509, guid: 548070f664340a7458c17f8ba9a0c74e, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296605640280509, guid: 548070f664340a7458c17f8ba9a0c74e, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1980
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750296605640280509, guid: 548070f664340a7458c17f8ba9a0c74e, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -20587,6 +20607,18 @@ PrefabInstance:
       propertyPath: characters.Array.data[4]
       value: 
       objectReference: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 1322733307160872340, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322733307160872340, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322733307160872340, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 1322733307160872342, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -25320,7 +25352,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3656764514314308994, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4939612343189785589, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: itemInventory
@@ -25328,11 +25360,15 @@ PrefabInstance:
       objectReference: {fileID: 1763822869}
     - target: {fileID: 5879312534617136419, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5989774274291476287, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_Name
       value: Pause Screen Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5989774274291476287, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5989774274291476420, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_Pivot.x
@@ -25424,11 +25460,11 @@ PrefabInstance:
       objectReference: {fileID: 1857149344}
     - target: {fileID: 8115003865376785928, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8541434860837910647, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
