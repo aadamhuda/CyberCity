@@ -10,40 +10,40 @@ public class Enemy : BattleUnit
 
     private void Start()
     {
-        currentHP = 50;
+        currentHP = maxHP;
 
 		float norm = 1f;
 		float weak = 1.25f;
-		float strength = 0.75f;
-
+		float strong = 0.75f;
+		//attributes : "normal", "shoot", "fire", "water", "ice", "grass", "curse"
 		if (ID == 1)
         {
-			base.define_attributes<float>(new float[] { norm, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
-			base.define_attributes<int>(new int[] { base.get_dmg(), 0, base.get_dmg() - 10 }, new string[] { "normal", "curse", "shoot" }, base.GetATK());
+			base.define_attributes<float>(new float[] { norm, norm, strong, weak, norm, weak, strong }, BattleUnit.GetAllATB(), base.GetATB());
+			base.define_attributes<int>(new int[] { base.get_dmg(), 0, base.get_dmg() - 10 }, new string[] { "normal", "curse", "fire"  }, base.GetATK());
 		}
 		else if (ID == 2)
 		{
 			//base.playerAttacks.Add("burn", new int[] { 1, 12, 5 }); 
-			base.define_attributes<float>(new float[] { norm, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
-			base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 10 }, new string[] { "normal", "fire" }, base.GetATK());
+			base.define_attributes<float>(new float[] { norm, norm, weak, strong, strong, norm, weak }, BattleUnit.GetAllATB(), base.GetATB());
+			base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 10, 0 }, new string[] { "normal", "water", "ice" }, base.GetATK());
 		}
 		else if (ID == 3)
 		{
 			//base.playerAttacks.Add("burn", new int[] { 1, 12, 5 }); 
-			base.define_attributes<float>(new float[] { norm, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
-			base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 10 }, new string[] { "normal", "fire" }, base.GetATK());
+			base.define_attributes<float>(new float[] { weak, strong, strong, weak, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
+			base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 10, base.get_dmg() - 5 }, new string[] { "normal", "fire", "grass" }, base.GetATK());
 		}
 		else if (ID == 4)
 		{
 			//base.playerAttacks.Add("poison", new int[] { -1, 40 });
-			base.define_attributes<float>(new float[] { norm, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
-			base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 5 }, new string[] { "normal", "grass" }, base.GetATK());
+			base.define_attributes<float>(new float[] { norm, norm, strong, weak, norm, weak, strong }, BattleUnit.GetAllATB(), base.GetATB());
+			base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 5, 0 }, new string[] { "normal", "fire", "curse" }, base.GetATK());
 		}
 		else
 		{
 			//base.playerAttacks.Add("poison", new int[] { -1, 40 });
-			base.define_attributes<float>(new float[] { norm, norm, norm, norm, norm, norm, norm }, BattleUnit.GetAllATB(), base.GetATB());
-			base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 5 }, new string[] { "normal", "grass" }, base.GetATK());
+			base.define_attributes<float>(new float[] { norm, weak, weak, strong, norm, strong, norm }, BattleUnit.GetAllATB(), base.GetATB());
+			base.define_attributes<int>(new int[] { base.get_dmg(), base.get_dmg() - 5, base.get_dmg() - 5 }, new string[] { "normal", "grass", "water" }, base.GetATK());
 		}
 	}
 

@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 150
+  maxHP: 125
   damage: 35
   unitName: Nadiya
   burned: 0

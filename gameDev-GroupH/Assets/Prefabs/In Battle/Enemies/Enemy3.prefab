@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  maxHP: 75
+  maxHP: 85
   damage: 55
   unitName: Kunoichi
   burned: 0
