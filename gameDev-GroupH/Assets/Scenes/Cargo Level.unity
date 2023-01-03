@@ -452,7 +452,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28301443}
-  m_LocalRotation: {x: 0.06411759, y: 0.000000017913052, z: -0.0000000011509099, w: 0.9979424}
+  m_LocalRotation: {x: 0.06411758, y: -0.000000017593107, z: 0.0000000011303536, w: 0.9979424}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4087,7 +4087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_Name
-      value: Clue (1)
+      value: CargoClueTwo
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_TagString
@@ -9699,7 +9699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_Name
-      value: Clue (3)
+      value: CargoClueThree
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_TagString
@@ -12649,7 +12649,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753097497}
-  m_LocalRotation: {x: 0.04595493, y: -0.000000003721355, z: 1.7119547e-10, w: 0.9989435}
+  m_LocalRotation: {x: 0.045954935, y: 4.6917684e-19, z: 6.5303014e-18, w: 0.9989435}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15216,7 +15216,8 @@ MonoBehaviour:
   main_pause_screen: {fileID: 0}
   player: {fileID: 0}
   items: {fileID: 0}
-  SettingPage: {fileID: 0}
+  LoadMenu: {fileID: 0}
+  SaveMenu: {fileID: 0}
 --- !u!114 &937210629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18361,7 +18362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_Name
-      value: Clue
+      value: CargoClueOne
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_TagString
@@ -19485,7 +19486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_Name
-      value: Clue (2)
+      value: CargoClueThree
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_TagString
@@ -20082,6 +20083,7 @@ MonoBehaviour:
   savedata: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   player: {fileID: 937210624}
   indicator: {fileID: 1132963202}
+  PauseMenu: {fileID: 0}
 --- !u!135 &1294336819
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24031,6 +24033,7 @@ MonoBehaviour:
   savedata: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   player: {fileID: 937210624}
   indicator: {fileID: 611188910}
+  PauseMenu: {fileID: 0}
 --- !u!135 &1541312518
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24639,6 +24642,7 @@ MonoBehaviour:
   savedata: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   player: {fileID: 937210624}
   indicator: {fileID: 1068298141}
+  PauseMenu: {fileID: 0}
 --- !u!135 &1590577781
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -32938,7 +32942,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005210347}
-  m_LocalRotation: {x: 0.045954943, y: -0.000000003721355, z: 1.7119553e-10, w: 0.9989435}
+  m_LocalRotation: {x: 0.045954946, y: 0.000000003721355, z: -1.7119554e-10, w: 0.9989435}
   m_LocalPosition: {x: 11.32, y: 3.5, z: 17.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

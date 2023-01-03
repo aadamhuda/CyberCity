@@ -4,13 +4,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-    public static void SaveSystemInformation (SaveData saveData)
+    public static void SaveSystemInformation (SaveData saveData, string FileName)
     {
         // Saves data in binary
         BinaryFormatter formatter = new BinaryFormatter();
 
         // Filepath to store data
-        string path = Application.persistentDataPath + "/data.test";
+        string path = Application.persistentDataPath + "/" + FileName +  ".test";
 
         // Filestream
         FileStream stream = new FileStream(path, FileMode.Create);
@@ -24,9 +24,9 @@ public static class SaveSystem
 
     }
 
-    public static SystemSaveData LoadData ()
+    public static SystemSaveData LoadData (string FileName)
     {
-        string path = Application.persistentDataPath + "/data.test";
+        string path = Application.persistentDataPath + "/" + FileName + ".test";
 
         // If save file exists
         if (File.Exists(path))

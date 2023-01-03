@@ -32,7 +32,7 @@ public class WinLoseScreen : MonoBehaviour
 
     public void ReturnToLastSave()
     {
-        this.savedata.LoadData();
+        this.savedata.LoadData(this.savedata.LastSave);
         SceneManager.LoadScene(this.savedata.get_current_level());
     }
 
