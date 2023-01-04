@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.InputSystem;
 public class ItemPickUp : MonoBehaviour
 {
     public string itemName = "null";
@@ -35,7 +35,19 @@ public class ItemPickUp : MonoBehaviour
         if (in_range == true)
         {
             this.indicator.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.E))
+           
+        }
+        else
+            this.indicator.SetActive(false);
+
+    }
+
+    void OnCollect(InputValue value)
+    {
+        if (in_range == true)
+        {
+
+            if (value.isPressed)
             {
                 this.PickUp.Activate(this.itemName);
                 inven.add_item(this.itemName);
@@ -44,8 +56,7 @@ public class ItemPickUp : MonoBehaviour
 
             }
         }
-        else
-            this.indicator.SetActive(false);
+
 
     }
 }
