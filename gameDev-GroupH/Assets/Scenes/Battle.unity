@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029098216, g: 0.029918969, b: 0.029954128, a: 1}
+  m_IndirectSpecularColor: {r: 0.02910437, g: 0.02989362, b: 0.02994584, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1990,6 +1990,7 @@ MonoBehaviour:
   - {fileID: 1947965354}
   itemMenu: {fileID: 951402726}
   BattleHUD: {fileID: 966434265}
+  startRender: {fileID: 6411645212009876796, guid: d0f046ad46713c541a4a98ad59705372, type: 3}
   BattleInformation: {fileID: 1296486081}
   animator: {fileID: 328337031}
   battleCameras:
@@ -5302,7 +5303,7 @@ Transform:
   - {fileID: 273170519}
   - {fileID: 554259225}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1116087574
 GameObject:
@@ -11058,7 +11059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 915779548201119885, guid: 56ad8fd1cd237514cbfed16f7051e0e3, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 915779548201119885, guid: 56ad8fd1cd237514cbfed16f7051e0e3, type: 3}
       propertyPath: m_LocalPosition.x

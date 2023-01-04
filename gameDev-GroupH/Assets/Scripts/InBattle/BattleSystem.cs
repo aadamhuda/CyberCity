@@ -53,6 +53,8 @@ public class BattleSystem : MonoBehaviour
 
 	public GameObject itemMenu;
 	public GameObject BattleHUD;
+	public GameObject startRender;
+
 	public ElementInformation BattleInformation;
 
 	// Animations
@@ -228,6 +230,9 @@ public class BattleSystem : MonoBehaviour
 
 
 		InitialiseMemory();
+
+		// Loading effects and models for smooth playback
+		Destroy(Instantiate(startRender), 1.2f);
 
 		yield return new WaitForSeconds(1f);
         state = BattleState.PLAYERTURN;
