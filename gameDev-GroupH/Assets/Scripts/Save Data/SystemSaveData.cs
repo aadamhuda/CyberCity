@@ -32,8 +32,8 @@ public class SystemSaveData
 
     public Dictionary<int, Dictionary<string, string>> KnownEnemyAttributes = new Dictionary<int, Dictionary<string, string>>();
 
-    public int clues_text_index;
-    public int dialogue_index;
+    public int dialogue_index; 
+    public int save_index;
 
     public SystemSaveData (SaveData savedata)
     {
@@ -52,8 +52,8 @@ public class SystemSaveData
         this.remainng_items = savedata.get_item_respawn();
         this.checklist = savedata.get_checklist();
         this.KnownEnemyAttributes = savedata.GetKnownEnemyAttributes();
-        this.clues_text_index = savedata.get_clues_text_index();
         this.dialogue_index = savedata.get_dialogue_index();
+        this.save_index = savedata.get_save_index();
     }
 
 

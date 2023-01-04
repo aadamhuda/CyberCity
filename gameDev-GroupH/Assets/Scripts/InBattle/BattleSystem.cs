@@ -481,7 +481,10 @@ public class BattleSystem : MonoBehaviour
 	//-------------------------------------------ENEMY-------------------------------------------------------
 	IEnumerator EnemyTurn()
 	{
-    
+		Dictionary<int, bool> playerAttacked = new Dictionary<int, bool>();
+		foreach (Player unit in players)
+			playerAttacked.Add(unit.getID(), false);
+		Dictionary<int, string> weakTo = new Dictionary<int, string>();
 		bool isDead;
 		for (int i = 0; i < enemies.Length; i++)
 		{
@@ -498,15 +501,16 @@ public class BattleSystem : MonoBehaviour
 			int highest = 0;
 
 			if (savedata.GetDifficulty() == 3)
-            {
+			{
 				// The FOREACH below should go in here
-            }
+			}
 			foreach (KeyValuePair<int, Dictionary<string, string>> dict in this.checklist)
-            {
+			{
 				if (players[dict.Key].downed == false)
-                {
+				{
 					if (dict.Value.Count > 0)
 					{
+						string arrWeakness = "notfound";
 						Player temp_playerTarget = players[dict.Key];
 						foreach (KeyValuePair<string, string> affinity in dict.Value)
 						{
@@ -517,18 +521,53 @@ public class BattleSystem : MonoBehaviour
 									{
 										if (currEnemy.GetATK()[affinity.Key] > highest)
 										{
-											randomKey = affinity.Key;
-											playerTarget = players[dict.Key];
+											arrWeakness = (affinity.Key);
+											/*randomKey = affinity.Key;
+											playerTarget = players[dict.Key];*/
 										}
 									}
 									else
 										if (temp_playerTarget.get_cursed() == false)
-										randomKey = affinity.Key;
+									{
+										arrWeakness = (affinity.Key);
+										/*randomKey = affinity.Key;*/
+									}
+							if (arrWeakness != "notfound")
+								weakTo.Add(dict.Key, arrWeakness);
 						}
 					}
 				}
 
 			}
+			int checker = 0;
+			List<int> test = new List<int>(weakTo.Keys);
+			for (int ojergbn = 0; ojergbn < test.Count; i++)
+				Debug.Log("Vwat is wrong : " + test[ojergbn]);
+			Debug.Log(weakTo.Count);
+			if (weakTo.Count>0)
+            {
+				int randomMove = new List<int>(weakTo.Keys)[Random.Range(0, weakTo.Count)];
+				foreach (KeyValuePair<int, string> dict in weakTo)
+				{
+					if (playerAttacked.ContainsKey(dict.Key) == false)
+					{
+						randomKey = dict.Value;
+						playerTarget = this.players[dict.Key];
+					}
+					else
+					{
+						checker++;
+						if (checker == weakTo.Count)
+						{
+							playerTarget = this.players[randomMove];
+							randomKey = weakTo[randomMove];
+						}
+					}
+
+				}
+			}
+
+			
 
 			// Current enemy & Player
 			if (playerTarget == null)

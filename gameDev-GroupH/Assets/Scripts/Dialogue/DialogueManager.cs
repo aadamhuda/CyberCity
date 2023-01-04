@@ -39,6 +39,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private Dictionary<string, Sprite> charac_sprites = new Dictionary<string, Sprite>();
 
+    [SerializeField]
+    private ScriptDialogue startingDIalogue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,28 +57,26 @@ public class DialogueManager : MonoBehaviour
         if (this.savedata.get_dialogue_index() == 0)
         {
             this.PauseAll();
-            this.Script(0, "/Scripts/Dialogue/test.txt", "dialogue");
+            this.Script(0, startingDIalogue);
+            this.savedata.set_dialogue_index(this.GetIndex());
         }
         else
             gameObject.SetActive(false);
 
     }
-    public void Script(int start , string path, string save)
+
+    public int GetIndex() { return this.dialogue.GetIndex(); }
+
+    public void Script(int start , ScriptDialogue path)
     {
         gameObject.SetActive(true);
 
-        this.dialogue = new Dialogue(start, path);
+        this.dialogue = new Dialogue(start, path.GetDialogue());
 
         if (this.dialogue.GetParts().Length > 0)
         {
             this.StartDialogue();
             Debug.Log(this.dialogue.GetIndex());
-            if (save == "clue")
-                savedata.set_clues_text_index(this.dialogue.GetIndex());
-            else if (save == "dialogue")
-                savedata.set_dialogue_index(this.dialogue.GetIndex());
-            else if (save == "save")
-                savedata.set_save_index(this.dialogue.GetIndex());
         }
         else
         {

@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SwitchScene : MonoBehaviour
+public class EndGame : MonoBehaviour
 {
     [SerializeField]
     bool cybercity = false;
 
     [SerializeField]
     private SaveData savedata;
+
+    [SerializeField]
+    private GameObject EndScreen;
+
+    [SerializeField]
+    private GameObject ReturnScreen;
+
     public void ReturnButton()
     {
-        SceneManager.LoadScene(savedata.get_current_level());
+        SceneManager.LoadScene("Main Menu");
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -23,23 +30,32 @@ public class SwitchScene : MonoBehaviour
     private void OnTriggerExit(Collider collision)
     {
         this.cybercity = false;
+        this.ReturnScreen.SetActive(false);
     }
 
     private void Update()
     {
         if (this.cybercity)
         {
-            Debug.Log(savedata.get_cyber_level());
+
             if (Input.GetMouseButtonDown(0))
             {
+                    if (this.savedata.ClueCount == 8)
+                    {
+                    Time.timeScale = 0;
+                        this.EndScreen.SetActive(true);
+                    }
+                    else
+                    {
+                        this.ReturnScreen.SetActive(true);
+                    }
 
-                savedata.SaveLocation(new Vector3(0, 1.5f, 0));
 
-                savedata.set_current_level(savedata.get_cyber_level());
-
-                SceneManager.LoadScene("Loading");
             }
+
         }
     }
 
-}
+}   
+
+

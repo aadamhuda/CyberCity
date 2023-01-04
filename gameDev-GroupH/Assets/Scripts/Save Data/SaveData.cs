@@ -55,9 +55,6 @@ public class SaveData : ScriptableObject
     private Dictionary<int, Dictionary<string, string>> checklist = new Dictionary<int, Dictionary<string, string>>();
 
     private Dictionary<int, Dictionary<string, string>> KnownEnemyAttributes = new Dictionary<int, Dictionary<string, string>>();
-
-    [SerializeField]
-    private int clues_text_index;
     
     [SerializeField]
     private int dialogue_index;
@@ -94,8 +91,6 @@ public class SaveData : ScriptableObject
     public Dictionary<int, Dictionary<string, string>> get_checklist() { return checklist; }
     
     public Dictionary<int, Dictionary<string, string>> GetKnownEnemyAttributes() { return this.KnownEnemyAttributes; }
-
-    public int get_clues_text_index() { return this.clues_text_index; }
     
     public int get_dialogue_index() { return this.dialogue_index; } 
     
@@ -129,9 +124,6 @@ public class SaveData : ScriptableObject
     public void set_item_respawn(int arr)
     { this.item_spawn = arr; }
 
-    public void set_clues_text_index(int index) 
-        { this.clues_text_index = index; }
-    
     public void set_dialogue_index(int index) 
         { this.dialogue_index = index; }
     
@@ -191,8 +183,10 @@ public class SaveData : ScriptableObject
         this.item_spawn = data.get_item_respawn();
         this.checklist = data.get_checklist();
         this.KnownEnemyAttributes = data.KnownEnemyAttributes;
-        this.clues_text_index = data.clues_text_index;
         this.dialogue_index = data.dialogue_index;
+        this.save_index = data.save_index;
+
+
         this.respawn = !this.respawn;
     }
 

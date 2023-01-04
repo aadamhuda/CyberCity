@@ -24,6 +24,9 @@ public class SaveGame : MonoBehaviour
     [SerializeField]
     private GameObject PauseMenu;
 
+    [SerializeField]
+    private ScriptDialogue script;
+
     void Start()
     {
         triggered = false;
@@ -34,7 +37,8 @@ public class SaveGame : MonoBehaviour
     {
         if (this.triggered == false)
         {
-            dialgoue.Script(savedata.get_save_index(), "/Scripts/Dialogue/save.txt", "save");
+            dialgoue.Script(savedata.get_save_index(), script);
+            this.savedata.set_save_index(this.dialgoue.GetIndex());
             this.triggered = true;
         }
     }    

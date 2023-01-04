@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029087335, g: 0.0298977, b: 0.029896766, a: 1}
+  m_IndirectSpecularColor: {r: 0.029084295, g: 0.029897554, b: 0.029897416, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2600,8 +2600,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160136573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40, y: 0, z: 47.5}
-  m_LocalScale: {x: 1, y: 1, z: 0.5}
+  m_LocalPosition: {x: 40, y: 0, z: 46.3983}
+  m_LocalScale: {x: 1, y: 1, z: 0.72035}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 198206341}
@@ -4087,7 +4087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_Name
-      value: Clue (1)
+      value: CargoClue2
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_TagString
@@ -7323,14 +7323,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50d22449a77225442845213a2bbd6df8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 50d22449a77225442845213a2bbd6df8, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 918acb3fcb4ac4647921e38e7d2de6c2, type: 2}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 50d22449a77225442845213a2bbd6df8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1774989698}
   m_SourcePrefab: {fileID: 100100000, guid: 50d22449a77225442845213a2bbd6df8, type: 3}
 --- !u!4 &472123588 stripped
 Transform:
@@ -9699,7 +9702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_Name
-      value: Clue (3)
+      value: CargoClue4
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_TagString
@@ -18394,7 +18397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_Name
-      value: Clue
+      value: CargoClue1
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_TagString
@@ -19518,7 +19521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_Name
-      value: Clue (2)
+      value: CargoClue3
       objectReference: {fileID: 0}
     - target: {fileID: 6119293628669568792, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_TagString
@@ -20116,6 +20119,7 @@ MonoBehaviour:
   player: {fileID: 937210624}
   indicator: {fileID: 1132963202}
   PauseMenu: {fileID: 1333530745}
+  script: {fileID: 1294336820}
 --- !u!135 &1294336819
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20129,6 +20133,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1294336820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294336817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075a11ba84cc2594980839aad3481e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Astra_sorry
+  - Nadiya_me three
+  - ------
+  - Distant Voice_You can save here
 --- !u!1 &1303202628
 GameObject:
   m_ObjectHideFlags: 0
@@ -21324,10 +21345,11 @@ MonoBehaviour:
   PatrolPoints: []
   WithInArea: 0
   inSight: 0
-  canvas: {fileID: 0}
-  anim: {fileID: 0}
+  canvas: {fileID: 1774989697}
+  anim: {fileID: 1381119169}
   triggered: 0
   dialogue: {fileID: 941290148}
+  script: {fileID: 1381119168}
 --- !u!195 &1381119167
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -21350,6 +21372,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1381119168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381119165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075a11ba84cc2594980839aad3481e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Distant Voice_Beep Boop?
+  - Astra_UwU
+  - Joe_no u
+--- !u!95 &1381119169 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 50d22449a77225442845213a2bbd6df8, type: 3}
+  m_PrefabInstance: {fileID: 472123587}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1382532749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24066,6 +24109,7 @@ MonoBehaviour:
   player: {fileID: 937210624}
   indicator: {fileID: 611188910}
   PauseMenu: {fileID: 1333530745}
+  script: {fileID: 1541312519}
 --- !u!135 &1541312518
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24079,6 +24123,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1541312519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541312516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075a11ba84cc2594980839aad3481e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Astra_sorry
+  - Nadiya_me three
+  - ------
+  - Distant Voice_You can save here
 --- !u!1 &1557473209
 GameObject:
   m_ObjectHideFlags: 0
@@ -24675,6 +24736,7 @@ MonoBehaviour:
   player: {fileID: 937210624}
   indicator: {fileID: 1068298141}
   PauseMenu: {fileID: 1333530745}
+  script: {fileID: 1590577782}
 --- !u!135 &1590577781
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24688,6 +24750,23 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1590577782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205803500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075a11ba84cc2594980839aad3481e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Astra_sorry
+  - Nadiya_me three
+  - ------
+  - Distant Voice_You can save here
 --- !u!1001 &1606309551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28397,6 +28476,103 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 576a4202bce714a43b9504d80f213f9e, type: 3}
   m_PrefabInstance: {fileID: 1768000805}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1774989697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1774989698}
+  - component: {fileID: 1774989701}
+  - component: {fileID: 1774989700}
+  - component: {fileID: 1774989699}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1774989698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774989697}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 52.900017, y: 2.419, z: -48.08}
+  m_LocalScale: {x: 0.09999997, y: 0.099999994, z: 0.09999997}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 472123588}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1774989699
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774989697}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1774989700
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774989697}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 64a48726e2e95ba448e0dcbf04e9919b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1774989701
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774989697}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1786914406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35273,6 +35449,14 @@ PrefabInstance:
     - target: {fileID: 1322733307160872362, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: ------
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

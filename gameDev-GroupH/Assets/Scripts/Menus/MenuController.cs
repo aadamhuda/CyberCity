@@ -27,7 +27,6 @@ public class MenuController : MonoBehaviour
         saveState.set_respawn(new Vector3(0f, 0.5f, 0f));
         saveState.set_item_respawn(4);
         saveState.SavePlayerMP(new int[] { 30, 30, 30, 30 });
-        saveState.set_clues_text_index(0);
         saveState.set_dialogue_index(0);
         saveState.set_save_index(0);
         saveState.SaveGame("SaveOne");

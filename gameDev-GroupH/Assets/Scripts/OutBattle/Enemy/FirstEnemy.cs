@@ -11,6 +11,9 @@ public class FirstEnemy : EnemyOutOfCombat
     [SerializeField]
     public DialogueManager dialogue;
 
+    [SerializeField]
+    private ScriptDialogue script;
+
     private void Awake()
     {
         this.radius = 10;
@@ -36,7 +39,7 @@ public class FirstEnemy : EnemyOutOfCombat
             if (triggered == false)
             {
                 this.dialogue.PauseAll();
-                this.dialogue.Script(PosSave.get_dialogue_index(), "/Scripts/Dialogue/test.txt", "dialogue");
+                this.dialogue.Script(0, script);
                 triggered = true;
 
             }

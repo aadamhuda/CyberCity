@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 1322733307160872341}
   - component: {fileID: 1322733307160872337}
   - component: {fileID: 2853592574058093195}
+  - component: {fileID: 2029063882415485441}
   m_Layer: 5
   m_Name: Narrative Screen
   m_TagString: Untagged
@@ -347,6 +348,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ff394fb1c8525644a802ff05edeb505f, type: 3}
   - {fileID: 21300000, guid: 71d1c5bc6ec151445898937b29c26f37, type: 3}
   - {fileID: 21300000, guid: 89332070de7f80b4487d2590fb34c723, type: 3}
+  startingDIalogue: {fileID: 2029063882415485441}
 --- !u!222 &2853592574058093195
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -355,6 +357,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322733307160872362}
   m_CullTransparentMesh: 1
+--- !u!114 &2029063882415485441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322733307160872362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075a11ba84cc2594980839aad3481e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Nadiya_System
+  - Dreyar_Go beep boop
+  - ------
 --- !u!1 &1322733307980113264
 GameObject:
   m_ObjectHideFlags: 0

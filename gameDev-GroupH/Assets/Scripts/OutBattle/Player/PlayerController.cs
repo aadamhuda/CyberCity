@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         savedata.DictBoolSwitch(savedata.Clue, other.name);
 
         this.dialogue.PauseAll();
-        this.dialogue.Script(savedata.get_clues_text_index(), "/Scripts/Dialogue/clues.txt", "clue");
+        this.dialogue.Script(0, other.gameObject.GetComponent<ScriptDialogue>());
     }
 
     void OnTriggerEnter(Collider other)

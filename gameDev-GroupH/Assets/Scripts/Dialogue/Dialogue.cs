@@ -14,13 +14,11 @@ public class Dialogue
     private string[][] parts;
 
     private int index;
-    string myFilePath, fileName;    
 
-    public Dialogue (int index, string path)
+    public Dialogue (int index, string [] script)
     {
         this.index = index;
-        this.fileName = path;
-        this.myFilePath = Application.dataPath + this.fileName;
+        this.sentences = script;
         this.ReadFromFile();
     }
 
@@ -31,7 +29,6 @@ public class Dialogue
 
     public void ReadFromFile()
     {
-        this.sentences = File.ReadAllLines(this.myFilePath);
 
         int begginning = this.index;
         int count = FindLength();

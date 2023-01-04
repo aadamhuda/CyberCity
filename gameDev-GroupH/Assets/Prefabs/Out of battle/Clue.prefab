@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 7853499609045758137}
   - component: {fileID: 5846703048545103874}
   - component: {fileID: -9002245490305071754}
+  - component: {fileID: 5157058291893903980}
   m_Layer: 0
   m_Name: Clue
   m_TagString: Untagged
@@ -215,6 +216,21 @@ MonoBehaviour:
   floor: 0
   savedata: {fileID: 0}
   canvas: {fileID: 1275968532410806456}
+--- !u!114 &5157058291893903980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6119293628669568792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075a11ba84cc2594980839aad3481e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Nadiya_UwU
+  - Joe_no u
 --- !u!1001 &6046096432461827832
 PrefabInstance:
   m_ObjectHideFlags: 0
