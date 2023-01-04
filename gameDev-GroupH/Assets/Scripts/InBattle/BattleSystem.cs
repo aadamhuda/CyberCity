@@ -614,12 +614,19 @@ public class BattleSystem : MonoBehaviour
 			}
             else
             {
+				// Moving enemy until next to player
+				if (!currEnemy.transform.GetChild(0).name.Equals("Ely By K.Atienza"))
+				{
+					yield return StartCoroutine(animator.EquipSword(enemyAnimator, currEnemy.transform));
+				}
 
+				yield return StartCoroutine(currEnemy.MoveEnemy(true, 0, speed, 2f, playerPos));
+
+				yield return StartCoroutine(animator.Melee(enemyAnimator, currEnemy.transform, playerTarget.transform));
 				Debug.Log("I have to eat soon : " + randomKey);
 
 				if (randomKey == "attacknotfound")
 					randomKey = enemies[i].GetATK().Keys.ElementAt((int)Random.Range(0, enemies[i].GetATK().Keys.Count - 1));
-
 
 
 				if (randomKey == "curse")
@@ -661,36 +668,27 @@ public class BattleSystem : MonoBehaviour
 						if (players[j].CheckIfDead())
 							players[j].downed = true;
 					}
-
 				}
 				else
                 {
-					// Moving enemy until next to player
-					if (!currEnemy.transform.GetChild(0).name.Equals("Ely By K.Atienza"))
-					{
-						yield return StartCoroutine(animator.EquipSword(enemyAnimator, currEnemy.transform));
-					}
-					Debug.Log("curr enemy name: " + currEnemy.transform.name);
-					yield return StartCoroutine(currEnemy.MoveEnemy(true, 0, speed, 2f, playerPos));
-
-					yield return StartCoroutine(animator.Melee(enemyAnimator, currEnemy.transform, playerTarget.transform));
-					
 					//adds 15% damage if enemy hits player first
 					playerTarget.takeDamage(currEnemy.GetATK()[randomKey] * multi, randomKey); // change 1 to enemy's move type
 					StartCoroutine(animator.PlayerDeath(playerTarget, playerAnimator));
 
-					// Moving enemy back to original position
-					if (!currEnemy.transform.GetChild(0).name.Equals("Ely By K.Atienza"))
-					{
-						yield return new WaitForSeconds(0.7f);
-						yield return StartCoroutine(animator.DisarmSword(enemyAnimator, currEnemy.transform));
-					}
-					else {
-						yield return new WaitForSeconds(0.3f);
-					}
-					yield return StartCoroutine(currEnemy.MoveEnemy(false, 0, speed, 0.1f, enemyPos));
-
 				}
+
+				// Moving enemy back to original position
+				if (!currEnemy.transform.GetChild(0).name.Equals("Ely By K.Atienza"))
+				{
+					yield return new WaitForSeconds(0.7f);
+					yield return StartCoroutine(animator.DisarmSword(enemyAnimator, currEnemy.transform));
+				}
+				else
+				{
+					yield return new WaitForSeconds(0.3f);
+				}
+				yield return StartCoroutine(currEnemy.MoveEnemy(false, 0, speed, 0.1f, enemyPos));
+
 				string state;
 				if (this.checklist[playerTarget.getID()].ContainsKey(randomKey) == false)
 				{
