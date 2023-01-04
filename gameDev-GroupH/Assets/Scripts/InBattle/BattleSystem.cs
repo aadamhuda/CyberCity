@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 //NOTE: damage and healing must be balanced to provide a challenge while not making it too difficult
 
@@ -130,22 +131,27 @@ public class BattleSystem : MonoBehaviour
 			}
 		}
 
-		CheckTargetChange();
-
 	}
 	//-------------------------------------------UPDATE FUNCTIONS-------------------------------------------------------
-	void CheckTargetChange()
+	public void OnSwitchTargetLeft(InputValue value)
 	{
 		if (state == BattleState.PLAYERTURN)
 		{
-			if (Input.GetKeyDown("a"))
+			if (value.isPressed)
 			{
 				StartCoroutine(ChangeTarget(-1));
 			}
-			if (Input.GetKeyDown("d"))
-			{
+		}
+	}
+	public void OnSwitchTargetRight(InputValue value)
+	{
+		if (state == BattleState.PLAYERTURN)
+		{
+            if (value.isPressed)
+            {
 				StartCoroutine(ChangeTarget(1));
 			}
+			
 		}
 	}
 	//-------------------------------------------INITIALISE BATTLE-------------------------------------------------------
