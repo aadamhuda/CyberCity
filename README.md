@@ -7,24 +7,24 @@ You can access the game on your browser via this [link](https://aadamhuda.github
 
 To play:
 - Use the WASD to move around the environment and your mouse to rotate
-- When approaching the enemy, press the 'F' key to engage when in attacking radius
+- Use left mouse click to cycle through narrative pop ups
+- When approaching the enemy, press the 'F' key to engage when in attacking radius, there will be a red indicator that will appear if you are in attacking radius
 - Enemies can also  ambush you, where in battle they will deal 15% more damage, so try to get them before they get you.
-  - To attack use the ability buttons to the right (all representative of different type of attacks)
-  - To heal press the "HEAL" button
-  - The "ITEM" button displays the items that can be used in battle
-  - Once an enemy is defeated you switch to the next enemy
-  - Alternatively, you can press the "CHANGE TARGET" button to switch between the enemies
-  - Also you can press the 'ESC' key to escape and leave the battle, and respawn in the spawn room, saving your progress
-- To save your current process press the 'm' key to save at a checkpoint
-- Press 'p' to access the pause menu
+  - To attack use the ability buttons to the right (all representative of different type of attacks), some attacks may consume MP
+  - To heal press the "HEAL" button, this consumes MP
+  - The "ITEM" button displays the items that can be used in battle, only one can be used a turn
+  - The "ENEMY INFO" button displays the affinities of the current player and also the current targeted enemy, once you learn a weakness or strength of an enemy, then they'll appear on this menu
+  - Use 'A' and 'D' to target different enemies in battle
+  - Also you can press the "ESCAPE" button to escape and leave the battle, and return to a the last checkpoint you saved at.
+- To save your current process press the 'O' key to open the save menu at a checkpoint, these will have a green ball above them, and have a blue triangular light near it too
+- Press 'P' to access the pause menu
+- Press 'E' to pick up items out of battle, these items can be used in battle to heal, revive or regenerate MP
+  - These items have an orange indicator above when you are in range to pick it up
 - If you pick up a clue it dissapears to show you picked it up
-  - Press the 'k' key to pick it up
-  - If you pick up three you win!
-  
-### Known Issues:
-The player may respawn at spawn sometimes after battle [Issue #105](https://github.com/aadamhuda/CyberCity/issues/105)
-  - A bug has been found where when the player object exits the battle after a win, the player sometimes does not spawn back in the location it engaged the enemy, but rather spawns at the spawn point.
-  - The trigger is currently unknown and needs to be investigated into.
+  - When in range, the clue will have a yellow indicator above to show that you are in range to pick it up
+  - Press the 'E' key to pick it up
+  - Once you pick up the four clues in the cargo level, and go to the green pad, you'll be taken to the next level (City level)
+  - If you pick up all eight clues, and go to the green pad within the city level, you win!
 
 ## Assets
 [Cinemachine](https://unity.com/unity/features/editor/art-and-design/cinemachine)
@@ -62,6 +62,14 @@ The player may respawn at spawn sometimes after battle [Issue #105](https://gith
 - [Dark Ambient](https://pixabay.com/music/ambient-dark-ambient-126122/)
 
 ## Previous releases:
+- [Version 2.2.4](https://aadamhuda.github.io/CyberCityBuilds/v2.2.4/index.html)
+- [Version 2.2.3](https://aadamhuda.github.io/CyberCityBuilds/v2.2.3/index.html)
+- [Version 2.2.2](https://aadamhuda.github.io/CyberCityBuilds/v2.2.2/index.html)
+- [Version 2.2.1](https://aadamhuda.github.io/CyberCityBuilds/v2.2.1/index.html)
+- [Version 2.2.0](https://aadamhuda.github.io/CyberCityBuilds/v2.2.0/index.html)
+- [Version 2.1.0](https://aadamhuda.github.io/CyberCityBuilds/v2.1.0/index.html)
+- [Version 2.0.0](https://aadamhuda.github.io/CyberCityBuilds/v2.0.0/index.html)
+- [Version 1.11.1](https://aadamhuda.github.io/CyberCityBuilds/v1.11.1/index.html)
 - [Version 1.11.0](https://aadamhuda.github.io/CyberCityBuilds/v1.11.0/index.html)
 - [Version 1.10.0](https://aadamhuda.github.io/CyberCityBuilds/v1.10.0/index.html)
 - [Version 1.9.0](https://aadamhuda.github.io/CyberCityBuilds/v1.9.0/index.html)
