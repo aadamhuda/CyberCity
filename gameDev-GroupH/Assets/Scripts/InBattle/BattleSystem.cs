@@ -547,6 +547,7 @@ public class BattleSystem : MonoBehaviour
 			if (currEnemy.get_frozen())
             {
 				// skip turn
+				StartCoroutine(animator.Debuff(enemyAnimator, currEnemy.transform, "ice"));
 				int number = UnityEngine.Random.Range(0, 100);
 				// 34% chance to unfreeze 
 				if (number > 66)
@@ -652,6 +653,7 @@ public class BattleSystem : MonoBehaviour
             //deal burn damage
             if (currEnemy.get_burned())
             {
+				StartCoroutine(animator.Debuff(enemyAnimator, currEnemy.transform, "fire"));
 				currEnemy.takeDamage(10f, "fire");
 				StartCoroutine(animator.EnemyDeath(currEnemy, enemyAnimator));
 			}
@@ -659,6 +661,7 @@ public class BattleSystem : MonoBehaviour
 			//deal poison damage
 			if (currEnemy.get_poisoned())
             {
+				StartCoroutine(animator.Debuff(enemyAnimator, currEnemy.transform, "grass"));
 				currEnemy.takeDamage(10f, "grass");
 
 				StartCoroutine(animator.EnemyDeath(currEnemy, enemyAnimator));
