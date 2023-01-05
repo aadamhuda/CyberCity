@@ -1317,7 +1317,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ea57a4eccaac1544b893413bd1036deb, type: 3}
   - {fileID: 8300000, guid: ea57a4eccaac1544b893413bd1036deb, type: 3}
   attackFX:
-  - {fileID: 100008, guid: 6ff1350c2a91520479532984ca642474, type: 3}
+  - {fileID: 2955623459812423943, guid: d39d4639eb86db849a475bed33b85076, type: 3}
   - {fileID: 1399491476850481373, guid: 7e691a0229efacd4cba2922df3888456, type: 3}
   - {fileID: 100008, guid: 6ff1350c2a91520479532984ca642474, type: 3}
   - {fileID: 100008, guid: 72856682d9d959141affcc5fc7ec9d96, type: 3}
