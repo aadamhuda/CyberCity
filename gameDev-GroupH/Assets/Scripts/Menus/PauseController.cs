@@ -29,9 +29,11 @@ public class PauseController : MonoBehaviour
     [SerializeField]
     SaveANDLoad SaveLoadNotification;
 
+    public SettingsMenu settings;
+
     private void Start()
     {
-
+        settings.LoadSettings();
     }
 
     void OnPause(InputValue value)

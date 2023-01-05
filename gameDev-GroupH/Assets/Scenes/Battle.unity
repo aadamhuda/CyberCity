@@ -1334,6 +1334,7 @@ MonoBehaviour:
   - {fileID: 7226583673155636401, guid: 5c8adb31ef41f2d428cb28d6511e2fd2, type: 3}
   - {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   - {fileID: 4208953458535997949, guid: 00c229b0b83b02044bcd5dc65adcac28, type: 3}
+  volume: 1
   effectSpeed: 4
 --- !u!4 &328337032
 Transform:
@@ -6477,6 +6478,7 @@ MonoBehaviour:
   LoadMenu: {fileID: 0}
   SaveMenu: {fileID: 0}
   SaveLoadNotification: {fileID: 0}
+  settings: {fileID: 0}
 --- !u!1001 &1371640989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6686,7 +6688,7 @@ AudioSource:
   m_GameObject: {fileID: 1509722464}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -397008139194417137, guid: 8de090bf1304e67449fda67eb82ec1a7, type: 2}
   m_audioClip: {fileID: 8300000, guid: db0c9f1430d43c04cb96b56e458031fa, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.036

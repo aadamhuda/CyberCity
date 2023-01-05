@@ -15094,7 +15094,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651488005}
-  m_LocalRotation: {x: 0.063319996, y: -0.000000100829645, z: 0.000000006397369, w: 0.9979933}
+  m_LocalRotation: {x: 0.063319996, y: -0.000000118001495, z: 0.000000007486877, w: 0.9979933}
   m_LocalPosition: {x: 0.0000007649711, y: 3.0741272, z: -3.7386994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17774,7 +17774,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935893423}
-  m_LocalRotation: {x: 0.06331998, y: -0.000000105122595, z: 0.0000000066697456, w: 0.9979933}
+  m_LocalRotation: {x: 0.06331998, y: -0.00000011370852, z: 0.0000000072144997, w: 0.9979933}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -27331,6 +27331,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3285945978345565530, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 320782745}
     - target: {fileID: 3656764514314308994, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -27455,6 +27459,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5989774274291476287, guid: 7094c312ee2541748977ed6b35245902, type: 3}
   m_PrefabInstance: {fileID: 1839316977}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1839316979 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3285945978345565530, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+  m_PrefabInstance: {fileID: 1839316977}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6eed3d1e173454c9580b739c0e5863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1847081893
 GameObject:
   m_ObjectHideFlags: 0
@@ -27583,6 +27598,7 @@ MonoBehaviour:
   LoadMenu: {fileID: 0}
   SaveMenu: {fileID: 0}
   SaveLoadNotification: {fileID: 0}
+  settings: {fileID: 1839316979}
 --- !u!95 &1857149340
 Animator:
   serializedVersion: 4
@@ -27677,7 +27693,7 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: dab1678a-1a89-4280-96a3-6222b9eff2f3
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

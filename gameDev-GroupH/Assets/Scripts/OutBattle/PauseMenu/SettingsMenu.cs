@@ -12,13 +12,32 @@ public class SettingsMenu : MonoBehaviour
 
 	public AudioMixer audioMixer;
 	public Slider mousesens;
-	public Slider volumeSlider;
+	public Slider masterVolumeSlider;
+	public Slider musicVolumeSlider;
+	public Slider effectsVolumeSlider;
 	public CinemachineFreeLook cam;
-	float currentVolume;
-	public void SetVolume(Slider slider)
+	float masterVolume;
+	float musicVolume;
+	float effectsVolume;
+
+	public void Update()
 	{
-		audioMixer.SetFloat("Volume", slider.value);
-		currentVolume = slider.value;
+		SaveSettings();
+	}
+    public void SetMasterVolume(Slider slider)
+	{
+		audioMixer.SetFloat("MasterVolume", slider.value);
+		masterVolume = slider.value;
+	}
+	public void SetMusicVolume(Slider slider)
+	{
+		audioMixer.SetFloat("MusicVolume", slider.value);
+		musicVolume = slider.value;
+	}
+	public void SetEffectsVolume(Slider slider)
+	{
+		audioMixer.SetFloat("EffectsVolume", slider.value);
+		effectsVolume = slider.value;
 	}
 
 	public void SetSensitivity(Slider slider)
@@ -31,10 +50,12 @@ public class SettingsMenu : MonoBehaviour
 	public void SaveSettings()
 	{
 		PlayerPrefs.SetFloat("MouseSensitivityPreference", mousesens.value);
-		PlayerPrefs.SetFloat("VolumePreference", currentVolume);
+		PlayerPrefs.SetFloat("MasterVolumePreference", masterVolume);
+		PlayerPrefs.SetFloat("MusicVolumePreference", musicVolume);
+		PlayerPrefs.SetFloat("EffectsVolumePreference", effectsVolume);
 	}
 
-	public void LoadSettings(int currentResolutionIndex)
+	public void LoadSettings()
 	{
 
 		if (PlayerPrefs.HasKey("MouseSensitivityPreference"))
@@ -42,9 +63,19 @@ public class SettingsMenu : MonoBehaviour
 		else
 			mousesens.value = 0.5f;
 
-		if (PlayerPrefs.HasKey("VolumePreference"))
-			volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
+		if (PlayerPrefs.HasKey("MasterVolumePreference"))
+			masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolumePreference");
 		else
-			volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
+			masterVolumeSlider.value = 0f;
+
+		if (PlayerPrefs.HasKey("MusicVolumePreference"))
+			musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolumePreference");
+		else
+			musicVolumeSlider.value = 0f;
+
+		if (PlayerPrefs.HasKey("EffectsVolumePreference"))
+			effectsVolumeSlider.value = PlayerPrefs.GetFloat("EffectsVolumePreference");
+		else
+			effectsVolumeSlider.value = 1f;
 	}
 }

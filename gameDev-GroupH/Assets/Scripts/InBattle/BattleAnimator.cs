@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BattleAnimator : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class BattleAnimator : MonoBehaviour
     Dictionary<string, AudioClip> hitAudioDict = new Dictionary<string, AudioClip>();
     Dictionary<string, GameObject> attackFXDict = new Dictionary<string, GameObject>();
     Dictionary<string, GameObject> hitFXDict = new Dictionary<string, GameObject>();
+    public float volume = 1f;
 
     public float effectSpeed;
     string[] attacks = new string[] { "melee", "heal", "fire", "curse", "ice", "grass", "water", "shoot" };
@@ -19,6 +21,8 @@ public class BattleAnimator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        
         for (int i = 0; i < attacks.Length; i++)
         {
             attackAudioDict.Add(attacks[i], attackAudio[i]);
@@ -26,12 +30,15 @@ public class BattleAnimator : MonoBehaviour
             attackFXDict.Add(attacks[i], attackFX[i]);
             hitFXDict.Add(attacks[i], hitFX[i]);
         }
+
+        if (PlayerPrefs.HasKey("EffectsVolumePreference"))
+            volume = PlayerPrefs.GetFloat("EffectsVolumePreference");
     }
 
     public IEnumerator Melee(Animator a, Transform player, Transform enemy)
     {
         a.CrossFade("Melee", 0.1f);
-        AudioSource.PlayClipAtPoint(attackAudioDict["melee"], player.position);
+        AudioSource.PlayClipAtPoint(attackAudioDict["melee"], player.position, volume);
         yield return new WaitForSeconds(0.5f);
         Instantiate(hitFXDict["melee"], enemy.position-(0.2f*player.forward) + (0.2f*player.up), enemy.rotation);
     }
@@ -39,7 +46,7 @@ public class BattleAnimator : MonoBehaviour
     public IEnumerator Heal(Animator a, Transform t)
     {
         a.GetComponent<Animator>().CrossFade("Heal", 0.1f);
-        AudioSource.PlayClipAtPoint(attackAudioDict["heal"], t.position);
+        AudioSource.PlayClipAtPoint(attackAudioDict["heal"], t.position, volume);
         Instantiate(attackFXDict["heal"], t.position - t.up, t.rotation);
         yield return null;
     }
@@ -63,10 +70,10 @@ public class BattleAnimator : MonoBehaviour
         GameObject shootOrb = Instantiate(attackFXDict["shoot"], t.position + t.forward + (0.2f*t.up), t.rotation);
         a.CrossFade("DrawArrow", 0.1f);
         yield return new WaitForSeconds(0.2f);
-        AudioSource.PlayClipAtPoint(attackAudioDict["shoot"], t.position);
+        AudioSource.PlayClipAtPoint(attackAudioDict["shoot"], t.position, volume);
         yield return new WaitForSeconds(0.3f);
         shootOrb.GetComponent<Rigidbody>().velocity = t.forward * 15;
-        AudioSource.PlayClipAtPoint(hitAudioDict["shoot"], enemy.position);
+        AudioSource.PlayClipAtPoint(hitAudioDict["shoot"], enemy.position, volume);
         while (shootOrb != null)
         {
             yield return null;
@@ -131,14 +138,14 @@ public class BattleAnimator : MonoBehaviour
         GameObject instantiatedAttackFX = Instantiate(attackFXDict[attack], player.position + player.forward + (0.2f * player.up), player.rotation);
         if (attack.Equals("grass"))
         {
-            AudioSource.PlayClipAtPoint(attackAudioDict[attack], player.position);
+            AudioSource.PlayClipAtPoint(attackAudioDict[attack], player.position, volume);
             yield return new WaitForSeconds(0.9f);
 
         }
         else
         {
             yield return new WaitForSeconds(0.5f);
-            AudioSource.PlayClipAtPoint(attackAudioDict[attack], player.position);
+            AudioSource.PlayClipAtPoint(attackAudioDict[attack], player.position, volume);
             yield return new WaitForSeconds(0.3f);
 
         }
@@ -147,7 +154,7 @@ public class BattleAnimator : MonoBehaviour
         {
             yield return null;
         }
-        AudioSource.PlayClipAtPoint(hitAudioDict[attack], enemy.position);
+        AudioSource.PlayClipAtPoint(hitAudioDict[attack], enemy.position, volume);
         Instantiate(hitFXDict[attack], enemy.position - (0.2f * player.forward) + (0.2f * enemy.up), enemy.rotation);
     }
 
