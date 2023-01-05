@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029084295, g: 0.029897554, b: 0.029897416, a: 1}
+  m_IndirectSpecularColor: {r: 0.029098222, g: 0.029918972, b: 0.029954132, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -850,7 +850,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128199585}
-  m_LocalRotation: {x: 0.081462495, y: -0.00000011355849, z: 0.000000009281606, w: 0.99667645}
+  m_LocalRotation: {x: 0.081462495, y: -0.00000010498389, z: 0.000000008580768, w: 0.99667645}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15094,7 +15094,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651488005}
-  m_LocalRotation: {x: 0.063319996, y: -0.000000118001495, z: 0.000000007486877, w: 0.9979933}
+  m_LocalRotation: {x: 0.063319996, y: -0.000000100829645, z: 0.000000006397369, w: 0.9979933}
   m_LocalPosition: {x: 0.0000007649711, y: 3.0741272, z: -3.7386994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15844,7 +15844,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695881047}
-  m_LocalRotation: {x: 0.045204513, y: -0.000000111672094, z: 0.000000005053248, w: 0.9989778}
+  m_LocalRotation: {x: 0.045204513, y: -0.000000107374895, z: 0.000000004858797, w: 0.9989778}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17774,7 +17774,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935893423}
-  m_LocalRotation: {x: 0.06331998, y: -0.00000011370852, z: 0.0000000072144997, w: 0.9979933}
+  m_LocalRotation: {x: 0.06331998, y: -0.000000105122595, z: 0.0000000066697456, w: 0.9979933}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26208,10 +26208,10 @@ AudioSource:
   m_GameObject: {fileID: 1742747513}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -397008139194417137, guid: 8de090bf1304e67449fda67eb82ec1a7, type: 2}
   m_audioClip: {fileID: 8300000, guid: e938bd7d446d8ab4997add1cd799368e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

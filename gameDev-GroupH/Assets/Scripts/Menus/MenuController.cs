@@ -29,6 +29,7 @@ public class MenuController : MonoBehaviour
     //clears all saved data variables
     public void initialiseGame()
     {
+        PlayerPrefs.SetFloat("EffectsVolumePreference", 1f);
         Time.timeScale = 1.0f;
         saveState.Clue.Clear();
         saveState.Death.Clear();
