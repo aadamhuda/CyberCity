@@ -59,7 +59,7 @@ public class SaveData : ScriptableObject
     [SerializeField]
     private int dialogue_index;
 
-        [SerializeField]
+    [SerializeField]
     private int save_index;
 
     public string LastSave;
