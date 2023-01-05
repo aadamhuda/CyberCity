@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private DialogueManager dialogue;
 
+    public InputAction interactionControls;
+
     //Movement
     private Vector2 moveValue;
     private bool isRunning = false;
@@ -109,6 +111,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnCollect(InputValue value)
+    {
+        if (collecterBool == true)
+        {
+            if (value.isPressed)
+            {
+                collectClue(collecter);
+            }
+        }
+    }
+
 
     public bool get_save() { return this.save; }
 
@@ -169,14 +182,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("x") && won)
         {
             SceneManager.LoadScene("Main Menu");
-        }
-
-        if (collecterBool == true)
-        {
-            if (Input.GetKey(KeyCode.E))
-            {
-                collectClue(collecter);
-            }
         }
 
         if (Physics.Raycast(gameObject.transform.position, -transform.up, 3f, safe_area))
