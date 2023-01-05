@@ -12,6 +12,8 @@ public static class SaveSystem
         // Filepath to store data
         string path = Application.persistentDataPath + "/" + FileName +  ".test";
 
+        Debug.Log(path);
+
         // Filestream
         FileStream stream = new FileStream(path, FileMode.Create);
 

@@ -90,7 +90,7 @@ public class PauseController : MonoBehaviour
     public void LoadGame(string PathName)
     {
         saveState.LoadData(PathName);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(saveState.get_current_level());
 
         Time.timeScale = 1f;
     }
