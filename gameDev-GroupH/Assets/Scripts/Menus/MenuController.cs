@@ -4,15 +4,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 
+
 public class MenuController : MonoBehaviour
 {
     public SaveData saveState;
     public Player ply;
 
+    [SerializeField]
+    private GameObject NewObject;
+
+    [SerializeField]
+    private GameObject ContinueObject;
+
     private void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        if (File.Exists(Application.persistentDataPath + "/" + saveState.LastSave + ".test"))
+            this.ContinueObject.SetActive(true);
+        else
+            this.NewObject.SetActive(true);
     }
 
     //clears all saved data variables

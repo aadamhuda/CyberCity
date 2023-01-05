@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.IO;
 
 public class PauseController : MonoBehaviour
 {
@@ -75,7 +76,6 @@ public class PauseController : MonoBehaviour
         if (player.get_save())
         {
             this.SaveLoadNotification.Activate("Saving Data", this.SaveMenu.gameObject);
-            this.SaveMenu.Disable();
             saveState.set_respawn(player.transform.position);
             saveState.set_current_level(SceneManager.GetActiveScene().name);
             saveState.SaveGame(SaveName);
@@ -83,16 +83,24 @@ public class PauseController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Cannot save in this area.");
+            this.SaveLoadNotification.Activate("Must save near checkpoint", this.SaveMenu.gameObject);
         }
     }
 
     public void LoadGame(string PathName)
     {
-        saveState.LoadData(PathName);
-        SceneManager.LoadScene(saveState.get_current_level());
+        if (File.Exists(Application.persistentDataPath + "/" + PathName + ".test"))
+        {
+            saveState.LoadData(PathName);
+            SceneManager.LoadScene(saveState.get_current_level());
 
-        Time.timeScale = 1f;
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            this.SaveLoadNotification.Activate("No data saved here", this.LoadMenu.gameObject);
+        }
+
     }
 
     public void Inventory()

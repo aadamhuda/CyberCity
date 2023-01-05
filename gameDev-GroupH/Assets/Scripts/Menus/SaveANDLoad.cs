@@ -13,6 +13,7 @@ public class SaveANDLoad : MonoBehaviour
     {
         this.obj = obj;
         this.gameObject.SetActive(true);
+        this.obj.SetActive(false);
         this.ChangeText(msg);
     }
 

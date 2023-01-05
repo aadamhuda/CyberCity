@@ -25,7 +25,6 @@ public class FirstEnemy : EnemyOutOfCombat
     {
         anim.SetBool("First", true);
 
-        Debug.Log(inSight);
 
         if (inSight) 
             if (triggered == false)

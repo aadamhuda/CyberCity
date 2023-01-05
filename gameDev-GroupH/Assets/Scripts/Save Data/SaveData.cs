@@ -187,6 +187,7 @@ public class SaveData : ScriptableObject
         this.save_index = data.save_index;
 
 
+
         this.respawn = !this.respawn;
     }
 
