@@ -9,13 +9,18 @@ public class ItemNotification : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI ItemName;
 
+    [SerializeField]
+    private Inventory inventory;
 
     private Queue<string> notifications = new Queue<string>();
     
     public void Activate(string itemanme)
     {
         this.gameObject.SetActive(true);
-        this.notifications.Enqueue(itemanme);
+        if (inventory.get_items().ContainsKey(itemanme))
+            this.notifications.Enqueue(itemanme + "+1");
+        else
+            this.notifications.Enqueue(itemanme);
     }
 
     private void Update()

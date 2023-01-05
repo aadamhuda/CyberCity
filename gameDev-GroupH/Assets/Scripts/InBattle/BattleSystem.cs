@@ -808,20 +808,21 @@ public class BattleSystem : MonoBehaviour
 
 	IEnumerator EndBattle()
 	{
-		yield return new WaitForSeconds(1f);
-		this.WinLoseScreen.SetActive(true);
+		
+		
 		if (state == BattleState.WIN)
 		{
-			this.WinLoseScreen.GetComponent<WinLoseScreen>().ActivateWin();
 			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
 			savedata.SavePlayerMP(new int[] { players[0].currentMP, players[1].currentMP, players[2].currentMP, players[3].currentMP });
 			savedata.SavePlayerHealth(new int[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
 			savedata.set_checklist(this.checklist);
-			
+			SceneManager.LoadScene(this.savedata.get_current_level());
 		}
 		else if (state == BattleState.LOSE)
 		{
+			yield return new WaitForSeconds(1f);
+			this.WinLoseScreen.SetActive(true);
 			this.WinLoseScreen.GetComponent<WinLoseScreen>().ActivateLose();
 		}
 	}

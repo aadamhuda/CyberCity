@@ -12,7 +12,7 @@ public class SwitchScene : MonoBehaviour
     private SaveData savedata;
     public void ReturnButton()
     {
-        SceneManager.LoadScene(savedata.get_current_level());
+        SceneManager.LoadScene("Main Menu");
     }
 
     private void OnTriggerEnter(Collider collision)

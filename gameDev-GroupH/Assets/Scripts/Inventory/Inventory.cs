@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     protected Sprite icon_sprite;
 
-    private Dictionary<string, Sprite> indivisual_item = new Dictionary<string, Sprite>();
 
     private void Start()
     {

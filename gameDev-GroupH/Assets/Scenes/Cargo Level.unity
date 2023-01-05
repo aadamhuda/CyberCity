@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029098216, g: 0.029918969, b: 0.029954128, a: 1}
+  m_IndirectSpecularColor: {r: 0.029084295, g: 0.029897554, b: 0.029897416, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16757,6 +16757,8 @@ GameObject:
   - component: {fileID: 1066489125}
   - component: {fileID: 1066489126}
   - component: {fileID: 1066489127}
+  - component: {fileID: 1066489129}
+  - component: {fileID: 1066489128}
   m_Layer: 0
   m_Name: Transport
   m_TagString: Untagged
@@ -16821,6 +16823,36 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3.2029927
   m_Center: {x: -0.000000007510491, y: 1.6674796, z: -1.0354904}
+--- !u!114 &1066489128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066489124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075a11ba84cc2594980839aad3481e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Distant Voice_Make sure you have collected all clues
+  - Distant Voice_You cannot go back
+--- !u!114 &1066489129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066489124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a837f821b5da5a0459b2caf469c84375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  script: {fileID: 1066489128}
+  dialogue: {fileID: 941290148}
+  sphere: {fileID: 1066489127}
 --- !u!1 &1068298141
 GameObject:
   m_ObjectHideFlags: 0
@@ -31960,6 +31992,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1870633030156257902, guid: 548070f664340a7458c17f8ba9a0c74e, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 2022012381}
     - target: {fileID: 4898629116904695226, guid: 548070f664340a7458c17f8ba9a0c74e, type: 3}
       propertyPath: m_Name
       value: ItemNotification
@@ -36265,6 +36301,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3285945978345565530, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1989033727}
     - target: {fileID: 4205004308090751950, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_Color.b
       value: 0.67058825

@@ -42,7 +42,9 @@ public class EndGame : MonoBehaviour
             {
                     if (this.savedata.ClueCount == 8)
                     {
-                    Time.timeScale = 0;
+                        Cursor.visible = true;
+                        Cursor.lockState = CursorLockMode.None;
+                        Time.timeScale = 0;
                         this.EndScreen.SetActive(true);
                     }
                     else
