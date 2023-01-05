@@ -445,8 +445,8 @@ public class BattleSystem : MonoBehaviour
 	}
 	IEnumerator PlayerTurn()
 	{
-
 		Vector3 enemyPos = enemies[target].transform.position;
+		
 		dialogue.text = "Choose an action!";
 		yield return StartCoroutine(currPlayer.RotatePlayer(0.2f, enemyPos));
 	}
@@ -731,6 +731,10 @@ public class BattleSystem : MonoBehaviour
 				EnableCamera(battleCameras[tracker]);
 				DisableAllPlayerCameras(tracker);
 				currPlayer = players[tracker];
+                if (target > enemies.Length-1)
+                {
+                    StartCoroutine(ChangeTarget(0));
+                }
 				state = BattleState.PLAYERTURN;
 				StartCoroutine(PlayerTurn());
 			}
