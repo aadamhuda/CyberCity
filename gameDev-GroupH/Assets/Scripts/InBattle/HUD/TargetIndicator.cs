@@ -21,8 +21,15 @@ public class TargetIndicator : MonoBehaviour
         if (battleSystemObj.GetComponent<BattleSystem>().enemies.Length != 0)
         {
             int target = battleSystemObj.GetComponent<BattleSystem>().target;
+
+            if (target > battleSystemObj.GetComponent<BattleSystem>().enemies.Length - 1)
+            {
+                target = 0;
+                StartCoroutine(battleSystemObj.GetComponent<BattleSystem>().ChangeTarget(0));
+            }
             Enemy currEnemy = battleSystemObj.GetComponent<BattleSystem>().enemies[target];
             enemyCollider = currEnemy.GetComponent<Collider>();
+
         }
         
 

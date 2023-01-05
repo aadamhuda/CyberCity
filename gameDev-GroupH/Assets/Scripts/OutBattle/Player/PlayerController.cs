@@ -131,8 +131,11 @@ public class PlayerController : MonoBehaviour
 
         clueCount++;
         savedata.ClueCount = clueCount;
-
-        gate.CheckGates(clueCount);
+        if (savedata.get_current_level() == savedata.get_cargo_level()) 
+        {
+            gate.CheckGates(clueCount);
+        }
+        
         collecterBool = false;
         collecter = null;
         savedata.DictBoolSwitch(savedata.Clue, other.name);

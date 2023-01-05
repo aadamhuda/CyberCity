@@ -811,54 +811,6 @@
             ]
         },
         {
-            "name": "Battle",
-            "id": "03e76650-def1-4d7b-b6e7-e42a01834131",
-            "actions": [
-                {
-                    "name": "SwitchTargetRight",
-                    "type": "Button",
-                    "id": "9d7d3791-0e43-4bf9-a34d-e81af8b6e486",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SwitchTargetLeft",
-                    "type": "Button",
-                    "id": "572fcb79-09b4-45e8-807d-4c81a1bf3d2d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "612e535b-ae76-48d9-b549-298644729e4f",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "SwitchTargetRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "39afbd01-271a-4714-9d73-212e41d9029d",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "SwitchTargetLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "Interaction",
             "id": "597bbc40-c67c-4175-b8f3-a9f86cc56de4",
             "actions": [

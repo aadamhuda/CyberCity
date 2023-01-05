@@ -445,8 +445,8 @@ public class BattleSystem : MonoBehaviour
 	}
 	IEnumerator PlayerTurn()
 	{
-		Vector3 enemyPos = enemies[target].transform.position;
 
+		Vector3 enemyPos = enemies[target].transform.position;
 		dialogue.text = "Choose an action!";
 		yield return StartCoroutine(currPlayer.RotatePlayer(0.2f, enemyPos));
 	}
@@ -506,72 +506,7 @@ public class BattleSystem : MonoBehaviour
 			string randomKey = "attacknotfound";
 			int highest = 0;
 
-			if (savedata.GetDifficulty() == 3)
-			{
-				// The FOREACH below should go in here
-			}
-			foreach (KeyValuePair<int, Dictionary<string, string>> dict in this.checklist)
-			{
-				if (players[dict.Key].downed == false)
-				{
-					if (dict.Value.Count > 0)
-					{
-						string arrWeakness = "notfound";
-						Player temp_playerTarget = players[dict.Key];
-						foreach (KeyValuePair<string, string> affinity in dict.Value)
-						{
-							Debug.Log("Hey, get in my BELLE! : " + affinity.Value);
-							if (affinity.Value == "weak")
-								if (currEnemy.GetATK().ContainsKey(affinity.Key))
-									if (affinity.Key != "curse")
-									{
-										if (currEnemy.GetATK()[affinity.Key] > highest)
-										{
-											arrWeakness = (affinity.Key);
-											/*randomKey = affinity.Key;
-											playerTarget = players[dict.Key];*/
-										}
-									}
-									else
-										if (temp_playerTarget.get_cursed() == false)
-									{
-										arrWeakness = (affinity.Key);
-										/*randomKey = affinity.Key;*/
-									}
-							if (arrWeakness != "notfound")
-								weakTo.Add(dict.Key, arrWeakness);
-						}
-					}
-				}
-
-			}
-			int checker = 0;
-			List<int> test = new List<int>(weakTo.Keys);
-			for (int ojergbn = 0; ojergbn < test.Count; i++)
-				Debug.Log("Vwat is wrong : " + test[ojergbn]);
-			Debug.Log(weakTo.Count);
-			if (weakTo.Count>0)
-            {
-				int randomMove = new List<int>(weakTo.Keys)[Random.Range(0, weakTo.Count)];
-				foreach (KeyValuePair<int, string> dict in weakTo)
-				{
-					if (playerAttacked.ContainsKey(dict.Key) == false)
-					{
-						randomKey = dict.Value;
-						playerTarget = this.players[dict.Key];
-					}
-					else
-					{
-						checker++;
-						if (checker == weakTo.Count)
-						{
-							playerTarget = this.players[randomMove];
-							randomKey = weakTo[randomMove];
-						}
-					}
-
-				}
-			}
+			
 
 			
 
@@ -812,11 +747,13 @@ public class BattleSystem : MonoBehaviour
 		
 		if (state == BattleState.WIN)
 		{
+			dialogue.text = "You won the battle!";
 			savedata.DictBoolSwitch(savedata.Death, savedata.GetEnemy());
 			savedata.OffEnemyDouble();
 			savedata.SavePlayerMP(new int[] { players[0].currentMP, players[1].currentMP, players[2].currentMP, players[3].currentMP });
 			savedata.SavePlayerHealth(new int[] { players[0].currentHP, players[1].currentHP,  players[2].currentHP, players[3].currentHP });
 			savedata.set_checklist(this.checklist);
+			yield return new WaitForSeconds(1f);
 			SceneManager.LoadScene(this.savedata.get_current_level());
 		}
 		else if (state == BattleState.LOSE)

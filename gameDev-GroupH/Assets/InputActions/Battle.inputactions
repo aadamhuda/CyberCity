@@ -1,0 +1,54 @@
+{
+    "name": "Battle",
+    "maps": [
+        {
+            "name": "Battle",
+            "id": "7a4fecb5-4f6b-4dc8-81df-c062d7857d3e",
+            "actions": [
+                {
+                    "name": "SwitchTargetRight",
+                    "type": "Button",
+                    "id": "d6db3efe-7168-40d2-a849-e434d30787a7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchTargetLeft",
+                    "type": "Button",
+                    "id": "df2912d7-7e87-44e4-b5d4-3ff31059ee90",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1276831c-9fdc-44fd-8fbb-2312e2809747",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SwitchTargetRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "689ec9f2-0749-4a6f-a723-b311d89676b7",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SwitchTargetLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
