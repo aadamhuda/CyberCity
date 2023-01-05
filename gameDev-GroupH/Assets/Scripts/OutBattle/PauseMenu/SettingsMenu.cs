@@ -22,7 +22,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void Update()
 	{
-		SaveSettings();
+		
 	}
     public void SetMasterVolume(Slider slider)
 	{

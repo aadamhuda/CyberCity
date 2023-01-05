@@ -58,6 +58,7 @@ public class PauseController : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        settings.SaveSettings();
     }
 
     public void OpenSaveMenu()
