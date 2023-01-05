@@ -21424,8 +21424,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Distant Voice_Beep Boop?
-  - Astra_UwU
+  - Nadiya_Ah, how did I land in this shithole? Full of cargo containers and shipping
+    crates, and its all ancient.
+  - Nadiya_Its a shame that the corps don't even wanna clean up this mess, this place
+    could make a good few buildings. Hmm, even a base of operations for us.
+  - Dreyar_Well, weve all landed in this area somehow, usually either the corpos
+    or any gangs use this place to dump bodies, but somehow we've all survived.
+  - Joe_no u
+  - Joe_no u
+  - Joe_no u
   - Joe_no u
 --- !u!95 &1381119169 stripped
 Animator:
@@ -21459,7 +21466,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 597bbc40-c67c-4175-b8f3-a9f86cc56de4
+  m_DefaultActionMap: Interaction
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1001 &1382532749
