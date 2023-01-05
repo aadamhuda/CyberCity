@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseController : MonoBehaviour
 {
@@ -32,10 +33,10 @@ public class PauseController : MonoBehaviour
 
     }
 
-    private void Update()
+    void OnPause(InputValue value)
     {
         //when p is pressed game is paused and the pause menu is loaded
-        if (Input.GetKey("p"))
+        if (value.isPressed)
         {
             Time.timeScale = 0; //freezes the game
             _pauseMenu.SetActive(true); //pause menu appears

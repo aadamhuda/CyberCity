@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public class EnemyOutOfCombat : EnemyCollider
 {
@@ -144,9 +145,8 @@ public class EnemyOutOfCombat : EnemyCollider
     }
 
     // Update is called once per frame
-    protected override void Update()
+    void Update()
     {
-        base.Update();
 
         if (can_move)
         {
@@ -162,7 +162,11 @@ public class EnemyOutOfCombat : EnemyCollider
                 Patrol();
         }
 
+    }
 
+    void OnAttack(InputValue value)
+    {
+        this.EngageControl(value);
     }
 
     void Patrol()

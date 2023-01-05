@@ -42,7 +42,7 @@ public class ItemPickUp : MonoBehaviour
 
     }
 
-    void OnCollect(InputValue value)
+    void OnCollectItem(InputValue value)
     {
         if (in_range == true)
         {

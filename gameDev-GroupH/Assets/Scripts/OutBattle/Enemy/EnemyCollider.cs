@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public class EnemyCollider : MonoBehaviour
 {
@@ -98,12 +99,12 @@ public class EnemyCollider : MonoBehaviour
         SceneManager.LoadScene("Battle");
     }
 
-    protected virtual void Update()
+    public void EngageControl(InputValue value)
     {
         if (inRange == true)
         {
 
-            if (Input.GetKeyDown(KeyCode.F))
+            if (value.isPressed)
             {
                 // Player engages combat
                 StartCoroutine(PlayerEngage());

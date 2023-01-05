@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SaveGame : MonoBehaviour
 {
@@ -65,5 +66,23 @@ public class SaveGame : MonoBehaviour
         }
         else
             this.indicator.SetActive(false);
+    }
+
+   void OnSave(InputValue value)
+    {
+        if (player.get_save())
+        {
+            if (value.isPressed)
+            {
+                Time.timeScale = 0; //freezes the game
+                this.PauseMenu.SetActive(true); //pause menu appears
+
+                //cursor is now visible 
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+
+                this.PauseMenu.GetComponent<PauseController>().OpenSaveMenu();
+            }
+        }
     }
 }

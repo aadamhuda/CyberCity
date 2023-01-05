@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FirstEnemy : EnemyOutOfCombat
 {
@@ -20,19 +21,10 @@ public class FirstEnemy : EnemyOutOfCombat
     }
 
 
-    protected override void Update()
+    void Update()
     {
         anim.SetBool("First", true);
 
-        if (inRange == true)
-        {
-
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                // Player engages combat
-                StartCoroutine(PlayerEngage());
-            }
-        }
         Debug.Log(inSight);
 
         if (inSight) 
@@ -43,5 +35,18 @@ public class FirstEnemy : EnemyOutOfCombat
                 triggered = true;
 
             }
+    }
+
+    void OnAttack(InputValue value)
+    {
+        if (inRange == true)
+        {
+
+            if (value.isPressed)
+            {
+                // Player engages combat
+                StartCoroutine(PlayerEngage());
+            }
+        }
     }
 }

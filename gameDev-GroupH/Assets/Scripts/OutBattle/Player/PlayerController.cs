@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollect(InputValue value)
+    void OnCollectClue(InputValue value)
     {
         if (collecterBool == true)
         {
