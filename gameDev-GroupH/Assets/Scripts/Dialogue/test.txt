@@ -8,3 +8,4 @@ Distant Voice_Use 'WASD' to move
 ------
 Distant Voice_Press 'F' to interact
 ------
+Astra_You can save here! Press 'O' to open the save menu, or access it from the pause menu

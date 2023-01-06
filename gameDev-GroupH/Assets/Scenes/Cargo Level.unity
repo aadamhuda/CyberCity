@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029084295, g: 0.029897554, b: 0.029897416, a: 1}
+  m_IndirectSpecularColor: {r: 0.029098216, g: 0.029918969, b: 0.029954128, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4037,6 +4037,69 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 937210619}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: Dreyar_Bepis really scattered around these mutagens in this area
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Joe_Maybe its the mess they want to clean in the area
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: Nadiya_Yep, seen it before, they fucked up, and big time too
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[3]
+      value: Astra_Hmm Nadiya, sounds like you've been in this situation before?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[4]
+      value: Nadiya_Oh.. Erm..
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[5]
+      value: Dreyar_Aha seems like you caught her red handed Astra
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[6]
+      value: Nadiya_Shut it! Well, back when I was with the crew, we had stolen this
+        one chip...
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[7]
+      value: Nadiya_It was worth one billion Mora, couldn't let go of such an opportunity
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[8]
+      value: Astra_Ah yes, the famous chip that holds forbidden data, I remember
+        this
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[9]
+      value: Joe_No clue how you got that, but Bepis surely screwed up
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[10]
+      value: Dreyar_Damn, well if I wasn't a soldier, I'd have love to join your
+        crew Nad
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[11]
+      value: Nadiya_Dreyar, don't call me Nad...
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[12]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[13]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6094063856069568385, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -9656,6 +9719,47 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 937210619}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: Nadiya_Astra, you should tell us more about you and Bepis
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Astra_Haha its funny you should ask
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: Joe_Why's that?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[3]
+      value: Astra_I was the CEO of Bepis, until my husband took me to a ripperDoc
+        and got my appearance changed
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[4]
+      value: Astra_And then got me killed off in the books, in a typical car accident
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[5]
+      value: Dreyar_WAIT?! You are THE CEO?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[6]
+      value: Astra_Ex-CEO, but yeah, its me.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[7]
+      value: Nadiya_Well, that's quite the bombshell
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[8]
+      value: Joe_I better get my job back once were out of this mess!?
+      objectReference: {fileID: 0}
     - target: {fileID: 6094063856069568385, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -16854,8 +16958,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Distant Voice_Make sure you have collected all clues
-  - Distant Voice_You cannot go back
+  - Distant Voice_Make sure you have collected all clues, you can't return, unless
+    you load a save
 --- !u!114 &1066489129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18394,6 +18498,48 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 937210619}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: Nadiya_Nice, a Clue!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Dreyar_No shit sherlock, no need to announce it every time!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: Astra_Typical Dreyar, absolutely mannerless
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[3]
+      value: Astra_Wonder what someone like you would have done before this
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[4]
+      value: Dreyar_Well, if you want to know so bad, I was a First Class Soldier
+        working for Bepis
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[5]
+      value: Astra_First Class? Damn, I refuse to believe that.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[6]
+      value: Dreyar_Believe what you will, I take my honour seriously so I have no
+        time for petty lies.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[7]
+      value: Astra_Some attitude you have, Mr First Class
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[8]
+      value: Joe_Uhhh, these guys will never get along will they?
+      objectReference: {fileID: 0}
     - target: {fileID: 5846703048545103874, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_Size.x
       value: 5
@@ -19578,6 +19724,50 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 937210619}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: Joe_Can someone pick up this clue? Its way too disgusting for me
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Nadiya_Sorry Sir Joe, anything else you want Sir?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: Joe_Hey! Im just an average worker.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[3]
+      value: Astra_Average... and pretty boring
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[4]
+      value: Joe_Well, I have history with Bepis too, well, they fired me...
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[5]
+      value: Dreyar_Yep, pretty average
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[6]
+      value: Joe_I find the reason pretty absurd
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[7]
+      value: Nadiya_Enlighten us Joe
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[8]
+      value: Joe_Well, my boss...
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[9]
+      value: Dreyar_Thanks Joe! I understand now, I think we should get going.
+      objectReference: {fileID: 0}
     - target: {fileID: 6094063856069568385, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -20253,8 +20443,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Astra_sorry
-  - Nadiya_me three
+  - Astra_You can save here! Press 'O' to open the save menu, or access it from the
+    pause menu
   - ------
 --- !u!114 &1294336821
 MonoBehaviour:
@@ -21522,14 +21712,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Astra_Watch out!
-  - Astra_There's enemies here
-  - Joe_We can take them out
-  - Joe_That weapon isn't for nothing
-  - Nadiya_I would prefer not to use it
-  - Joe_Do you any other alternatives
-  - Distant Voice_Press 'f' to engage with the enemy
-  - Distant Voice_A marker should appear when you're closeby
+  - Astra_Watch out! There's an enemy there!
+  - Dreyar_We can take them out, that weapon isn't for nothing
+  - Joe_Are you out of your mind?
+  - Nadiya_Well, I only use it when I have to
+  - Dreyar_Do you have any other alternatives
+  - Astra_Just be ready, they're Bepis cyberguards, they can summon demons
+  - Distant Voice_Press 'F' to engage with the enemy
+  - Distant Voice_A marker should appear above the enemy when you're close by
+  - Distant Voice_You can also press 'E' on clues and items that are located around
+    the map
+  - Distant Voice_Collecting clues can open up gates in this cargo area
+  - Distant Voice_Items aid in battle, and clues will allow you to progress the narrative
+    and complete the game
+  - Distant Voice_Good luck on your battles! Cyber City is waiting for you
   - ------
 --- !u!95 &1381119169 stripped
 Animator:
@@ -24309,8 +24505,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Astra_sorry
-  - Nadiya_me three
+  - Astra_You can save here! Press 'O' to open the save menu, or access it from the
+    pause menu
   - ------
 --- !u!114 &1541312520
 MonoBehaviour:
@@ -24965,8 +25161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Astra_sorry
-  - Nadiya_me three
+  - Astra_You can save here! Press 'O' to open the save menu, or access it from the
+    pause menu
   - ------
 --- !u!114 &1590577783
 MonoBehaviour:
@@ -35691,7 +35887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: dialogue.Array.size
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: dialogue.Array.data[0]
@@ -35712,6 +35908,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: dialogue.Array.data[3]
+      value: Astra_Yeah... well, we at Bepis use this place for the dark operations,
+        nobody enters here. Im sure we all have ended up here for some reason.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.data[4]
+      value: Joe_Wait.. How do you know this and why would you tell us this?
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.data[5]
+      value: Astra_Bepis is the reason im here, and thats all your gonna get.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.data[6]
+      value: Nadiya_Bepis... Of course it's them, its always them, anywhere and everywhere.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.data[7]
+      value: Distant Voice_Use 'WASD' to move
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.data[8]
       value: ------
       objectReference: {fileID: 0}
     m_RemovedComponents: []
