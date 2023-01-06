@@ -1,26 +1,26 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(EnemyOutOfCombat))]
+[CustomEditor(typeof(FirstEnemy))]
 public class FieldOfViewEditor : Editor
 {
     private void OnSceneGUI()
     {
-        EnemyOutOfCombat fov = (EnemyOutOfCombat)target;
+        FirstEnemy fov = (FirstEnemy)target;
         Handles.color = Color.white;
-        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.radius);
+        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.GetRadius()) ;
 
-        Vector3 viewAngle01 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.angle / 2);
-        Vector3 viewAngle02 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.angle / 2);
+        Vector3 viewAngle01 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.GetAmgle() / 2);
+        Vector3 viewAngle02 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.GetAmgle() / 2);
 
         Handles.color = Color.yellow;
-        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.radius);
-        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.radius);
+        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.GetRadius()) ;
+        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.GetRadius()) ;
 
-        if (fov.inSight)
+        if (fov.GetInRange())
         {
             Handles.color = Color.green;
-            Handles.DrawLine(fov.transform.position, fov.player.transform.position);
+            Handles.DrawLine(fov.transform.position, fov.GetPlayer().transform.position) ;
         }
     }
 

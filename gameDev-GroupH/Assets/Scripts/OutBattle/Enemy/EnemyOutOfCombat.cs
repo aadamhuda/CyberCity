@@ -11,7 +11,7 @@ public class EnemyOutOfCombat : EnemyCollider
     public float radius;
     [Range(0, 360)]
     public float angle;
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
 
     public LayerMask whatisGround, PlayerMask, WallMask;
 
@@ -56,6 +56,8 @@ public class EnemyOutOfCombat : EnemyCollider
     }
 
     public Animator GetAnim() { return this.anim; }
+
+    public NavMeshAgent GetAgent() { return this.agent; }
 
     private new void OnTriggerEnter(Collider other)
     {
