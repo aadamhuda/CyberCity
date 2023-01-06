@@ -15,7 +15,7 @@ public class SaveData : ScriptableObject
     public int[] team_health = new int[4];
     public int[] team_MP = new int[4];
     private int difficulty = 2;
-
+    public bool tutorial = false; 
     // Current Level
     [SerializeField]
     private string current_level;

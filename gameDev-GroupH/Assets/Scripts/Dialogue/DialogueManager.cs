@@ -40,14 +40,12 @@ public class DialogueManager : MonoBehaviour
     private Dictionary<string, Sprite> charac_sprites = new Dictionary<string, Sprite>();
 
     [SerializeField]
-    private ScriptDialogue startingDIalogue;
+    private ScriptDialogue startingDialogue;
+    public BattleTutorialController tutorialController;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-
-
-
         string[] temp = new string[] { "Nadiya", "Dreyar", "Astra", "Joe" , "Distant Voice" };
 
         for (int i = 0; i < 5 ; i++)
@@ -56,14 +54,18 @@ public class DialogueManager : MonoBehaviour
 
         if (this.savedata.get_dialogue_index() == 0)
         {
-            this.PauseAll();
-            this.Script(0, startingDIalogue);
+            if (!savedata.inBattle)
+            {
+                this.PauseAll();
+            }
+            this.Script(0, startingDialogue);
             this.savedata.set_dialogue_index(this.GetIndex());
         }
         else
             gameObject.SetActive(false);
 
     }
+
 
     public int GetIndex() { return this.dialogue.GetIndex(); }
 
@@ -151,7 +153,10 @@ public class DialogueManager : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-
+            if (savedata.inBattle)
+            {
+                tutorialController.DeactivateTutorial();
+            }
             if (this.paused)
             {
                 player.canMove = true;

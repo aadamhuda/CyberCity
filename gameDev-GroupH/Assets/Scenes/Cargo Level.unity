@@ -19180,6 +19180,7 @@ MonoBehaviour:
   - {fileID: 473935101}
   player: {fileID: 937210619}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
+  tutorial: 0
   can_move: 1
 --- !u!4 &1227168051
 Transform:
@@ -21410,6 +21411,7 @@ MonoBehaviour:
   plane: []
   player: {fileID: 937210619}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
+  tutorial: 0
   can_move: 1
   radius: 15
   angle: 360
@@ -35535,6 +35537,10 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1322733307160872337, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: startingDialogue
+      value: 
+      objectReference: {fileID: 1322733307833366326}
+    - target: {fileID: 1322733307160872337, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: characters.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -35645,6 +35651,17 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+--- !u!114 &1322733307833366326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+  m_PrefabInstance: {fileID: 1322733307833366325}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075a11ba84cc2594980839aad3481e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1679457111779225573
 MeshRenderer:
   m_ObjectHideFlags: 0

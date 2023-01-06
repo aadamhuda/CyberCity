@@ -19,7 +19,7 @@ public class EnemyCollider : MonoBehaviour
     protected bool inRange = false;
     public GameObject player;
     public SaveData PosSave;
-
+    public bool tutorial = false;
 
 
     public bool can_move = true;
@@ -94,8 +94,10 @@ public class EnemyCollider : MonoBehaviour
     protected void BattleScene()
     {
         // Engage combat
+        PosSave.tutorial = tutorial;
         PosSave.SaveLocation(player.transform.position);
         PosSave.set_current_level(SceneManager.GetActiveScene().name);
+        PosSave.inBattle = true;
         SceneManager.LoadScene("Battle");
     }
 
@@ -126,7 +128,7 @@ public class EnemyCollider : MonoBehaviour
         sword.gameObject.SetActive(true);
         a.CrossFade("Melee", 0.1f);
         yield return new WaitForSeconds(1f);
-
+        
         PosSave.SaveEnem(gameObject.name);
         BattleScene();
     }

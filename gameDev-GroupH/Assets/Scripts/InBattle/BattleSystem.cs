@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 //NOTE: damage and healing must be balanced to provide a challenge while not making it too difficult
 
 //enumerator to hold battle states
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE, PLAYERWAIT, SELECTINGATTACK}
+public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE, PLAYERWAIT, SELECTINGATTACK, TUTORIAL}
 
 public class BattleSystem : MonoBehaviour
 {
@@ -118,21 +118,30 @@ public class BattleSystem : MonoBehaviour
 		//allows escape button to only be interacted with in player turn
 		if (state != BattleState.PLAYERTURN)
         {
-			for (int i = 0; i < playerMoveButtons.Length; i++)
-			{
-				playerMoveButtons[i].interactable = false;
-			}
+			DectivateButtons();
 		}
         else
         {
-			for (int i = 0; i < playerMoveButtons.Length; i++)
-			{
-				playerMoveButtons[i].interactable = true;
-			}
+			ActivateButtons();
 		}
 
 	}
 	//-------------------------------------------UPDATE FUNCTIONS-------------------------------------------------------
+	public void ActivateButtons()
+    {
+		for (int i = 0; i < playerMoveButtons.Length; i++)
+		{
+			playerMoveButtons[i].interactable = true;
+		}
+	}
+	public void DectivateButtons()
+	{
+		for (int i = 0; i < playerMoveButtons.Length; i++)
+		{
+			playerMoveButtons[i].interactable = false;
+		}
+	}
+
 	public void OnSwitchTargetLeft(InputValue value)
 	{
 		if (state == BattleState.PLAYERTURN)
@@ -242,6 +251,10 @@ public class BattleSystem : MonoBehaviour
 
 		yield return new WaitForSeconds(1f);
         state = BattleState.PLAYERTURN;
+        if (savedata.tutorial)
+        {
+			state = BattleState.TUTORIAL;
+        }
         EnableCamera(battleCameras[0]);
         DisableCamera(mainCamera);
         StartCoroutine(PlayerTurn());
