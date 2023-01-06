@@ -58,7 +58,7 @@ public class DialogueManager : MonoBehaviour
             {
                 this.PauseAll();
             }
-            this.Script(0, startingDialogue);
+            this.Script(this.savedata.get_dialogue_index(), startingDialogue);
             this.savedata.set_dialogue_index(this.GetIndex());
         }
         else

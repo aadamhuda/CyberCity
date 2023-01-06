@@ -78,9 +78,9 @@ public class SaveData : ScriptableObject
 
     public Vector3 get_player_location() { return this.player_location; }
 
-    public bool getRespawn() { return respawn; }
+    public bool getRespawn() { return this.respawn; }
 
-    public Vector3 get_respawn_location() { return respawn_location; }
+    public Vector3 get_respawn_location() { return this.respawn_location; }
 
     public string GetEnemy() { return enem; }
 
@@ -188,7 +188,7 @@ public class SaveData : ScriptableObject
 
 
 
-        this.respawn = !this.respawn;
+        this.respawn = true;
     }
 
 }

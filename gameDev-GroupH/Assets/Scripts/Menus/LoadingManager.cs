@@ -15,7 +15,7 @@ public class LoadingManager : MonoBehaviour
         //gets the current level, and then starts loading procedures
         targetScene = saveState.get_current_level();
         PickScreen();
-        StartCoroutine(LoadScene());
+        LoadScene();
     }
     //picks either cargo or city screen dependent on the level to be loaded
     void PickScreen()
@@ -33,9 +33,9 @@ public class LoadingManager : MonoBehaviour
     }
     
     //loads the scene with short wait time
-    IEnumerator LoadScene()
+    void LoadScene()
     {
-        yield return new WaitForSeconds(3f);
+        Debug.Log(this.targetScene);
         SceneManager.LoadScene(targetScene);
     }
 }

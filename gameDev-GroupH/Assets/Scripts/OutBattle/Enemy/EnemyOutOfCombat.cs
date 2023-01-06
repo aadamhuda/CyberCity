@@ -30,7 +30,7 @@ public class EnemyOutOfCombat : EnemyCollider
 
     
     [SerializeField]
-    private GameObject canvas;
+    protected GameObject canvas;
 
     [SerializeField]
     protected Animator anim;

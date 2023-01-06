@@ -61,21 +61,15 @@ public class PlayerController : MonoBehaviour
     bool collecterBool = false;
     Collider collecter;
 
+    public RepositionCharacter Reposition;
+
     [SerializeField]
     Gates gate;
 
     void Start()
     {
-        var move = gameObject.GetComponent<Transform>();
 
-        if (savedata.getRespawn())
-        {
-            move.position = savedata.get_respawn_location();
-            savedata.ChangeRespawn();
-        }
 
-        else
-            move.position = savedata.get_player_location();
 
         savedata.inBattle = false;
         canMove = true;
@@ -88,7 +82,19 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         winText.text = "";
         clueCount = savedata.ClueCount;
+        
+    }
 
+    private void Awake()
+    {
+        if (savedata.getRespawn() == true)
+        {
+            this.Reposition.Change();
+         
+        }
+
+        else
+            this.gameObject.transform.position = savedata.get_player_location();
     }
 
     // Input action controls
@@ -168,29 +174,35 @@ public class PlayerController : MonoBehaviour
     // Player movement
     void Update()
     {
+       
+
         checkGrounded();
         if (canMove)
         {
             Move();
             Gravity();
+            
+
         }
         else
         {
-            controller.Move(new Vector3(0f, 0f, 0f));
+           
+            controller.Move(this.gameObject.transform.position);
             animator.SetFloat("Speed", 0, 0.2f, Time.deltaTime);
         }
 
-
-        //if user has won and they can press x to quit
-        if (Input.GetKey("x") && won)
-        {
-            SceneManager.LoadScene("Main Menu");
-        }
 
         if (Physics.Raycast(gameObject.transform.position, -transform.up, 3f, safe_area))
             save = true;
         else
             save = false;
+
+        if (this.savedata.getRespawn())
+        {
+            this.Reposition.Change();
+            savedata.ChangeRespawn();
+        }
+
     }
     void checkGrounded()
     {
