@@ -164,21 +164,6 @@ public class BattleSystem : MonoBehaviour
 		}
 	}
 	//-------------------------------------------INITIALISE BATTLE-------------------------------------------------------
-	//spawns hud in placeholder regions
-	void InitialiseHUD()
-    {
-		enemiesHUD = new UnitHUD[3];
-
-		for (int i = 0; i < enemyHudLocations.Length; i++)
-		{ 
-			GameObject enemyHudObj = Instantiate(hudPrefab, enemyHudLocations[i]);
-			enemiesHUD[i] = enemyHudObj.GetComponent<UnitHUD>();
-		}
-
-		for (int i = 0; i < playerHUD.Length; i++)
-			playerHUD[i].InitialiseSlider(players[i]);
-
-	}
 
 	public Player[] InstantiatePlayers()
     {
@@ -190,6 +175,7 @@ public class BattleSystem : MonoBehaviour
 			allPlayers[i] = playerObj.GetComponent<Player>();
 			allPlayers[i].setHealth(savedata.team_health[i]);
 			allPlayers[i].SetMP(savedata.team_MP[i]);
+			Debug.Log(allPlayers[i].maxMP);
 			if (allPlayers[i].currentHP == 0)
 				allPlayers[i].downed = true;
 			else
@@ -229,8 +215,24 @@ public class BattleSystem : MonoBehaviour
 		}
     }
 
-    //initialises battle - spawns player and enemies, selects first target and then starts player turn
-    IEnumerator InitialiseBattle()
+	//spawns hud in placeholder regions
+	void InitialiseHUD()
+	{
+		enemiesHUD = new UnitHUD[3];
+
+		for (int i = 0; i < enemyHudLocations.Length; i++)
+		{
+			GameObject enemyHudObj = Instantiate(hudPrefab, enemyHudLocations[i]);
+			enemiesHUD[i] = enemyHudObj.GetComponent<UnitHUD>();
+		}
+
+		for (int i = 0; i < playerHUD.Length; i++)
+			playerHUD[i].InitialiseSlider(players[i]);
+
+	}
+
+	//initialises battle - spawns player and enemies, selects first target and then starts player turn
+	IEnumerator InitialiseBattle()
     {
         players = InstantiatePlayers();
 
@@ -240,11 +242,12 @@ public class BattleSystem : MonoBehaviour
 
         StartCoroutine(ChangeTarget(0));
 
-        InitialiseHUD();
+        
 
 
 
 		InitialiseMemory();
+		InitialiseHUD();
 
 		// Loading effects and models for smooth playback
 		Destroy(Instantiate(startRender), 1.2f);
@@ -328,7 +331,7 @@ public class BattleSystem : MonoBehaviour
 		players[tracker].RemoveAilments();
 
 		
-		if (players[target].get_frozen())
+		if (players[tracker].get_frozen())
         {
 			int number = UnityEngine.Random.Range(0, 100);
 			// 34% chance to unfreeze 

@@ -7,10 +7,19 @@ public class Enemy : BattleUnit
 {
 	// function to enable - used on death of enemy sprite
 	[SerializeField]
+	private SaveData saveData;
 
     private void Start()
     {
-        currentHP = maxHP;
+        if (saveData.GetDifficulty() == 1)
+        {
+			maxHP = maxHP - 25;
+        }
+		else if (saveData.GetDifficulty() == 3)
+		{
+			maxHP = maxHP + 25;
+		}
+		currentHP = maxHP;
 
 		float norm = 1f;
 		float weak = 1.25f;

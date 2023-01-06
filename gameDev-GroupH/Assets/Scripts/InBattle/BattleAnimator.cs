@@ -39,7 +39,7 @@ public class BattleAnimator : MonoBehaviour
 
 
         if (PlayerPrefs.HasKey("EffectsVolumePreference"))
-            volume = PlayerPrefs.GetFloat("EffectsVolumePreference");
+            volume = (PlayerPrefs.GetFloat("EffectsVolumePreference")/80) + 1;
     }
 
     public IEnumerator Melee(Animator a, Transform player, Transform enemy)
