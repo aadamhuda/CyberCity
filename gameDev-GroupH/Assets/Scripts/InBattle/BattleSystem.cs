@@ -224,6 +224,7 @@ public class BattleSystem : MonoBehaviour
 		{
 			GameObject enemyHudObj = Instantiate(hudPrefab, enemyHudLocations[i]);
 			enemiesHUD[i] = enemyHudObj.GetComponent<UnitHUD>();
+			enemiesHUD[i].InitialiseSlider(enemies[i]);
 		}
 
 		for (int i = 0; i < playerHUD.Length; i++)
