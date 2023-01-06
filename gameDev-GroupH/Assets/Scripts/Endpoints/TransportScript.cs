@@ -15,6 +15,7 @@ public class TransportScript : MonoBehaviour
 
     private bool triggered = false;
 
+    // Trigger dialogue when player transfer to next screen
     private void OnTriggerEnter(Collider other)
     {
         if (triggered == false)

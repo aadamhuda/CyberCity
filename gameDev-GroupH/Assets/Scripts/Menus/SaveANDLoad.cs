@@ -9,6 +9,8 @@ public class SaveANDLoad : MonoBehaviour
     private TextMeshProUGUI message;
     public void ChangeText(string msg) { this.message.text = msg; }
     private GameObject obj;
+
+    // Object used to display message about save/load
     public void Activate(string msg, GameObject obj) 
     {
         this.obj = obj;
@@ -17,6 +19,7 @@ public class SaveANDLoad : MonoBehaviour
         this.ChangeText(msg);
     }
 
+    // Disable object on player click and re-enable object which was disabled
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))

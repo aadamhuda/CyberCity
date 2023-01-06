@@ -16,12 +16,14 @@ public class EndGame : MonoBehaviour
 
     [SerializeField]
     private GameObject ReturnScreen;
-
+    
+    // Button to return to Main Menu
     public void ReturnButton()
     {
         SceneManager.LoadScene("Main Menu");
     }
 
+    // Check if player is on pad
     private void OnTriggerEnter(Collider collision)
     {
         this.cybercity = true;
@@ -40,6 +42,7 @@ public class EndGame : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+                // Check which screen to activate depending on the amount of clues picked up
                     if (this.savedata.ClueCount == 8)
                     {
                         Cursor.visible = true;

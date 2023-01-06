@@ -26,12 +26,12 @@ public class ItemPickUp : MonoBehaviour
 
     private void OnTriggerExit(Collider Other)
     {
-        //Debug.Log("a");
         in_range = false;
     }
 
     private void Update()
     {
+        // If user is in range display inidcator
         if (in_range == true)
         {
             this.indicator.SetActive(true);
@@ -46,7 +46,9 @@ public class ItemPickUp : MonoBehaviour
     {
         if (in_range == true)
         {
-
+            // Only activate in range
+            // Add items to player invetory and removes itself
+            // Decreases amount of items that spawn on the map
             if (value.isPressed)
             {
                 this.PickUp.Activate(this.itemName);

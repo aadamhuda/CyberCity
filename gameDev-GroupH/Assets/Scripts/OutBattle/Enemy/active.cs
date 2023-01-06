@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class active : MonoBehaviour
 {
+    // Set Active and deactive canvas
     private void Start()
     {
         gameObject.SetActive(false);

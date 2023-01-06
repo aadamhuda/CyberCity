@@ -17,6 +17,8 @@ public class Gates : MonoBehaviour
 
     private void Start()
     {
+        // Chceck if the player already met requirements for gate to open
+        // If so, then the agte must be open
         foreach (GameObject gate in this.gates)
         {
             if (savedata.ClueCount >= gate.GetComponent<Gate_Info>().get_condition())
@@ -29,6 +31,7 @@ public class Gates : MonoBehaviour
     }
     public void CheckGates(int count)
     {
+        // If enought clues are colleted the gate will open
         foreach (GameObject gate in this.gates)
         {
             if (count >= gate.GetComponent<Gate_Info>().get_condition())

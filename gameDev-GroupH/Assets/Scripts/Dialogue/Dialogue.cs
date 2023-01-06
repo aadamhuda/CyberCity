@@ -29,13 +29,15 @@ public class Dialogue
 
     public void ReadFromFile()
     {
-
+        // Index -- from this point in the file
         int begginning = this.index;
         int count = FindLength();
 
+        // Amount of lines to read
         string[][] temp = new string[count - begginning][];
         int counter = 0;
 
+        // Split into --> ( charcters , text )
         for (int i = begginning; i < count; i++)
         {
             temp[counter] = this.sentences[i].Split(char.Parse("_"));
@@ -51,12 +53,12 @@ public class Dialogue
     {
         int count = this.index;
 
+        // Split text whenever there is '------'
         for (int i = this.index; i < this.sentences.Length; i++)
         {
             count++;
             if (this.sentences[i] == "------")
             {
-                Debug.Log("Why Sally sell seashells on the seashore ; " + i);
                 this.index = i+1;
                 return count-1;
             }

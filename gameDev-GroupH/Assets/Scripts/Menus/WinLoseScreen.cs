@@ -14,7 +14,7 @@ public class WinLoseScreen : MonoBehaviour
     [SerializeField]
     private GameObject LoseScreen;
 
-
+    // Actiavtes win or lose screen
     public void ActivateWin()
     {
         this.WinScreen.SetActive(true);
@@ -25,17 +25,20 @@ public class WinLoseScreen : MonoBehaviour
         this.LoseScreen.SetActive(true);
     }
 
+    // Buttons to return to menu
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
     }
 
+    // buttons to return last save
     public void ReturnToLastSave()
     {
         this.savedata.LoadData(this.savedata.LastSave);
         SceneManager.LoadScene(this.savedata.get_current_level());
     }
 
+    // Return to last saved location
     public void ReturnToLastLocation()
     {
         SceneManager.LoadScene(this.savedata.get_current_level());
