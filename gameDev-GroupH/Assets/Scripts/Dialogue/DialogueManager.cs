@@ -49,7 +49,7 @@ public class DialogueManager : MonoBehaviour
         string[] temp = new string[] { "Nadiya", "Dreyar", "Astra", "Joe" , "Distant Voice" };
 
         for (int i = 0; i < 5 ; i++)
-            charac_sprites.Add(temp[i], characters[i]);
+                charac_sprites.Add(temp[i], characters[i]);
 
 
         if (this.savedata.get_dialogue_index() == 0)
@@ -58,7 +58,7 @@ public class DialogueManager : MonoBehaviour
             {
                 this.PauseAll();
             }
-            this.Script(0, startingDialogue);
+            this.Script(this.savedata.get_dialogue_index(), startingDialogue);
             this.savedata.set_dialogue_index(this.GetIndex());
         }
         else

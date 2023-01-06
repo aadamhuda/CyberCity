@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029098216, g: 0.029918969, b: 0.029954128, a: 1}
+  m_IndirectSpecularColor: {r: 0.029084295, g: 0.029897554, b: 0.029897416, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -839,7 +839,7 @@ RectTransform:
   - {fileID: 1471363039}
   - {fileID: 918441130}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4608,7 +4608,7 @@ Transform:
   - {fileID: 987798605}
   - {fileID: 1066489125}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &244620444
 MonoBehaviour:
@@ -15136,7 +15136,7 @@ MonoBehaviour:
   gravityValue: -15
   dialogue: {fileID: 941290148}
   interactionControls:
-    m_Name: 
+    m_Name: Interaction Controls
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 0c38f365-81e9-4635-a4b4-02693b375c40
@@ -15157,6 +15157,7 @@ MonoBehaviour:
   clueCount: 0
   savedata: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   gate: {fileID: 244620444}
+  repostion: {fileID: 1243111544}
 --- !u!23 &937210625
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15224,7 +15225,7 @@ Transform:
   - {fileID: 2022012380}
   - {fileID: 532958011}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &937210628
 MonoBehaviour:
@@ -15292,6 +15293,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d51df139d4e50794993d2130348b08d9, type: 3}
   - {fileID: 8300000, guid: 39ca7e88dc461e8458d02a2284708c0d, type: 3}
   - {fileID: 8300000, guid: d772d1b334ef5f148bf1308d5fb3e4b0, type: 3}
+  effectsVol: 1
 --- !u!82 &937210630
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16565,7 +16567,7 @@ Transform:
   - {fileID: 2091568684}
   - {fileID: 240983908}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1056928418
 GameObject:
@@ -18500,7 +18502,7 @@ Transform:
   - {fileID: 92824645}
   - {fileID: 543505205}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1158190375
 PrefabInstance:
@@ -19200,7 +19202,54 @@ Transform:
   m_Children:
   - {fileID: 472123588}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1243111543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1243111545}
+  - component: {fileID: 1243111544}
+  m_Layer: 0
+  m_Name: RepositionCharacter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1243111544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243111543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0b4d2308790f548a6296ab4c719a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Charcter: {fileID: 937210619}
+  controller: {fileID: 937210623}
+  savedata: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
+--- !u!4 &1243111545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243111543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 825.3442, y: 183.85022, z: -967.62305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1250252563
 PrefabInstance:
@@ -20207,7 +20256,6 @@ MonoBehaviour:
   - Astra_sorry
   - Nadiya_me three
   - ------
-  - Distant Voice_You can save here
 --- !u!114 &1294336821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21419,16 +21467,16 @@ MonoBehaviour:
   can_move: 1
   radius: 15
   angle: 360
-  agent: {fileID: 1381119167}
+  agent: {fileID: 0}
   whatisGround:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
   WallMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   PatrolPoints: []
@@ -21474,16 +21522,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Nadiya_Ah, how did I land in this shithole? Full of cargo containers and shipping
-    crates, and its all ancient.
-  - Nadiya_Its a shame that the corps don't even wanna clean up this mess, this place
-    could make a good few buildings. Hmm, even a base of operations for us.
-  - Dreyar_Well, weve all landed in this area somehow, usually either the corpos
-    or any gangs use this place to dump bodies, but somehow we've all survived.
-  - Joe_no u
-  - Joe_no u
-  - Joe_no u
-  - Joe_no u
+  - Astra_Watch out!
+  - Astra_There's enemies here
+  - Joe_We can take them out
+  - Joe_That weapon isn't for nothing
+  - Nadiya_I would prefer not to use it
+  - Joe_Do you any other alternatives
+  - Distant Voice_Press 'f' to engage with the enemy
+  - Distant Voice_A marker should appear when you're closeby
+  - ------
 --- !u!95 &1381119169 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 50d22449a77225442845213a2bbd6df8, type: 3}
@@ -24265,7 +24312,6 @@ MonoBehaviour:
   - Astra_sorry
   - Nadiya_me three
   - ------
-  - Distant Voice_You can save here
 --- !u!114 &1541312520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24293,7 +24339,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 597bbc40-c67c-4175-b8f3-a9f86cc56de4
+  m_DefaultActionMap: Interaction
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &1557473209
@@ -24922,7 +24968,6 @@ MonoBehaviour:
   - Astra_sorry
   - Nadiya_me three
   - ------
-  - Distant Voice_You can save here
 --- !u!114 &1590577783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24950,7 +24995,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 597bbc40-c67c-4175-b8f3-a9f86cc56de4
+  m_DefaultActionMap: Interaction
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1001 &1606309551
@@ -26824,7 +26869,7 @@ Transform:
   - {fileID: 1558903941}
   - {fileID: 836096115}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1710337216
 PrefabInstance:
@@ -28689,7 +28734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774989697}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 52.900017, y: 2.419, z: -48.08}
+  m_LocalPosition: {x: 0, y: 2.419, z: 0}
   m_LocalScale: {x: 0.09999997, y: 0.099999994, z: 0.09999997}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31968,7 +32013,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 620843753318182001, guid: 548070f664340a7458c17f8ba9a0c74e, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 620843753318182001, guid: 548070f664340a7458c17f8ba9a0c74e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33235,7 +33280,7 @@ Transform:
   - {fileID: 753097498}
   - {fileID: 527101871}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1989033729
 MonoBehaviour:
@@ -34872,7 +34917,7 @@ Transform:
   m_Children:
   - {fileID: 1793759987}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2119464529
 PrefabInstance:
@@ -35562,7 +35607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1322733307160872342, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1322733307160872342, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: m_AnchorMax.x
@@ -35646,10 +35691,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: dialogue.Array.size
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: Nadiya_Ah, how did I land in this shithole? Full of cargo containers
+        and shipping crates, and its all ancient.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Nadiya_Its a shame that the corps don't even wanna clean up this mess,
+        this place could make a good few buildings. Hmm, even a base of operations
+        for us.
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: dialogue.Array.data[2]
+      value: Dreyar_Well, weve all landed in this area somehow, usually either the
+        corpos or any gangs use this place to dump bodies, but somehow we've all
+        survived.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.data[3]
       value: ------
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -36376,7 +36438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5989774274291476420, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5989774274291476420, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_AnchorMax.x

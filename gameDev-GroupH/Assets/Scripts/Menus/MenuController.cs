@@ -44,6 +44,7 @@ public class MenuController : MonoBehaviour
         saveState.SavePlayerMP(new int[] { 30, 30, 30, 30 });
         saveState.set_dialogue_index(0);
         saveState.set_save_index(0);
+        saveState.ChangeRespawn();
         saveState.SavePlayerHealth(new int[] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
     }
 

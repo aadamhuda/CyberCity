@@ -55,6 +55,8 @@ public class EnemyOutOfCombat : EnemyCollider
             StartCoroutine(FOVRoutine());
     }
 
+    public Animator GetAnim() { return this.anim; }
+
     private new void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
@@ -106,7 +108,7 @@ public class EnemyOutOfCombat : EnemyCollider
     void ChasePlayer()
     {
         anim.SetBool("isRunning", true);
-        agent.speed = 10;
+        agent.speed = 4 + this.PosSave.GetDifficulty() * 2 ;
         agent.SetDestination(player.transform.position);
     }
 
@@ -141,8 +143,10 @@ public class EnemyOutOfCombat : EnemyCollider
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        radius = 15;
-        angle = 0;
+
+        radius = 9 + this.PosSave.GetDifficulty() * 3;
+        angle = 60 + this.PosSave.GetDifficulty() * 30;
+
     }
 
     // Update is called once per frame

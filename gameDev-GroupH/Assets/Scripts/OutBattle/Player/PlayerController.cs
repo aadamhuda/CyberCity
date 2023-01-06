@@ -64,13 +64,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Gates gate;
 
+    public RepositionCharacter repostion;
+
     void Start()
     {
         var move = gameObject.GetComponent<Transform>();
 
         if (savedata.getRespawn())
         {
-            move.position = savedata.get_respawn_location();
+            this.repostion.Change();
             savedata.ChangeRespawn();
         }
 

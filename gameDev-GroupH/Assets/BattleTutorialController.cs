@@ -17,19 +17,16 @@ public class BattleTutorialController : MonoBehaviour
         isTutorial = saveData.tutorial;
         if (isTutorial)
         {
-            ActivateTutorial();
+            this.dialogue.Start();
+            this.narrativeScreen.SetActive(true);
+            this.dialogue.Script(0, script);
         }
-        else{
+        else
+        {
             Destroy(narrativeScreen);
         }
     }
 
-    void ActivateTutorial()
-    {
-        
-        dialogue.Start();
-        this.dialogue.Script(0, script);
-    }
     public void DeactivateTutorial()
     {
         battleSystem.state = BattleState.PLAYERTURN;

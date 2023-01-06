@@ -70,13 +70,16 @@ public class EnemyCollider : MonoBehaviour
     {
         for (int i = 1; i < gameObject.transform.childCount; i++)
         {
+            gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().agent.SetDestination(this.gameObject.transform.GetChild(i).transform.position);
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().can_move = false;
+            gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().GetAnim().SetBool("First" , true);
         }
     }
     public void ResumeAll()
     {
         for (int i = 1; i < gameObject.transform.childCount; i++)
         {
+            gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().GetAnim().SetBool("First", false);
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().can_move = true;
         }
     }
