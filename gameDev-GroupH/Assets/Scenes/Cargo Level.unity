@@ -484,7 +484,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28301443}
-  m_LocalRotation: {x: 0.07924446, y: -1e-45, z: -0, w: 0.9968552}
+  m_LocalRotation: {x: 0.07924446, y: -0, z: -0, w: 0.9968552}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13722,7 +13722,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753097497}
-  m_LocalRotation: {x: 0.06109906, y: -1e-45, z: -0, w: 0.9981317}
+  m_LocalRotation: {x: 0.06109906, y: 1e-45, z: -0, w: 0.9981317}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -23120,6 +23120,7 @@ GameObject:
   - component: {fileID: 1381119170}
   - component: {fileID: 1381119168}
   - component: {fileID: 1381119166}
+  - component: {fileID: 1381119171}
   m_Layer: 0
   m_Name: CyberDroids
   m_TagString: Untagged
@@ -23233,6 +23234,19 @@ MonoBehaviour:
   m_DefaultActionMap: Interaction
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!135 &1381119171
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381119165}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1382532749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35700,7 +35714,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005210347}
-  m_LocalRotation: {x: 0.061099056, y: -0.0000000037183308, z: 2.2761175e-10, w: 0.9981317}
+  m_LocalRotation: {x: 0.061099056, y: 0.0000000037183308, z: -2.2761175e-10, w: 0.9981317}
   m_LocalPosition: {x: 11.32, y: 3.5, z: 18.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
