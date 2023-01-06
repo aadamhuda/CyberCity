@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029084295, g: 0.029897554, b: 0.029897416, a: 1}
+  m_IndirectSpecularColor: {r: 0.029098222, g: 0.029918972, b: 0.029954132, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -150,6 +150,56 @@ PrefabInstance:
     - target: {fileID: -9002245490305071754, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: rotationSpeed
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: Nadiya_Even CyberCity is scattered with these muatgens
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Joe_What can you expect.. CyberCity is ran by Bepis, the most corrupt
+        of them all
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: Astra_We had our vision, we had to stick to it
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[3]
+      value: Dreyar_You only cared about power, look where that got you
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[4]
+      value: Astra_...
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[5]
+      value: Nadiya_Well, maybe shes changed Dreyar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[6]
+      value: Joe_Maybe she has, or maybe she could just be using us to get her power
+        back
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[7]
+      value: Dreyar_I have no trust in you Astra, none at all
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[8]
+      value: Nadiya_Take it easy guys, shes here helping us
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[9]
+      value: Nadiya_Were all helping each other in this mess
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[10]
+      value: Dreyar_Hmph..
       objectReference: {fileID: 0}
     - target: {fileID: 5846703048545103874, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_Size.x
@@ -357,6 +407,62 @@ PrefabInstance:
     - target: {fileID: -9002245490305071754, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: rotationSpeed
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: Dreyar_What are we even in CyberCity for?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Joe_I have no clue..
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: Astra_My husband was no less than I was, these mutagens are here that
+        allow controlling of the public
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[3]
+      value: Astra_They've been scattered around here to test the controlling mechanism
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[4]
+      value: Dreyar_And who knows if your still in the plan?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[5]
+      value: Nadiya_Well she wouldn't be retrieving them if she was.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[6]
+      value: Astra_You guys being around me keeps you immune, others however...
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[7]
+      value: Astra_Their brains get controlled, the mutagen spreads, and its like
+        a drug.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[8]
+      value: Joe_How horrific... who in their right minds..
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[9]
+      value: Astra_This is something I was a part of, and its something i'll fix
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[10]
+      value: Astra_But I really need you guys to help me, our capabilities as a team
+        are something
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[11]
+      value: Astra_But I really need you guys to help me, our capabilities as a team
+        are something
       objectReference: {fileID: 0}
     - target: {fileID: 6094063856069568385, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_RootOrder
@@ -850,7 +956,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128199585}
-  m_LocalRotation: {x: 0.081462495, y: -0.00000010498389, z: 0.000000008580768, w: 0.99667645}
+  m_LocalRotation: {x: 0.081462495, y: -0.00000011355849, z: 0.000000009281606, w: 0.99667645}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1230,6 +1336,51 @@ PrefabInstance:
     - target: {fileID: -9002245490305071754, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: rotationSpeed
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: Dreyar_So Astra, say we collect all these mutagens, then what?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Astra_Then, at least these areas won't be affected
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: 'Nadiya_And im sure Bepis won''t be able to rest once they''ve found
+        out '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[3]
+      value: Joe_Found out what?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[4]
+      value: Nadiya_That we've destroyed all their mutagens
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[5]
+      value: Dreyar_And then we take down Bepis?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[6]
+      value: Astra_Not so fast Dreyar, its just a small step in Bepis' downfall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[7]
+      value: 'Nadiya_Hell yeah, I wanna see them burn. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[8]
+      value: Joe_Yeah, i've learnt a lot on this journey so far
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[9]
+      value: Astra_Glad to hear it, I wont be able to do this without you guys
       objectReference: {fileID: 0}
     - target: {fileID: 6094063856069568385, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_RootOrder
@@ -15069,6 +15220,141 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617989430}
   m_Mesh: {fileID: 8733429697405204941, guid: 5e2e5e078900c43958599358c4b99756, type: 3}
+--- !u!1 &625281168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 625281169}
+  - component: {fileID: 625281171}
+  - component: {fileID: 625281170}
+  m_Layer: 5
+  m_Name: Text (TMP) (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &625281169
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625281168}
+  m_LocalRotation: {x: -0, y: -0, z: 0.13592494, w: 0.99071914}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 781702671}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.624}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -552, y: 179}
+  m_SizeDelta: {x: 527.7757, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &625281170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625281168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Thanks for completing CyberCity!
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 632642880acb86d4ea66ecf815ab7c74, type: 2}
+  m_sharedMaterial: {fileID: -3550828819898138213, guid: 632642880acb86d4ea66ecf815ab7c74, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4292660322
+  m_fontColor: {r: 0.38431376, g: 0.8000001, b: 0.86274517, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 110
+  m_fontSizeBase: 110
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: -1301.6405, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &625281171
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625281168}
+  m_CullTransparentMesh: 1
 --- !u!1 &651488005
 GameObject:
   m_ObjectHideFlags: 0
@@ -15094,7 +15380,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651488005}
-  m_LocalRotation: {x: 0.063319996, y: -0.000000100829645, z: 0.000000006397369, w: 0.9979933}
+  m_LocalRotation: {x: 0.063319996, y: -0.000000118001495, z: 0.000000007486877, w: 0.9979933}
   m_LocalPosition: {x: 0.0000007649711, y: 3.0741272, z: -3.7386994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16374,6 +16660,8 @@ RectTransform:
   m_Children:
   - {fileID: 2077934792}
   - {fileID: 1946974902}
+  - {fileID: 625281169}
+  - {fileID: 1224129505}
   m_Father: {fileID: 882265375}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16728,10 +17016,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Astra_sorry
-  - Nadiya_me three
-  - ------
-  - Distant Voice_You can save here
+  - Astra_You can save here! Press 'O' to open the save menu, or access it from the
+    pause menuAstra_sorry
 --- !u!114 &801530587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17821,7 +18107,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935893423}
-  m_LocalRotation: {x: 0.06331998, y: -0.000000105122595, z: 0.0000000066697456, w: 0.9979933}
+  m_LocalRotation: {x: 0.06331998, y: -0.00000011370852, z: 0.0000000072144997, w: 0.9979933}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22255,6 +22541,141 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 65e6cd4d0a02a4d3782e0d465b94f43b, type: 3}
   m_PrefabInstance: {fileID: 1223143867}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1224129504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1224129505}
+  - component: {fileID: 1224129507}
+  - component: {fileID: 1224129506}
+  m_Layer: 5
+  m_Name: Text (TMP) (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1224129505
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224129504}
+  m_LocalRotation: {x: -0, y: -0, z: 0.13592494, w: 0.99071914}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 781702671}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.624}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -545, y: 177}
+  m_SizeDelta: {x: 527.7757, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1224129506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224129504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Thanks for completing CyberCity!
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 632642880acb86d4ea66ecf815ab7c74, type: 2}
+  m_sharedMaterial: {fileID: -3550828819898138213, guid: 632642880acb86d4ea66ecf815ab7c74, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4286053109
+  m_fontColor: {r: 0.9607844, g: 0.9803922, b: 0.4666667, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 110
+  m_fontSizeBase: 110
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: -1219.9299, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1224129507
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224129504}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1253663600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22937,6 +23358,51 @@ PrefabInstance:
     - target: {fileID: -9002245490305071754, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: rotationSpeed
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[0]
+      value: Nadiya_I assume this is the last one
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[1]
+      value: Joe_Well, let's hope we didn't miss one.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[2]
+      value: Dreyar_We need to get rid of this shit, fast
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[3]
+      value: Astra_These mutagens, they're just for testing, they won't be able to
+        do much without
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[4]
+      value: Nadiya_We did a good job here
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[5]
+      value: Nadiya_We couldn't face them directly, but we did all we could for now
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[6]
+      value: Nadiya_Sooner or later, we will face them
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[7]
+      value: Dreyar_Bepis' downfall is close
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[8]
+      value: Joe_Yeah, i've learnt a lot on this journey so far
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157058291893903980, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
+      propertyPath: dialogue.Array.data[9]
+      value: Astra_Glad to hear it, I wont be able to do this without you guys
       objectReference: {fileID: 0}
     - target: {fileID: 6094063856069568385, guid: 0d22ed9cea7eab448ad4a432d76cfaae, type: 3}
       propertyPath: m_RootOrder
@@ -24581,10 +25047,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Astra_sorry
-  - Nadiya_me three
-  - ------
-  - Distant Voice_You can save here
+  - Astra_You can save here! Press 'O' to open the save menu, or access it from the
+    pause menuAstra_sorry
 --- !u!114 &1557817716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24612,7 +25076,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 597bbc40-c67c-4175-b8f3-a9f86cc56de4
+  m_DefaultActionMap: Interaction
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &1564158962
@@ -26796,7 +27260,6 @@ MonoBehaviour:
   can_move: 1
   radius: 0
   angle: 0
-  agent: {fileID: 1794601098}
   whatisGround:
     serializedVersion: 2
     m_Bits: 128
@@ -28287,10 +28750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Astra_sorry
-  - Nadiya_me three
-  - ------
-  - Distant Voice_You can save here
+  - Astra_You can save here! Press 'O' to open the save menu, or access it from the
+    pause menuAstra_sorry
 --- !u!114 &1904251425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28318,7 +28779,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 597bbc40-c67c-4175-b8f3-a9f86cc56de4
+  m_DefaultActionMap: Interaction
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &1909016102
@@ -28891,7 +29352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.624}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15, y: 360}
+  m_AnchoredPosition: {x: -599, y: 382}
   m_SizeDelta: {x: 527.7757, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1946974903
@@ -32224,7 +32685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.624}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22, y: 362}
+  m_AnchoredPosition: {x: -606, y: 384}
   m_SizeDelta: {x: 527.7757, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2077934793
@@ -33636,7 +34097,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You have not collected all clues
+  m_text: You have not collected all clues, you may have to reload to the cargo level
+    to find them all
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26bb167ca98ca1e42838332324380c17, type: 2}
   m_sharedMaterial: {fileID: -7277523142528850039, guid: 26bb167ca98ca1e42838332324380c17, type: 2}
@@ -33663,8 +34125,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

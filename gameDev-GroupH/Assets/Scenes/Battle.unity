@@ -4942,8 +4942,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - Nadiya_So this is where it takes us?
-  - Nadiya_smh
-  - Dreyar_Rookie
+  - Astra_Yep, they summon Demons here
+  - Joe_No way, I have no clue how this works!
+  - Distant Voice_Welcome to the battle!
+  - Distant Voice_Players and Enemies take turns in battle
+  - Distant Voice_During the Player turn, the camera will focus on the party member
+    whos turn it is
+  - Distant Voice_You can select up to 5 options here
+  - Distant Voice_The Abilities button displays the abilities that can be used to
+    damage enemies
+  - Distant Voice_Each party member has a specific set of abilities, and some may
+    cost MP
+  - Distant Voice_Enemy Info displays the player and enemies strengths and weaknesses
+  - Distant Voice_Items allow you to use heals, revives and ethers (MP regen)
+  - Distant Voice_These items take one turn, but do not require MP
+  - Distant Voice_You can alo heal, this will take some MP
+  - Distant Voice_And finally, you can escape which will take you to the checkpoint
+    you last saved at
+  - Distant Voice_The HUD displays useful info, like HP and MP values, and also the
+    Enemies HP
+  - Distant Voice_If all the players dies, you'll be able to respawn at a checkpoint
+  - Distant Voice_And if the enemies all die, you'll win the battle and can continue
+    on your journey
+  - Distant Voice_Good luck on your battles!
   - ------
 --- !u!1 &1039327090
 GameObject:
