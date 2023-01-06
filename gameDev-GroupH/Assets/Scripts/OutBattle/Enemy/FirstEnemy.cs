@@ -24,15 +24,12 @@ public class FirstEnemy : EnemyOutOfCombat
     void Update()
     {
         anim.SetBool("First", true);
-
-
         if (inSight) 
             if (triggered == false)
             {
                 this.dialogue.PauseAll();
                 this.dialogue.Script(0, script);
                 triggered = true;
-
             }
     }
 
@@ -40,9 +37,9 @@ public class FirstEnemy : EnemyOutOfCombat
     {
         if (inRange == true)
         {
-
             if (value.isPressed)
             {
+                tutorial = true;
                 // Player engages combat
                 StartCoroutine(PlayerEngage());
             }

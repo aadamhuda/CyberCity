@@ -28,6 +28,7 @@ public class EnemyOutOfCombat : EnemyCollider
 
     public bool inSight;
 
+    
     [SerializeField]
     private GameObject canvas;
 

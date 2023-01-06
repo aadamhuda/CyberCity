@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         else
             move.position = savedata.get_player_location();
 
-
+        savedata.inBattle = false;
         canMove = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
