@@ -472,14 +472,24 @@ public class BattleSystem : MonoBehaviour
 	{
 		int mpCost = 4;
 		int amount = Random.Range(60, 100);
-		currPlayer.heal(amount);
-		currPlayer.UseMP(mpCost);
-		StartCoroutine(animator.Heal(currPlayer.GetComponent<Animator>(), currPlayer.transform));
-		dialogue.text = "You healed by " + amount + " hp!";
 
-		state = BattleState.PLAYERWAIT;
-		yield return new WaitForSeconds(2f);
-		ChangePartyTurn(1);
+		if (players[tracker].UseMP(mpCost) == false)
+		{
+			dialogue.text = "You do not have enough MP for this move!";
+			PlayerTurn();
+			state = BattleState.PLAYERTURN;
+		}
+		else
+		{
+			currPlayer.heal(amount);
+			currPlayer.UseMP(mpCost);
+			StartCoroutine(animator.Heal(currPlayer.GetComponent<Animator>(), currPlayer.transform));
+			dialogue.text = "You healed by " + amount + " hp!";
+
+			state = BattleState.PLAYERWAIT;
+			yield return new WaitForSeconds(2f);
+			ChangePartyTurn(1);
+		}
 	}
 
 
