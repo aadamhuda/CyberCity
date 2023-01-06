@@ -20,8 +20,11 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        // Visible cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        // Diaplys load game if last save exist
         if (File.Exists(Application.persistentDataPath + "/" + saveState.LastSave + ".test"))
             this.ContinueObject.SetActive(true);
         else
@@ -31,6 +34,7 @@ public class MenuController : MonoBehaviour
     //clears all saved data variables
     public void initialiseGame()
     {
+        // Setting values for beginning of game
         PlayerPrefs.SetFloat("EffectsVolumePreference", 1f);
         Time.timeScale = 1.0f;
         saveState.Clue.Clear();
@@ -48,6 +52,7 @@ public class MenuController : MonoBehaviour
         saveState.SavePlayerHealth(new int[] { ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP(), ply.getTotalMaxHP() });
     }
 
+    // Setting difficulty
     public void SetEasy()
     {
         saveState.SetDifficulty(1);
@@ -71,6 +76,7 @@ public class MenuController : MonoBehaviour
     //starts the game when play button is pressed
     public void PlayGame()
     {
+        // Load fresh game
         initialiseGame(); //clears saved data variables
         SceneManager.LoadScene("Loading");
 
@@ -80,6 +86,7 @@ public class MenuController : MonoBehaviour
     //quits the game when the quit button is pressed
     public void LoadGame()
     {
+        // Loads previously saved game
         if (File.Exists(Application.persistentDataPath + "/"+saveState.LastSave+".test"))
         {
             saveState.LoadData(saveState.LastSave);

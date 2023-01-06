@@ -2,6 +2,8 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(FirstEnemy))]
+
+// Editor file to see sight of enemy
 public class FieldOfViewEditor : Editor
 {
     private void OnSceneGUI()

@@ -63,29 +63,36 @@ public class PauseController : MonoBehaviour
 
     public void OpenSaveMenu()
     {
+        // Opens save options
         this.main_pause_screen.SetActive(false);
         this.SaveMenu.LoadMenu();
     }
 
     public void CloseSaveMenu()
     {
+        // Returns to main menu
         this.SaveMenu.Disable();
-        Debug.Log("bruh");
         this.main_pause_screen.SetActive(true);
     }
 
     public void SaveGame(string SaveName)
     {
+        // If player is within checkpoint area
         if (player.get_save())
         {
+            // Start a notification
             this.SaveLoadNotification.Activate("Saving Data", this.SaveMenu.gameObject);
+            // Saves players positions
             saveState.set_respawn(player.transform.position);
+            // SAves current scene
             saveState.set_current_level(SceneManager.GetActiveScene().name);
+            // Saves file saved
             saveState.SaveGame(SaveName);
             this.SaveLoadNotification.ChangeText("Saved");
         }
         else
         {
+            // tells the user to be in range
             this.SaveLoadNotification.Activate("Must save near checkpoint", this.SaveMenu.gameObject);
         }
     }
@@ -94,6 +101,7 @@ public class PauseController : MonoBehaviour
     {
         if (File.Exists(Application.persistentDataPath + "/" + PathName + ".test"))
         {
+            // Checks if load data exists
             saveState.LoadData(PathName);
             SceneManager.LoadScene(saveState.get_current_level());
 
@@ -108,6 +116,7 @@ public class PauseController : MonoBehaviour
 
     public void Inventory()
     {
+        // Opens inventory
         inventory.SetActive(true);
         main_pause_screen.SetActive(false);
         inventory.GetComponent<InventoryController>().LoadMenu();
@@ -116,6 +125,7 @@ public class PauseController : MonoBehaviour
 
     public void quit_inventory()
     {
+        // Returns to main menu
         inventory.SetActive(false);
         for (int i = 0; i < items.childCount; i++)
             Destroy(items.GetChild(i).gameObject);
@@ -124,6 +134,7 @@ public class PauseController : MonoBehaviour
 
     public void OpenLoadMenu()
     {
+        // Open load menu
         this.main_pause_screen.SetActive(false);
         this.LoadMenu.LoadMenu();
         
@@ -131,6 +142,7 @@ public class PauseController : MonoBehaviour
     
     public void CloseLoadMenu()
     {
+        // Closes load menu
         this.LoadMenu.Disable();
         this.main_pause_screen.SetActive(true);
     }
@@ -138,6 +150,7 @@ public class PauseController : MonoBehaviour
     //quits to the main menu when the quit button is pressed
     public void QuitGame()
     {
+        // Quits to main menu
         SceneManager.LoadScene("Main Menu");
     }
 }

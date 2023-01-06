@@ -15,9 +15,6 @@ public class DialogueManager : MonoBehaviour
 
     public SaveData savedata;
 
-    [SerializeField]
-    string[] lines;
-
     string[][] parts;
 
     [SerializeField]
@@ -46,12 +43,13 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        // Sets up characters and their sprites
         string[] temp = new string[] { "Nadiya", "Dreyar", "Astra", "Joe" , "Distant Voice" };
 
         for (int i = 0; i < 5 ; i++)
                 charac_sprites.Add(temp[i], characters[i]);
 
-
+        // Starts initial dialoge if it hasn't started
         if (this.savedata.get_dialogue_index() == 0)
         {
             if (!savedata.inBattle)
@@ -71,10 +69,13 @@ public class DialogueManager : MonoBehaviour
 
     public void Script(int start , ScriptDialogue path)
     {
+        // Activate dialogue 
         gameObject.SetActive(true);
 
+        // Gets dialogue script
         this.dialogue = new Dialogue(start, path.GetDialogue());
 
+        // Checks for valid length
         if (this.dialogue.GetParts().Length > 0)
         {
             this.StartDialogue();
@@ -90,10 +91,12 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // Diplays text until end
             if (this.displaytext.text == this.parts[this.index][1])
             {
                 this.NextLine();
             }
+            // Skips for text to slowly appear and forcefully appear
             else
             {
                 StopAllCoroutines();
@@ -107,6 +110,7 @@ public class DialogueManager : MonoBehaviour
 
     public void PauseAll()
     {
+        // Pause player and enemy
         player.canMove = false;
         enemy.StopAll();
         this.paused = true;
@@ -115,15 +119,14 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue()
     {
-        //Time.timeScale = 0.1f;
-
-
-
-        this.lines = dialogue.GetSentences();
+        // Retrives lines
         this.parts = this.dialogue.GetParts();
+
+        // Empty dialogue box
         this.displaytext.text = string.Empty;
         this.charactername.text = string.Empty;
 
+        // Coutner for lines
         this.index = 0;
         StartCoroutine(this.TypeLine());
     }
@@ -131,8 +134,11 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeLine()
     {
+        // Diaplay sprite and character name
         this.img.sprite = charac_sprites[this.parts[index][0]];
         this.charactername.text = this.parts[index][0];
+
+        // Displays text gradually
         foreach (char c in this.parts[index][1].ToCharArray())
         {
             this.displaytext.text += c;
@@ -146,17 +152,21 @@ public class DialogueManager : MonoBehaviour
     {
         if (this.index < this.parts.Length - 1)
         {
+            // Goes to next line
             this.index++;
             this.displaytext.text = string.Empty;
             StartCoroutine(this.TypeLine());
         }
         else
         {
+            // Deactivates dialogue box
             gameObject.SetActive(false);
             if (savedata.inBattle)
             {
                 tutorialController.DeactivateTutorial();
             }
+
+            // Enables movement
             if (this.paused)
             {
                 player.canMove = true;

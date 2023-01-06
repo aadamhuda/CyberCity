@@ -169,6 +169,8 @@ public class BattleSystem : MonoBehaviour
     {
 		Player[] allPlayers = new Player[4];
 
+
+		// Create players and setting the Healths and MP's from previous battles and in the correct players
 		for (int i = 0; i < playerPrefabs.Length; i++)
 		{
 			GameObject playerObj = Instantiate(playerPrefabs[i], new Vector3(playerLocation.position.x + (i * 2.5f), playerLocation.position.y + 1, playerLocation.position.z), playerLocation.rotation, playerLocation);
@@ -186,11 +188,13 @@ public class BattleSystem : MonoBehaviour
 
 	public Enemy[] InstantiateEnemies()
     {
+		// Create enemies in the correc5t positions
 		int enemyCount = 3;
 		Enemy[] allEnemies = new Enemy[enemyCount];
 
 		for (int i = 0; i < enemyCount; i++)
 		{
+			// Select a random enemy out of the five
 			int enemID = Random.Range(0, 5);
 			
 			GameObject enemyObj = Instantiate(enemyPrefabs[enemID], enemyLocations[i]);
@@ -203,6 +207,7 @@ public class BattleSystem : MonoBehaviour
 
 	public void SetEnvironment()
     {
+		// set enviroment based on level
         if (savedata.get_current_level() == savedata.get_cyber_level())
         {
 			cityEnv.SetActive(true);
@@ -235,6 +240,8 @@ public class BattleSystem : MonoBehaviour
 	//initialises battle - spawns player and enemies, selects first target and then starts player turn
 	IEnumerator InitialiseBattle()
     {
+
+		// Initialise combatents
         players = InstantiatePlayers();
 
         currPlayer = players[tracker];
@@ -248,6 +255,8 @@ public class BattleSystem : MonoBehaviour
 
 
 		InitialiseMemory();
+
+		// Initialise HUDS
 		InitialiseHUD();
 
 		// Loading effects and models for smooth playback
@@ -265,7 +274,7 @@ public class BattleSystem : MonoBehaviour
     }
 
 	// Initialise Enemy Memory
-
+	// No longer implemented
 	private void InitialiseMemory()
     {
 		this.checklist = new Dictionary<int, Dictionary<string, string>>();
@@ -331,7 +340,7 @@ public class BattleSystem : MonoBehaviour
 
 		players[tracker].RemoveAilments();
 
-		
+		// If player is fozen then they cannot perform a turn
 		if (players[tracker].get_frozen())
         {
 			int number = UnityEngine.Random.Range(0, 100);
@@ -341,13 +350,17 @@ public class BattleSystem : MonoBehaviour
 		}
 		else
         {
+			// DIfferent methods for each type of attack
 			if (attackType == "fire")
 			{
+				// Start animation
 				yield return StartCoroutine(animator.Magic(playerAnimator, currPlayer.transform, enemyTarget.transform, "fire"));
 
+				// Target takes damage
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 				StartCoroutine(animator.EnemyDeath(enemyTarget, enemyAnimator));
 
+				// chance to burn
 				int number = UnityEngine.Random.Range(0, 100);
 				if (number < 26)
 					enemyTarget.set_burned(true);
@@ -370,6 +383,7 @@ public class BattleSystem : MonoBehaviour
 				enemyTarget.takeDamage(players[tracker].GetATK()[attackType], attackType);
 				StartCoroutine(animator.EnemyDeath(enemyTarget, enemyAnimator));
 
+				// Chance to poison
 				int number = UnityEngine.Random.Range(0, 100);
 				if (number < 26)
 					enemyTarget.set_poisoned(true);
@@ -382,6 +396,7 @@ public class BattleSystem : MonoBehaviour
 			}
 			else if (attackType == "shoot")
 			{
+				// Shoot all enemies
 				yield return StartCoroutine(animator.EquipBow(playerAnimator, currPlayer.transform));
 
 				for (int i = 0; i < enemies.Length; i++)
@@ -414,6 +429,8 @@ public class BattleSystem : MonoBehaviour
 
 			}
 			string state;
+
+			// no longer implemented 
 			if (this.KnownEnemyAttributes[enemyTarget.getID()].ContainsKey(attackType) == false)
 			{
 				// Stores affinity of attribute in list
@@ -429,11 +446,11 @@ public class BattleSystem : MonoBehaviour
 		}
 		                      
 
-		isDead = enemyTarget.CheckIfDead();
-
+		// Dialogue for players
 		dialogue.text = currPlayer.unitName + " attacked " + enemyTarget.unitName;
 		yield return new WaitForSeconds(2f);
 
+		// Check enemies if they are dead
 		for (int i = 0; i < enemies.Length;)
 		{
 			if (enemies[i].CheckIfDead())
@@ -448,12 +465,14 @@ public class BattleSystem : MonoBehaviour
 		//checks if all enemies are dead - win condition
 		bool enemiesDead = (enemies.Length == 0);
 		
+		// Win battle if all enemies defeated
 		if (enemiesDead)
 		{
 			state = BattleState.WIN;
 			yield return new WaitForSeconds(2f);
 			StartCoroutine(EndBattle());
 		}
+		// Otherwise next player turn
 		else
 		{
 			ChangePartyTurn(1);
@@ -531,13 +550,13 @@ public class BattleSystem : MonoBehaviour
 				multi += 0.15f;
 
 			string randomKey = "attacknotfound";
-			int highest = 0;
 
 			
 
 			
 
 			// Current enemy & Player
+			// Pick random player
 			if (playerTarget == null)
             {
 				int player_target = Random.Range(0, players.Length);
@@ -551,7 +570,6 @@ public class BattleSystem : MonoBehaviour
 			}
 			
 
-			int playerTarget_HP = playerTarget.currentHP;
 
 			// Coords of player start and enemy start positions
 			Vector3 playerPos = playerTarget.transform.position;
@@ -561,6 +579,7 @@ public class BattleSystem : MonoBehaviour
 			var playerAnimator = playerTarget.GetComponent<Animator>();
 			var enemyAnimator = currEnemy.GetComponent<Animator>();
 
+			// Try to remove any ailments
 			currEnemy.RemoveAilments();
 
 			dialogue.text = enemies[i].unitName + " attacks!";
@@ -570,7 +589,7 @@ public class BattleSystem : MonoBehaviour
 			// Rotating enemy until facing player
 			yield return StartCoroutine(currEnemy.RotateEnemy(0.2f, playerPos));
 
-
+			// Enemy cannot move if frozen
 			if (currEnemy.get_frozen())
             {
 				// skip turn

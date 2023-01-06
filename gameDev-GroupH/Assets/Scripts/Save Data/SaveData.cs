@@ -3,18 +3,38 @@ using UnityEngine;
 
 [CreateAssetMenu]
 
+// Scriptable data to preserve data throught scenes
 public class SaveData : ScriptableObject
 {
+    // Keep track of whether enemy has died
+    // Keeps track if enemy engaged combat
     public bool EnemyDeath, EnemyDouble = false;
-
+    
+    // Save which enemies have died
     public Dictionary<string, bool> Death = new Dictionary<string, bool>();
+
+    // Save which clues have been collected
     public Dictionary<string, bool> Clue = new Dictionary<string, bool>();
+
+    // Save which enemy has enageged combat
     public string enem;
+
+    // How many clues collected
     public int ClueCount;
+
+    // Save whether player is InBattle
     public bool inBattle;
+
+    // Save the players health
     public int[] team_health = new int[4];
+
+    // SAves the players MP
     public int[] team_MP = new int[4];
-    public int difficulty = 2;
+
+    // Saves difficulty
+    public int difficulty ;
+
+    // Check whether tutorial has been completed
     public bool tutorial = false; 
     // Current Level
     [SerializeField]
@@ -37,18 +57,23 @@ public class SaveData : ScriptableObject
     [SerializeField]
     private string cyber_battle = "Cyber Battle";
 
+    // Saves last location before entering battle
     [SerializeField]
     private Vector3 player_location;
 
+    // sAves last location saved
     [SerializeField]
     private Vector3 respawn_location;
 
+    // Saves whether to go to last location spawned
     [SerializeField]
     private bool respawn = true;
 
+    // Stores items
     [SerializeField]
     private Dictionary<string, int> items = new Dictionary<string, int>();
 
+    // Stores how many items to spawn
     [SerializeField]
     private int item_spawn;
 
@@ -56,14 +81,19 @@ public class SaveData : ScriptableObject
 
     private Dictionary<int, Dictionary<string, string>> KnownEnemyAttributes = new Dictionary<int, Dictionary<string, string>>();
     
+    // Shows where to start dialogue
     [SerializeField]
     private int dialogue_index;
 
+    // Shows where to start dialogue when reaching checkpoint
     [SerializeField]
     private int save_index;
 
+    // Saves last location saved
     public string LastSave;
 
+
+    // Getters
     public string get_current_level() { return this.current_level; }
     public string get_cargo_level() { return this.cargo_level; }
 
@@ -96,6 +126,8 @@ public class SaveData : ScriptableObject
     
     public int get_save_index() { return this.save_index; }
 
+
+    // Setters
     public void SetDifficulty(int diff) 
     { this.difficulty = diff; }
     public void set_current_level(string level)
@@ -163,14 +195,19 @@ public class SaveData : ScriptableObject
 
     public void SaveGame(string PathName)
     {
+        // Saves savedata into binary
         SaveSystem.SaveSystemInformation(this, PathName);
+        // Record save location
         this.LastSave = PathName;
     }
 
     public void LoadData(string FileName)
     {
+        // Retrives data from binary file
         SystemSaveData data = SaveSystem.LoadData(FileName);
 
+
+        // Loads binary file data into this class
         this.team_health = data.get_team_health();
         this.team_MP = data.get_team_mp();
         this.Death = data.get_death();
@@ -187,8 +224,7 @@ public class SaveData : ScriptableObject
         this.dialogue_index = data.dialogue_index;
         this.save_index = data.save_index;
 
-
-
+        // Spawn at last saved location
         this.respawn = !this.respawn;
     }
 

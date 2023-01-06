@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029098216, g: 0.029918969, b: 0.029954128, a: 1}
+  m_IndirectSpecularColor: {r: 0.029103538, g: 0.029891578, b: 0.029944899, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -23119,7 +23119,6 @@ GameObject:
   - component: {fileID: 1381119169}
   - component: {fileID: 1381119170}
   - component: {fileID: 1381119168}
-  - component: {fileID: 1381119167}
   - component: {fileID: 1381119166}
   m_Layer: 0
   m_Name: CyberDroids
@@ -23140,56 +23139,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49845e65f7816304794e2f4d6c813550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_object: {fileID: 0}
-  plane: []
+  triggered: 0
+  dialogue: {fileID: 941290148}
+  script: {fileID: 1381119168}
   player: {fileID: 937210619}
-  PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
-  tutorial: 0
-  can_move: 1
+  savedata: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   radius: 15
   angle: 360
-  agent: {fileID: 0}
-  whatisGround:
-    serializedVersion: 2
-    m_Bits: 0
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
   WallMask:
     serializedVersion: 2
-    m_Bits: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointSet: 0
-  PatrolPoints: []
-  WithInArea: 0
+    m_Bits: 64
   inSight: 0
   canvas: {fileID: 1774989697}
   anim: {fileID: 1381119169}
-  triggered: 0
-  dialogue: {fileID: 941290148}
-  script: {fileID: 1381119168}
---- !u!195 &1381119167
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381119165}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5000001
-  m_Speed: 0
-  m_Acceleration: 4
-  avoidancePriority: 50
-  m_AngularSpeed: 360
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &1381119168
 MonoBehaviour:
   m_ObjectHideFlags: 0

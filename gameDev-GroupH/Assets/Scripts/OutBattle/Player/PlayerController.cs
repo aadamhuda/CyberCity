@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         var move = gameObject.GetComponent<Transform>();
 
+        // Checks if players needs to spawn at last save loaction or last position before battle
         if (savedata.getRespawn())
         {
             this.repostion.Change();
@@ -129,19 +130,26 @@ public class PlayerController : MonoBehaviour
 
     public void collectClue(Collider other)
     {
+        // Disable clue
         other.gameObject.SetActive(false);
 
+        // Update scriptable
         clueCount++;
         savedata.ClueCount = clueCount;
+
+        // Check if gates need to be opened
         if (savedata.get_current_level() == savedata.get_cargo_level()) 
         {
             gate.CheckGates(clueCount);
         }
         
+        // Update scriptable
         collecterBool = false;
         collecter = null;
         savedata.DictBoolSwitch(savedata.Clue, other.name);
 
+
+        // Start dialogue and freeze enemies and player
         this.dialogue.PauseAll();
         this.dialogue.Script(0, other.gameObject.GetComponent<ScriptDialogue>());
     }

@@ -48,8 +48,11 @@ public class FirstEnemy : MonoBehaviour
 
     private void Start()
     {
+        // Setting LOS
         this.radius = 10;
         this.angle = 360;
+
+        // Checks if the enemy is already dead
 
         this.savedata.AddToDict(this.savedata.Death, gameObject.name);
         dead = this.savedata.getDict(this.savedata.Death, gameObject.name);
@@ -66,6 +69,7 @@ public class FirstEnemy : MonoBehaviour
 
         while (true)
         {
+            // Check for LOS
             yield return wait;
             FieldOfViewCheck();
         }
@@ -76,6 +80,8 @@ public class FirstEnemy : MonoBehaviour
     public float GetAmgle() { return this.radius; }
     public bool GetInRange() { return this.inRange; }
     public GameObject GetPlayer() { return this.player; }
+
+    // CHecks if player has entered collider
 
     void OnTriggerEnter(Collider Other)
     {
@@ -91,6 +97,7 @@ public class FirstEnemy : MonoBehaviour
 
     void FieldOfViewCheck()
     {
+        // C & P from EnemyOutOfCombat
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, PlayerMask);
 
         if (rangeChecks.Length != 0)
@@ -139,6 +146,7 @@ public class FirstEnemy : MonoBehaviour
 
     public IEnumerator Rotate(GameObject o, float speed, Vector3 targetPos)
     {
+        // Spin move :)
         var transform = o.transform;
         var startRotation = transform.rotation;
         var direction = targetPos - transform.position;
@@ -157,6 +165,7 @@ public class FirstEnemy : MonoBehaviour
 
     public IEnumerator PlayerEngage()
     {
+        // C & P from EnemyCollider
         Transform t = player.transform;
         Animator a = player.GetComponent<Animator>();
         Transform sword = t.GetChild(1).GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
@@ -187,6 +196,7 @@ public class FirstEnemy : MonoBehaviour
         {
             if (triggered == false)
             {
+                // Only trigger once and play dialogue
                 this.dialogue.PauseAll();
                 this.dialogue.Script(0, script);
                 triggered = true;

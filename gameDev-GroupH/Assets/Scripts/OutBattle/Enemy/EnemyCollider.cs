@@ -70,6 +70,7 @@ public class EnemyCollider : MonoBehaviour
     {
         for (int i = 1; i < gameObject.transform.childCount; i++)
         {
+            // Freezes all enemies and puts them into Idle anim
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().GetAgent().SetDestination(this.gameObject.transform.GetChild(i).transform.position);
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().can_move = false;
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().GetAnim().SetBool("First" , true);
@@ -79,10 +80,13 @@ public class EnemyCollider : MonoBehaviour
     {
         for (int i = 1; i < gameObject.transform.childCount; i++)
         {
+            // Resumes all enmies
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().GetAnim().SetBool("First", false);
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().can_move = true;
         }
     }
+
+    // Trigger if player leaves or enter range
 
     protected void OnTriggerEnter(Collider Other)
     {
@@ -119,11 +123,14 @@ public class EnemyCollider : MonoBehaviour
 
     public IEnumerator PlayerEngage()
     {
+        // Fetches weapon from player
         Transform t = player.transform;
         Animator a = player.GetComponent<Animator>();
         Transform sword = t.GetChild(1).GetChild(1).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(5);
         StartCoroutine(Rotate(player, 0.2f, gameObject.transform.position));
         player.GetComponent<PlayerController>().canMove = false;
+
+        // Animations for weapons
 
         a.CrossFade("EquipSword", 0.1f);
         yield return new WaitForSeconds(0.5f);
@@ -138,6 +145,7 @@ public class EnemyCollider : MonoBehaviour
 
     public IEnumerator Rotate(GameObject o, float speed, Vector3 targetPos)
     {
+        // Spin move :)
         var transform = o.transform;
         var startRotation = transform.rotation;
         var direction = targetPos - transform.position;

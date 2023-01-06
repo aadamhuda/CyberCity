@@ -36,6 +36,8 @@ public class Player : BattleUnit
         float weak = 1.25f;
         float strong = 0.75f;
 
+        // Initialising players
+
         if (ID == 0)
         {
             base.define_attributes<float>(new float[] { strong, norm, strong, norm, norm, norm, strong }, BattleUnit.GetAllATB(), base.GetATB());
@@ -103,6 +105,7 @@ public class Player : BattleUnit
 
     public void revive(float percentage) // can heal 50 or 100 percent for max revive
     {
+        // Revive a player -- setactive
         this.downed = false;
         this.usePotion((int)Math.Round((float)this.maxHP * percentage));
 
@@ -111,6 +114,7 @@ public class Player : BattleUnit
 
     public void heal(int amount)
 	{
+        // Heal  aplayer
 		currentHP += amount;
 		if (currentHP > maxHP)
 			currentHP = maxHP;
@@ -130,6 +134,7 @@ public class Player : BattleUnit
 
     public bool UseMP(int mpUsed)
     {
+        // Consume MP after a move
         int newMP = currentMP - mpUsed;
         if(newMP < 0)
         {
@@ -150,6 +155,7 @@ public class Player : BattleUnit
     // Turn player to a position
     public IEnumerator RotatePlayer(float speed, Vector3 targetPos)
     {
+        // Spin move :)
         var transform = this.transform;
         var startRotation = transform.rotation;
         var direction = targetPos - transform.position;
@@ -169,6 +175,7 @@ public class Player : BattleUnit
     // Move player to a position
     public IEnumerator MovePlayer(bool forward, float speed, float maxSpeed, float distOffsetToTarget, Vector3 targetPos)
     {
+        // Move a player to a target location at a speed
         var transform = this.transform;
         var cc = this.GetComponent<CharacterController>();
         var offset = targetPos - transform.position;

@@ -10,6 +10,7 @@ public class RepositionCharacter : MonoBehaviour
 
     public void Change()
     {
+        // Disable script to move object
         this.controller.enabled = false;
         this.Charcter.transform.position = this.savedata.get_respawn_location();
     }
@@ -18,6 +19,7 @@ public class RepositionCharacter : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // Re-anable script when player can input
             this.controller.enabled = true;
             Time.timeScale = 1f;
         }
