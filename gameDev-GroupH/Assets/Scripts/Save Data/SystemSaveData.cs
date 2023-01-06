@@ -38,7 +38,7 @@ public class SystemSaveData
     public SystemSaveData (SaveData savedata)
     {
 
-        // What to save
+        // What to save in Binary file
         this.team_health = savedata.team_health;
         this.team_mp = savedata.team_MP;
         this.death = savedata.Death;

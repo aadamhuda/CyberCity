@@ -7,8 +7,11 @@ public class LoadController : MonoBehaviour
     private string[] Saves = new string[] { "SaveOne", "SaveTwo" , "SaveThree" , "SaveFour" , "SaveFive" };
     public void LoadMenu()
     {
+        // Opens load menu
         this.gameObject.SetActive(true);
         Debug.Log(this.gameObject.name);
+
+        // If save file exist then display otherwise display no save file
         for (int i = 1; i < this.gameObject.transform.childCount; i++)
         {
             if (File.Exists(Application.persistentDataPath + "/" + this.Saves[i-1] + ".test"))

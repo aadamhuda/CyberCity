@@ -65,7 +65,6 @@ public class ItemSpawn : MonoBehaviour
 				if (item.Value > itemIndex)
 				{
 					// Set item
-					//Debug.Log("Generated: " + item.Key + " from "+ itemIndex);
 					ItemPickUp scr = newItem.transform.GetComponent<ItemPickUp>();
 					scr.itemName = item.Key;
 					scr.spawner = this.gameObject;

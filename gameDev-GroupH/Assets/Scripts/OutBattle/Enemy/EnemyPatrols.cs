@@ -13,6 +13,8 @@ public class EnemyPatrols : MonoBehaviour
     [SerializeField]
     private int max;
 
+    // Store different patrols of enemies
+    // And the area that they patrol in
     public int get_max() { return this.max; }
     public EnemyPatrolInfo [] GetPatrols()
     {

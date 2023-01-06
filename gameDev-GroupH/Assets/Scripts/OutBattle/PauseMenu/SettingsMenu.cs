@@ -19,26 +19,29 @@ public class SettingsMenu : MonoBehaviour
 	float masterVolume;
 	float musicVolume;
 	float effectsVolume;
-
-	public void Update()
-	{
-		
-	}
+	
+	// Adjusting master volume thorugh audiomixer and slider
     public void SetMasterVolume(Slider slider)
 	{
 		audioMixer.SetFloat("MasterVolume", slider.value);
 		masterVolume = slider.value;
 	}
+
+	//Adjusting musci volume thorugh audiomixer and slider
 	public void SetMusicVolume(Slider slider)
 	{
 		audioMixer.SetFloat("MusicVolume", slider.value);
 		musicVolume = slider.value;
 	}
+	//Adjusting effects volume thorugh audiomixer and slider
+
 	public void SetEffectsVolume(Slider slider)
 	{
 		audioMixer.SetFloat("EffectsVolume", slider.value);
 		effectsVolume = slider.value;
 	}
+
+	//Adjusting senseitivity by CMFreeLook
 
 	public void SetSensitivity(Slider slider)
 	{
@@ -47,6 +50,7 @@ public class SettingsMenu : MonoBehaviour
 		cam.m_YAxis.m_MaxSpeed = 0.001f * sens;
 	}
 
+	// SAving settings
 	public void SaveSettings()
 	{
 		PlayerPrefs.SetFloat("MouseSensitivityPreference", mousesens.value);
@@ -55,6 +59,7 @@ public class SettingsMenu : MonoBehaviour
 		PlayerPrefs.SetFloat("EffectsVolumePreference", effectsVolume);
 	}
 
+	// Pre-initialising the values when loading
 	public void LoadSettings()
 	{
 

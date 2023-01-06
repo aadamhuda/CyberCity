@@ -16,7 +16,9 @@ public class ItemNotification : MonoBehaviour
     
     public void Activate(string itemanme)
     {
+        // Activate when player picks up item
         this.gameObject.SetActive(true);
+        // If item exist add '+1' otherwise add item to queue
         if (inventory.get_items().ContainsKey(itemanme))
             this.notifications.Enqueue(itemanme + "+1");
         else
@@ -25,6 +27,8 @@ public class ItemNotification : MonoBehaviour
 
     private void Update()
     {
+        // Iterate through queue until finished so the user can see all the items
+        // if multiple items we're picked up
         if (this.notifications.Count > 0)
         {
             this.ItemName.text = this.notifications.Peek();
