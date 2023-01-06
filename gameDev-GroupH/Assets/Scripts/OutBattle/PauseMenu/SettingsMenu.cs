@@ -76,6 +76,6 @@ public class SettingsMenu : MonoBehaviour
 		if (PlayerPrefs.HasKey("EffectsVolumePreference"))
 			effectsVolumeSlider.value = PlayerPrefs.GetFloat("EffectsVolumePreference");
 		else
-			effectsVolumeSlider.value = 1f;
+			effectsVolumeSlider.value = 0f;
 	}
 }

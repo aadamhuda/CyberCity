@@ -11,16 +11,21 @@ public class OutBattleFootsteps : MonoBehaviour
     public const float playerRunVolume = 0.2f;
     public const float enemyWalkVolume = 0.5f;
     public const float enemyRunVolume = 1f;
+    public float effectsVol = 1f;
 
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (PlayerPrefs.HasKey("EffectsVolumePreference"))
+            effectsVol = (PlayerPrefs.GetFloat("EffectsVolumePreference") / 80) + 1f;
+        else
+            effectsVol = 1f;
     }
     private void WalkStep()
     {
@@ -33,6 +38,7 @@ public class OutBattleFootsteps : MonoBehaviour
         {
             audioSource.volume = enemyWalkVolume;
         }
+        audioSource.volume = audioSource.volume * effectsVol;
         int rand = Random.Range(0, metalWalk.Length);
         AudioClip clip = metalWalk[rand];
         audioSource.PlayOneShot(clip);
@@ -43,6 +49,7 @@ public class OutBattleFootsteps : MonoBehaviour
         {
             audioSource.volume = playerWalkVolume;
         }
+        audioSource.volume = audioSource.volume * effectsVol;
         int rand = Random.Range(0, metalWalk.Length);
         AudioClip clip = metalRun[rand];
         audioSource.PlayOneShot(clip);
@@ -58,6 +65,7 @@ public class OutBattleFootsteps : MonoBehaviour
         {
             audioSource.volume = enemyRunVolume;
         }
+        audioSource.volume = audioSource.volume * effectsVol;
         int rand = Random.Range(0, metalRun.Length);
         AudioClip clip = metalRun[rand];
         audioSource.PlayOneShot(clip);

@@ -141,6 +141,7 @@ MonoBehaviour:
   cursed: 0
   type: 0
   ID: 1
+  saveData: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
   selectedMove: burn
   downed: 0
   currentMP: 0

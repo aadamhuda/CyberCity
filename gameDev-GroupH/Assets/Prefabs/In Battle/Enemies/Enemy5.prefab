@@ -161,6 +161,7 @@ MonoBehaviour:
   cursed: 0
   type: 0
   ID: 4
+  saveData: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
 --- !u!1001 &7088838960206861606
 PrefabInstance:
   m_ObjectHideFlags: 0

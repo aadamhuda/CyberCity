@@ -14,11 +14,11 @@ public class SaveData : ScriptableObject
     public bool inBattle;
     public int[] team_health = new int[4];
     public int[] team_MP = new int[4];
-    private int difficulty = 2;
+    public int difficulty = 2;
     public bool tutorial = false; 
     // Current Level
     [SerializeField]
-    private string current_level;
+    private string current_level = "Main Menu";
 
     // Cargo Level
     [SerializeField]
@@ -96,7 +96,8 @@ public class SaveData : ScriptableObject
     
     public int get_save_index() { return this.save_index; }
 
-
+    public void SetDifficulty(int diff) 
+    { this.difficulty = diff; }
     public void set_current_level(string level)
     { this.current_level = level; }
 

@@ -78,9 +78,10 @@ public class ItemSpawn : MonoBehaviour
 			
 		}
 
-		
+
 
 		// Delete base item
+		Destroy(baseItem);
 	}
 
 	public void decrease_items() { this.remaining_items--; savedata.set_item_respawn(this.remaining_items); }

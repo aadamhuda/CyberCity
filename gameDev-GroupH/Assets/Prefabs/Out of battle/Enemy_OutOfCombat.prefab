@@ -76,6 +76,7 @@ MonoBehaviour:
   - {fileID: 0}
   player: {fileID: 0}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
+  tutorial: 0
   can_move: 1
   radius: 0
   angle: 0
@@ -127,7 +128,7 @@ AudioSource:
   m_GameObject: {fileID: 68401633704604824}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7539197454706711098, guid: 8de090bf1304e67449fda67eb82ec1a7, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -285,7 +286,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 597bbc40-c67c-4175-b8f3-a9f86cc56de4
+  m_DefaultActionMap: Interaction
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &170017226000294076

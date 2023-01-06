@@ -10,6 +10,7 @@ using System;
 public class Player : BattleUnit
 {
     [SerializeField]
+    private SaveData saveData;
 	// Player attacks
     public Dictionary<string, int> playerAttacks = new Dictionary<string, int>();
     public string selectedMove = "normal";
@@ -29,6 +30,7 @@ public class Player : BattleUnit
         mpCost.Add("ice", 4);
         mpCost.Add("grass", 3);
         mpCost.Add("curse", 3);
+        
 
         float norm = 1f;
         float weak = 1.25f;
