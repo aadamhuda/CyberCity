@@ -9,10 +9,12 @@ public class BattleAnimator : MonoBehaviour
     public AudioClip[] hitAudio;
     public GameObject[] attackFX;
     public GameObject[] hitFX;
+    public GameObject[] debuffFX;
     Dictionary<string, AudioClip> attackAudioDict = new Dictionary<string, AudioClip>();
     Dictionary<string, AudioClip> hitAudioDict = new Dictionary<string, AudioClip>();
     Dictionary<string, GameObject> attackFXDict = new Dictionary<string, GameObject>();
     Dictionary<string, GameObject> hitFXDict = new Dictionary<string, GameObject>();
+    Dictionary<string, GameObject> debuffFXDict = new Dictionary<string, GameObject>();
     public float volume = 1f;
 
     public float effectSpeed;
@@ -29,7 +31,12 @@ public class BattleAnimator : MonoBehaviour
             hitAudioDict.Add(attacks[i], hitAudio[i]);
             attackFXDict.Add(attacks[i], attackFX[i]);
             hitFXDict.Add(attacks[i], hitFX[i]);
+
         }
+        debuffFXDict.Add("fire", debuffFX[0]);
+        debuffFXDict.Add("grass", debuffFX[1]);
+        debuffFXDict.Add("ice", debuffFX[2]);
+
 
         if (PlayerPrefs.HasKey("EffectsVolumePreference"))
             volume = PlayerPrefs.GetFloat("EffectsVolumePreference");
@@ -173,5 +180,11 @@ public class BattleAnimator : MonoBehaviour
             a.CrossFade("Death", 0.1f);
 
         yield return new WaitForSeconds(0.4f);
+    }
+
+    public IEnumerator Debuff(Animator a, Transform enemy, string debuff)
+    {
+        Instantiate(debuffFXDict[debuff], enemy.position, enemy.rotation);
+        yield return null;
     }
 }
