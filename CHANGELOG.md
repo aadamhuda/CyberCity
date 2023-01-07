@@ -18,6 +18,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [1.8.0](https://github.com/aadamhuda/CyberCity/commit/2c76b22b21b9f47c98502fff2688209b3c77c09f) - 2022-12-02
+### Added
+- Added battle inventory and using items ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)]\
+- Added checkpoint areas ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Press 'm' to save location in checkpoint 
+- Added burn and freeze attack animation ~ [@gv301](https://github.com/gv301)
+
 ## [1.7.0](https://github.com/aadamhuda/CyberCity/commit/76132d25a5f4c7dfeb1a5330558fb5ae3adcdd43) - 2022-11-30
 ### Added
 - Added battle camera ~ [@aadamhuda](https://github.com/aadamhuda)
