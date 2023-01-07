@@ -18,6 +18,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+
+## [2.2.2](https://github.com/aadamhuda/CyberCity/commit/a3016ee37b3918496ed190ce185efbbf4a2d6f18) - 2023-01-03
+### Added
+- Added 'Enemy Info' Button ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added a MP cost for healing ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added character names to prefab ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added new image to main menu ~ [@aadamhuda](https://github.com/aadamhuda)
+- Spheres now appear above checkpoints when player is able to save
+- After winning a battle a win screen appears ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - The player can choose to continue
+- After losing a battle a lose screen appears ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - The player can choose return to last save
+  - The player can choose to quit to menu
+- Players can inspect attributes of enemy and player during battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added loading scence ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Before loading a level, the game will reroute to loading scene
+  - Only added for in between levels, not battles, since its too time consuming
+### Removed
+- Removed quit button from main menu and added load button ~ [@aadamhuda](https://github.com/aadamhuda)
+
 ## [2.2.1](https://github.com/aadamhuda/CyberCity/commit/1e2e25ebf99ddf0886aa2959aca2c00321e8ab02) - 2023-01-01
 ### Added
 - Added bow and shoot effect ~ [@gv301](https://github.com/gv301)
