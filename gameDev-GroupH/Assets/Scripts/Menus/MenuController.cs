@@ -44,7 +44,7 @@ public class MenuController : MonoBehaviour
         saveState.SaveLocation(new Vector3(0f, 1.5f, 0f));
         saveState.set_respawn(new Vector3(0f, 1.5f, 0f));
         //changes item respawn for difficulty
-        saveState.set_item_respawn(6 - saveState.GetDifficulty());
+        saveState.set_item_respawn(3*saveState.GetDifficulty());
         saveState.SavePlayerMP(new int[] { 30, 30, 30, 30 });
         saveState.set_dialogue_index(0);
         saveState.set_save_index(0);

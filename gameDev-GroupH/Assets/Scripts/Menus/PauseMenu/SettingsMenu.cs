@@ -19,6 +19,8 @@ public class SettingsMenu : MonoBehaviour
 	float masterVolume;
 	float musicVolume;
 	float effectsVolume;
+
+	bool battle;
 	
 	// Adjusting master volume thorugh audiomixer and slider
     public void SetMasterVolume(Slider slider)
@@ -53,21 +55,25 @@ public class SettingsMenu : MonoBehaviour
 	// SAving settings
 	public void SaveSettings()
 	{
-		PlayerPrefs.SetFloat("MouseSensitivityPreference", mousesens.value);
+		if(!battle)
+			PlayerPrefs.SetFloat("MouseSensitivityPreference", mousesens.value);
 		PlayerPrefs.SetFloat("MasterVolumePreference", masterVolume);
 		PlayerPrefs.SetFloat("MusicVolumePreference", musicVolume);
 		PlayerPrefs.SetFloat("EffectsVolumePreference", effectsVolume);
 	}
 
 	// Pre-initialising the values when loading
-	public void LoadSettings()
+	public void LoadSettings(bool inBattle)
 	{
-
-		if (PlayerPrefs.HasKey("MouseSensitivityPreference"))
-			mousesens.value = PlayerPrefs.GetFloat("MouseSensitivityPreference");
-		else
-			mousesens.value = 0.5f;
-
+		battle = inBattle;
+		if (!inBattle)
+        {
+			if (PlayerPrefs.HasKey("MouseSensitivityPreference"))
+				mousesens.value = PlayerPrefs.GetFloat("MouseSensitivityPreference");
+			else
+				mousesens.value = 0.5f;
+		}
+		
 		if (PlayerPrefs.HasKey("MasterVolumePreference"))
 			masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolumePreference");
 		else

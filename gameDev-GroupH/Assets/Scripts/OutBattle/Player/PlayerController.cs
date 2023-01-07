@@ -80,7 +80,12 @@ public class PlayerController : MonoBehaviour
         }
 
         else
-            move.position = savedata.get_player_location();
+        {
+            this.repostion.Reposition();
+            //move.position = savedata.get_player_location();
+
+        }
+            
 
         savedata.inBattle = false;
         canMove = true;
