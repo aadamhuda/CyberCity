@@ -33,7 +33,7 @@ public class PauseController : MonoBehaviour
 
     private void Start()
     {
-        settings.LoadSettings();
+        settings.LoadSettings(saveState.inBattle);
     }
 
     void OnPause(InputValue value)
