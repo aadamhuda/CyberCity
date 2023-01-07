@@ -13,16 +13,15 @@ public class RepositionCharacter : MonoBehaviour
         // Disable script to move object
         this.controller.enabled = false;
         this.Charcter.transform.position = this.savedata.get_respawn_location();
+        this.controller.enabled = true;
+        Time.timeScale = 1f;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            // Re-anable script when player can input
-            this.controller.enabled = true;
-            Time.timeScale = 1f;
-        }
+        
+            
+            
     }
 
 }

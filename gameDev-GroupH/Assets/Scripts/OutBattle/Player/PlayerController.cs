@@ -190,13 +190,6 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Speed", 0, 0.2f, Time.deltaTime);
         }
 
-
-        //if user has won and they can press x to quit
-        if (Input.GetKey("x") && won)
-        {
-            SceneManager.LoadScene("Main Menu");
-        }
-
         if (Physics.Raycast(gameObject.transform.position, -transform.up, 3f, safe_area))
             save = true;
         else

@@ -16,17 +16,17 @@ MonoBehaviour:
   EnemyDouble: 1
   enem: 0-0
   ClueCount: 0
-  inBattle: 1
+  inBattle: 0
   team_health: 7d0000003d0000004c0000007d000000
   team_MP: 02000000180000001500000017000000
   difficulty: 1
   tutorial: 0
-  current_level: Cargo Level
+  current_level: City Level
   cargo_level: Cargo Level
   cyber_level: City Level
   cargo_battle: Battle
   cyber_battle: Cyber Battle
-  player_location: {x: 31.778212, y: 1.0099999, z: 14.837561}
+  player_location: {x: 0, y: 1.01, z: 0}
   respawn_location: {x: 0, y: 1.5, z: 0}
   respawn: 0
   item_spawn: 2
