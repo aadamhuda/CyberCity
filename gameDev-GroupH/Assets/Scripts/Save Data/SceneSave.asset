@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: SceneSave
   m_EditorClassIdentifier: 
   EnemyDeath: 1
-  EnemyDouble: 0
-  enem: CyberDroids
+  EnemyDouble: 1
+  enem: 0-0
   ClueCount: 0
-  inBattle: 0
-  team_health: 7d0000007d0000007d0000007d000000
-  team_MP: 0c0000001b0000001b0000001a000000
+  inBattle: 1
+  team_health: 7d0000003d0000004c0000007d000000
+  team_MP: 02000000180000001500000017000000
   difficulty: 1
-  tutorial: 1
+  tutorial: 0
   current_level: Cargo Level
   cargo_level: Cargo Level
   cyber_level: City Level
   cargo_battle: Battle
   cyber_battle: Cyber Battle
-  player_location: {x: 11.618999, y: 1.01, z: 18.943665}
+  player_location: {x: 31.778212, y: 1.0099999, z: 14.837561}
   respawn_location: {x: 0, y: 1.5, z: 0}
   respawn: 0
-  item_spawn: 4
+  item_spawn: 2
   dialogue_index: 4
   save_index: 0
   LastSave: SaveTwo
