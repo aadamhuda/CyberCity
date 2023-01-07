@@ -18,8 +18,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [2.2.7]() - 2023-01-07
+### Added
+- Added invisible wall to city map where player could jump off edge ~ [@aadamhuda](https://github.com/aadamhuda)
+### Changed
+- Edited reposition character to immediately reassign player controller rather than onClick ~ [@aadamhuda](https://github.com/aadamhuda)
+- Change movement values to avoid movement bug ~ [@aadamhuda](https://github.com/aadamhuda)
+- Buffed item spawn rate ~ [@aadamhuda](https://github.com/aadamhuda)
+### Fixed
+- Fixed enemy spawning issue in City level ~ [@aadamhuda](https://github.com/aadamhuda)
 
-## [2.2.5]() - 2023-01-06
+## [2.2.6]() - 2023-01-06
+### Added
+- Enabled the player follow ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added more difficulty settings, enemies out of battle see more in harder difficulties and see further ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Also theyre faster when chasing
+- Added narrative for cargo level ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added narrative for city level ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added narrative for battle tutorial ~ [@aadamhuda](https://github.com/aadamhuda)
+### Changed
+- Change the settings fonts ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Changed pause to escape button instead of P ~ [@gv301](https://github.com/gv301)
+### Fixed
+- Fixed the narrative on save ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Fixed heal working with not enough mana ~ [@gv301](https://github.com/gv301)
+- Fixed slow run error message ~ [@gv301](https://github.com/gv301)
+- Fixed an issue where an enemy wouldnt spawn in WebGl ~ [@Ibraheem717](https://github.com/Ibraheem717)
+
+## [2.2.5](https://github.com/aadamhuda/CyberCity/commit/61119a4cb8c934446de66a309c248c74d12e6920) - 2023-01-06
 ### Added
 - Added footsteps to effects volume ~ [@aadamhuda](https://github.com/aadamhuda)
 - Added difficulties that change enemy HP and item spawn rate ~ [@aadamhuda](https://github.com/aadamhuda)
