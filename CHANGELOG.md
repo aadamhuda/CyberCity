@@ -18,6 +18,205 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [2.2.7]() - 2023-01-07
+### Added
+- Added invisible wall to city map where player could jump off edge ~ [@aadamhuda](https://github.com/aadamhuda)
+### Changed
+- Edited reposition character to immediately reassign player controller rather than onClick ~ [@aadamhuda](https://github.com/aadamhuda)
+- Change movement values to avoid movement bug ~ [@aadamhuda](https://github.com/aadamhuda)
+- Buffed item spawn rate ~ [@aadamhuda](https://github.com/aadamhuda)
+### Fixed
+- Fixed enemy spawning issue in City level ~ [@aadamhuda](https://github.com/aadamhuda)
+
+## [2.2.6]() - 2023-01-06
+### Added
+- Enabled the player follow ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added more difficulty settings, enemies out of battle see more in harder difficulties and see further ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Also theyre faster when chasing
+- Added narrative for cargo level ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added narrative for city level ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added narrative for battle tutorial ~ [@aadamhuda](https://github.com/aadamhuda)
+### Changed
+- Change the settings fonts ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Changed pause to escape button instead of P ~ [@gv301](https://github.com/gv301)
+### Fixed
+- Fixed the narrative on save ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Fixed heal working with not enough mana ~ [@gv301](https://github.com/gv301)
+- Fixed slow run error message ~ [@gv301](https://github.com/gv301)
+- Fixed an issue where an enemy wouldnt spawn in WebGl ~ [@Ibraheem717](https://github.com/Ibraheem717)
+
+## [2.2.5](https://github.com/aadamhuda/CyberCity/commit/61119a4cb8c934446de66a309c248c74d12e6920) - 2023-01-06
+### Added
+- Added footsteps to effects volume ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added difficulties that change enemy HP and item spawn rate ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added difficulty options in the main menu ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added an error message to the loading screen if it takes more than 10 seconds ~ [@aadamhuda](https://github.com/aadamhuda)
+- Make item spawner method destroy the base item ~ [@aadamhuda](https://github.com/aadamhuda)
+### Changed
+- Edited first enemy animator to only contain idle ~ [@aadamhuda](https://github.com/aadamhuda)
+- Increased the inital spawn height of the player to 1.5 ~ [@aadamhuda](https://github.com/aadamhuda)
+- Changed a logic error with player frozen, it would use the index of enemy target rather than player tracker ~ [@aadamhuda](https://github.com/aadamhuda)
+### Removed
+- Removed enumerator from loadscene and renamed the method ~ [@aadamhuda](https://github.com/aadamhuda)
+
+## [2.2.4]() - 2023-01-06
+### Added
+- Added effect fix ~ [@gv301](https://github.com/gv301)
+- Added narative scripts to objects ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added an endscreen once the player collects all 8 clues ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- When saving pop-up appears if the user isn't near a checkpoint ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- When saving pop-up appears if the user doesn't have any data saved on that location ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Main menu checks if there is any last save data otherwise load game isnt an option ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- ItemName + 1 appears if the item already exists in the inventory ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added functionality to settings ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added audio mixer ~ [@aadamhuda](https://github.com/aadamhuda)
+- Completed effects ~ [@gv301](https://github.com/gv301)
+  - Also added effects for debuffs, fire, poison, and ice
+- Added in battle tutorial for first enemy, disables attack buttons for the tutorial and then re enables them once complete ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Tutorial uses narrative system
+  - If the enemy is not the tutorial enemy, then in battle, the narrative menu will be destroyed
+### Changed
+- Updated effects ~ [@gv301](https://github.com/gv301)
+- Enemies don't only attack weak players unless they have to ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Moved clue and item interaction over to unity new input system (press 'E' to collect item or clue) ~ [@aadamhuda](https://github.com/aadamhuda)
+- Moved enemy engagement over to unity new input system (press 'F' to engage) ~ [@aadamhuda](https://github.com/aadamhuda)
+- Moved changing targets in battle control over to unity new input system ('A' and 'D') ~ [@aadamhuda](https://github.com/aadamhuda)
+- Moved save menu and pause menu control 'o' 'p' over to new input system ~ [@aadamhuda](https://github.com/aadamhuda)
+- The player can now quit to main menu from endgame screen ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Updates input system to 1.4.4 ~ [@aadamhuda](https://github.com/aadamhuda)
+- Settings can now adjust master audio, music audio and effects audio volumes ~ [@aadamhuda](https://github.com/aadamhuda)
+### Deprecated
+- Temporarily removed enemy move learning AI ~ [@aadamhuda](https://github.com/aadamhuda)
+### Removed
+- Removed everything from settings barring sensitivity and volume ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Fixed
+- Fixed enemy attack animations ~ [@gv301](https://github.com/gv301)
+- Fixed ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Load game from menu would start from the beginning
+  - Load game wouldn't load the correct level
+- Fixed boxes in endgame screen ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Fix targeting system null error ~ [@aadamhuda](https://github.com/aadamhuda)
+- Fixed error with slowrun ~ [@gv301](https://github.com/gv301)
+
+## [2.2.3]() - 2023-01-03
+### Added
+- Player can now save on specific save locations and load save locations ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Player can continue from last save if possible ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added footsteps ~ [@gv301](https://github.com/gv301)
+### Changed
+- Configured attributes (strengths and weaknesses) for enemy and player ~ [@aadamhuda](https://github.com/aadamhuda)
+- Configured players and enemies all to have 3 types of attacks ~ [@aadamhuda](https://github.com/aadamhuda)
+- Updated input system and camera ~ [@gv301](https://github.com/gv301)
+- Changed main menu, loading, battle, narrative canvas to 1920x1080 ~ [@aadamhuda](https://github.com/aadamhuda)
+### Deprecated
+- compressed textures and meshes to create appropriate file size to avoid using git LFS since incompatible with pages  ~ [@aadamhuda](https://github.com/aadamhuda)
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.2.2](https://github.com/aadamhuda/CyberCity/commit/a3016ee37b3918496ed190ce185efbbf4a2d6f18) - 2023-01-03
+### Added
+- Added 'Enemy Info' Button ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added a MP cost for healing ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added character names to prefab ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added new image to main menu ~ [@aadamhuda](https://github.com/aadamhuda)
+- Spheres now appear above checkpoints when player is able to save
+- After winning a battle a win screen appears ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - The player can choose to continue
+- After losing a battle a lose screen appears ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - The player can choose return to last save
+  - The player can choose to quit to menu
+- Players can inspect attributes of enemy and player during battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added loading scence ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Before loading a level, the game will reroute to loading scene
+  - Only added for in between levels, not battles, since its too time consuming
+### Removed
+- Removed quit button from main menu and added load button ~ [@aadamhuda](https://github.com/aadamhuda)
+
+## [2.2.1](https://github.com/aadamhuda/CyberCity/commit/1e2e25ebf99ddf0886aa2959aca2c00321e8ab02) - 2023-01-01
+### Added
+- Added bow and shoot effect ~ [@gv301](https://github.com/gv301)
+- Added main menu music ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added items maxEther and Ether to useable items ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added models to Clues, Items ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - When entering a safe area, narrative pops indicating the player is near a safe area
+  - When seeing first enemy, the game pauses and instructions are given ( currently diabled )
+  - When nearby enemies, items and clues and indicator appears above their heads indicating the player can interact with thm
+  - When entering a safe a green bar appears indicator the player can save
+- Add icons to player HUD ~ [@aadamhuda](https://github.com/aadamhuda)
+- Drawn buttons ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added item images to item menu ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added designs for enemy health indicators ~ [@aadamhuda](https://github.com/aadamhuda)
+- Drawn win and lose screens ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Players can now save by pressing 'S' in save area ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Changed
+- Changed fonts for battle UI to rajdhani font ~ [@aadamhuda](https://github.com/aadamhuda)
+- Remodeled Pause Screen ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Changed MC name to 'Nadiya' from 'Eve'~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Removed
+- Removed guard button ~ [@aadamhuda](https://github.com/aadamhuda)
+### Fixed
+- Fixed an issue where collecting a clue will leave the player stuck ~ [@Ibraheem717](https://github.com/Ibraheem717)
+
+## [2.2.0](https://github.com/aadamhuda/CyberCity/commit/a47e2aa5f057044180fd9545e6044db6cc110872) - 2022-12-31
+### Added
+- Added walls/ buildings on city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added checkpoints to city level map ~ [@sarahbrah7](https://github.com/sarahbrah7) 
+- Added a material to the flooring in the city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Lighting added to city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added gate to city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Made a cargo level environment for the battle scene ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Made a city level environment for the battle scene ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added enemies and item spawner in new environment ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added navmesh to new env ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added a sceneshift to move to City Level from Cargo level ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - A pad at the end of cargo level
+  - pressing left click will take the player to the next level
+- Save & Load now remembers the player scene level ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added functionality to use save data to load correct environment for battle scene based on the level they are on ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added different effects for different attacks ~ [@gv301](https://github.com/gv301)
+- Drawn characters for dialogue ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Drawn loading screens for city level and cargo level ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added narrative ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Narrative when spawning
+  - Narrative when picking up items
+- When seeing the first enemy and instruction is given ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- All effects except bow and shooting completed ~ [@gv301](https://github.com/gv301)
+- Drawn items ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Drawn pause screen ~ [@sarahbrah7](https://github.com/sarahbrah7)
+### Changed
+- Changed the spawn points in the battle scene to invisible ~ [@aadamhuda](https://github.com/aadamhuda)
+- Player attacks enemy when engaging ~ [@gv301](https://github.com/gv301)
+- First enemy no longer moves ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Fixed
+- Fixed issue where main menu takes you directly into battle ~ [@aadamhuda](https://github.com/aadamhuda)
+
+## [2.1.0](https://github.com/aadamhuda/CyberCity/releases/tag/v2.1.0) - 2022-12-26
+### Added
+- Added enemies and enemy paths to new enviroment ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added navmesh to new enviroment ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added attack effect animations and sound ~ [@gv301](https://github.com/gv301)
+  - Currently completed fire
+- Doors now animate ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - When the player has collected 2 clues the first door will open
+  - The secound will open on 4 clues
+  - The doors will remain open if the player has collected clues
+- Added invisible walls to prevent the player from falling off the map ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added floor map to the city level ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Enemies now remember player attributes ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Whenever enemies attack players they log their attack
+  - The attack is specific to each companion and affinity
+  - The enemies now attack players with known weaknesses
+  - Otherwise they'll attack randomly
+### Changed
+- Updated sword models ~ [@gv301](https://github.com/gv301)
+- Scene changes ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Scenes now are changed with names rather than index
+  - To change scene use the getter method in SaveData and get the right scene 
+  - All scene will be stored in SaveData 
+
 ## [2.0.0](https://github.com/aadamhuda/CyberCity/commit/5debe407f5656ddf563416298ebb115cb68bbd18) - 2022-12-24
 ### Added
 - Added item spawner ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
@@ -54,6 +253,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Cargo level map sky lighting is set as "stormy" using skybox asset ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Added lights to walls throughout the cargo level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Added sword equip and unequip with sword model ~ [@gv301](https://github.com/gv301)
+- Added colliders to environment models ~ [@aadamhuda](https://github.com/aadamhuda)
 ### Deprecated 
 - Reverted player movement to old input system ~ [@gv301](https://github.com/gv301)
 ### Fixed
