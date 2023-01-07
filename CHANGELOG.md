@@ -18,6 +18,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [2.2.3]() - 2023-01-03
+### Added
+- Player can now save on specific save locations and load save locations ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Player can continue from last save if possible ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added footsteps ~ [@gv301](https://github.com/gv301)
+### Changed
+- Configured attributes (strengths and weaknesses) for enemy and player ~ [@aadamhuda](https://github.com/aadamhuda)
+- Configured players and enemies all to have 3 types of attacks ~ [@aadamhuda](https://github.com/aadamhuda)
+- Updated input system and camera ~ [@gv301](https://github.com/gv301)
+- Changed main menu, loading, battle, narrative canvas to 1920x1080 ~ [@aadamhuda](https://github.com/aadamhuda)
+### Deprecated
+- compressed textures and meshes to create appropriate file size to avoid using git LFS since incompatible with pages  ~ [@aadamhuda](https://github.com/aadamhuda)
+### Removed
+
+### Fixed
+
+### Security
 
 ## [2.2.2](https://github.com/aadamhuda/CyberCity/commit/a3016ee37b3918496ed190ce185efbbf4a2d6f18) - 2023-01-03
 ### Added
