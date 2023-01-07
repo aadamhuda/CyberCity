@@ -18,9 +18,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
-## [1.8.0](https://github.com/aadamhuda/CyberCity/commit/2c76b22b21b9f47c98502fff2688209b3c77c09f) - 2022-12-02
+## [1.9.0](https://github.com/aadamhuda/CyberCity/commit/28767556b80e5c68575d944d9c1d533fdfe81834) - 2022-12-05
 ### Added
-- Added battle inventory and using items ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)]\
+- Added new HUD elements ~ [@aadamhuda](https://github.com/aadamhuda)
+  - New designed buttons
+  - Abilities menu which now shows the individual abilities rather than using a change attack button
+  - Added sprites which will hold player health, Magic points and an icon 
+- Added a new tracking system which uses keys A and D to change enemy. Also shows visually the current chosen enemy ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added music for out of battle scene and in battle scene ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added main menu fonts ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added health bars to battle GUI ~ [@aadamhuda](https://github.com/aadamhuda)
+### Changed
+- Changed player and enemy damage values for balancing ~ [@aadamhuda](https://github.com/aadamhuda)
+### Removed
+- Removed old HUD elements ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Player and enemy names
+  - Player and enemy HP
+  - Battle Buttons
+
+## [1.8.0](https://github.com/aadamhuda/CyberCity/commit/15b893e0a885bff8c1c2755d84752db42bc73737) - 2022-12-02
+### Added
+- Added battle inventory and using items ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
 - Added checkpoint areas ~ [@Ibraheem717](https://github.com/Ibraheem717)
   - Press 'm' to save location in checkpoint 
 - Added burn and freeze attack animation ~ [@gv301](https://github.com/gv301)
