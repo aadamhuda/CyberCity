@@ -18,6 +18,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+
+## [1.11.0](https://github.com/aadamhuda/CyberCity/commit/00f6f4381aca777e4f95f3133a05aed961a35f7b) - 2022-12-07
+### Added
+- Enemies can now use a set of moves ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Players and enemies can now be vulnerable or resistant to type of moves
+### Changed
+- Remodelled Damage ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Units have resistances and vulnerbilities
+  - When attacking an enemy, the enemy checks the type of attack
+  - If the enemy is resitant it'll resist 25% of damage and vice versa
+  - Damage is stored in a dict
+
 ## [1.10.0](https://github.com/aadamhuda/CyberCity/commit/1eae4ed02bd005b454e818c0b0274b80deec1b82) - 2022-12-07
 ### Added
 - Added shoot animation and updated animation speeds ~ [@gv301](https://github.com/gv301)
