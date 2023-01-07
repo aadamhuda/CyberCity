@@ -18,6 +18,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [2.1.0](https://github.com/aadamhuda/CyberCity/releases/tag/v2.1.0) - 2022-12-26
+### Added
+- Added enemies and enemy paths to new enviroment ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added navmesh to new enviroment ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added attack effect animations and sound ~ [@gv301](https://github.com/gv301)
+  - Currently completed fire
+- Doors now animate ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - When the player has collected 2 clues the first door will open
+  - The secound will open on 4 clues
+  - The doors will remain open if the player has collected clues
+- Added invisible walls to prevent the player from falling off the map ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added floor map to the city level ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Enemies now remember player attributes ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Whenever enemies attack players they log their attack
+  - The attack is specific to each companion and affinity
+  - The enemies now attack players with known weaknesses
+  - Otherwise they'll attack randomly
+### Changed
+- Updated sword models ~ [@gv301](https://github.com/gv301)
+- Scene changes ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Scenes now are changed with names rather than index
+  - To change scene use the getter method in SaveData and get the right scene 
+  - All scene will be stored in SaveData 
+
 ## [2.0.0](https://github.com/aadamhuda/CyberCity/commit/5debe407f5656ddf563416298ebb115cb68bbd18) - 2022-12-24
 ### Added
 - Added item spawner ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
@@ -54,6 +78,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Cargo level map sky lighting is set as "stormy" using skybox asset ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Added lights to walls throughout the cargo level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Added sword equip and unequip with sword model ~ [@gv301](https://github.com/gv301)
+- Added colliders to environment models ~ [@aadamhuda](https://github.com/aadamhuda)
 ### Deprecated 
 - Reverted player movement to old input system ~ [@gv301](https://github.com/gv301)
 ### Fixed
