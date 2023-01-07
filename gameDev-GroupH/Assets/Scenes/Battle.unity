@@ -4949,8 +4949,10 @@ MonoBehaviour:
   - Distant Voice_During the Player turn, the camera will focus on the party member
     whos turn it is
   - Distant Voice_You can select up to 5 options here
+  - Distant Voice_You can press 'A' and 'D' to change the current target during your
+    turn
   - Distant Voice_The Abilities button displays the abilities that can be used to
-    damage enemies
+    damage enemies, once youve selected your target
   - Distant Voice_Each party member has a specific set of abilities, and some may
     cost MP
   - Distant Voice_Enemy Info displays the player and enemies strengths and weaknesses
