@@ -18,6 +18,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [1.10.0](https://github.com/aadamhuda/CyberCity/commit/1eae4ed02bd005b454e818c0b0274b80deec1b82) - 2022-12-07
+### Added
+- Added shoot animation and updated animation speeds ~ [@gv301](https://github.com/gv301)
+- Added heal animation ~ [@gv301](https://github.com/gv301)
+- Added downed animation for players ~ [@gv301](https://github.com/gv301)
+- Added death animation for enemies ~ [@gv301](https://github.com/gv301)
+- Added feature: when health item is being used, downed players are unable to be selected ~ [@aadamhuda](https://github.com/aadamhuda)
+  - When revive items are selected to be used, then players who aren’t downed are unable to be selected
+  - When players are selecting an item, they are able to cancel the selected item by pressing the cancel button, this goes back to item select   
+### Changed
+- Reworked item menu to fit new HUD ~ [@aadamhuda](https://github.com/aadamhuda)
+- Changed item usage: only one item can be used per round ~ [@aadamhuda](https://github.com/aadamhuda)
+
 ## [1.9.0](https://github.com/aadamhuda/CyberCity/commit/28767556b80e5c68575d944d9c1d533fdfe81834) - 2022-12-05
 ### Added
 - Added new HUD elements ~ [@aadamhuda](https://github.com/aadamhuda)
