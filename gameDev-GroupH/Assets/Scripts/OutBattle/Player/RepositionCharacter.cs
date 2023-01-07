@@ -13,15 +13,8 @@ public class RepositionCharacter : MonoBehaviour
         // Disable script to move object
         this.controller.enabled = false;
         this.Charcter.transform.position = this.savedata.get_respawn_location();
+        //re enables after moving to save point
         this.controller.enabled = true;
         Time.timeScale = 1f;
     }
-
-    private void Update()
-    {
-        
-            
-            
-    }
-
 }

@@ -50,8 +50,10 @@ public class PlayerController : MonoBehaviour
     public GameObject[] Clues = new GameObject[4];
 
     public TextMeshProUGUI winText;
+
     [SerializeField]
     private bool save;
+
     public bool won = false;
     public int numClues = 4;
     public int clueCount;
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviour
         // Checks if players needs to spawn at last save loaction or last position before battle
         if (savedata.getRespawn())
         {
-            this.repostion.Change();
+            this.repostion.Change();//function to disable then enable controller
             savedata.ChangeRespawn();
         }
 
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
         savedata.inBattle = false;
         canMove = true;
+        
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -91,7 +94,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         winText.text = "";
         clueCount = savedata.ClueCount;
-
     }
 
     // Input action controls
@@ -124,7 +126,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
 
     public bool get_save() { return this.save; }
 
@@ -167,7 +168,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
+    //On Clue collider exit
     void OnTriggerExit(Collider other)
     {
         collecterBool = false;

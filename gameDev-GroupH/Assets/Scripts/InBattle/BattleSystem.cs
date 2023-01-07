@@ -127,6 +127,7 @@ public class BattleSystem : MonoBehaviour
 
 	}
 	//-------------------------------------------UPDATE FUNCTIONS-------------------------------------------------------
+	//used to activate player buttons when it is player turn
 	public void ActivateButtons()
     {
 		for (int i = 0; i < playerMoveButtons.Length; i++)
@@ -134,6 +135,7 @@ public class BattleSystem : MonoBehaviour
 			playerMoveButtons[i].interactable = true;
 		}
 	}
+	//used to deactivate player buttons when it is not  player turn
 	public void DectivateButtons()
 	{
 		for (int i = 0; i < playerMoveButtons.Length; i++)
@@ -142,6 +144,7 @@ public class BattleSystem : MonoBehaviour
 		}
 	}
 
+	//Input controls to change targets - left
 	public void OnSwitchTargetLeft(InputValue value)
 	{
 		if (state == BattleState.PLAYERTURN)
@@ -152,6 +155,7 @@ public class BattleSystem : MonoBehaviour
 			}
 		}
 	}
+	//Input controls to change targets - left
 	public void OnSwitchTargetRight(InputValue value)
 	{
 		if (state == BattleState.PLAYERTURN)
@@ -188,7 +192,7 @@ public class BattleSystem : MonoBehaviour
 
 	public Enemy[] InstantiateEnemies()
     {
-		// Create enemies in the correc5t positions
+		// Create enemies in the correct positions
 		int enemyCount = 3;
 		Enemy[] allEnemies = new Enemy[enemyCount];
 
@@ -220,7 +224,7 @@ public class BattleSystem : MonoBehaviour
 		}
     }
 
-	//spawns hud in placeholder regions
+	//spawns hud in placeholder regions and initialises them
 	void InitialiseHUD()
 	{
 		enemiesHUD = new UnitHUD[3];
@@ -234,25 +238,17 @@ public class BattleSystem : MonoBehaviour
 
 		for (int i = 0; i < playerHUD.Length; i++)
 			playerHUD[i].InitialiseSlider(players[i]);
-
 	}
 
 	//initialises battle - spawns player and enemies, selects first target and then starts player turn
 	IEnumerator InitialiseBattle()
     {
-
 		// Initialise combatents
         players = InstantiatePlayers();
-
         currPlayer = players[tracker];
 
         enemies = InstantiateEnemies();
-
         StartCoroutine(ChangeTarget(0));
-
-        
-
-
 
 		InitialiseMemory();
 
@@ -263,18 +259,19 @@ public class BattleSystem : MonoBehaviour
 		Destroy(Instantiate(startRender), 1.2f);
 
 		yield return new WaitForSeconds(1f);
+		//sets state to player turn, but changes to tutorial if enemy is tutorial enemy
         state = BattleState.PLAYERTURN;
         if (savedata.tutorial)
         {
 			state = BattleState.TUTORIAL;
         }
+		//enable the first battle camera and disable main, then start player turn
         EnableCamera(battleCameras[0]);
         DisableCamera(mainCamera);
         StartCoroutine(PlayerTurn());
     }
 
 	// Initialise Enemy Memory
-	// No longer implemented
 	private void InitialiseMemory()
     {
 		this.checklist = new Dictionary<int, Dictionary<string, string>>();
@@ -297,7 +294,8 @@ public class BattleSystem : MonoBehaviour
 
 
     //-------------------------------------------Player Attack-------------------------------------------------------
-    void PreAttackChecks(string attackType, int mpConsumption)
+    //checks if player attack is valid, checks for player down and MP usage
+	void PreAttackChecks(string attackType, int mpConsumption)
     {
 		if (currPlayer.downed)
 		{
@@ -317,7 +315,7 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(PlayerAttack(attackType));
 		}
 	}
-	
+	//performs player attack, with animations and movemement
 	IEnumerator PlayerAttack(string attackType)
 	{
 		bool isDead;
@@ -425,7 +423,7 @@ public class BattleSystem : MonoBehaviour
 				// Moving player back to original position
 				yield return new WaitForSeconds(0.7f);
 				yield return StartCoroutine(animator.DisarmSword(playerAnimator, currPlayer.transform));
-				StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.1f, playerPos));
+				StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.2f, playerPos));
 
 			}
 			string state;
@@ -443,8 +441,7 @@ public class BattleSystem : MonoBehaviour
 
 				this.KnownEnemyAttributes[enemyTarget.getID()].Add(attackType, state);
 			}
-		}
-		                      
+		}        
 
 		// Dialogue for players
 		dialogue.text = currPlayer.unitName + " attacked " + enemyTarget.unitName;
@@ -479,6 +476,7 @@ public class BattleSystem : MonoBehaviour
 		}
 
 	}
+	//asks player to start action and rotates player towards enemy
 	IEnumerator PlayerTurn()
 	{
 		Vector3 enemyPos = enemies[target].transform.position;
@@ -486,7 +484,7 @@ public class BattleSystem : MonoBehaviour
 		dialogue.text = "Choose an action!";
 		yield return StartCoroutine(currPlayer.RotatePlayer(0.2f, enemyPos));
 	}
-
+	//heals player, and checks if MP usage is valid, also carries out heal animation
 	IEnumerator PlayerHeal()
 	{
 		int mpCost = 4;
@@ -511,26 +509,22 @@ public class BattleSystem : MonoBehaviour
 		}
 	}
 
-
 	//-------------------------------------------ITEM-------------------------------------------------------
-
+	//changes turn after player uses item
 	public void UseItem()
 	{
 		StartCoroutine(ItemWait());
 		ChangePartyTurn(1);
 	}
-
+	//adds a wait time in between the turn and disables the item menu
 	IEnumerator ItemWait()
     {
 		itemMenu.SetActive(false);
 		state = BattleState.PLAYERWAIT;
 		yield return new WaitForSeconds(2f);
 	}
-
-
-
-
 	//-------------------------------------------ENEMY-------------------------------------------------------
+	//carries out the enemy AI turn, with animations and effects
 	IEnumerator EnemyTurn()
 	{
 		Dictionary<int, bool> playerAttacked = new Dictionary<int, bool>();
@@ -541,7 +535,6 @@ public class BattleSystem : MonoBehaviour
 		for (int i = 0; i < enemies.Length; i++)
 		{
 
-
 			Enemy currEnemy = enemies[i];
 			Player playerTarget = null;
 
@@ -550,10 +543,6 @@ public class BattleSystem : MonoBehaviour
 				multi += 0.15f;
 
 			string randomKey = "attacknotfound";
-
-			
-
-			
 
 			// Current enemy & Player
 			// Pick random player
@@ -675,7 +664,7 @@ public class BattleSystem : MonoBehaviour
 				{
 					yield return new WaitForSeconds(0.3f);
 				}
-				yield return StartCoroutine(currEnemy.MoveEnemy(false, 0, speed, 0.1f, enemyPos));
+				yield return StartCoroutine(currEnemy.MoveEnemy(false, 0, speed, 0.2f, enemyPos));
 
 				string state;
 				if (this.checklist[playerTarget.getID()].ContainsKey(randomKey) == false)
@@ -726,11 +715,11 @@ public class BattleSystem : MonoBehaviour
 			if (CheckAllDead())
 				break;
 		}
-
+		//checks if all players are dead
 		bool playersDeath = CheckAllDead();
 
 		yield return new WaitForSeconds(1f);
-
+		//runs specific routine based on player death
 		if (playersDeath)
 		{
 			state = BattleState.LOSE;
@@ -745,6 +734,7 @@ public class BattleSystem : MonoBehaviour
 	}
 
 	//-------------------------------------------BATTLE LOOP-------------------------------------------------------
+	//checks if all players are dead
 	private bool CheckAllDead()
     {
 		bool allDead = true;
@@ -758,6 +748,7 @@ public class BattleSystem : MonoBehaviour
 		}
 		return allDead;
 	}
+	// changes the party turn, and changes to enemy turn if all players have had their turn
 	private void ChangePartyTurn(int incre)
 	{
 		// Iterates to next player switching turns when all of currPlayer have had a turn
@@ -772,7 +763,6 @@ public class BattleSystem : MonoBehaviour
 			DisableAllPlayerCameras(battleCameras.Length);
 			StartCoroutine(EnemyTurn());
 		}
-
 		else
 		{
 			if (players[tracker].downed == false)
@@ -794,10 +784,9 @@ public class BattleSystem : MonoBehaviour
 		}
 	}
 
+	//ends the battle and saves relevant data , or activates lose screen if lost
 	IEnumerator EndBattle()
 	{
-		
-		
 		if (state == BattleState.WIN)
 		{
 			dialogue.text = "You won the battle!";
@@ -842,6 +831,7 @@ public class BattleSystem : MonoBehaviour
 		return new_enemies;
 	}
 
+	//removes a HUD on enemy death
 	private UnitHUD[] RemoveHUDs(int removeAt, UnitHUD [] arr)
 	{
 		UnitHUD[] newHUD = new UnitHUD[arr.Length - 1];
@@ -897,6 +887,7 @@ public class BattleSystem : MonoBehaviour
 
 
 	//-------------------------------------------CAMERAS-------------------------------------------------------
+	//disables all player cameras 
 	private void DisableAllPlayerCameras(int dontRemove)
     {
 		//pass 'dontRemove' as battleCameras.length if removing all
@@ -924,7 +915,6 @@ public class BattleSystem : MonoBehaviour
 	{
 		savedata.ChangeRespawn();
 		SceneManager.LoadScene(savedata.get_current_level());
-
 	}
 
 	//sets save data to spawn coordinates to allow player to escape to spawn
@@ -936,29 +926,26 @@ public class BattleSystem : MonoBehaviour
 		savedata.ChangeRespawn();
 		SceneManager.LoadScene(savedata.get_current_level());
 	}
-
+	//displays the abilities for current player
 	public void DisplayAbilities()
     {
 		HUDController hudController = BattleHUD.GetComponent<HUDController>();
 		hudController.InitaliseMenu(players[tracker]);
 	}
-
+	//destorys abilities for player
 	public void DestroyAbilities()
 	{
 		HUDController hudController = BattleHUD.GetComponent<HUDController>();
 		hudController.DestroyMenu();
 	}
-
+	//used on cancel in exit abilities
 	public void ExitAbilities()
 	{
 		DestroyAbilities();
 		state = BattleState.PLAYERTURN;
 	}
-	
 
-
-	//button methods
-
+	//OnButton Methods
 	public void OnAttackButton(string attackType, int mpConsumption)
 	{
 		if (state != BattleState.SELECTINGATTACK)

@@ -27,7 +27,6 @@ public class BattleUnit : MonoBehaviour
     private Dictionary<string, float> unit_attributes = new Dictionary<string, float>();
     private Dictionary<string, int> unit_attacks = new Dictionary<string, int>();
 
-
     public int getID() { return ID; }
     // All attributes
     public Dictionary<string, float> GetATB () { return unit_attributes;  }

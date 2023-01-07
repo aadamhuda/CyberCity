@@ -20,7 +20,8 @@ public class Inventory : MonoBehaviour
         // Checks if there already items saved 
         if (savedata.get_items().Count > 0)
             items = savedata.get_items();
-        AddTestItems();
+        //adds items for the player to test them in battle - only use in testing
+        //AddTestItems();
     }
 
     public Sprite GetSprite() { return this.icon_sprite; }

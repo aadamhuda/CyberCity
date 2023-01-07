@@ -65,7 +65,7 @@ public class EnemyCollider : MonoBehaviour
     {
         return inRange;
     }
-
+    //pauses all enemies, used for dialogue
     public void StopAll()
     {
         for (int i = 1; i < gameObject.transform.childCount; i++)
@@ -76,6 +76,7 @@ public class EnemyCollider : MonoBehaviour
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().GetAnim().SetBool("First" , true);
         }
     }
+    //resumes all enemies, used for dialogue
     public void ResumeAll()
     {
         for (int i = 1; i < gameObject.transform.childCount; i++)
@@ -98,6 +99,7 @@ public class EnemyCollider : MonoBehaviour
         inRange = false;
     }
 
+    //loads battle scene and saves useful vars beforehand
     protected void BattleScene()
     {
         // Engage combat
@@ -107,7 +109,7 @@ public class EnemyCollider : MonoBehaviour
         PosSave.inBattle = true;
         SceneManager.LoadScene("Battle");
     }
-
+    //The Event that occurs when players attack, used in OnAttack in child class
     public void EngageControl(InputValue value)
     {
         if (inRange == true)
@@ -120,7 +122,7 @@ public class EnemyCollider : MonoBehaviour
             }
         }
     }
-
+    //handles all events for player engagement
     public IEnumerator PlayerEngage()
     {
         // Fetches weapon from player

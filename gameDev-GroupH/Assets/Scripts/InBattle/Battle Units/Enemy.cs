@@ -10,7 +10,7 @@ public class Enemy : BattleUnit
 	private SaveData saveData;
 
     private void Start()
-    {
+    {//difficulty HP changes
         if (saveData.GetDifficulty() == 1)
         {
 			maxHP = maxHP - 25;
@@ -62,8 +62,6 @@ public class Enemy : BattleUnit
 	{
 		gameObject.SetActive(true);
 	}
-
-
 
 	// Turn enemy to a position
 	public IEnumerator RotateEnemy(float speed, Vector3 targetPos)

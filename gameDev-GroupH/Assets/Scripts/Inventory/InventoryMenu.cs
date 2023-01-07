@@ -125,7 +125,7 @@ public class InventoryMenu : MonoBehaviour
 
 
 	}
-
+	//allows the user to select a player to apply item on
 	public void PlayerSelect(string playerName)
 	{
 		for (int i = 0; i< players.Length; i++)
@@ -174,7 +174,7 @@ public class InventoryMenu : MonoBehaviour
 		battleSystem.GetComponent<BattleSystem>().UseItem();
 
 	}
-
+	//updates the item image when selecting item
 	void ItemImageUpdate()
     {
 		itemImage.SetActive(true);
@@ -219,7 +219,7 @@ public class InventoryMenu : MonoBehaviour
 	public void addItem(string item) {
 		inventory.addItem(item , 1);
 	}
-
+	//filters if a player is downed, for downed players potions and ethers cant be used, and revives cant be used on alive players
 	void DownedButtonFilter(List<Button> buttons, bool active)
 	{
 		for (int i = 0; i < buttons.Count; i++)
@@ -236,9 +236,7 @@ public class InventoryMenu : MonoBehaviour
 		ItemImageUpdate();
 	}
 
-
-
-
+	//these functions allow buttons to be enabled and disabled, and destroyed
 	void enableButtons(List<Button> buttons)
     {
 		for (int i = 0; i < buttons.Count; i++)
@@ -263,10 +261,9 @@ public class InventoryMenu : MonoBehaviour
 		{
 			Destroy(buttons[i].gameObject);
 		}
-
 		buttons.Clear();
 	}
-
+	//OnButton Methods
     public void OnBackButton()
     {
 		DestroyMenuButtons(items);
@@ -282,24 +279,5 @@ public class InventoryMenu : MonoBehaviour
 		itemImage.SetActive(false);
 		cancelButton.interactable = false;
 	}
-
-	public void AddTestItems()
-    {
-		// Test inventory
-		addItem("smallPotion");
-		addItem("smallPotion");
-		addItem("smallPotion");
-
-		addItem("maxPotion");
-
-		addItem("revive");
-		addItem("revive");
-		addItem("maxRevive");
-
-		addItem("ether");
-		addItem("ether");
-		addItem("maxEther");
-	}
-
 
 }

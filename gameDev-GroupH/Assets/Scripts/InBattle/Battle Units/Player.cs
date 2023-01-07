@@ -23,6 +23,7 @@ public class Player : BattleUnit
 
     private void Start()
     {
+        //set MP cost for attacks
         mpCost.Add("normal", 0);
         mpCost.Add("shoot", 5);
         mpCost.Add("fire", 3);
@@ -30,8 +31,7 @@ public class Player : BattleUnit
         mpCost.Add("ice", 4);
         mpCost.Add("grass", 3);
         mpCost.Add("curse", 3);
-        
-
+        //multipliers for affinities
         float norm = 1f;
         float weak = 1.25f;
         float strong = 0.75f;
