@@ -18,6 +18,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+
+## [2.2.5]() - 2023-01-06
+### Added
+- Added footsteps to effects volume ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added difficulties that change enemy HP and item spawn rate ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added difficulty options in the main menu ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added an error message to the loading screen if it takes more than 10 seconds ~ [@aadamhuda](https://github.com/aadamhuda)
+- Make item spawner method destroy the base item ~ [@aadamhuda](https://github.com/aadamhuda)
+### Changed
+- Edited first enemy animator to only contain idle ~ [@aadamhuda](https://github.com/aadamhuda)
+- Increased the inital spawn height of the player to 1.5 ~ [@aadamhuda](https://github.com/aadamhuda)
+- Changed a logic error with player frozen, it would use the index of enemy target rather than player tracker ~ [@aadamhuda](https://github.com/aadamhuda)
+### Removed
+- Removed enumerator from loadscene and renamed the method ~ [@aadamhuda](https://github.com/aadamhuda)
+
 ## [2.2.4]() - 2023-01-06
 ### Added
 - Added effect fix ~ [@gv301](https://github.com/gv301)
