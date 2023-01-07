@@ -18,6 +18,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [2.2.0](https://github.com/aadamhuda/CyberCity/commit/a47e2aa5f057044180fd9545e6044db6cc110872) - 2022-12-31
+### Added
+- Added walls/ buildings on city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added checkpoints to city level map ~ [@sarahbrah7](https://github.com/sarahbrah7) ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added a material to the flooring in the city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Lighting added to city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added gate to city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Made a cargo level environment for the battle scene ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Made a city level environment for the battle scene ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added enemies and item spawner in new environment ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added navmesh to new env ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added a sceneshift to move to City Level from Cargo level ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - A pad at the end of cargo level
+  - pressing left click will take the player to the next level
+- Save & Load now remembers the player scene level ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added functionality to use save data to load correct environment for battle scene based on the level they are on ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added different effects for different attacks ~ [@gv301](https://github.com/gv301)
+- Drawn characters for dialogue ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Drawn loading screens for city level and cargo level ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added narrative ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Narrative when spawning
+  - Narrative when picking up items
+- When seeing the first enemy and instruction is given ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- All effects except bow and shooting completed ~ [@gv301](https://github.com/gv301)
+- Drawn items ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Drawn pause screen ~ [@sarahbrah7](https://github.com/sarahbrah7)
+### Changed
+- Changed the spawn points in the battle scene to invisible ~ [@aadamhuda](https://github.com/aadamhuda)
+- Player attacks enemy when engaging ~ [@gv301](https://github.com/gv301)
+- First enemy no longer moves ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Fixed
+- Fixed issue where main menu takes you directly into battle ~ [@aadamhuda](https://github.com/aadamhuda)
+
 ## [2.1.0](https://github.com/aadamhuda/CyberCity/releases/tag/v2.1.0) - 2022-12-26
 ### Added
 - Added enemies and enemy paths to new enviroment ~ [@Ibraheem717](https://github.com/Ibraheem717)
