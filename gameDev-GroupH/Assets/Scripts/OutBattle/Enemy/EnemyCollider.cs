@@ -47,7 +47,7 @@ public class EnemyCollider : MonoBehaviour
                 GameObject enem = Instantiate(enemy_object, temp.GetFirst(), Quaternion.identity, gameObject.transform);
 
                 // Assigning name such that : (  area number  -  enemy number  )
-                enem.name = area.ToString() + "-" + i.ToString();
+                enem.name = PosSave.get_current_level() + " : " + area.ToString() + "-" + i.ToString();
                 var assigner = enem.GetComponent<EnemyOutOfCombat>();
 
                 // Assigning variables to each enemy

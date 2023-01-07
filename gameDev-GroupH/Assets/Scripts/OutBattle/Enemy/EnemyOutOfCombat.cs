@@ -160,6 +160,7 @@ public class EnemyOutOfCombat : EnemyCollider
         // Buffs enemy dmg as they started combat
         yield return new WaitForSeconds(1.3f);
         PosSave.OnEnemyDouble();
+        PosSave.SaveEnem(this.gameObject.name);
         base.BattleScene();
     }
     private void Awake()

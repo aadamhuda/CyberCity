@@ -34,6 +34,7 @@ public class SwitchScene : MonoBehaviour
             {
 
                 savedata.SaveLocation(new Vector3(0, 1.5f, 0));
+                savedata.set_respawn(new Vector3(0, 1.5f, 0));
 
                 savedata.set_current_level(savedata.get_cyber_level());
 
