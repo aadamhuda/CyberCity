@@ -18,6 +18,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [2.0.0](https://github.com/aadamhuda/CyberCity/commit/5debe407f5656ddf563416298ebb115cb68bbd18) - 2022-12-24
+### Added
+- Added item spawner ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+  - If you duplicate item spawner object, you can add a floor panel and the number of pickups and it will randomly create the pickups on the surface
+- Added audio and sensitivity ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+- Added sounds to animations ~ [@gv301](https://github.com/gv301)
+  - Player heal and attack animation sounds
+  - Enemy attack animation sound
+- Mouse sensitivity slider now changes camera sensitivity ~ [@gv301](https://github.com/gv301)
+- Added reaction animations to being hit ~ [@gv301](https://github.com/gv301)
+- Created a battle animator which handles animations and audio ~ [@gv301](https://github.com/gv301)
+- Added floor map of the cargo level ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added multiple enemy models, and more enemy types  for enemy variety ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added random enemy system which randomly picks the types of the three enemies that the player will face in battle ~ [@aadamhuda](https://github.com/aadamhuda)
+- When picking up items, it will appear in inventory ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - To access inventory, Pause then click inventory
+  - Right now there's no inventory label so click the empty one
+- Inventory is loaded onto battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Player can save on checkpoints ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Loads on most recent save 
+  - Save takes in account of:
+    - Enemies killed
+    - Items taken
+    - Player save location
+    - Clues 
+- Added MP system, attacks have an MP cost and cannot be used if the user has insufficient Magic Points ~ [@aadamhuda](https://github.com/aadamhuda)
+- Linked MP system to the Player HUD for real time status of the Players Magic points ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added MP save after a battle ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added walls to the cargo level ~ [@sarahbrah7](https://github.com/sarahbrah7)
+  - Using assets
+- Added checkpoints to the cargo level ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added a 4th clue (in code and cargo level environment) ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added gates to the cargo level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Cargo level map sky lighting is set as "stormy" using skybox asset ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added lights to walls throughout the cargo level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added sword equip and unequip with sword model ~ [@gv301](https://github.com/gv301)
+### Deprecated 
+- Reverted player movement to old input system ~ [@gv301](https://github.com/gv301)
+### Fixed
+- Fixed an issue where killing all enemies with the bow, will still cause battle to continue ~ [@Ibraheem717](https://github.com/Ibraheem717)
+
 ## [1.11.1](https://github.com/aadamhuda/CyberCity/commit/100816f745117ea34f7408243ff777666494f39a) - 2022-12-08
 ### Added
 - Added animation for player to revert back to idle when revived ~ [@aadamhuda](https://github.com/aadamhuda)
