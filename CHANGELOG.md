@@ -18,6 +18,45 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [2.2.4]() - 2023-01-06
+### Added
+- Added effect fix ~ [@gv301](https://github.com/gv301)
+- Added narative scripts to objects ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added an endscreen once the player collects all 8 clues ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- When saving pop-up appears if the user isn't near a checkpoint ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- When saving pop-up appears if the user doesn't have any data saved on that location ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Main menu checks if there is any last save data otherwise load game isnt an option ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- ItemName + 1 appears if the item already exists in the inventory ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Added functionality to settings ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added audio mixer ~ [@aadamhuda](https://github.com/aadamhuda)
+- Completed effects ~ [@gv301](https://github.com/gv301)
+  - Also added effects for debuffs, fire, poison, and ice
+- Added in battle tutorial for first enemy, disables attack buttons for the tutorial and then re enables them once complete ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Tutorial uses narrative system
+  - If the enemy is not the tutorial enemy, then in battle, the narrative menu will be destroyed
+### Changed
+- Updated effects ~ [@gv301](https://github.com/gv301)
+- Enemies don't only attack weak players unless they have to ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Moved clue and item interaction over to unity new input system (press 'E' to collect item or clue) ~ [@aadamhuda](https://github.com/aadamhuda)
+- Moved enemy engagement over to unity new input system (press 'F' to engage) ~ [@aadamhuda](https://github.com/aadamhuda)
+- Moved changing targets in battle control over to unity new input system ('A' and 'D') ~ [@aadamhuda](https://github.com/aadamhuda)
+- Moved save menu and pause menu control 'o' 'p' over to new input system ~ [@aadamhuda](https://github.com/aadamhuda)
+- The player can now quit to main menu from endgame screen ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Updates input system to 1.4.4 ~ [@aadamhuda](https://github.com/aadamhuda)
+- Settings can now adjust master audio, music audio and effects audio volumes ~ [@aadamhuda](https://github.com/aadamhuda)
+### Deprecated
+- Temporarily removed enemy move learning AI ~ [@aadamhuda](https://github.com/aadamhuda)
+### Removed
+- Removed everything from settings barring sensitivity and volume ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Fixed
+- Fixed enemy attack animations ~ [@gv301](https://github.com/gv301)
+- Fixed ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Load game from menu would start from the beginning
+  - Load game wouldn't load the correct level
+- Fixed boxes in endgame screen ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Fix targeting system null error ~ [@aadamhuda](https://github.com/aadamhuda)
+- Fixed error with slowrun ~ [@gv301](https://github.com/gv301)
+
 ## [2.2.3]() - 2023-01-03
 ### Added
 - Player can now save on specific save locations and load save locations ~ [@Ibraheem717](https://github.com/Ibraheem717)
