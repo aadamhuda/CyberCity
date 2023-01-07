@@ -484,7 +484,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28301443}
-  m_LocalRotation: {x: 0.080924936, y: 0.0007267657, z: -0.00005900702, w: 0.99671996}
+  m_LocalRotation: {x: 0.08092491, y: 0.0007267309, z: -0.000059004175, w: 0.99671996}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -38197,48 +38197,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: dialogue.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: dialogue.Array.data[0]
+      value: Distant Voice_Use Left Mouse Click to proceed through narrative
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: dialogue.Array.data[1]
       value: Nadiya_Ah, how did I land in this shithole? Full of cargo containers
         and shipping crates, and its all ancient.
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
-      propertyPath: dialogue.Array.data[1]
+      propertyPath: dialogue.Array.data[2]
       value: Nadiya_Its a shame that the corps don't even wanna clean up this mess,
         this place could make a good few buildings. Hmm, even a base of operations
         for us.
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
-      propertyPath: dialogue.Array.data[2]
+      propertyPath: dialogue.Array.data[3]
       value: Dreyar_Well, weve all landed in this area somehow, usually either the
         corpos or any gangs use this place to dump bodies, but somehow we've all
         survived.
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
-      propertyPath: dialogue.Array.data[3]
+      propertyPath: dialogue.Array.data[4]
       value: Astra_Yeah... well, we at Bepis use this place for the dark operations,
         nobody enters here. Im sure we all have ended up here for some reason.
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
-      propertyPath: dialogue.Array.data[4]
+      propertyPath: dialogue.Array.data[5]
       value: Joe_Wait.. How do you know this and why would you tell us this?
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
-      propertyPath: dialogue.Array.data[5]
+      propertyPath: dialogue.Array.data[6]
       value: Astra_Bepis is the reason im here, and thats all your gonna get.
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
-      propertyPath: dialogue.Array.data[6]
+      propertyPath: dialogue.Array.data[7]
       value: Nadiya_Bepis... Of course it's them, its always them, anywhere and everywhere.
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
-      propertyPath: dialogue.Array.data[7]
+      propertyPath: dialogue.Array.data[8]
       value: Distant Voice_Use 'WASD' to move
       objectReference: {fileID: 0}
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
-      propertyPath: dialogue.Array.data[8]
+      propertyPath: dialogue.Array.data[9]
       value: ------
       objectReference: {fileID: 0}
     m_RemovedComponents: []
