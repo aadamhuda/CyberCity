@@ -32,7 +32,7 @@ public class EnemyCollider : MonoBehaviour
         // Instantiate enemies on each area
         for (int area = 0; area < plane.Length; area++)
         {
-            limit = Mathf.RoundToInt( plane[area].get_max() / PosSave.GetDifficulty() );
+            limit = Mathf.RoundToInt( plane[area].get_max() / (4-PosSave.GetDifficulty()) );
 
             if (limit == 0)
                 limit = 1;

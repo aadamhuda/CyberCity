@@ -41,8 +41,8 @@ public class MenuController : MonoBehaviour
         saveState.Death.Clear();
         saveState.ClueCount = 0;
         saveState.set_current_level(saveState.get_cargo_level());
-        saveState.SaveLocation(new Vector3(0f, 1.5f, 0f));
-        saveState.set_respawn(new Vector3(0f, 1.5f, 0f));
+        saveState.SaveLocation(new Vector3(0f, 1.01f, 0f));
+        saveState.set_respawn(new Vector3(0f, 1.01f, 0f));
         //changes item respawn for difficulty
         saveState.set_item_respawn(3*saveState.GetDifficulty());
         saveState.SavePlayerMP(new int[] { 30, 30, 30, 30 });

@@ -41,7 +41,8 @@ public class EnemyOutOfCombat : EnemyCollider
 
         // Adds spherecollider setting values
         SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
-        sc.radius = 3;
+        sc.radius = 2;
+        sc.radius = PosSave.GetDifficulty();
         sc.isTrigger = true;
 
         // Adds itself to dict 
