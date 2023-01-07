@@ -18,10 +18,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [2.2.1](https://github.com/aadamhuda/CyberCity/commit/1e2e25ebf99ddf0886aa2959aca2c00321e8ab02) - 2023-01-01
+### Added
+- Added bow and shoot effect ~ [@gv301](https://github.com/gv301)
+- Added main menu music ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added items maxEther and Ether to useable items ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added models to Clues, Items ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - When entering a safe area, narrative pops indicating the player is near a safe area
+  - When seeing first enemy, the game pauses and instructions are given ( currently diabled )
+  - When nearby enemies, items and clues and indicator appears above their heads indicating the player can interact with thm
+  - When entering a safe a green bar appears indicator the player can save
+- Add icons to player HUD ~ [@aadamhuda](https://github.com/aadamhuda)
+- Drawn buttons ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added item images to item menu ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added designs for enemy health indicators ~ [@aadamhuda](https://github.com/aadamhuda)
+- Drawn win and lose screens ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Players can now save by pressing 'S' in save area ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Changed
+- Changed fonts for battle UI to rajdhani font ~ [@aadamhuda](https://github.com/aadamhuda)
+- Remodeled Pause Screen ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Changed MC name to 'Nadiya' from 'Eve'~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Removed
+- Removed guard button ~ [@aadamhuda](https://github.com/aadamhuda)
+### Fixed
+- Fixed an issue where collecting a clue will leave the player stuck ~ [@Ibraheem717](https://github.com/Ibraheem717)
+
 ## [2.2.0](https://github.com/aadamhuda/CyberCity/commit/a47e2aa5f057044180fd9545e6044db6cc110872) - 2022-12-31
 ### Added
 - Added walls/ buildings on city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
-- Added checkpoints to city level map ~ [@sarahbrah7](https://github.com/sarahbrah7) ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added checkpoints to city level map ~ [@sarahbrah7](https://github.com/sarahbrah7) 
 - Added a material to the flooring in the city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Lighting added to city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
 - Added gate to city level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
