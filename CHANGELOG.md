@@ -18,6 +18,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [1.11.1](https://github.com/aadamhuda/CyberCity/commit/100816f745117ea34f7408243ff777666494f39a) - 2022-12-08
+### Added
+- Added animation for player to revert back to idle when revived ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added walls in checkpoints, so player cannot run out ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Fixed
+- Fixed bug with rotation on the start of player turn ~ [@aadamhuda](https://github.com/aadamhuda)
+- Fixed an issue where using an ice attack on a frozen enemy will unfreeze them ~ [@aadamhuda](https://github.com/aadamhuda)
 
 ## [1.11.0](https://github.com/aadamhuda/CyberCity/commit/00f6f4381aca777e4f95f3133a05aed961a35f7b) - 2022-12-07
 ### Added
