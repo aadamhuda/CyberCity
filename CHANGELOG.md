@@ -18,6 +18,104 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
+## [2.0.0](https://github.com/aadamhuda/CyberCity/commit/5debe407f5656ddf563416298ebb115cb68bbd18) - 2022-12-24
+### Added
+- Added item spawner ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+  - If you duplicate item spawner object, you can add a floor panel and the number of pickups and it will randomly create the pickups on the surface
+- Added audio and sensitivity ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+- Added sounds to animations ~ [@gv301](https://github.com/gv301)
+  - Player heal and attack animation sounds
+  - Enemy attack animation sound
+- Mouse sensitivity slider now changes camera sensitivity ~ [@gv301](https://github.com/gv301)
+- Added reaction animations to being hit ~ [@gv301](https://github.com/gv301)
+- Created a battle animator which handles animations and audio ~ [@gv301](https://github.com/gv301)
+- Added floor map of the cargo level ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added multiple enemy models, and more enemy types  for enemy variety ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added random enemy system which randomly picks the types of the three enemies that the player will face in battle ~ [@aadamhuda](https://github.com/aadamhuda)
+- When picking up items, it will appear in inventory ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - To access inventory, Pause then click inventory
+  - Right now there's no inventory label so click the empty one
+- Inventory is loaded onto battle ~ [@Ibraheem717](https://github.com/Ibraheem717)
+- Player can save on checkpoints ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Loads on most recent save 
+  - Save takes in account of:
+    - Enemies killed
+    - Items taken
+    - Player save location
+    - Clues 
+- Added MP system, attacks have an MP cost and cannot be used if the user has insufficient Magic Points ~ [@aadamhuda](https://github.com/aadamhuda)
+- Linked MP system to the Player HUD for real time status of the Players Magic points ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added MP save after a battle ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added walls to the cargo level ~ [@sarahbrah7](https://github.com/sarahbrah7)
+  - Using assets
+- Added checkpoints to the cargo level ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added a 4th clue (in code and cargo level environment) ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added gates to the cargo level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Cargo level map sky lighting is set as "stormy" using skybox asset ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added lights to walls throughout the cargo level map ~ [@sarahbrah7](https://github.com/sarahbrah7)
+- Added sword equip and unequip with sword model ~ [@gv301](https://github.com/gv301)
+### Deprecated 
+- Reverted player movement to old input system ~ [@gv301](https://github.com/gv301)
+### Fixed
+- Fixed an issue where killing all enemies with the bow, will still cause battle to continue ~ [@Ibraheem717](https://github.com/Ibraheem717)
+
+## [1.11.1](https://github.com/aadamhuda/CyberCity/commit/100816f745117ea34f7408243ff777666494f39a) - 2022-12-08
+### Added
+- Added animation for player to revert back to idle when revived ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added walls in checkpoints, so player cannot run out ~ [@Ibraheem717](https://github.com/Ibraheem717)
+### Fixed
+- Fixed bug with rotation on the start of player turn ~ [@aadamhuda](https://github.com/aadamhuda)
+- Fixed an issue where using an ice attack on a frozen enemy will unfreeze them ~ [@aadamhuda](https://github.com/aadamhuda)
+
+## [1.11.0](https://github.com/aadamhuda/CyberCity/commit/00f6f4381aca777e4f95f3133a05aed961a35f7b) - 2022-12-07
+### Added
+- Enemies can now use a set of moves ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Players and enemies can now be vulnerable or resistant to type of moves
+### Changed
+- Remodelled Damage ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Units have resistances and vulnerbilities
+  - When attacking an enemy, the enemy checks the type of attack
+  - If the enemy is resitant it'll resist 25% of damage and vice versa
+  - Damage is stored in a dict
+
+## [1.10.0](https://github.com/aadamhuda/CyberCity/commit/1eae4ed02bd005b454e818c0b0274b80deec1b82) - 2022-12-07
+### Added
+- Added shoot animation and updated animation speeds ~ [@gv301](https://github.com/gv301)
+- Added heal animation ~ [@gv301](https://github.com/gv301)
+- Added downed animation for players ~ [@gv301](https://github.com/gv301)
+- Added death animation for enemies ~ [@gv301](https://github.com/gv301)
+- Added feature: when health item is being used, downed players are unable to be selected ~ [@aadamhuda](https://github.com/aadamhuda)
+  - When revive items are selected to be used, then players who aren’t downed are unable to be selected
+  - When players are selecting an item, they are able to cancel the selected item by pressing the cancel button, this goes back to item select   
+### Changed
+- Reworked item menu to fit new HUD ~ [@aadamhuda](https://github.com/aadamhuda)
+- Changed item usage: only one item can be used per round ~ [@aadamhuda](https://github.com/aadamhuda)
+
+## [1.9.0](https://github.com/aadamhuda/CyberCity/commit/28767556b80e5c68575d944d9c1d533fdfe81834) - 2022-12-05
+### Added
+- Added new HUD elements ~ [@aadamhuda](https://github.com/aadamhuda)
+  - New designed buttons
+  - Abilities menu which now shows the individual abilities rather than using a change attack button
+  - Added sprites which will hold player health, Magic points and an icon 
+- Added a new tracking system which uses keys A and D to change enemy. Also shows visually the current chosen enemy ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added music for out of battle scene and in battle scene ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added main menu fonts ~ [@aadamhuda](https://github.com/aadamhuda)
+- Added health bars to battle GUI ~ [@aadamhuda](https://github.com/aadamhuda)
+### Changed
+- Changed player and enemy damage values for balancing ~ [@aadamhuda](https://github.com/aadamhuda)
+### Removed
+- Removed old HUD elements ~ [@aadamhuda](https://github.com/aadamhuda)
+  - Player and enemy names
+  - Player and enemy HP
+  - Battle Buttons
+
+## [1.8.0](https://github.com/aadamhuda/CyberCity/commit/15b893e0a885bff8c1c2755d84752db42bc73737) - 2022-12-02
+### Added
+- Added battle inventory and using items ~ [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+- Added checkpoint areas ~ [@Ibraheem717](https://github.com/Ibraheem717)
+  - Press 'm' to save location in checkpoint 
+- Added burn and freeze attack animation ~ [@gv301](https://github.com/gv301)
+
 ## [1.7.0](https://github.com/aadamhuda/CyberCity/commit/76132d25a5f4c7dfeb1a5330558fb5ae3adcdd43) - 2022-11-30
 ### Added
 - Added battle camera ~ [@aadamhuda](https://github.com/aadamhuda)
