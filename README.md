@@ -137,7 +137,7 @@ To play:
 - [Special Effects](https://assetstore.unity.com/packages/vfx/particles/spells/52-special-effects-pack-10419)
 - [Status Effects](https://assetstore.unity.com/packages/vfx/particles/spells/status-effects-free-238904)
 
-## [Custom Assets](https://github.com/aadamhuda/CyberCity/tree/main/gameDev-GroupH/Assets/Custom%20assets)
+## [Custom Assets](https://github.com/aadamhuda/CyberCity/tree/main/gameDev-GroupH/Assets/Custom%20assets) Designed by [@sarahbrah7](https://github.com/sarahbrah7)
   - Dialogue Boxes 
   - Characters Drawing
   - Loading Screens
@@ -148,7 +148,6 @@ To play:
   - Menu Screen
   - Lose Screen 
   - Win Screen
-  - Designed by [@sarahbrah7](https://github.com/sarahbrah7)
 
 ## Demo Videos:
   - [Final Game Demo](https://youtu.be/F5lDAzxZ9wQ) by [@Ibraheem717](https://github.com/Ibraheem717)
