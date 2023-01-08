@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDeath: 1
   EnemyDouble: 1
-  enem: 'City Level : 0-1'
-  ClueCount: 4
+  enem: 'Cargo Level : 0-1'
+  ClueCount: 0
   inBattle: 0
-  team_health: 7d0000003d0000004c0000007d000000
-  team_MP: 55000000180000001500000017000000
+  team_health: 7d0000007d0000007d0000007d000000
+  team_MP: 1e0000001e0000001e0000001e000000
   difficulty: 1
   tutorial: 0
   current_level: City Level
@@ -26,10 +26,10 @@ MonoBehaviour:
   cyber_level: City Level
   cargo_battle: Battle
   cyber_battle: Cyber Battle
-  player_location: {x: 2.0345325, y: 1.0099999, z: 4.526698}
-  respawn_location: {x: 0, y: 1.5, z: 0}
+  player_location: {x: 0.03401209, y: 1.0099999, z: 1.7175136}
+  respawn_location: {x: 0, y: 1.01, z: 0}
   respawn: 0
-  item_spawn: 2
-  dialogue_index: 4
+  item_spawn: 6
+  dialogue_index: 10
   save_index: 0
   LastSave: SaveTwo
