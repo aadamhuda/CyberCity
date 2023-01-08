@@ -42,6 +42,8 @@ To play:
   - Press the 'E' key to pick it up
   - Once you pick up the four clues in the cargo level, and go to the green pad, you'll be taken to the next level (City level)
   - If you pick up all eight clues, and go to the green pad within the city level, you win!
+  
+![loading_screen_2](https://user-images.githubusercontent.com/44711169/211208808-e97cfe46-ad0d-464b-b098-a48e3bcde424.png)
 
 ## Assets
 [Cinemachine](https://unity.com/unity/features/editor/art-and-design/cinemachine)
@@ -147,12 +149,19 @@ All custom assets designed by [@sarahbrah7](https://github.com/sarahbrah7)
   - Characters Drawing
   - Loading Screens
     - For both levels
-  - Item Drawings 
   - Pause Screen
   - Button
   - Menu Screen
   - Lose Screen 
   - Win Screen
+  - Item Drawings 
+ 
+![ether_item1](https://user-images.githubusercontent.com/44711169/211208884-236d03db-cb4e-4c52-9a3f-db5a55e6d36e.png)
+![ether_item2](https://user-images.githubusercontent.com/44711169/211208886-2b57ab7d-d7a7-4c14-bbff-b75728ecff15.png)
+![potion_item1](https://user-images.githubusercontent.com/44711169/211208887-e2009013-76b5-44f2-9512-177eafd45ec3.png)
+![potion_item2](https://user-images.githubusercontent.com/44711169/211208888-99f5fde0-5327-44ca-acc8-2f31c7af4e20.png)
+![revive_item1](https://user-images.githubusercontent.com/44711169/211208889-68197ae0-f91a-4a70-a62f-b08475d742e7.png)
+![revive_item2](https://user-images.githubusercontent.com/44711169/211208891-530cc428-76a7-4468-bc01-ff954e16296b.png)
 
 ## Demo Videos:
   - [Final Game Demo](https://youtu.be/F5lDAzxZ9wQ) by [@Ibraheem717](https://github.com/Ibraheem717)
