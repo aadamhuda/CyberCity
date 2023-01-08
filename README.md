@@ -3,6 +3,8 @@ CyberCity is a turn based strategy game set in a cyberpunk setting. You progress
 
 This project was done for the Multi-Platform Games Development Module (ECS657U) at QMUL. Our game took inspiration from Persona 5 and many other turn-based strategy games. For a few of us in this group, it was our first time developing a game. This README also contains the builds from all our previous versions of the game, so feel free to try them out to see how our game progressed! :)
 
+![menu_screen](https://user-images.githubusercontent.com/44711169/211208766-bc0ab7f0-a298-4ac9-b9ca-609a40479f5f.png)
+
 We would like to thank you for playing CyberCity, and hope you enjoy it!
 
 ## Table of Contents
@@ -14,6 +16,8 @@ We would like to thank you for playing CyberCity, and hope you enjoy it!
 6. [Previous Releases](#previous-releases)
 
 You can access the Builds repository via this [link](https://github.com/aadamhuda/CyberCityBuilds).
+
+![city_load](https://user-images.githubusercontent.com/44711169/211208778-8719445e-7232-4c18-877b-8df40f843769.png)
 
 ## How To Play
 You can access the game on your browser via this [link](https://aadamhuda.github.io/CyberCityBuilds/v2.2.7/index.html).
