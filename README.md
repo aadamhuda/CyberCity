@@ -102,19 +102,28 @@ To play:
 ##### Checkpoints:
 - [Vending Machine](https://sketchfab.com/3d-models/kitsch-vending-machine-8ce19438dd1d49a2ad7f709024f18dcd)
 ##### Gate:
+- [Gate](https://sketchfab.com/3d-models/sci-fi-gate-detailing-01-xyz-school-hw-d7acd3160f694519ba6adda2eb915247)
 ##### Flooring:
-#
+- [Floor Material](https://sketchfab.com/3d-models/floor-material-fb32b41a61f447a8bb4e6218d7920a02)
+##### Lighting:
+- [Neon Signs](https://sketchfab.com/3d-models/neon-signs-307e887d740649f88fbc77b061f3a742)
 
-#### Swords:
+#### Weapons:
 - [Sword 1](https://sketchfab.com/3d-models/future-sword-gad174-c9f08775b01545aaba781b76e8e818e0)
 - [Sword 2](https://sketchfab.com/3d-models/thermal-katana-remake-97566e9dafc14a9d88053baf703d332f)
 - [Sword 3](https://sketchfab.com/3d-models/cyber-blade-7a9afdc5ecb241a298ba3b278bb88680)
 - [Sword 4](https://sketchfab.com/3d-models/laser-sword-aka-cyber-katana-20-ea010b5ad8d34fce93b5ca4575635e1c)
+- [Bow](https://sketchfab.com/3d-models/futuristic-bow-clustersky-8b4ef43898384c0187fed7969db04a5b)
+
+#### Objects:
+- [Clue](https://sketchfab.com/3d-models/muta-gen1b12-fractal-photogrammetry-b48965996f064ff6ae841f047ce9218f)
+- [Item](https://sketchfab.com/3d-models/small-bottle-761e522abb934b0a98063a9851728180#download)
 
 #### Fonts:
 - [Ashur Punk Font](https://www.fontspace.com/asher-punk-font-f55489)
 - [Cyberway Riders Font](https://www.fontspace.com/cyberway-riders-font-f43849)
 - [Tex Gyre Adventor Font](https://www.1001fonts.com/tex-gyre-adventor-font.html)
+- [Rajdhani](https://fonts.google.com/specimen/Rajdhani?preview.text=Rajdhani&preview.text_type=custom#standard-styles)
 
 #### Music:
 - [Hybrid Cinematic Rock](https://pixabay.com/music/rock-hybrid-cinematic-rock-84238/)
@@ -125,6 +134,31 @@ To play:
 - [RPG Essentials Sound Effects](https://assetstore.unity.com/packages/audio/sound-fx/rpg-essentials-sound-effects-free-227708)
 - [Shooting Sound](https://assetstore.unity.com/packages/audio/sound-fx/shooting-sound-177096)
 - [Fantasy SFX for Particle Distort Texture Effect Library](https://assetstore.unity.com/packages/audio/sound-fx/foley/fantasy-sfx-for-particle-distort-texture-effect-library-42146#content)
+- [Footsteps](https://assetstore.unity.com/packages/audio/sound-fx/foley/footsteps-essentials-189879)
+
+#### Partical & Effects:
+- [Special Effects](https://assetstore.unity.com/packages/vfx/particles/spells/52-special-effects-pack-10419)
+- [Status Effects](https://assetstore.unity.com/packages/vfx/particles/spells/status-effects-free-238904)
+
+[Custom Assets](https://github.com/aadamhuda/CyberCity/tree/main/gameDev-GroupH/Assets/Custom%20assets)
+  - Dialogue Boxes 
+  - Characters Drawing
+  - Loading Screens
+    - For both levels
+  - Item Drawings 
+  - Pause Screen
+  - Button
+  - Menu Screen
+  - Lose Screen 
+  - Win Screen
+
+## Creators:
+All creator commits can be found in the [changelog](https://github.com/aadamhuda/CyberCity/blob/main/CHANGELOG.md) 
+- [@aadamhuda](https://github.com/aadamhuda)
+- [@Ibraheem717](https://github.com/Ibraheem717)
+- [@gv301](https://github.com/gv301)
+- [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+- [@sarahbrah7](https://github.com/sarahbrah7)
 
 ## Previous releases:
 - [Version 2.2.7](https://aadamhuda.github.io/CyberCityBuilds/v2.2.7/index.html)
