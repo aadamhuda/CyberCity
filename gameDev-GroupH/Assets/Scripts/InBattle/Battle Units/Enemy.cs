@@ -97,11 +97,18 @@ public class Enemy : BattleUnit
 		// Speed up until close to target
 		while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget)
 		{
+			if (!forward)
+			{
+				if (transform.position.z > targetPos.z)
+				{
+					break;
+				}
+			}
+
 			if (speed > maxSpeed)
 			{
 				speed = maxSpeed;
 			}
-
 			cc.Move(offset * speed * Time.deltaTime);
 			speed += 0.1f;
 			yield return null;

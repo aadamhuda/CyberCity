@@ -423,7 +423,7 @@ public class BattleSystem : MonoBehaviour
 				// Moving player back to original position
 				yield return new WaitForSeconds(0.7f);
 				yield return StartCoroutine(animator.DisarmSword(playerAnimator, currPlayer.transform));
-				StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.2f, playerPos));
+				StartCoroutine(currPlayer.MovePlayer(false, 0, speed, 0.01f, playerPos));
 
 			}
 			string state;
@@ -664,7 +664,7 @@ public class BattleSystem : MonoBehaviour
 				{
 					yield return new WaitForSeconds(0.3f);
 				}
-				yield return StartCoroutine(currEnemy.MoveEnemy(false, 0, speed, 0.2f, enemyPos));
+				yield return StartCoroutine(currEnemy.MoveEnemy(false, 0, speed, 0.01f, enemyPos));
 
 				string state;
 				if (this.checklist[playerTarget.getID()].ContainsKey(randomKey) == false)

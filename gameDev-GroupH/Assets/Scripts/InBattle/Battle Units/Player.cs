@@ -188,6 +188,14 @@ public class Player : BattleUnit
         // Gradually speed up until close to target
         while (Vector3.Distance(transform.position, targetPos) > distOffsetToTarget)
         {
+            if (!forward) 
+            {
+                if (transform.position.z < targetPos.z)
+                {
+                    break;
+                }
+            }
+
             if (speed > maxSpeed)
             {
                 speed = maxSpeed;
