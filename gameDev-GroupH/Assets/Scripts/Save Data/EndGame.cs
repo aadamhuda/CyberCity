@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
@@ -35,12 +36,12 @@ public class EndGame : MonoBehaviour
         this.ReturnScreen.SetActive(false);
     }
 
-    private void Update()
+    void OnSkip(InputValue value)
     {
         if (this.cybercity)
         {
 
-            if (Input.GetMouseButtonDown(0))
+            if (value.isPressed)
             {
                 // Check which screen to activate depending on the amount of clues picked up
                     if (this.savedata.ClueCount == 8)

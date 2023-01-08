@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 1322733307160872337}
   - component: {fileID: 2853592574058093195}
   - component: {fileID: 2029063882415485441}
+  - component: {fileID: 3492053109356482604}
   m_Layer: 5
   m_Name: Narrative Screen
   m_TagString: Untagged
@@ -338,7 +339,6 @@ MonoBehaviour:
     name: Bob
     sentences: []
   savedata: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
-  lines: []
   index: 0
   img: {fileID: 1322733306223642743}
   player: {fileID: 0}
@@ -348,7 +348,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ff394fb1c8525644a802ff05edeb505f, type: 3}
   - {fileID: 21300000, guid: 71d1c5bc6ec151445898937b29c26f37, type: 3}
   - {fileID: 21300000, guid: 89332070de7f80b4487d2590fb34c723, type: 3}
-  startingDIalogue: {fileID: 2029063882415485441}
+  startingDialogue: {fileID: 0}
+  tutorialController: {fileID: 0}
 --- !u!222 &2853592574058093195
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -373,6 +374,36 @@ MonoBehaviour:
   - Nadiya_System
   - Dreyar_Go beep boop
   - ------
+--- !u!114 &3492053109356482604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322733307160872362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 5e97f9b91d7e317449dd3688be50c053, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 597bbc40-c67c-4175-b8f3-a9f86cc56de4
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1322733307980113264
 GameObject:
   m_ObjectHideFlags: 0

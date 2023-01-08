@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class SwitchScene : MonoBehaviour
 {
@@ -25,12 +26,12 @@ public class SwitchScene : MonoBehaviour
         this.cybercity = false;
     }
 
-    private void Update()
+    void OnSkip(InputValue value)
     {
         if (this.cybercity)
         {
             Debug.Log(savedata.get_cyber_level());
-            if (Input.GetMouseButtonDown(0))
+            if (value.isPressed)
             {
 
                 savedata.SaveLocation(new Vector3(0, 1.5f, 0));

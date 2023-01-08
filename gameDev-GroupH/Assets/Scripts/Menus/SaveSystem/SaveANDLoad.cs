@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class SaveANDLoad : MonoBehaviour
 {
@@ -20,9 +21,9 @@ public class SaveANDLoad : MonoBehaviour
     }
 
     // Disable object on player click and re-enable object which was disabled
-    private void Update()
+    void OnSkip(InputValue value)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (value.isPressed)
         {
             this.Disable();
             this.obj.SetActive(true);

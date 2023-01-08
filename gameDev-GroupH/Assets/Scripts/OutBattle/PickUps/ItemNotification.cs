@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class ItemNotification : MonoBehaviour
@@ -32,7 +33,18 @@ public class ItemNotification : MonoBehaviour
         if (this.notifications.Count > 0)
         {
             this.ItemName.text = this.notifications.Peek();
-            if (Input.GetMouseButtonDown(0))
+        }
+
+    }
+
+    void OnSkip(InputValue value)
+    {
+        // Iterate through queue until finished so the user can see all the items
+        // if multiple items we're picked up
+        if (this.notifications.Count > 0)
+        {
+            this.ItemName.text = this.notifications.Peek();
+            if (value.isPressed)
             {
                 this.notifications.Dequeue();
                 if (notifications.Count == 0)

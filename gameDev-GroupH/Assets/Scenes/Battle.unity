@@ -599,11 +599,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196934601}
   m_CullTransparentMesh: 1
---- !u!224 &207670215 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5167386823035762377, guid: ab59595761f39364583a9f07beab4fd2, type: 3}
-  m_PrefabInstance: {fileID: 771744358}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &212507069 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3285945978345565530, guid: ab59595761f39364583a9f07beab4fd2, type: 3}
@@ -2087,10 +2082,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseMenu: {fileID: 771744359}
   saveState: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
-  inventory: {fileID: 703756423}
+  inventory: {fileID: 0}
   main_pause_screen: {fileID: 393201045}
   player: {fileID: 0}
-  items: {fileID: 207670215}
+  items: {fileID: 0}
   LoadMenu: {fileID: 0}
   SaveMenu: {fileID: 0}
   SaveLoadNotification: {fileID: 0}
@@ -3205,11 +3200,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 69de74c01137847e2a141169c6c77e40, type: 3}
   m_PrefabInstance: {fileID: 649524991}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &703756423 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2312397688418299041, guid: ab59595761f39364583a9f07beab4fd2, type: 3}
-  m_PrefabInstance: {fileID: 771744358}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &707423195
 GameObject:
@@ -5450,6 +5440,18 @@ PrefabInstance:
     - target: {fileID: 2029063882415485441, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
       propertyPath: dialogue.Array.data[1]
       value: Dreyar_oh
+      objectReference: {fileID: 0}
+    - target: {fileID: 3492053109356482604, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: a20785be739b40f4d95972b3b2881727, type: 3}
+    - target: {fileID: 3492053109356482604, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3492053109356482604, guid: 0307b5dcdc952fb428569837eea92706, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Battle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

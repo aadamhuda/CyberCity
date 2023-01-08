@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollectClue(InputValue value)
     {
-        if (collecterBool == true)
+        if (collecterBool && canMove)
         {
             if (value.isPressed)
             {

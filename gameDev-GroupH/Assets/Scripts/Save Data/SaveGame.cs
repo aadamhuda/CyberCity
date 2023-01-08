@@ -51,18 +51,6 @@ public class SaveGame : MonoBehaviour
         if (player.get_save())
         {
             this.indicator.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                Time.timeScale = 0; //freezes the game
-                this.PauseMenu.SetActive(true); //pause menu appears
-
-                //cursor is now visible 
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-
-                this.PauseMenu.GetComponent<PauseController>().OpenSaveMenu();
-            }
-
         }
         else
             this.indicator.SetActive(false);

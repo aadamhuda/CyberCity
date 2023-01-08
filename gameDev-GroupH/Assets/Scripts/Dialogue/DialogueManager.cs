@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -87,9 +88,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
+    void OnSkip(InputValue value)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (value.isPressed)
         {
             // Diplays text until end
             if (this.displaytext.text == this.parts[this.index][1])
