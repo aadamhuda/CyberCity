@@ -151,6 +151,7 @@ To play:
   - Menu Screen
   - Lose Screen 
   - Win Screen
+  - Designed by [@sarahbrah7](https://github.com/sarahbrah7)
 
 ## Creators:
 All creator commits can be found in the [changelog](https://github.com/aadamhuda/CyberCity/blob/main/CHANGELOG.md) 
