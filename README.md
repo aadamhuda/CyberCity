@@ -13,6 +13,8 @@ We would like to thank you for playing CyberCity, and hope you enjoy it!
 5. [Creators](#creators)
 6. [Previous Releases](#previous-releases)
 
+You can access the Builds repository via this [link](https://github.com/aadamhuda/CyberCityBuilds).
+
 ## How To Play
 You can access the game on your browser via this [link](https://aadamhuda.github.io/CyberCityBuilds/v2.2.7/index.html).
 
