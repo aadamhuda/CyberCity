@@ -34,21 +34,8 @@ To play:
   - Defines where the enemies can or can't go
 
 [Mixamo](https://www.mixamo.com/)
-  - Used for character models
-    - Player
-    - Out of battle enemy
-    - In battle enemy
-    - Companion 1, 2, 3
-    
-  - Used for character animations
-    - Idle
-    - Walk
-    - Slow run
-    - Fast run
-    - Player sword strike
-    - Enemy sword strike
-    - Walk backwards
-    - Run backwards
+  - Used for player and enemy models
+  - Used for player and enemy animations
 
 [Skybox Series](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
   - Change the sky to a different weather setting
