@@ -73,6 +73,7 @@ public class EnemyCollider : MonoBehaviour
             // Freezes all enemies and puts them into Idle anim
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().GetAgent().SetDestination(this.gameObject.transform.GetChild(i).transform.position);
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().can_move = false;
+            gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().GetAnim().SetBool("isRunning", false);
             gameObject.transform.GetChild(i).GetComponent<EnemyOutOfCombat>().GetAnim().SetBool("First" , true);
         }
     }
