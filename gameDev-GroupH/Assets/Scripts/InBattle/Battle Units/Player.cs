@@ -89,7 +89,7 @@ public class Player : BattleUnit
         {
             if (attacks[i] == attackName)
             {
-                Debug.Log(attacks[i]);
+                //Debug.Log(attacks[i]);
                 if (i + 1 < attacksNum)
                 {
                     selectedMove = attacks[i + 1];

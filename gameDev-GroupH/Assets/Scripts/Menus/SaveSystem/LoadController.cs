@@ -9,7 +9,7 @@ public class LoadController : MonoBehaviour
     {
         // Opens load menu
         this.gameObject.SetActive(true);
-        Debug.Log(this.gameObject.name);
+        //Debug.Log(this.gameObject.name);
 
         // If save file exist then display otherwise display no save file
         for (int i = 1; i < this.gameObject.transform.childCount; i++)

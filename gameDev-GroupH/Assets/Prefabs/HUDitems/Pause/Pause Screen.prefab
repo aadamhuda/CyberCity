@@ -5060,7 +5060,7 @@ GameObject:
   - component: {fileID: 5989774274291476417}
   - component: {fileID: 5989774274291476421}
   m_Layer: 5
-  m_Name: Pause Screen Variant
+  m_Name: Pause Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

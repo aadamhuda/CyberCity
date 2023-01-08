@@ -70,7 +70,7 @@ public class InventoryMenu : MonoBehaviour
 		// Create item buttons
 		int i = 0;
 		foreach (KeyValuePair<string, int> entry in inventory.get_inventory()) {
-			Debug.Log("Edgeo ajdsb the : " + entry.Key);
+			//Debug.Log("Edgeo ajdsb the : " + entry.Key);
 			i++;
 			GameObject newItem = GameObject.Instantiate(itemPrefab, new Vector3(itemTitlePos.position.x, itemTitlePos.position.y + (i * -70), itemTitlePos.position.z), itemTitlePos.rotation, itemTitlePos);
 			

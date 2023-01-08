@@ -6,7 +6,7 @@ public class DestroyOnCollision : MonoBehaviour
 {
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision);
+        //Debug.Log(collision);
         Destroy(gameObject);
     }
 }

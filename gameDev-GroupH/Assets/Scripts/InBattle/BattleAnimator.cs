@@ -49,8 +49,8 @@ public class BattleAnimator : MonoBehaviour
         {
             volume *= (PlayerPrefs.GetFloat("MasterVolumePreference"));
         }
-        Debug.Log("Effects volume:" + PlayerPrefs.GetFloat("EffectsVolumePreference"));
-        Debug.Log("Master volume: " + PlayerPrefs.GetFloat("MasterVolumePreference"));
+        //Debug.Log("Effects volume:" + PlayerPrefs.GetFloat("EffectsVolumePreference"));
+        //Debug.Log("Master volume: " + PlayerPrefs.GetFloat("MasterVolumePreference"));
 
     }
 

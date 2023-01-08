@@ -37,7 +37,7 @@ public class LoadingManager : MonoBehaviour
     //picks either cargo or city screen dependent on the level to be loaded
     void PickScreen()
     {
-        Debug.Log(targetScene);
+        //Debug.Log(targetScene);
         if (targetScene == saveState.get_cyber_level())
         {
             cityScreen.SetActive(true);
@@ -61,10 +61,6 @@ public class LoadingManager : MonoBehaviour
     //loads the scene with short wait time
     void LoadLevel()
     {
-        Debug.Log(targetScene);
-
-        
         SceneManager.LoadScene(targetScene);
-        
     }
 }

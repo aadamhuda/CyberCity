@@ -9,7 +9,7 @@ public class SaveController : MonoBehaviour
     public void LoadMenu()
     {
         this.gameObject.SetActive(true);
-        Debug.Log(this.gameObject.name);
+        //Debug.Log(this.gameObject.name);
         for (int i = 1; i < this.gameObject.transform.childCount; i++)
         {
             if (File.Exists(Application.persistentDataPath + "/" + this.Saves[i-1] + ".test") )

@@ -12,7 +12,7 @@ public static class SaveSystem
         // Filepath to store data
         string path = Application.persistentDataPath + "/" + FileName +  ".test";
 
-        Debug.Log(path);
+        //Debug.Log(path);
 
         // Filestream
         FileStream stream = new FileStream(path, FileMode.Create);
@@ -45,7 +45,7 @@ public static class SaveSystem
         }
         else
         {
-            Debug.LogError("Save file not found : " + path);
+            //Debug.LogError("Save file not found : " + path);
             return null;
         }
     }

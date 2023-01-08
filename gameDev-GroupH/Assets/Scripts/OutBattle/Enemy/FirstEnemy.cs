@@ -185,7 +185,7 @@ public class FirstEnemy : MonoBehaviour
 
     void OnAttack(InputValue value)
     {
-        Debug.Log(value);
+        //Debug.Log(value);
         this.EngageControl(value);
     }
 

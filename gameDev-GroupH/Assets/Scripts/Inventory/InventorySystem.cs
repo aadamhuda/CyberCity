@@ -55,11 +55,9 @@ public class InventorySystem : MonoBehaviour
 
     public void remove_item(string item)
     {
-        Debug.Log("We're cming after u : " + item);
-
+        //Debug.Log("We're cming after u : " + item);
         inventory.Remove(item);
         savedata.set_items(inventory);
-
-        Debug.Log("solve tha mysutreyt : " + inventory.Count);
+        //Debug.Log("solve tha mysutreyt : " + inventory.Count);
     }
 }

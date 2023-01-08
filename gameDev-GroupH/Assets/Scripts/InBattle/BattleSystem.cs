@@ -181,7 +181,7 @@ public class BattleSystem : MonoBehaviour
 			allPlayers[i] = playerObj.GetComponent<Player>();
 			allPlayers[i].setHealth(savedata.team_health[i]);
 			allPlayers[i].SetMP(savedata.team_MP[i]);
-			Debug.Log(allPlayers[i].maxMP);
+			//Debug.Log(allPlayers[i].maxMP);
 			if (allPlayers[i].currentHP == 0)
 				allPlayers[i].downed = true;
 			else
@@ -600,7 +600,7 @@ public class BattleSystem : MonoBehaviour
 				yield return StartCoroutine(currEnemy.MoveEnemy(true, 0, speed, 2f, playerPos));
 
 				yield return StartCoroutine(animator.Melee(enemyAnimator, currEnemy.transform, playerTarget.transform));
-				Debug.Log("I have to eat soon : " + randomKey);
+				//Debug.Log("I have to eat soon : " + randomKey);
 
 				if (randomKey == "attacknotfound")
 					randomKey = enemies[i].GetATK().Keys.ElementAt((int)Random.Range(0, enemies[i].GetATK().Keys.Count - 1));

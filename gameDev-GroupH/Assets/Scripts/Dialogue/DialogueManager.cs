@@ -80,7 +80,7 @@ public class DialogueManager : MonoBehaviour
         if (this.dialogue.GetParts().Length > 0)
         {
             this.StartDialogue();
-            Debug.Log(this.dialogue.GetIndex());
+            //Debug.Log(this.dialogue.GetIndex());
         }
         else
         {

@@ -73,12 +73,7 @@ public class ItemSpawn : MonoBehaviour
 					break;
 				}
 			}
-
-			
 		}
-
-
-
 		// Delete base item
 		Destroy(baseItem);
 	}

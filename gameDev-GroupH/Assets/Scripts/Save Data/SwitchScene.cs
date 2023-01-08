@@ -30,7 +30,7 @@ public class SwitchScene : MonoBehaviour
     {
         if (this.cybercity)
         {
-            Debug.Log(savedata.get_cyber_level());
+            //Debug.Log(savedata.get_cyber_level());
             if (value.isPressed)
             {
 
