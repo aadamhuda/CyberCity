@@ -16,6 +16,8 @@ public class BattleAnimator : MonoBehaviour
     Dictionary<string, GameObject> hitFXDict = new Dictionary<string, GameObject>();
     Dictionary<string, GameObject> debuffFXDict = new Dictionary<string, GameObject>();
     public float volume = 1f;
+    private AudioMixerGroup audioMixerGroup;
+
 
     public float effectSpeed;
     string[] attacks = new string[] { "melee", "heal", "fire", "curse", "ice", "grass", "water", "shoot" };
@@ -23,8 +25,7 @@ public class BattleAnimator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        
+        audioMixerGroup = GetComponent<AudioSource>().outputAudioMixerGroup;
         for (int i = 0; i < attacks.Length; i++)
         {
             attackAudioDict.Add(attacks[i], attackAudio[i]);
@@ -40,15 +41,17 @@ public class BattleAnimator : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerPrefs.HasKey("EffectsVolumePreference"))
-            volume = (PlayerPrefs.GetFloat("EffectsVolumePreference") / 80) + 1;
-
+        if (PlayerPrefs.HasKey("EffectsVolumePreference")) { 
+            volume = (PlayerPrefs.GetFloat("EffectsVolumePreference"));
+            volume = Mathf.Log10(volume * 20);
+        }
         if (PlayerPrefs.HasKey("MasterVolumePreference"))
         {
-            Debug.Log("master volume: " + PlayerPrefs.GetFloat("MasterVolumePreference"));
-            volume += (PlayerPrefs.GetFloat("MasterVolumePreference") / 80);
-            Debug.Log("Volume: " + volume);
+            volume *= (PlayerPrefs.GetFloat("MasterVolumePreference"));
         }
+        Debug.Log("Effects volume:" + PlayerPrefs.GetFloat("EffectsVolumePreference"));
+        Debug.Log("Master volume: " + PlayerPrefs.GetFloat("MasterVolumePreference"));
+
     }
 
     public IEnumerator Melee(Animator a, Transform player, Transform enemy)
