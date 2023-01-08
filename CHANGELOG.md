@@ -18,17 +18,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Security
 
-## [2.2.7]() - 2023-01-07
+## [2.2.7](https://github.com/aadamhuda/CyberCity/commit/d924def9cb8753e9d7f8aa96a954af7651be556e) - 2023-01-07
 ### Added
 - Added invisible wall to city map where player could jump off edge ~ [@aadamhuda](https://github.com/aadamhuda)
 ### Changed
 - Edited reposition character to immediately reassign player controller rather than onClick ~ [@aadamhuda](https://github.com/aadamhuda)
 - Change movement values to avoid movement bug ~ [@aadamhuda](https://github.com/aadamhuda)
 - Buffed item spawn rate ~ [@aadamhuda](https://github.com/aadamhuda)
+- Migrated mouse clicks to new input system ~ [@aadamhuda](https://github.com/aadamhuda)
+- Changed default music volume to 0.5 ~ [@gv301](https://github.com/gv301)
 ### Fixed
 - Fixed enemy spawning issue in City level ~ [@aadamhuda](https://github.com/aadamhuda)
+- Fixed running back bug ~ [@gv301](https://github.com/gv301)
+- Fixed master volume and effects volume in battle ~ [@gv301](https://github.com/gv301)
+- Fixed enemies sliding affter narrative end ~ [@aadamhuda](https://github.com/aadamhuda)
+- Fixed enemies running on the spot whilst in narrative ~ [@aadamhuda](https://github.com/aadamhuda)
 
-## [2.2.6]() - 2023-01-06
+## [2.2.6](https://github.com/aadamhuda/CyberCity/commit/ee815c0cb5e33b1400a1da4144229a2fa7a30cef) - 2023-01-06
 ### Added
 - Enabled the player follow ~ [@Ibraheem717](https://github.com/Ibraheem717)
 - Added more difficulty settings, enemies out of battle see more in harder difficulties and see further ~ [@Ibraheem717](https://github.com/Ibraheem717)
@@ -59,7 +65,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 - Removed enumerator from loadscene and renamed the method ~ [@aadamhuda](https://github.com/aadamhuda)
 
-## [2.2.4]() - 2023-01-06
+## [2.2.4](https://github.com/aadamhuda/CyberCity/commit/b9ce0c4a285cda2a5511db0c308c6f86d107ad1c) - 2023-01-06
 ### Added
 - Added effect fix ~ [@gv301](https://github.com/gv301)
 - Added narative scripts to objects ~ [@Ibraheem717](https://github.com/Ibraheem717)
@@ -98,7 +104,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fix targeting system null error ~ [@aadamhuda](https://github.com/aadamhuda)
 - Fixed error with slowrun ~ [@gv301](https://github.com/gv301)
 
-## [2.2.3]() - 2023-01-03
+## [2.2.3](https://github.com/aadamhuda/CyberCity/commit/c1856cf780729ed259088abfdff9ad82e5a1ff7b) - 2023-01-03
 ### Added
 - Player can now save on specific save locations and load save locations ~ [@Ibraheem717](https://github.com/Ibraheem717)
 - Player can continue from last save if possible ~ [@Ibraheem717](https://github.com/Ibraheem717)
