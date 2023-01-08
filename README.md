@@ -1,6 +1,17 @@
 # CyberCity (v2.2.7)
-CyberCity is a turn based strategy game set in a cyberpunk setting. You progress through a maze, defeating enemies and picking up clues on your way.
-Collect three clues and you win!
+CyberCity is a turn based strategy game set in a cyberpunk setting. You progress through two levels, the cargo level and city level, defeating enemies in strategic turn-based combat and picking up clues on your way that progress the story of our four characters: Nadiya, Dreyar, Astra and Joe. Collect all the clues in the two levels to complete the game, and explore the narrative of CyberCity!
+
+This project was done for the Multi-Platform Games Development Module (ECS657U) at QMUL. Our game took inspiration from Persona 5 and many other turn-based strategy games. For a few of us in this group, it was our first time developing a game.
+
+We would like to thank you for playing CyberCity, and hope you enjoy it!
+
+## Creators:
+The creators all contributed highly to the completion of the final game. Creator contribution can be found in the [changelog](https://github.com/aadamhuda/CyberCity/blob/main/CHANGELOG.md) 
+- [@aadamhuda](https://github.com/aadamhuda)
+- [@Ibraheem717](https://github.com/Ibraheem717)
+- [@gv301](https://github.com/gv301)
+- [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+- [@sarahbrah7](https://github.com/sarahbrah7)
 
 ## How To Play
 You can access the game on your browser via this [link](https://aadamhuda.github.io/CyberCityBuilds/v2.2.7/index.html).
@@ -137,16 +148,7 @@ To play:
   - Win Screen
   - Designed by [@sarahbrah7](https://github.com/sarahbrah7)
 
-## Creators:
-All creator commits can be found in the [changelog](https://github.com/aadamhuda/CyberCity/blob/main/CHANGELOG.md) 
-- [@aadamhuda](https://github.com/aadamhuda)
-- [@Ibraheem717](https://github.com/Ibraheem717)
-- [@gv301](https://github.com/gv301)
-- [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
-- [@sarahbrah7](https://github.com/sarahbrah7)
-
 ## Previous releases:
-- [Version 2.2.7](https://aadamhuda.github.io/CyberCityBuilds/v2.2.7/index.html)
 - [Version 2.2.6](https://aadamhuda.github.io/CyberCityBuilds/v2.2.6/index.html)
 - [Version 2.2.5](https://aadamhuda.github.io/CyberCityBuilds/v2.2.5/index.html)
 - [Version 2.2.4](https://aadamhuda.github.io/CyberCityBuilds/v2.2.4/index.html)
