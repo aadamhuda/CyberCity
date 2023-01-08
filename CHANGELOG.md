@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed master volume and effects volume in battle ~ [@gv301](https://github.com/gv301)
 - Fixed enemies sliding affter narrative end ~ [@aadamhuda](https://github.com/aadamhuda)
 - Fixed enemies running on the spot whilst in narrative ~ [@aadamhuda](https://github.com/aadamhuda)
+- Fixed all volume slider scaling to work as intended ~ [@gv301](https://github.com/gv301)
 
 ## [2.2.6](https://github.com/aadamhuda/CyberCity/commit/ee815c0cb5e33b1400a1da4144229a2fa7a30cef) - 2023-01-06
 ### Added
