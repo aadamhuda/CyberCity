@@ -13750,7 +13750,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753097497}
-  m_LocalRotation: {x: 0.062781714, y: 0.0007277194, z: -0.00004577778, w: 0.998027}
+  m_LocalRotation: {x: 0.062781714, y: 0.00072768505, z: -0.000045775614, w: 0.998027}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18300,7 +18300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 5e97f9b91d7e317449dd3688be50c053, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 341da4eb5f6dcc24b85de2239760f6f4, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -18315,7 +18315,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Interaction
+  m_DefaultActionMap: TP
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!64 &1066489131
@@ -35819,7 +35819,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005210347}
-  m_LocalRotation: {x: 0.062781714, y: 0.00072773657, z: -0.000045778866, w: 0.998027}
+  m_LocalRotation: {x: 0.062781714, y: 0.0007276679, z: -0.000045774545, w: 0.998027}
   m_LocalPosition: {x: -0.006743092, y: 3.2558393, z: -4.8739967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

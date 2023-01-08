@@ -1,0 +1,34 @@
+{
+    "name": "Teleport",
+    "maps": [
+        {
+            "name": "TP",
+            "id": "c13de764-6b98-4fed-bd65-7ae3495c4bc6",
+            "actions": [
+                {
+                    "name": "Teleport",
+                    "type": "Button",
+                    "id": "88f52e8a-e485-4169-ab11-97d9c1a742b1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e1fb8ae5-7976-406c-8230-e1b0dc36975c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
