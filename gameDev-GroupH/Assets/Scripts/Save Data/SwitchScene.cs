@@ -26,7 +26,7 @@ public class SwitchScene : MonoBehaviour
         this.cybercity = false;
     }
 
-    void OnSkip(InputValue value)
+    void OnTeleport(InputValue value)
     {
         if (this.cybercity)
         {

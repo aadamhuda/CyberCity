@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.02910437, g: 0.02989362, b: 0.02994584, a: 1}
+  m_IndirectSpecularColor: {r: 0.029098216, g: 0.029918969, b: 0.029954128, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -484,7 +484,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28301443}
-  m_LocalRotation: {x: 0.07924446, y: 1e-45, z: -0, w: 0.9968552}
+  m_LocalRotation: {x: 0.08092491, y: 0.0007267309, z: -0.000059004175, w: 0.99671996}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1755,6 +1755,7 @@ GameObject:
   - component: {fileID: 102143036}
   - component: {fileID: 102143038}
   - component: {fileID: 102143037}
+  - component: {fileID: 102143039}
   m_Layer: 6
   m_Name: SP_JNK_ScrapPile_1 (1)
   m_TagString: Untagged
@@ -1827,6 +1828,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102143035}
   m_Mesh: {fileID: -8450441005013232158, guid: 33563ab0962744a3fb36ba968540eba7, type: 3}
+--- !u!65 &102143039
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102143035}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.2954075, y: 1.7027291, z: 1.2469205}
+  m_Center: {x: 0.000000024675145, y: 0.0000018095167, z: 0.60520595}
 --- !u!1001 &103407937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9927,7 +9941,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527101869}
-  m_LocalRotation: {x: 0.042981442, y: 1e-45, z: -0, w: 0.9990759}
+  m_LocalRotation: {x: 0.044665717, y: 0.0007283955, z: -0.000032566822, w: 0.99900174}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13413,6 +13427,7 @@ GameObject:
   - component: {fileID: 723363945}
   - component: {fileID: 723363947}
   - component: {fileID: 723363946}
+  - component: {fileID: 723363948}
   m_Layer: 6
   m_Name: SP_JNK_ScrapPile_1 (2)
   m_TagString: Untagged
@@ -13485,6 +13500,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723363944}
   m_Mesh: {fileID: -8450441005013232158, guid: 33563ab0962744a3fb36ba968540eba7, type: 3}
+--- !u!65 &723363948
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723363944}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.2954075, y: 1.7027291, z: 1.6237847}
+  m_Center: {x: 0.000000032358386, y: -0.0000000889038, z: 0.7936418}
 --- !u!4 &726577989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4941786231830161466, guid: 3ce5d68c156284d17b3e0a1a7302014e, type: 3}
@@ -13722,7 +13750,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753097497}
-  m_LocalRotation: {x: 0.06109906, y: -0, z: -0, w: 0.9981317}
+  m_LocalRotation: {x: 0.062781714, y: 0.0007277194, z: -0.00004577778, w: 0.998027}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18166,6 +18194,7 @@ GameObject:
   - component: {fileID: 1066489129}
   - component: {fileID: 1066489128}
   - component: {fileID: 1066489130}
+  - component: {fileID: 1066489131}
   m_Layer: 0
   m_Name: Transport
   m_TagString: Untagged
@@ -18243,8 +18272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - Distant Voice_Make sure you have collected all clues, you can't return, unless
-    you load a save
+  - Distant Voice_Press 'Spacebar' to go to CyberCity
 --- !u!114 &1066489129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18287,9 +18315,23 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 597bbc40-c67c-4175-b8f3-a9f86cc56de4
+  m_DefaultActionMap: Interaction
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!64 &1066489131
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066489124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &1068298141
 GameObject:
   m_ObjectHideFlags: 0
@@ -20287,6 +20329,7 @@ GameObject:
   - component: {fileID: 1181173662}
   - component: {fileID: 1181173664}
   - component: {fileID: 1181173663}
+  - component: {fileID: 1181173665}
   m_Layer: 6
   m_Name: SP_CCS_IronPipes_1 (1)
   m_TagString: Untagged
@@ -20359,6 +20402,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181173661}
   m_Mesh: {fileID: 7090910100931702360, guid: 33563ab0962744a3fb36ba968540eba7, type: 3}
+--- !u!65 &1181173665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181173661}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.9838014, y: 0.62914014, z: 0.54988575}
+  m_Center: {x: -0.00000002685338, y: -0.000000066486024, z: 0.2749947}
 --- !u!1 &1182273516
 GameObject:
   m_ObjectHideFlags: 0
@@ -20704,6 +20760,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 576a4202bce714a43b9504d80f213f9e, type: 3}
   m_PrefabInstance: {fileID: 1191484873}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1195470931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 406759742686636768, guid: 33563ab0962744a3fb36ba968540eba7, type: 3}
+  m_PrefabInstance: {fileID: 1368715206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1195470933
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195470931}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.9838014, y: 0.62914014, z: 0.54988575}
+  m_Center: {x: -0.00000026527195, y: -0.0000019738347, z: 0.2749947}
 --- !u!1 &1227168049
 GameObject:
   m_ObjectHideFlags: 0
@@ -35745,8 +35819,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005210347}
-  m_LocalRotation: {x: 0.061099056, y: -0.0000000037183308, z: 2.2761175e-10, w: 0.9981317}
-  m_LocalPosition: {x: 0, y: 3.5, z: -6.5}
+  m_LocalRotation: {x: 0.062781714, y: 0.00072773657, z: -0.000045778866, w: 0.998027}
+  m_LocalPosition: {x: -0.006743092, y: 3.2558393, z: -4.8739967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

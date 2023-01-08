@@ -36,7 +36,7 @@ public class EndGame : MonoBehaviour
         this.ReturnScreen.SetActive(false);
     }
 
-    void OnSkip(InputValue value)
+    void OnTeleport(InputValue value)
     {
         if (this.cybercity)
         {
