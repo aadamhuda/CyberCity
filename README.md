@@ -49,9 +49,6 @@ To play:
     - Enemy sword strike
     - Walk backwards
     - Run backwards
-    
-[Out of Battle Enemy Weapon](https://sketchfab.com/3d-models/laser-sword-aka-cyber-katana-20-ea010b5ad8d34fce93b5ca4575635e1c)
-  - The player's weapon asset
 
 [Skybox Series](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
   - Change the sky to a different weather setting
