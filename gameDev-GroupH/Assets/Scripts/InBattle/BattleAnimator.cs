@@ -36,10 +36,19 @@ public class BattleAnimator : MonoBehaviour
         debuffFXDict.Add("fire", debuffFX[0]);
         debuffFXDict.Add("grass", debuffFX[1]);
         debuffFXDict.Add("ice", debuffFX[2]);
+    }
 
-
+    private void Update()
+    {
         if (PlayerPrefs.HasKey("EffectsVolumePreference"))
-            volume = (PlayerPrefs.GetFloat("EffectsVolumePreference")/80) + 1;
+            volume = (PlayerPrefs.GetFloat("EffectsVolumePreference") / 80) + 1;
+
+        if (PlayerPrefs.HasKey("MasterVolumePreference"))
+        {
+            Debug.Log("master volume: " + PlayerPrefs.GetFloat("MasterVolumePreference"));
+            volume += (PlayerPrefs.GetFloat("MasterVolumePreference") / 80);
+            Debug.Log("Volume: " + volume);
+        }
     }
 
     public IEnumerator Melee(Animator a, Transform player, Transform enemy)
