@@ -2405,10 +2405,10 @@ MonoBehaviour:
   - {fileID: 0}
   player: {fileID: 0}
   PosSave: {fileID: 11400000, guid: a7052d123377ef04d809e7d84d6f6820, type: 2}
+  tutorial: 0
   can_move: 1
   radius: 0
   angle: 0
-  agent: {fileID: 6561905032358206558}
   whatisGround:
     serializedVersion: 2
     m_Bits: 0
@@ -2456,7 +2456,7 @@ AudioSource:
   m_GameObject: {fileID: 8892096205437021861}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7539197454706711098, guid: 8de090bf1304e67449fda67eb82ec1a7, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2587,6 +2587,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d51df139d4e50794993d2130348b08d9, type: 3}
   - {fileID: 8300000, guid: 39ca7e88dc461e8458d02a2284708c0d, type: 3}
   - {fileID: 8300000, guid: d772d1b334ef5f148bf1308d5fb3e4b0, type: 3}
+  effectsVol: 1
 --- !u!114 &3480802352672497560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2614,7 +2615,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 597bbc40-c67c-4175-b8f3-a9f86cc56de4
+  m_DefaultActionMap: Interaction
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1001 &8298560934870793589

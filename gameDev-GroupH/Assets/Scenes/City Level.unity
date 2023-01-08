@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029098222, g: 0.029918972, b: 0.029954132, a: 1}
+  m_IndirectSpecularColor: {r: 0.029103538, g: 0.029891578, b: 0.029944899, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -956,7 +956,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128199585}
-  m_LocalRotation: {x: 0.081462495, y: -0.00000010498389, z: 0.000000008580768, w: 0.99667645}
+  m_LocalRotation: {x: 0.081462495, y: -0.00000011234707, z: 0.000000009182591, w: 0.99667645}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15322,7 +15322,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651488005}
-  m_LocalRotation: {x: 0.063319996, y: -0.000000100829645, z: 0.000000006397369, w: 0.9979933}
+  m_LocalRotation: {x: 0.063319996, y: -0.00000010083026, z: 0.000000006397408, w: 0.9979933}
   m_LocalPosition: {x: 0.0000007649711, y: 3.0741272, z: -3.7386994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16072,7 +16072,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695881047}
-  m_LocalRotation: {x: 0.045204513, y: -0.000000107374895, z: 0.000000004858797, w: 0.9989778}
+  m_LocalRotation: {x: 0.045204513, y: -0.00000010737744, z: 0.0000000048589115, w: 0.9989778}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18049,7 +18049,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935893423}
-  m_LocalRotation: {x: 0.06331998, y: -0.000000105122595, z: 0.0000000066697456, w: 0.9979933}
+  m_LocalRotation: {x: 0.06331998, y: -0.00000010512384, z: 0.0000000066698242, w: 0.9979933}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22234,7 +22234,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 346df7e81196b454e9b4177d30efe65b, type: 3}
 --- !u!4 &1207155900 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 346df7e81196b454e9b4177d30efe65b, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8912189966947192040, guid: 346df7e81196b454e9b4177d30efe65b, type: 3}
   m_PrefabInstance: {fileID: 1207155899}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1222030966
@@ -27627,6 +27627,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 987405093882850389, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 987405093882850389, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 987405093882850389, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 3285945978345565530, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: cam
       value: 
@@ -27634,6 +27646,18 @@ PrefabInstance:
     - target: {fileID: 3656764514314308994, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634781585314871882, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634781585314871882, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634781585314871882, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 4939612343189785589, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: itemInventory
@@ -27739,6 +27763,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1857149344}
+    - target: {fileID: 6449277432377470763, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449277432377470763, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449277432377470763, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 8115003865376785928, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -28112,7 +28148,7 @@ AudioSource:
   m_GameObject: {fileID: 1857149337}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7539197454706711098, guid: 8de090bf1304e67449fda67eb82ec1a7, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

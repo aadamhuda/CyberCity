@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029098216, g: 0.029918969, b: 0.029954128, a: 1}
+  m_IndirectSpecularColor: {r: 0.02910437, g: 0.02989362, b: 0.02994584, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -484,7 +484,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28301443}
-  m_LocalRotation: {x: 0.08092491, y: 0.0007267309, z: -0.000059004175, w: 0.99671996}
+  m_LocalRotation: {x: 0.07924446, y: 1e-45, z: -0, w: 0.9968552}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9927,7 +9927,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527101869}
-  m_LocalRotation: {x: 0.044665717, y: 0.0007283955, z: -0.000032566822, w: 0.99900174}
+  m_LocalRotation: {x: 0.042981442, y: 1e-45, z: -0, w: 0.9990759}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13722,7 +13722,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753097497}
-  m_LocalRotation: {x: 0.062781714, y: 0.0007277194, z: -0.00004577778, w: 0.998027}
+  m_LocalRotation: {x: 0.06109906, y: -0, z: -0, w: 0.9981317}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35745,8 +35745,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005210347}
-  m_LocalRotation: {x: 0.062781714, y: 0.00072773657, z: -0.000045778866, w: 0.998027}
-  m_LocalPosition: {x: -0.006743092, y: 3.2558393, z: -4.8739967}
+  m_LocalRotation: {x: 0.061099056, y: -0.0000000037183308, z: 2.2761175e-10, w: 0.9981317}
+  m_LocalPosition: {x: 0, y: 3.5, z: -6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38950,6 +38950,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 987405093882850389, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 987405093882850389, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 987405093882850389, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 1672267706919867592, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: cam
       value: 
@@ -38973,6 +38985,18 @@ PrefabInstance:
     - target: {fileID: 4205004308090751950, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: m_Color.r
       value: 0.2784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634781585314871882, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634781585314871882, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634781585314871882, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 4939612343189785589, guid: 7094c312ee2541748977ed6b35245902, type: 3}
       propertyPath: itemInventory
@@ -39082,6 +39106,18 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 1534980960}
+    - target: {fileID: 6449277432377470763, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449277432377470763, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449277432377470763, guid: 7094c312ee2541748977ed6b35245902, type: 3}
+      propertyPath: m_MinValue
+      value: 0.0001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 7094c312ee2541748977ed6b35245902, type: 3}
