@@ -1,17 +1,17 @@
 # CyberCity (v2.2.7)
 CyberCity is a turn based strategy game set in a cyberpunk setting. You progress through two levels, the cargo level and city level, defeating enemies in strategic turn-based combat and picking up clues on your way that progress the story of our four characters: Nadiya, Dreyar, Astra and Joe. Collect all the clues in the two levels to complete the game, and explore the narrative of CyberCity!
 
-This project was done for the Multi-Platform Games Development Module (ECS657U) at QMUL. Our game took inspiration from Persona 5 and many other turn-based strategy games. For a few of us in this group, it was our first time developing a game.
+This project was done for the Multi-Platform Games Development Module (ECS657U) at QMUL. Our game took inspiration from Persona 5 and many other turn-based strategy games. For a few of us in this group, it was our first time developing a game. This README also contains the builds from all our previous versions of the game, so feel free to try them out to see how our game progressed! :)
 
 We would like to thank you for playing CyberCity, and hope you enjoy it!
 
-## Creators:
-The creators all contributed highly to the completion of the final game. Creator contribution can be found in the [changelog](https://github.com/aadamhuda/CyberCity/blob/main/CHANGELOG.md) 
-- [@aadamhuda](https://github.com/aadamhuda)
-- [@Ibraheem717](https://github.com/Ibraheem717)
-- [@gv301](https://github.com/gv301)
-- [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
-- [@sarahbrah7](https://github.com/sarahbrah7)
+## Table of Contents
+1. [How To Play](#how-to-play)
+2. [Assets](#assets)
+3. [Custom Assets](#custom-assets)
+4. [Demo Videos](#demo-videos)
+5. [Creators](#creators)
+6. [Previous Releases](#previous-releases)
 
 ## How To Play
 You can access the game on your browser via this [link](https://aadamhuda.github.io/CyberCityBuilds/v2.2.7/index.html).
@@ -147,6 +147,18 @@ To play:
   - Lose Screen 
   - Win Screen
   - Designed by [@sarahbrah7](https://github.com/sarahbrah7)
+
+## Demo Videos:
+  - [Final Game Demo](https://youtu.be/F5lDAzxZ9wQ) by [@Ibraheem717](https://github.com/Ibraheem717)
+  - [First Prototype Demo](https://youtu.be/kIIAM0zeU-E) by [@Ibraheem717](https://github.com/Ibraheem717)
+
+## Creators:
+I'd like to thank all the Creators of this game with their amazing contributions! The creators all contributed highly to the completion of the final game. For some creators, this was their first game development project, and for some, their first time exploring the mechanics of video games. Creator contribution can be found in the [changelog](https://github.com/aadamhuda/CyberCity/blob/main/CHANGELOG.md) 
+- [@aadamhuda](https://github.com/aadamhuda)
+- [@Ibraheem717](https://github.com/Ibraheem717)
+- [@gv301](https://github.com/gv301)
+- [@HinaMatsuzaki](https://github.com/HinaMatsuzaki)
+- [@sarahbrah7](https://github.com/sarahbrah7)
 
 ## Previous releases:
 - [Version 2.2.6](https://aadamhuda.github.io/CyberCityBuilds/v2.2.6/index.html)
