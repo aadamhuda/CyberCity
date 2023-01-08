@@ -140,7 +140,7 @@ To play:
 - [Special Effects](https://assetstore.unity.com/packages/vfx/particles/spells/52-special-effects-pack-10419)
 - [Status Effects](https://assetstore.unity.com/packages/vfx/particles/spells/status-effects-free-238904)
 
-[Custom Assets](https://github.com/aadamhuda/CyberCity/tree/main/gameDev-GroupH/Assets/Custom%20assets)
+## [Custom Assets](https://github.com/aadamhuda/CyberCity/tree/main/gameDev-GroupH/Assets/Custom%20assets)
   - Dialogue Boxes 
   - Characters Drawing
   - Loading Screens
