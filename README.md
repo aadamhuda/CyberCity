@@ -49,6 +49,7 @@ To play:
 ## Known Issues and Workarounds:
 - Player Spawning Issue - Player has a small chance to spawn at spawn after returning to out of battle, as a workaround, we detached the player controller and then set the transform of the player. Then after it is reattached. This reduces the chances of this issue occuring.
 - Input Unbinding - When moving to other scenes, input would become unbinded when using the new Unity Input System. To temporarily fix this, we applied different input actions to the different scenes we had used.
+- City Level - There may be spots where you are able to run off the map, these have not been patched yet.
 
 ## Assets
 [Cinemachine](https://unity.com/unity/features/editor/art-and-design/cinemachine)
