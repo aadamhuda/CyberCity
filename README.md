@@ -9,11 +9,12 @@ We would like to thank you for playing CyberCity, and hope you enjoy it!
 
 ## Table of Contents
 1. [How To Play](#how-to-play)
-2. [Assets](#assets)
-3. [Custom Assets](#custom-assets)
-4. [Demo Videos](#demo-videos)
-5. [Creators](#creators)
-6. [Previous Releases](#previous-releases)
+2. [Know Issues and Workarounds](#known-issues-and-workarounds)
+3. [Assets](#assets)
+4. [Custom Assets](#custom-assets)
+5. [Demo Videos](#demo-videos)
+6. [Creators](#creators)
+7. [Previous Releases](#previous-releases)
 
 You can access the Builds repository via this [link](https://github.com/aadamhuda/CyberCityBuilds).
 
@@ -40,10 +41,14 @@ To play:
 - If you pick up a clue it dissapears to show you picked it up
   - When in range, the clue will have a yellow indicator above to show that you are in range to pick it up
   - Press the 'E' key to pick it up
-  - Once you pick up the four clues in the cargo level, and go to the green pad, you'll be taken to the next level (City level)
-  - If you pick up all eight clues, and go to the green pad within the city level, you win!
+  - Once you pick up the four clues in the cargo level, and go to the green pad and press 'Spacebar', you'll be taken to the next level (City level)
+  - If you pick up all eight clues, and go to the green pad within the city level, you can submit these at the green pad at the end by pressing 'Spacebar', and you win!!
   
 ![loading_screen_2](https://user-images.githubusercontent.com/44711169/211208808-e97cfe46-ad0d-464b-b098-a48e3bcde424.png)
+
+## Known Issues and Workarounds:
+- Player Spawning Issue - Player has a small chance to spawn at spawn after returning to out of battle, as a workaround, we detached the player controller and then set the transform of the player. Then after it is reattached. This reduces the chances of this issue occuring.
+- Input Unbinding - When moving to other scenes, input would become unbinded when using the new Unity Input System. To temporarily fix this, we applied different input actions to the different scenes we had used.
 
 ## Assets
 [Cinemachine](https://unity.com/unity/features/editor/art-and-design/cinemachine)
@@ -148,20 +153,19 @@ All custom assets designed by [@sarahbrah7](https://github.com/sarahbrah7)
   - Dialogue Boxes 
   - Characters Drawing
   - Loading Screens
-    - For both levels
   - Pause Screen
   - Button
   - Menu Screen
   - Lose Screen 
   - Win Screen
   - Item Drawings 
- 
-![ether_item1](https://user-images.githubusercontent.com/44711169/211208884-236d03db-cb4e-4c52-9a3f-db5a55e6d36e.png)
-![ether_item2](https://user-images.githubusercontent.com/44711169/211208886-2b57ab7d-d7a7-4c14-bbff-b75728ecff15.png)
-![potion_item1](https://user-images.githubusercontent.com/44711169/211208887-e2009013-76b5-44f2-9512-177eafd45ec3.png)
-![potion_item2](https://user-images.githubusercontent.com/44711169/211208888-99f5fde0-5327-44ca-acc8-2f31c7af4e20.png)
-![revive_item1](https://user-images.githubusercontent.com/44711169/211208889-68197ae0-f91a-4a70-a62f-b08475d742e7.png)
-![revive_item2](https://user-images.githubusercontent.com/44711169/211208891-530cc428-76a7-4468-bc01-ff954e16296b.png)
+  
+  ![ether_item1](https://user-images.githubusercontent.com/44711169/211208884-236d03db-cb4e-4c52-9a3f-db5a55e6d36e.png)
+  ![ether_item2](https://user-images.githubusercontent.com/44711169/211208886-2b57ab7d-d7a7-4c14-bbff-b75728ecff15.png)
+  ![potion_item1](https://user-images.githubusercontent.com/44711169/211208887-e2009013-76b5-44f2-9512-177eafd45ec3.png)
+  ![potion_item2](https://user-images.githubusercontent.com/44711169/211208888-99f5fde0-5327-44ca-acc8-2f31c7af4e20.png)
+  ![revive_item1](https://user-images.githubusercontent.com/44711169/211208889-68197ae0-f91a-4a70-a62f-b08475d742e7.png)
+  ![revive_item2](https://user-images.githubusercontent.com/44711169/211208891-530cc428-76a7-4468-bc01-ff954e16296b.png)
 
 ## Demo Videos:
   - [Final Game Demo](https://youtu.be/F5lDAzxZ9wQ) by [@Ibraheem717](https://github.com/Ibraheem717)
